@@ -1,4 +1,4 @@
-package com.ispan.springbootdemo_teacher;
+package com.ispan.springboot.action;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

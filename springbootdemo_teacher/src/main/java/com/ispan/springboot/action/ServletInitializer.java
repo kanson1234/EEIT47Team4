@@ -1,4 +1,4 @@
-package com.ispan.springbootdemo_teacher;
+package com.ispan.springboot.action;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
