@@ -1,10 +1,7 @@
 package com.ispan.springboot.model;
 
 import java.sql.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,11 +44,11 @@ public class ShopHouseBean {
 	private boolean status;
 	
 	
-	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss",timezone="Asia/Taipei")
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="SH_Date")
-	private Date date;
+//	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss",timezone="Asia/Taipei")
+//	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+//	@Temporal(TemporalType.TIMESTAMP)
+//	@Column(name="SH_Date")
+//	private Date date;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="C2_Id")
@@ -68,6 +65,7 @@ public class ShopHouseBean {
 	
 	public ShopHouseBean() {
 	}
+	
 
 	public ShopHouseBean(Integer id, String itemName, byte[] itemImg, Integer price, String classify, boolean status,
 			Date date, Integer c2Id) {
@@ -78,7 +76,7 @@ public class ShopHouseBean {
 		this.price = price;
 		this.classify = classify;
 		this.status = status;
-		this.date = date;
+//		this.date = date;
 		this.c2Id = c2Id;
 	}
 
@@ -130,13 +128,13 @@ public class ShopHouseBean {
 		this.status = status;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
+//	public Date getDate() {
+//		return date;
+//	}
+//
+//	public void setDate(Date date) {
+//		this.date = date;
+//	}
 
 	public Integer getC2Id() {
 		return c2Id;

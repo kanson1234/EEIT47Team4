@@ -1,5 +1,7 @@
 package com.ispan.springboot.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ public class ShopHouseService {
 	@Autowired
 	private ShopHouseDao sDao;
 	
-	//新增商品
+	//新增商品 or 修改商品
 	public void insertItem(ShopHouseBean shb) {
 		sDao.save(shb);
 	}
@@ -25,13 +27,17 @@ public class ShopHouseService {
 		sDao.deleteById(id);
 	}
 	
-	//修改商品資訊
-	
-	
 	//查詢一筆商品
-	public shop findItemById(Integer id) {
-		sDao.findById(id);
+	public ShopHouseBean findItemById(Integer id) {
+		Optional<ShopHouseBean> optional = sDao.findById(id);
+		
+		if(optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
 	}
+	
+	
 	
 	
 	
