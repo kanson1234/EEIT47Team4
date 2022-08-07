@@ -30,7 +30,7 @@ public class RetailerBean {
 	@Column(name="C2_Pwd")
 	private String pwd;
 	
-	@Lob
+	
 	@Column(name="C2_Phone")
 	private String phone;
 	
@@ -43,6 +43,7 @@ public class RetailerBean {
 	@Column(name="C2_logo")
 	private byte[] logo;
 	
+	@Lob
 	@Column(name="C2_photo")
 	private byte[] photo;
 	
