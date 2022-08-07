@@ -50,9 +50,9 @@ public class ShopHouseBean {
 //	@Column(name="SH_Date")
 //	private Date date;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="C2_Id")
-	private Integer c2Id;
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name="C2_Id")
+//	private Integer c2Id;
 	
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "StoreHouse", cascade = CascadeType.ALL)
 //	private Set<EvolutionSystem> books = new LinkedHashSet<EvolutionSystem>();
@@ -77,7 +77,7 @@ public class ShopHouseBean {
 		this.classify = classify;
 		this.status = status;
 //		this.date = date;
-		this.c2Id = c2Id;
+//		this.c2Id = c2Id;
 	}
 
 	public Integer getId() {
@@ -136,12 +136,12 @@ public class ShopHouseBean {
 //		this.date = date;
 //	}
 
-	public Integer getC2Id() {
-		return c2Id;
-	}
-
-	public void setC2Id(Integer c2Id) {
-		this.c2Id = c2Id;
-	}
+//	public Integer getC2Id() {
+//		return c2Id;
+//	}
+//
+//	public void setC2Id(Integer c2Id) {
+//		this.c2Id = c2Id;
+//	}
 
 }
