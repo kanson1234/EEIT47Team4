@@ -18,7 +18,7 @@ public class ShopHouseService {
 	private ShopHouseDao sDao;
 	
 	//新增商品 or 修改商品
-	public void insertItem(ShopHouseBean shb) {
+	public void addItem(ShopHouseBean shb) {
 		sDao.save(shb);
 	}
 	
