@@ -2,25 +2,16 @@ package com.ispan.springboot.model;
 
 
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="StoreHouse")
@@ -28,12 +19,13 @@ public class ShopHouseBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="")
+	@Column(name="SH_Item_Id")
 	private Integer id;
 	
 	@Column(name="SH_ItemName")
 	private String itemName;
 	
+
 	@Lob
 	@Column(name="SH_Img")
 	private byte[] itemImg;
@@ -56,8 +48,12 @@ public class ShopHouseBean {
 	
 //	@ManyToOne(fetch = FetchType.EAGER)
 //	@JoinColumn(name="C2_Id")
+
 	@Column(name="C2_Id")
 	private Integer c2Id;
+
+//	private Integer c2Id;
+
 	
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "StoreHouse", cascade = CascadeType.ALL)
 //	private Set<EvolutionSystem> books = new LinkedHashSet<EvolutionSystem>();
@@ -109,6 +105,7 @@ public class ShopHouseBean {
 		this.itemImg = itemImg;
 	}
 
+
 	public double getPrice() {
 		return price;
 	}
@@ -137,9 +134,14 @@ public class ShopHouseBean {
 //		return date;
 //	}
 
+
+
+//
+
 //	public void setDate(Date date) {
 //		this.date = date;
 //	}
+
 
 	public Integer getC2Id() {
 		return c2Id;
@@ -148,5 +150,14 @@ public class ShopHouseBean {
 	public void setC2Id(Integer c2Id) {
 		this.c2Id = c2Id;
 	}
+
+//	public Integer getC2Id() {
+//		return c2Id;
+//	}
+//
+//	public void setC2Id(Integer c2Id) {
+//		this.c2Id = c2Id;
+//	}
+
 
 }
