@@ -19,7 +19,7 @@ public class RetailerController {
 	@Autowired
 	private RetailerService rSrevice;
 
-	@PostMapping("/Retailer/insert")
+	@PostMapping("/Retailer/insert.controller")
 	public String insertRetailer(@RequestParam("rFirstName") String rf, @RequestParam("rLastName") String rl,
 			@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, @RequestParam("rPhone") String rph,
 			Model m) {
