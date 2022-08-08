@@ -15,6 +15,11 @@ public class pageController {
 	public String register() {
 		return "registerR";
 	}
+	
+	@GetMapping("/logindex")
+	public String loginIndex() {
+		return "loginindex";
+	}
 
 
 }
