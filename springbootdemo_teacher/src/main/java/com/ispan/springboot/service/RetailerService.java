@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ispan.springboot.dao.RetailerDao;
 import com.ispan.springboot.model.Retailer;
-import com.ispan.springboot.model.RetailerBean;
 
 @Service
 @Transactional
