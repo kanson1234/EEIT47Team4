@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,16 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ispan.springboot.model.RetailerBean;
 import com.ispan.springboot.model.RetailerRepository;
 
-@RestController
+@Controller
 public class RetailerController {
 	
 	@Autowired
 	private RetailerRepository rDao;
 	
-	@GetMapping("Retailer/RetailerCRUD/{Id}")
-	public String showAllCustomer(@PathVariable("Id") Integer id,Model model ) {
+	@GetMapping("Retailer/RetailerCRUD")
+	public String showAllCustomer(Model model) {
 		List<RetailerBean> list = rDao.findAll(); 
-		model.addAttribute("id",);
+		model.addAttribute("listRetailer",list);
 		return "RetailerCRUD";
 	}
 	
