@@ -1,23 +1,17 @@
 package com.ispan.springboot.model;
 
-import java.sql.Date;
+
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
+import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="StoreHouse")
@@ -31,11 +25,13 @@ public class ShopHouseBean {
 	@Column(name="SH_ItemName")
 	private String itemName;
 	
+
+	@Lob
 	@Column(name="SH_Img")
 	private byte[] itemImg;
 	
 	@Column(name="SH_Price")
-	private Integer price;
+	private double price;
 	
 	@Column(name="SH_Classify")
 	private String classify;
@@ -50,9 +46,14 @@ public class ShopHouseBean {
 //	@Column(name="SH_Date")
 //	private Date date;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="C2_Id")
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name="C2_Id")
+
+	@Column(name="C2_Id")
 	private Integer c2Id;
+
+//	private Integer c2Id;
+
 	
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "StoreHouse", cascade = CascadeType.ALL)
 //	private Set<EvolutionSystem> books = new LinkedHashSet<EvolutionSystem>();
@@ -77,7 +78,7 @@ public class ShopHouseBean {
 		this.classify = classify;
 		this.status = status;
 //		this.date = date;
-		this.c2Id = c2Id;
+//		this.c2Id = c2Id;
 	}
 
 	public Integer getId() {
@@ -104,11 +105,12 @@ public class ShopHouseBean {
 		this.itemImg = itemImg;
 	}
 
-	public Integer getPrice() {
+
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -131,10 +133,15 @@ public class ShopHouseBean {
 //	public Date getDate() {
 //		return date;
 //	}
+
+
+
 //
+
 //	public void setDate(Date date) {
 //		this.date = date;
 //	}
+
 
 	public Integer getC2Id() {
 		return c2Id;
@@ -143,5 +150,14 @@ public class ShopHouseBean {
 	public void setC2Id(Integer c2Id) {
 		this.c2Id = c2Id;
 	}
+
+//	public Integer getC2Id() {
+//		return c2Id;
+//	}
+//
+//	public void setC2Id(Integer c2Id) {
+//		this.c2Id = c2Id;
+//	}
+
 
 }
