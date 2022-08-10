@@ -25,33 +25,33 @@ public class ShopHouseController {
 
 	@Autowired
 	private ShopHouseService sService;
-	
-	//顯示全部商品
-		@GetMapping("/shopHouse/Allitem")
-		public String findAllItem(Model model) {
-			List<ShopHouseBean> all = sService.findAllItem();
-			model.addAttribute("AllItem", all);
-			return "shopHouseItems";
-		}
-		
-	//抓資料庫圖片
-		@GetMapping("/downloadImg/{id}")
-		public ResponseEntity<byte[]> downloadImg(@PathVariable Integer id){
-			ShopHouseBean item = sService.findItemById(id);
-			
-			byte[] itemImg = item.getItemImg();
-			
-			HttpHeaders header = new HttpHeaders();
-			header.setContentType(MediaType.IMAGE_JPEG);
-			
-			return new ResponseEntity<byte[]>(itemImg,header,HttpStatus.OK);
-		}
+
+	// 顯示全部商品
+	@GetMapping("/shopHouse/Allitem")
+	public String findAllItem(Model model) {
+		List<ShopHouseBean> all = sService.findAllItem();
+		model.addAttribute("AllItem", all);
+		return "shopHouseItems";
+	}
+
+	// 抓資料庫圖片
+	@GetMapping("/downloadImg/{id}")
+	public ResponseEntity<byte[]> downloadImg(@PathVariable Integer id) {
+		ShopHouseBean item = sService.findItemById(id);
+
+		byte[] itemImg = item.getItemImg();
+
+		HttpHeaders header = new HttpHeaders();
+		header.setContentType(MediaType.IMAGE_JPEG);
+
+		return new ResponseEntity<byte[]>(itemImg, header, HttpStatus.OK);
+	}
 
 	// 新增商品
 	@PostMapping("/shopHouse/addItem")
 	public String addItem(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
 			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
-			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id,Model model) {
+			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id, Model model) {
 		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
 			newShopHouse.setItemName(itemName);
@@ -64,15 +64,15 @@ public class ShopHouseController {
 			sService.addItem(newShopHouse);
 //			model.addAttribute("Msg", "新增成功");
 
-			List<ShopHouseBean> all = sService.findAllItem();
-			model.addAttribute("AllItem", all);
-			return "shopHouseItems";
+//			List<ShopHouseBean> all = sService.findAllItem();
+//			model.addAttribute("AllItem", all);
+//			return "shopHouseItems";
+			return "redirect:/shopHouse/Allitem";
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "index";
 		}
 	}
-	
 
 // 測試新增一筆資料	
 //	@PostMapping("ShopHouse/addItem11")
@@ -99,9 +99,9 @@ public class ShopHouseController {
 
 	// 刪除
 	@GetMapping("/ShopHouse/deleteById/{id}")
-	public String deleteItemById(@PathVariable Integer id,Model model) {
+	public String deleteItemById(@PathVariable Integer id, Model model) {
 		sService.deleteItem(id);
-		
+
 		List<ShopHouseBean> all = sService.findAllItem();
 		model.addAttribute("AllItem", all);
 		return "shopHouseItems";
@@ -116,16 +116,30 @@ public class ShopHouseController {
 		return "updateItem";
 	}
 
-    //修改商品
-    @PostMapping("/ShopHouse/editItem")
-    public String updateItemPost(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
+	// 修改商品
+	@PostMapping("/ShopHouse/editItem")
+	public String updateItemPost(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
 			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
-			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id,Model model) {
-    	
-    	
-		List<ShopHouseBean> all = sService.findAllItem();
-		model.addAttribute("AllItem", all);
-		return "shopHouseItems";
-    }
+			@RequestParam("state") boolean status, @RequestParam("c2Id") Integer c2Id, Model model) {
+		try {
+			ShopHouseBean newShopHouse = new ShopHouseBean();
+			
+			newShopHouse.setItemName(itemName);
+			newShopHouse.setItemImg(itemImg.getBytes());
+			newShopHouse.setPrice(Price);
+			newShopHouse.setClassify(classify);
+      		newShopHouse.setStatus(status);
+			newShopHouse.setC2Id(c2Id);
+			System.out.println("111");
+			sService.addItem(newShopHouse);
+			
+			List<ShopHouseBean> all = sService.findAllItem();
+			model.addAttribute("AllItem", all);
+			return "shopHouseItems";
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "updateItem";
+	}
 
 }

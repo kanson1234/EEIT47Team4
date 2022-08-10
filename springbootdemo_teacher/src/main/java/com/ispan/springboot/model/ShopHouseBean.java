@@ -118,7 +118,7 @@ public class ShopHouseBean {
 		this.classify = classify;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 

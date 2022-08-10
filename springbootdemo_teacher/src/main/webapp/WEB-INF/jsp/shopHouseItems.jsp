@@ -8,41 +8,44 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <div align='center'>
+  <h2>Account Manager</h2>
+  <form method="get" action="search">
+   <input type="text" name="keyword"/>
+   <input type="submit" name="Search"/>
+  </form>
+  <br/>
+  
+  <table class="table">
+   <thead class="thead-dark">
+    <tr>
+     <th scope="col">產品名稱</th>
+     <th scope="col">照片</th>
+     <th scope="col">價錢</th>
+     <th scope="col">種類</th>
+     <th scope="col">店家</th>
+    </tr>
+   </thead>
+   <tbody>
+    <c:forEach items="${AllItem}" var="i">
+     <tr>
+      <td>${i.itemName}</td>
+      <td><img width="150" src="${pageContext.request.contextPath}/downloadImg/${i.id}"></td>
+      <td>${i.price}</td>
+      <td>${i.classify}</td>
+      <td>${i.c2Id}</td>
+      <td>
+      <a href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button type="submit">編輯</button></a>
+      <a onclick="return confirm('確認刪除?')" href="${pageContext.request.contextPath}/ShopHouse/deleteById/${i.id}">
+						<button type="submit">刪除</button> </a>
+      </td>
+      <td>
+      </td>
+     </tr>
+    </c:forEach>
+   </tbody>
+  </table>
 
-	<div class="container">
-		<h1>商品</h1>
-
-		<table>
-
-			<c:forEach var="i" items="${AllItem}">
-
-
-				<div>${i.itemName}</div>
-				<%-- 	   <td>${i.itemImg}</td> --%>
-				
-					<img width="150"
-						src="${pageContext.request.contextPath}/downloadImg/${i.id}">
-				
-				${i.price}
-				${i.classify}
-				${i.status}
-				${i.c2Id}
-
-				<div>
-
-					<a href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button type="submit">編輯</button></a>
-					<!-- onclick="return confirm('確認刪除?') -->
-					<a onclick="return confirm('確認刪除?')" href="${pageContext.request.contextPath}/ShopHouse/deleteById/${i.id}">
-						<button type="submit">刪除</button>
-					</a>
-
-				</div>
-
-			</c:forEach>
-
-		</table>
-
-	</div>
-
+ </div>
 </body>
 </html>
