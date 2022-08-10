@@ -1,4 +1,4 @@
-package com.ispan.springboot.demol;
+package com.ispan.springboot.model;
 
 import java.util.Date;
 

@@ -1,3 +1,4 @@
+
 package com.ispan.springboot.controller;
 
 import java.io.IOException;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ispan.springboot.model.ShopHouseBean;
@@ -84,13 +84,11 @@ public class ShopHouseController {
 //			newShopHouse.setClassify("帳篷");
 //			newShopHouse.setStatus(true);
 //			newShopHouse.setC2Id(1000003);
-//			sService.addItem(newShopHouse);
-//			
-//			return newShopHouse;
-//	}
 
+//
 //	// 用id找商品
-//	@GetMapping("/ShopHouse/findItemById/{id}")
+//	@GetMapping("findItemById/{id}")
+
 //	public String findItemById(@PathVariable Integer id) {
 //		sService.findItemById(id);
 //
@@ -123,16 +121,16 @@ public class ShopHouseController {
 			@RequestParam("state") boolean status, @RequestParam("c2Id") Integer c2Id, Model model) {
 		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
-			
+
 			newShopHouse.setItemName(itemName);
 			newShopHouse.setItemImg(itemImg.getBytes());
 			newShopHouse.setPrice(Price);
 			newShopHouse.setClassify(classify);
-      		newShopHouse.setStatus(status);
+			newShopHouse.setStatus(status);
 			newShopHouse.setC2Id(c2Id);
 			System.out.println("111");
 			sService.addItem(newShopHouse);
-			
+
 			List<ShopHouseBean> all = sService.findAllItem();
 			model.addAttribute("AllItem", all);
 			return "shopHouseItems";
