@@ -17,6 +17,7 @@
 			<input type="text" name="keyword"/>
 			<input type="submit" name="Search"/>
 		</form>
+		<a href="${contextRoot}/registerPage">註冊新帳號</a>
 		<br/>
 		
 		<table class="table">
@@ -32,16 +33,16 @@
 			<tbody>
 				<c:forEach items="${listRetailer}" var="retailer">
 					<tr>
-						<td>${retailer.id}</td>
-						<td>${retailer.firstName}</td>
-						<td>${retailer.account}</td>
+						<td>${retailer.rid}</td>
+						<td>${retailer.rfirstName}</td>
+						<td>${retailer.raccount}</td>
 						<td>
-						<a href="${contextRoot}/message/editMessage/${retailer.id}">
+						<a href="${contextRoot}/message/editMessage/${retailer.rid}">
 						<button type="submit" class="btn btn-primary mb-2">修改</button>
 						</a>
 						</td>
 						<td>
-						<a onclick="return confirm('確認刪除?')" href="${contextRoot}/message/deleteMessage/$${retailer.id}">
+						<a onclick="return confirm('確認刪除?')" href="${contextRoot}/message/deleteMessage/$${retailer.rid}">
 						<button type="submit" class="btn btn-danger">刪除</button>
 						</a>
 						</td>

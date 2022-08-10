@@ -34,8 +34,8 @@ public class Retailer {
 	@Column(name = "C2_Phone")
 	private String rphone;
 
-	@Column(name = "C2_Date")
-	private Date rdate;
+//	@Column(name = "C2_Date")
+//	private Date rdate;
 
 	@Column(name = "C2_State")
 	private boolean rstate;
@@ -101,13 +101,13 @@ public class Retailer {
 		this.rphone = rphone;
 	}
 
-	public Date getRdate() {
-		return rdate;
-	}
-
-	public void setRdate(Date rdate) {
-		this.rdate = rdate;
-	}
+//	public Date getRdate() {
+//		return rdate;
+//	}
+//
+//	public void setRdate(Date rdate) {
+//		this.rdate = rdate;
+//	}
 
 	public boolean isRstate() {
 		return rstate;
