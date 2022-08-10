@@ -1,4 +1,4 @@
-package com.ispan.springboot.demol;
+package com.ispan.springboot.model;
 
 import java.util.Date;
 
@@ -33,7 +33,7 @@ public class ShoppingRecord {
 		}
 	}
 
-	@Column(name = "sr_state", nullable = true, columnDefinition = "boolean default true")
+	@Column(name = "sr_state", nullable = false, columnDefinition = "boolean default true")
 	private boolean srState;
 
 	@Column(name = "sr_count")
@@ -52,96 +52,70 @@ public class ShoppingRecord {
 	@Column(name = "sh_item_id")
 	private Integer shItemId;
 
-//	=========================================================
+//	==============6===========================================
 	public ShoppingRecord() {
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public ShoppingRecord(Integer srShoppingRecord_Id, Date srtime, boolean srState, Integer srCount, Integer cid,
-			Customer customer, Integer shItemId) {
-		super();
-		this.srShoppingRecord_Id = srShoppingRecord_Id;
-		this.srtime = srtime;
-		this.srState = srState;
-		this.srCount = srCount;
-		this.cid = cid;
-		this.customer = customer;
-		this.shItemId = shItemId;
-	}
-
 
 	public Integer getSrShoppingRecord_Id() {
 		return srShoppingRecord_Id;
 	}
 
-
 	public void setSrShoppingRecord_Id(Integer srShoppingRecord_Id) {
 		this.srShoppingRecord_Id = srShoppingRecord_Id;
 	}
-
 
 	public Date getSrtime() {
 		return srtime;
 	}
 
-
-	public void setSrtime(Date srtime) {
-		this.srtime = srtime;
-	}
-
+//	public void setSrtime(Date srtime) {
+//		this.srtime = srtime;
+//	}
 
 	public boolean isSrState() {
 		return srState;
 	}
 
-
 	public void setSrState(boolean srState) {
 		this.srState = srState;
 	}
-
 
 	public Integer getSrCount() {
 		return srCount;
 	}
 
-
 	public void setSrCount(Integer srCount) {
 		this.srCount = srCount;
 	}
-
-
-	public Integer getCid() {
-		return cid;
-	}
-
-
-	public void setCid(Integer cid) {
-		this.cid = cid;
-	}
-
 
 	public Customer getCustomer() {
 		return customer;
 	}
 
-
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
 
 	public Integer getShItemId() {
 		return shItemId;
 	}
 
+	public ShoppingRecord(Integer srShoppingRecord_Id, Date srtime, boolean srState, Integer srCount, Customer customer,
+			Integer shItemId) {
+		super();
+		this.srShoppingRecord_Id = srShoppingRecord_Id;
+		this.srtime = srtime;
+		this.srState = srState;
+		this.srCount = srCount;
+		this.customer = customer;
+		this.shItemId = shItemId;
+	}
 
 	public void setShItemId(Integer shItemId) {
 		this.shItemId = shItemId;
 	}
 
 
-
-//	=========================================================
-
+	
 }

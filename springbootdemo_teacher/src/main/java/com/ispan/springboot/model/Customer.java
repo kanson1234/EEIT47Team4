@@ -1,7 +1,6 @@
-package com.ispan.springboot.demol;
+package com.ispan.springboot.model;
 
-
-
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -22,17 +21,17 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "c1_id",nullable = false)
-	private int C1_Id;
+	@Column(name = "c1_id", nullable = false)
+	private int cId;
 
 	@Column(name = "c1_lastname")
-	private String C1_LastName;
+	private String cLastName;
 
 	@Column(name = "c1_status")
-	private boolean C1_Status;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
-	private Set<ShoppingRecord> SR =new LinkedHashSet<>();
+	private boolean cStatus;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = CascadeType.ALL)
+	private Set<ShoppingRecord> SR = new LinkedHashSet<>();
 
 //==================================================================================
 	public Customer() {
@@ -41,36 +40,35 @@ public class Customer {
 
 	public Customer(int c1_Id, String c1_LastName, boolean c1_Status) {
 		super();
-		C1_Id = c1_Id;
-		C1_LastName = c1_LastName;
-		C1_Status = c1_Status;
+		cId = c1_Id;
+		cLastName = c1_LastName;
+		cStatus = c1_Status;
 	}
-
 
 //==================================================================================
 
-	public int getC1_Id() {
-		return C1_Id;
+	public int getcId() {
+		return cId;
 	}
 
-	public void setC1_Id(int c1_Id) {
-		C1_Id = c1_Id;
+	public void setcId(int c1_Id) {
+		cId = c1_Id;
 	}
 
-	public String getC1_LastName() {
-		return C1_LastName;
+	public String getcLastName() {
+		return cLastName;
 	}
 
-	public void setC1_LastName(String c1_LastName) {
-		C1_LastName = c1_LastName;
+	public void setcLastName(String c1_LastName) {
+		cLastName = c1_LastName;
 	}
 
-	public boolean isC1_Status() {
-		return C1_Status;
+	public boolean iscStatus() {
+		return cStatus;
 	}
 
-	public void setC1_Status(boolean c1_Status) {
-		C1_Status = c1_Status;
+	public void setcStatus(boolean c1_Status) {
+		cStatus = c1_Status;
 	}
-	
+
 }
