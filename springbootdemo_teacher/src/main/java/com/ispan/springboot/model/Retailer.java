@@ -1,6 +1,5 @@
 package com.ispan.springboot.model;
 
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -39,6 +39,16 @@ public class Retailer {
 
 	@Column(name = "C2_State")
 	private boolean rstate;
+
+	@Column(name = "C2_logo")
+	private byte[] logo;
+
+	@Lob
+	@Column(name = "C2_photo")
+	private byte[] photo;
+
+	@Column(name = "C2_info")
+	private String info;
 
 	public Retailer() {
 	}
@@ -107,4 +117,27 @@ public class Retailer {
 		this.rstate = rstate;
 	}
 
+	public byte[] getLogo() {
+		return logo;
+	}
+
+	public void setLogo(byte[] logo) {
+		this.logo = logo;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
 }
