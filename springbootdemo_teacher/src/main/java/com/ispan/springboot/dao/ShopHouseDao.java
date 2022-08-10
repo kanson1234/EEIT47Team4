@@ -6,5 +6,4 @@ import com.ispan.springboot.model.ShopHouseBean;
 
 public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 
-
 }

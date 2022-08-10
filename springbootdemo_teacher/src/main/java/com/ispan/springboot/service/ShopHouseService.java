@@ -1,5 +1,6 @@
 package com.ispan.springboot.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -18,7 +19,6 @@ public class ShopHouseService {
 	private ShopHouseDao sDao;
 	
 	//新增商品 or 修改商品
-
 	public void addItem(ShopHouseBean shb) {
 		sDao.save(shb);
 	}
@@ -38,8 +38,10 @@ public class ShopHouseService {
 		return null;
 	}
 	
-	
-	
+	//查詢全部
+	public List<ShopHouseBean> findAllItem(){
+		return sDao.findAll();
+	}
 	
 	
 	

@@ -1,8 +1,5 @@
 package com.ispan.springboot.model;
 
-
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -25,7 +22,6 @@ public class ShopHouseBean {
 	@Column(name="SH_ItemName")
 	private String itemName;
 	
-
 	@Lob
 	@Column(name="SH_Img")
 	private byte[] itemImg;

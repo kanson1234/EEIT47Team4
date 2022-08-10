@@ -1,8 +1,13 @@
 package com.ispan.springboot.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,29 +25,54 @@ public class ShopHouseController {
 
 	@Autowired
 	private ShopHouseService sService;
+	
+	//顯示全部商品
+		@GetMapping("/shopHouse/Allitem")
+		public String findAllItem(Model model) {
+			List<ShopHouseBean> all = sService.findAllItem();
+			model.addAttribute("AllItem", all);
+			return "shopHouseItems";
+		}
+		
+	//抓資料庫圖片
+		@GetMapping("/downloadImg/{id}")
+		public ResponseEntity<byte[]> downloadImg(@PathVariable Integer id){
+			ShopHouseBean item = sService.findItemById(id);
+			
+			byte[] itemImg = item.getItemImg();
+			
+			HttpHeaders header = new HttpHeaders();
+			header.setContentType(MediaType.IMAGE_JPEG);
+			
+			return new ResponseEntity<byte[]>(itemImg,header,HttpStatus.OK);
+		}
 
 	// 新增商品
 	@PostMapping("/shopHouse/addItem")
-	public String addItem(@RequestParam("itemName") String ItemName, @RequestParam("file") MultipartFile itemImg,
-			@RequestParam("itemPrice") double itemPrice, @RequestParam("classfify") String classcify,
-			@RequestParam("State") boolean itemState, @RequestParam("c2Id") Integer c2Id) {
+	public String addItem(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
+			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
+			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id,Model model) {
 		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
-			newShopHouse.setItemName(ItemName);
+			newShopHouse.setItemName(itemName);
 			newShopHouse.setItemImg(itemImg.getBytes());
-			newShopHouse.setPrice(itemPrice);
-			newShopHouse.setClassify(classcify);
-			newShopHouse.setStatus(itemState);
+			newShopHouse.setPrice(Price);
+			newShopHouse.setClassify(classify);
+			newShopHouse.setStatus(status);
 			newShopHouse.setC2Id(c2Id);
 
 			sService.addItem(newShopHouse);
+//			model.addAttribute("Msg", "新增成功");
 
-			return "ShopHouse/addItem";
+			List<ShopHouseBean> all = sService.findAllItem();
+			model.addAttribute("AllItem", all);
+			return "shopHouseItems";
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "ShopHouse/addItem";
+			return "index";
 		}
 	}
+	
 
 // 測試新增一筆資料	
 //	@PostMapping("ShopHouse/addItem11")
@@ -59,34 +89,43 @@ public class ShopHouseController {
 //			return newShopHouse;
 //	}
 
-	// 用id找商品
-	@GetMapping("findItemById/{id}")
-	public String findItemById(@PathVariable Integer id) {
-		sService.findItemById(id);
-
-		return "findItemById";
-	}
+//	// 用id找商品
+//	@GetMapping("/ShopHouse/findItemById/{id}")
+//	public String findItemById(@PathVariable Integer id) {
+//		sService.findItemById(id);
+//
+//		return "findItemById";
+//	}
 
 	// 刪除
-	@GetMapping("ShopHouse/deleteById/{id}")
-	@ResponseBody
-	public void deleteItemById(@PathVariable Integer id) {
+	@GetMapping("/ShopHouse/deleteById/{id}")
+	public String deleteItemById(@PathVariable Integer id,Model model) {
 		sService.deleteItem(id);
+		
+		List<ShopHouseBean> all = sService.findAllItem();
+		model.addAttribute("AllItem", all);
+		return "shopHouseItems";
 	}
 
 	// 抓ID
-	@GetMapping("ShopHouse/editItem/{id}")
+	@GetMapping("/ShopHouse/editItemId/{id}")
 	public String updateItemPage(@PathVariable Integer id, Model model) {
 		ShopHouseBean item = sService.findItemById(id);
 
 		model.addAttribute("shopHouseItem", item);
-		return "editItem";
+		return "updateItem";
 	}
 
-//    修改商品
-
-//    public String editItemPost("ShopHouse/editItem") {
-//    	
-//    }
+    //修改商品
+    @PostMapping("/ShopHouse/editItem")
+    public String updateItemPost(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
+			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
+			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id,Model model) {
+    	
+    	
+		List<ShopHouseBean> all = sService.findAllItem();
+		model.addAttribute("AllItem", all);
+		return "shopHouseItems";
+    }
 
 }
