@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,12 +28,12 @@ public class ShopHouseController {
 	private ShopHouseService sService;
 
 	// 顯示全部商品
-	@GetMapping("/shopHouse/Allitem")
-	public String findAllItem(Model model) {
-		List<ShopHouseBean> all = sService.findAllItem();
-		model.addAttribute("AllItem", all);
-		return "shopHouseItems";
-	}
+//	@GetMapping("/shopHouse/Allitem")
+//	public String findAllItem(Model model) {
+//		List<ShopHouseBean> all = sService.findAllItem();
+//		model.addAttribute("AllItem", all);
+//		return "shopHouseItems";
+//	}
 
 	// 抓資料庫圖片
 	@GetMapping("/downloadImg/{id}")
@@ -51,7 +52,7 @@ public class ShopHouseController {
 	@PostMapping("/shopHouse/addItem")
 	public String addItem(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
 			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
-			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id, Model model) {
+			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id,Model model) {
 		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
 			newShopHouse.setItemName(itemName);
@@ -118,17 +119,18 @@ public class ShopHouseController {
 	@PostMapping("/ShopHouse/editItem")
 	public String updateItemPost(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
 			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
-			@RequestParam("state") boolean status, @RequestParam("c2Id") Integer c2Id, Model model) {
+			@RequestParam("state") boolean status, @RequestParam("c2Id") Integer c2Id, @RequestParam("id") Integer id,Model model) {
 		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
-
+			
+			newShopHouse.setId(id);
 			newShopHouse.setItemName(itemName);
 			newShopHouse.setItemImg(itemImg.getBytes());
 			newShopHouse.setPrice(Price);
 			newShopHouse.setClassify(classify);
 			newShopHouse.setStatus(status);
 			newShopHouse.setC2Id(c2Id);
-			System.out.println("111");
+//			System.out.println("111");
 			sService.addItem(newShopHouse);
 
 			List<ShopHouseBean> all = sService.findAllItem();
@@ -139,5 +141,14 @@ public class ShopHouseController {
 		}
 		return "updateItem";
 	}
+	
+    //分頁顯示商品
+	@GetMapping("/ShopHouse/viewItems")
+	public String viewMessagesPage(@RequestParam(name="p",defaultValue = "1") Integer pageNumber,Model model) {
+		Page<ShopHouseBean> page = sService.findByPage(pageNumber);
+		model.addAttribute("page",page);
+		
+		return "shopHouseItems";
+	}	
 
 }

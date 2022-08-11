@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <!-- 				name="Search" /> -->
 <!-- 		</form> -->
 		<br />
-<form action="${pageContext.request.contextPath}/ShopHouse/editItem" method="post" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath}/ShopHouse/editItem?id=${shopHouseItem.id}" method="post" enctype="multipart/form-data">
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -27,6 +28,7 @@
 					<th scope="col">種類<input name="classify"></th>
 					<th scope="col">狀態<input id="state" name="state"></th>
 					<th scope="col">店家<input name="c2Id"></th>
+<!-- 					<th scope="col"><input  type="hidden" name="id"></th> -->
 					<th scope="col"><input type="submit" value="修改"></th>
 				</tr>
 			</thead>

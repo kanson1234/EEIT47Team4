@@ -12,7 +12,7 @@
 <body>
 <h1>首頁</h1>
 <ul>
-<li><a href="${contextRoot}/shopHouse/Allitem">所有商品</a></li>
+<li><a href="${contextRoot}/ShopHouse/viewItems">所有商品</a></li>
 <li><a href="${contextRoot}/shopHouse/add">新增商品</a></li>
 <li><a href="${contextRoot}/ShopHouse/findItemById">查詢商品</a></li>
 </ul>
