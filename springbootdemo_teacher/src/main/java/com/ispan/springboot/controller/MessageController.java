@@ -37,20 +37,20 @@ public class MessageController {
 //		return "addMessage";
 //	}
 	
-	@GetMapping("message/add")
-	public Message addmessage() {
-		Message newMG = new Message();
-		newMG.setMcontext("測試");
-		newMG.setMstate(true);
-		newMG.setMstatec(true);
-		newMG.setMshid(10);
-		newMG.setMsid(123);
-		newMG.setMrid(2000002);
-		Message success = mService.insertMessage(newMG);
-		
-		return null;
-		
-	}
+//	@GetMapping("message/add")
+//	public Message addmessage() {
+//		Message newMG = new Message();
+//		newMG.setMcontext("測試");
+//		newMG.setMstate(true);
+//		newMG.setMstatec(true);
+//		newMG.setMshid(10);
+//		newMG.setMsid(123);
+//		newMG.setMrid(2000002);
+//		Message success = mService.insertMessage(newMG);
+//		
+//		return null;
+//		
+//	}
 	
 	
 	
