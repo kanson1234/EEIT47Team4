@@ -56,6 +56,9 @@ public class MessageController {
 	
 	
 	
+	
+	
+	
 //	@GetMapping("record/add")
 //	public ShoppingRecord addSR() {
 //		Customer customer = new Customer();
@@ -71,5 +74,7 @@ public class MessageController {
 //
 //		return newSR;
 //	}
+	
+	
 
 }
