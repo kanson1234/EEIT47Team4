@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <jsp:include page="navbar.jsp" />
+	pageEncoding="UTF-8"%>
+<jsp:include page="navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,11 +32,15 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/login.css">
 </head>
+
+
+
 <body class="vh-100">
-	<form action="Customer/insert" method="post" enctype="multipart/form-data">
+	<form action="Customer/insert" method="post"
+		enctype="multipart/form-data">
 		<h2 class="h3 mb-3 fw-normal">會員註冊</h2>
 		<table>
-		<tr>
+			<tr>
 				<td>姓:</td>
 				<td><input type="text" name="cFirstName" /></td>
 				<td>${errors.name}</td>
@@ -61,9 +65,10 @@
 				<td><input type="text" name="cbDate" /></td>
 				<td>${errors.pwd}</td>
 			</tr>
-				<tr>
+			<tr>
 				<td>個人圖片:</td>
-				<td><input type="file" name="cImg" /></td>
+				<td><input type="file" accept="image/*" name="cImg"  id="imgInp"/></td>
+				<td><img id="img" src="#"/></td>
 				<td>${errors.pwd}</td>
 			</tr>
 			<tr>
@@ -72,6 +77,22 @@
 			</tr>
 		</table>
 	</form>
+	
+	<script>
+	
+	$('#imgInp').change(function() {
+		  var file = $('#imgInp')[0].files[0];
+		  var reader = new FileReader;
+		  reader.onload = function(e) {
+		    $('#img').attr('src', e.target.result);
+		  };
+		  reader.readAsDataURL(file);
+		});
+	
+	
+	</script>
 
 </body>
+
+
 </html>

@@ -33,19 +33,16 @@
 	href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body class="vh-100">
-	<form action="Retailer/insert.controller" method="post">
+	<form action="Retailer/insert.controller" method="post"
+		enctype="multipart/form-data">
 		<h2 class="h3 mb-3 fw-normal">零售商註冊</h2>
 		<table>
 			<tr>
-				<td>姓:</td>
-				<td><input type="text" name="rFirstName" /></td>
+				<td>姓名:</td>
+				<td><input type="text" name="rName" /></td>
 				<td>${errors.name}</td>
 			</tr>
-			<tr>
-				<td>名:</td>
-				<td><input type="text" name="rLastName" /></td>
-				<td>${errors.name}</td>
-			</tr>
+		
 			<tr>
 				<td>帳號:</td>
 				<td><input type="text" name="rAccount" /></td>
@@ -62,11 +59,50 @@
 				<td>${errors.pwd}</td>
 			</tr>
 			<tr>
+				<td>商家描述:</td>
+				<td><input type="text" name="rInfo" /></td>
+				<td>${errors.pwd}</td>
+			</tr>
+			<tr>
+				<td>Logo圖樣:</td>
+				<td><input type="file" accept="image/*" name="rLogo"
+					id="imglogo" /></td>
+				<td><img id="logo" src="#" /></td>
+				<td>${errors.pwd}</td>
+			</tr>
+			<tr>
+				<td>商家照片:</td>
+				<td><input type="file" accept="image/*" name="rPhoto"
+					id="imgphoto" /></td>
+				<td><img id="photo" src="#" /></td>
+				<td>${errors.pwd}</td>
+			</tr>
+			<tr>
 				<td><button type="submit" class="btn btn-lg btn-primary">註冊</button></td>
 				<td>${errors.msg}</td>
 			</tr>
 		</table>
 	</form>
+
+	<script>
+		$('#imglogo').change(function() {
+			var file = $('#imglogo')[0].files[0];
+			var reader = new FileReader;
+			reader.onload = function(e) {
+				$('#logo').attr('src', e.target.result);
+			};
+			reader.readAsDataURL(file);
+		});
+
+		$('#imgphoto').change(function() {
+			var file = $('#imgphoto')[0].files[0];
+			var reader = new FileReader;
+			reader.onload = function(e) {
+				$('#photo').attr('src', e.target.result);
+			};
+			reader.readAsDataURL(file);
+		});
+	</script>
 
 </body>
 </html>

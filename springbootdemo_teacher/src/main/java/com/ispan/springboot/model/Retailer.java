@@ -1,6 +1,5 @@
 package com.ispan.springboot.model;
 
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -19,11 +19,8 @@ public class Retailer {
 	@Column(name = "C2_Id")
 	private Integer rid;
 
-	@Column(name = "C2_FirstName")
-	private String rfirstName;
-
-	@Column(name = "C2_LastName")
-	private String rlastName;
+	@Column(name = "C2_Name")
+	private String rname;
 
 	@Column(name = "C2_Account")
 	private String raccount;
@@ -40,6 +37,16 @@ public class Retailer {
 	@Column(name = "C2_State")
 	private boolean rstate;
 
+	@Column(name = "C2_info")
+	private String rinfo;
+
+	@Lob
+	@Column(name = "C2_logo")
+	private byte[] rlogo;
+
+	@Column(name = "C2_photo")
+	private byte[] rphoto;
+
 	public Retailer() {
 	}
 
@@ -51,20 +58,12 @@ public class Retailer {
 		this.rid = rid;
 	}
 
-	public String getRfirstName() {
-		return rfirstName;
+	public String getRname() {
+		return rname;
 	}
 
-	public void setRfirstName(String rfirstName) {
-		this.rfirstName = rfirstName;
-	}
-
-	public String getRlastName() {
-		return rlastName;
-	}
-
-	public void setRlastName(String rlastName) {
-		this.rlastName = rlastName;
+	public void setRname(String rname) {
+		this.rname = rname;
 	}
 
 	public String getRaccount() {
@@ -105,6 +104,30 @@ public class Retailer {
 
 	public void setRstate(boolean rstate) {
 		this.rstate = rstate;
+	}
+
+	public String getRinfo() {
+		return rinfo;
+	}
+
+	public void setRinfo(String rinfo) {
+		this.rinfo = rinfo;
+	}
+
+	public byte[] getRlogo() {
+		return rlogo;
+	}
+
+	public void setRlogo(byte[] rlogo) {
+		this.rlogo = rlogo;
+	}
+
+	public byte[] getRphoto() {
+		return rphoto;
+	}
+
+	public void setRphoto(byte[] rphoto) {
+		this.rphoto = rphoto;
 	}
 
 }

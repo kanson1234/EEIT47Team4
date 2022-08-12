@@ -14,11 +14,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.service.CustomerService;
+import com.ispan.springboot.service.EmailSenderService;
 
 @Controller
 public class CustomerController {
 	@Autowired
 	private CustomerService cService;
+	@Autowired
+	private EmailSenderService emailService;
 
 	@PostMapping("/Customer/insert")
 	public String insertCustomer(@RequestParam("cFirstName") String cf, @RequestParam("cLastName") String cl,
