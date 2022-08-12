@@ -1,8 +1,5 @@
 package com.ispan.springboot.model;
 
-
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +23,6 @@ public class ShopHouseBean {
 	@Column(name="SH_ItemName")
 	private String itemName;
 	
-
 	@Lob
 	@Column(name="SH_Img")
 	private byte[] itemImg;
@@ -39,6 +36,7 @@ public class ShopHouseBean {
 	@Column(name="SH_State")
 	private boolean status;
 	
+
 	
 //	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss",timezone="Asia/Taipei")
 //	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
@@ -122,7 +120,7 @@ public class ShopHouseBean {
 		this.classify = classify;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
