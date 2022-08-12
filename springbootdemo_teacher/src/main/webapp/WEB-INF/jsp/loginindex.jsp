@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<jsp:include page="navbar.jsp" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,23 +36,11 @@
 
 </head>
 <body>
-	<H3>請選擇想要操作的模式</H3>
 
-	<div>
-		<a href="${contextRoot}/login">
-			<button type="button" class="btn btn-secondary">管理者</button>
-		</a>
+	<div class="text-center">
+		<div class="container">
+			<h3>請選擇想要操作的模式</h3>
+		</div>
 	</div>
-	<div>
-		<a href="${contextRoot}/registerR">
-			<button type="button" class="btn btn-warning">商家註冊</button>
-		</a>
-	</div>
-	<div>
-		<a href="">
-			<button type="button" class="btn btn-success">顧客登入</button>
-		</a>
-	</div>
-
 </body>
 </html>

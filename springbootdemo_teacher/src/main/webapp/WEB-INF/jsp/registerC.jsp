@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<jsp:include page="navbar.jsp" />
+    pageEncoding="UTF-8"%>
+    <jsp:include page="navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>登入頁面</title>
+<title>會員註冊</title>
 <!-- bootstrap 5.1.3 CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -34,30 +33,45 @@
 	href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body class="vh-100">
-
-
-	<form action="checkadminlogin" method="post"
-		style="margin: auto; width: 220px">
-		<h2 class="h3 mb-3 fw-normal">管理者登入</h2>
+	<form action="Customer/insert" method="post" enctype="multipart/form-data">
+		<h2 class="h3 mb-3 fw-normal">會員註冊</h2>
 		<table>
+		<tr>
+				<td>姓:</td>
+				<td><input type="text" name="cFirstName" /></td>
+				<td>${errors.name}</td>
+			</tr>
 			<tr>
-				<td>管理者帳號:</td>
-				<td><input type="text" name="adAccount" /></td>
+				<td>名:</td>
+				<td><input type="text" name="cLastName" /></td>
+				<td>${errors.name}</td>
+			</tr>
+			<tr>
+				<td>帳號:</td>
+				<td><input type="text" name="cAccount" /></td>
 				<td>${errors.name}</td>
 			</tr>
 			<tr>
 				<td>密碼:</td>
-				<td><input type="password" name="adPwd" /></td>
+				<td><input type="password" name="cPwd" /></td>
 				<td>${errors.pwd}</td>
 			</tr>
 			<tr>
-				<td><button type="submit" class="btn btn-lg btn-primary">登入</button></td>
+				<td>生日:</td>
+				<td><input type="text" name="cbDate" /></td>
+				<td>${errors.pwd}</td>
+			</tr>
+				<tr>
+				<td>個人圖片:</td>
+				<td><input type="file" name="cImg" /></td>
+				<td>${errors.pwd}</td>
+			</tr>
+			<tr>
+				<td><button type="submit" class="btn btn-lg btn-primary">註冊</button></td>
 				<td>${errors.msg}</td>
 			</tr>
 		</table>
 	</form>
-
-
 
 </body>
 </html>

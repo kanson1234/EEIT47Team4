@@ -1,8 +1,5 @@
 package com.ispan.springboot.controller;
 
-
-
-
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +13,7 @@ import com.ispan.springboot.service.RetailerService;
 
 @Controller
 public class RetailerController {
+	
 	@Autowired
 	private RetailerService rSrevice;
 

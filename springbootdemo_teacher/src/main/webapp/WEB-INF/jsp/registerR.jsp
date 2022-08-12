@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:include page="navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,10 +33,10 @@
 	href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body class="vh-100">
-	<form action="Retailer/insert" method="post">
+	<form action="Retailer/insert.controller" method="post">
 		<h2 class="h3 mb-3 fw-normal">零售商註冊</h2>
 		<table>
-		<tr>
+			<tr>
 				<td>姓:</td>
 				<td><input type="text" name="rFirstName" /></td>
 				<td>${errors.name}</td>
