@@ -14,8 +14,7 @@
 		<form action="${contextRoot}/Retailer/registerPage"
 			method="post" enctype="multipart/form-data">
 
-			First Name : <input type="text" id="rFirstName" name="rFirstName"> <br />
-			Last Name :<input type="text" id="rLastName" name="rLastName"> <br /> 
+			Shop Name : <input type="text" id="rName" name="rName"> <br />
 			Account:<input type="text" id="rAccount" name="rAccount"> <br /> 
 			Password:<input type="text" id="rPwd" name="rPwd"> <br /> 
 			phone Number:<input type="text" id="rPhone" name="rPhone"> <br />

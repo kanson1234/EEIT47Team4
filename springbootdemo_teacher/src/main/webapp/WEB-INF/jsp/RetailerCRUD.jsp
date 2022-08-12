@@ -37,7 +37,7 @@
 				<c:forEach items="${listRetailer}" var="retailer">
 					<tr>
 						<td>${retailer.rid}</td>
-						<td>${retailer.rfirstName}</td>
+						<td>${retailer.rName}</td>
 						<td>${retailer.raccount}</td>
 						<td>
 						<a href="${contextRoot}/Retailer/editRetailer/${retailer.rid}">

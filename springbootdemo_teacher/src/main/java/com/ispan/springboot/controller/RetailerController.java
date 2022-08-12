@@ -44,20 +44,6 @@ public class RetailerController {
 		return "RetailerCRUD";
 	}
 	
-//	@GetMapping("/Retailer/getByAccount")
-//	public String searchByAccount(@RequestParam("keyword") String rAccount,RedirectAttributes redirectAttributes) {
-//		Retailer Account = rService.checkRetailerLogin(rAccount);
-//		System.out.println(Account);
-//		redirectAttributes.addFlashAttribute("serarchA",Account);
-//		return "redirect:/Retailer/showBysearch";
-//	}
-//	@PostMapping("/Retailer/showBysearch")
-//	public String showByAccount(@ModelAttribute("serarchA") String rAccount  ,Model model) {
-//		System.out.println(rAccount);
-//		Retailer list = rService.checkRetailerLogin(rAccount); 
-//		model.addAttribute("listRetailer",list);
-//		return "RetailerCRUD";
-//	}
 	@GetMapping("/showlogo/{id}")
 	public ResponseEntity<byte[]> showlogo(@PathVariable Integer id) {
 		Retailer logo = rService.findById(id);
@@ -82,14 +68,13 @@ public class RetailerController {
 	}
 	
 	@PostMapping("/Retailer/registerPage")
-	 public String addRetailer(@RequestParam("rFirstName") String rf, @RequestParam("rLastName") String rl,
+	 public String addRetailer(@RequestParam("rName") String rN,
 				@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, 
 				@RequestParam("rPhone") String rph, @RequestParam("logo") MultipartFile logo,
 				@RequestParam("photo") MultipartFile photo,@RequestParam("rInfo") String rInfo) throws IOException {
 	  
 		  Retailer r = new Retailer();
-		  r.setRfirstName(rf);
-			r.setRlastName(rl);
+		  	r.setrName(rN);
 			r.setRaccount(ra);
 			r.setRpwd(rpw);
 			r.setRphone(rph);
@@ -109,15 +94,13 @@ public class RetailerController {
 		return "editRetailer";
 	}
 	@PostMapping("/Retailer/editRetailer")
-	public String editMessagePage(@RequestParam Integer id,@RequestParam("rFirstName") String rf, @RequestParam("rLastName") String rl,
+	public String editMessagePage(@RequestParam Integer id,@RequestParam("rName") String rN,
 			@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, 
 			@RequestParam("rPhone") String rph, @RequestParam("logo") MultipartFile logo,
 			@RequestParam("photo") MultipartFile photo,@RequestParam("rInfo") String rInfo) throws IOException  {
-		System.out.println(id);
 		Retailer r = new Retailer();
 			r.setRid(id);
-		    r.setRfirstName(rf);
-			r.setRlastName(rl);
+		    r.setrName(rN);
 			r.setRaccount(ra);
 			r.setRpwd(rpw);
 			r.setRphone(rph);

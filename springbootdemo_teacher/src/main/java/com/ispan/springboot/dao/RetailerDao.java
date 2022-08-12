@@ -15,7 +15,7 @@ public interface RetailerDao extends JpaRepository<Retailer, Integer> {
 	@Query("from Retailer where raccount=:raccount")
 	public Retailer findByRetailerAccount(@Param("raccount")String raccount);
 
-	@Query(value="SELECT * FROM Retailer WHERE C2_FirstName like %:name%"
-			+" OR C2_LastName like %:name%", nativeQuery = true)
+	@Query(value="SELECT * FROM Retailer WHERE C2_Name like %:name%"
+			+" OR C2_Account like %:name%", nativeQuery = true)
 	public List<Retailer> findAll(@Param("name") String keyword);
 }

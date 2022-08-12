@@ -18,11 +18,8 @@ public class Retailer {
 	@Column(name = "C2_Id")
 	private Integer rid;
 
-	@Column(name = "C2_FirstName")
-	private String rfirstName;
-
-	@Column(name = "C2_LastName")
-	private String rlastName;
+	@Column(name = "C2_Name")
+	private String rName;
 
 	@Column(name = "C2_Account")
 	private String raccount;
@@ -60,20 +57,14 @@ public class Retailer {
 		this.rid = rid;
 	}
 
-	public String getRfirstName() {
-		return rfirstName;
+
+
+	public String getrName() {
+		return rName;
 	}
 
-	public void setRfirstName(String rfirstName) {
-		this.rfirstName = rfirstName;
-	}
-
-	public String getRlastName() {
-		return rlastName;
-	}
-
-	public void setRlastName(String rlastName) {
-		this.rlastName = rlastName;
+	public void setrName(String rName) {
+		this.rName = rName;
 	}
 
 	public String getRaccount() {
