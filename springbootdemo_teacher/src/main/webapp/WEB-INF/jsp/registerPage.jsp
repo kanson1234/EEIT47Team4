@@ -18,9 +18,7 @@
 			Last Name :<input type="text" id="rLastName" name="rLastName"> <br /> 
 			Account:<input type="text" id="rAccount" name="rAccount"> <br /> 
 			Password:<input type="text" id="rPwd" name="rPwd"> <br /> 
-<!-- 			status:<input id="State" name="State"> <br />  -->
 			phone Number:<input type="text" id="rPhone" name="rPhone"> <br />
-<!-- 			<input id="c2Id" name="c2Id"> <br />  -->
 			information:<input type="text" id="rInfo" name="rInfo">
 			Logo :<input type="file" name="logo"> <br /> 
 			Photo:<input type="file" name="photo"> <br /> 

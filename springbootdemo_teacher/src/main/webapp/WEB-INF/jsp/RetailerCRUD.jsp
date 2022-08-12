@@ -13,13 +13,15 @@
 <body>
 	<div align='center'>
 		<h2>Account Manager</h2>
-		<form method="get" action="search">
+		<div>
+		<form method="get" action="${contextRoot}/Retailer/getByAccount">
 			<input type="text" name="keyword"/>
 			<input type="submit" name="Search"/>
 		</form>
+		</div>
 		<a href="${contextRoot}/registerPage">註冊新帳號</a>
 		<br/>
-		
+		<div>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -31,26 +33,28 @@
 				</tr>
 			</thead>
 			<tbody>
+
 				<c:forEach items="${listRetailer}" var="retailer">
 					<tr>
 						<td>${retailer.rid}</td>
 						<td>${retailer.rfirstName}</td>
 						<td>${retailer.raccount}</td>
 						<td>
-						<a href="${contextRoot}/message/editMessage/${retailer.rid}">
+						<a href="${contextRoot}/Retailer/editRetailer/${retailer.rid}">
 						<button type="submit" class="btn btn-primary mb-2">修改</button>
 						</a>
 						</td>
 						<td>
-						<a onclick="return confirm('確認刪除?')" href="${contextRoot}/message/deleteMessage/$${retailer.rid}">
+						<a onclick="return confirm('確認刪除?')" href="${contextRoot}/message/deleteMessage/${retailer.rid}">
 						<button type="submit" class="btn btn-danger">刪除</button>
 						</a>
 						</td>
 					</tr>
 				</c:forEach>
+
 			</tbody>
 		</table>
-
+	</div>
 	</div>
 </body>
 </html>
