@@ -49,4 +49,3 @@ public interface ShoppingRecordDao extends JpaRepository<ShoppingRecord, Integer
 	
 	
 }	
-
