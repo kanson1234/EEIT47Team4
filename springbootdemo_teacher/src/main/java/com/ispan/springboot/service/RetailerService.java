@@ -25,13 +25,26 @@ public class RetailerService {
 	public void insertRetailer(Retailer rt) {
 		rDao.save(rt);
 	}
-
-	public List<Retailer> getAllPhoto() {
+	
+	public List<Retailer> listAll(String keyword){
+		if(keyword !=null) {
+			return rDao.findAll(keyword);
+		}
+		return rDao.findAll();
+		
+	}
+	
+	public List<Retailer> getAllRetailer() {
 		return rDao.findAll();
 	}
+	
 
-	public Optional<Retailer> findById(Integer id) {
-		return rDao.findById(id);
+	public Retailer findById(Integer id) {
+		Optional<Retailer> optional= rDao.findById(id);
+		if(optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
 	}
 
 

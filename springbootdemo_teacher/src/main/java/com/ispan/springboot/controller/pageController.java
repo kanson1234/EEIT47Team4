@@ -26,6 +26,16 @@ public class pageController {
 	public String register() {
 		return "registerR";
 	}
+	
+	@GetMapping("/registerPage")
+	public String registerPage() {
+		return "registerPage";
+	}
+	
+	@GetMapping("/retailerCRUD")
+	public String retailerCRUD() {
+		return "RetailerCRUD";
+	}
 
 
 }
