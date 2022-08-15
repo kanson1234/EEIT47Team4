@@ -66,7 +66,7 @@ public class CustomerController {
 
 	}
 
-	@GetMapping("/Customer/findAll")
+	@GetMapping("/customer/findAll")
 	public String findAllCustomer(Model m) {
 
 		List<Customer> allCustomer = cService.findAllCustomer();
@@ -86,6 +86,12 @@ public class CustomerController {
 
 		return new ResponseEntity<byte[]>(photoByte, header, HttpStatus.OK);
 
+	}
+	
+	@GetMapping("/deleteCustomer/{id}")
+	public String deleteById(@PathVariable Integer id) {
+		cService.deleteCustomer(id);
+		return "redirect:/customer/findAll";
 	}
 
 }

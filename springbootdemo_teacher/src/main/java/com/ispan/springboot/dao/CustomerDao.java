@@ -15,5 +15,7 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
 	public Customer findByCustomerAccount(@Param("caccount") String caccount);
 	
 	public  List<Customer> findAll();
+	
+	
 
 }

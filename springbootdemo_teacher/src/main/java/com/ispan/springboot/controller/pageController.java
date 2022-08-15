@@ -25,5 +25,12 @@ public class pageController {
 	public String loginIndex() {
 		return "loginindex";
 	}
+	
+	
+	
+	@GetMapping("/personalFile")
+	public String oneCustomer() {
+		return "personalFile";
+	}
 
 }

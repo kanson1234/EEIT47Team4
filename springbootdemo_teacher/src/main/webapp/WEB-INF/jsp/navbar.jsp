@@ -2,148 +2,95 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
-<style>
-.
-* {
-	box-sizing: border-box;
-}
-
-body {
-	margin: 0px;
-	font-family: 'segoe ui';
-}
-
-.nav {
-	height: 50px;
-	width: 100%;
-	background-color: #4d4d4d;
-	position: relative;
-}
-
-.nav>.nav-header {
-	display: inline;
-}
-
-.nav>.nav-header>.nav-title {
-	display: inline-block;
-	font-size: 22px;
-	color: #fff;
-	padding: 10px 10px 10px 10px;
-}
-
-.nav>.nav-btn {
-	display: none;
-}
-
-.nav>.nav-links {
-	display: inline;
-	float: right;
-	font-size: 18px;
-}
-
-.nav>.nav-links>a {
-	display: inline-block;
-	padding: 13px 10px 13px 10px;
-	text-decoration: none;
-	color: #efefef;
-}
-
-.nav>.nav-links>a:hover {
-	background-color: rgba(0, 0, 0, 0.3);
-}
-
-.nav>#nav-check {
-	display: none;
-}
-
-@media ( max-width :600px) {
-	.nav>.nav-btn {
-		display: inline-block;
-		position: absolute;
-		right: 0px;
-		top: 0px;
-	}
-	.nav>.nav-btn>label {
-		display: inline-block;
-		width: 50px;
-		height: 50px;
-		padding: 13px;
-	}
-	.nav>.nav-btn>label:hover, .nav  #nav-check:checked ~ .nav-btn>label {
-		background-color: rgba(0, 0, 0, 0.3);
-	}
-	.nav>.nav-btn>label>span {
-		display: block;
-		width: 25px;
-		height: 10px;
-		border-top: 2px solid #eee;
-	}
-	.nav>.nav-links {
-		position: absolute;
-		display: block;
-		width: 100%;
-		background-color: #333;
-		height: 0px;
-		transition: all 0.3s ease-in;
-		overflow-y: hidden;
-		top: 50px;
-		left: 0px;
-	}
-	.nav>.nav-links>a {
-		display: block;
-		width: 100%;
-	}
-	.nav>#nav-check:not(:checked) ~ .nav-links {
-		height: 0px;
-	}
-	.nav>#nav-check:checked ~ .nav-links {
-		height: calc(100vh - 50px);
-		overflow-y: auto;
-	}
-}
-</style>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <body>
 
-	<div class="nav">
-		<input type="checkbox" id="nav-check">
-		<div class="nav-header">
-			<div class="nav-title">首頁</div>
-		</div>
-		<div class="nav-btn">
-			<label for="nav-check"> <span></span> <span></span> <span></span>
-			</label>
-		</div>
+	<nav class="navbar navbar-expand-lg bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">首頁</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#">首頁</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${contextRoot}/logindex">登入頁面</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${contextRoot}/customer/findAll">所有會員</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="https://codepen.io/jo_Geek">###</a></li>
+						
 
-		<div class="nav-links">
-			<a href="${contextRoot}/logindex">登入頁面</a> <a
-				href="${contextRoot}/Customer/findAll">所有會員</a> <a
-				href="https://in.linkedin.com/in/jonesvinothjoseph">留言板</a> <a
-				href="https://codepen.io/jo_Geek/">購物車</a> <a
-				href="https://jsfiddle.net/user/jo_Geek/">聯絡我們</a>
-
-			<div class="btn-group">
-				<button type="button" class="btn btn-success dropdown-toggle "
-					data-bs-toggle="dropdown" aria-expanded="false">Action</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="${contextRoot}/login">管理者登入</a></li>
-					<li><a class="dropdown-item" href="${contextRoot}/registerR">商家註冊</a></li>
-					<li><a class="dropdown-item" href="${contextRoot}/registerC">顧客註冊</a></li>
-					<li><hr class="dropdown-divider"></li>
-					<li><a class="dropdown-item" href="#">Separated link</a></li>
+					<li class="nav-item dropdown">
+					<div class="btn-group">
+					<button type="button" class="btn btn-success dropdown-toggle "
+						data-bs-toggle="dropdown" aria-expanded="false">Action</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="${contextRoot}/login">管理者登入</a></li>
+						<li><a class="dropdown-item" href="${contextRoot}/registerR">商家註冊</a></li>
+						<li><a class="dropdown-item" href="${contextRoot}/registerC">顧客註冊</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="#">Separated link</a>
+						</li>
+					</ul>
+					</div>
+					</li>
 				</ul>
 			</div>
-			
 		</div>
-	</div>
+	</nav>
+
+
+
+
+	<!-- 	<div class="nav"> -->
+	<!-- 		<input type="checkbox" id="nav-check"> -->
+	<!-- 		<div class="nav-header"> -->
+	<!-- 			<div class="nav-title">首頁</div> -->
+	<!-- 		</div> -->
+	<!-- 		<div class="nav-btn"> -->
+	<!-- 			<label for="nav-check"> <span></span> <span></span> <span></span> -->
+	<!-- 			</label> -->
+	<!-- 		</div> -->
+
+	<!-- 		<div class="nav-links"> -->
+	<%-- 			<a href="${contextRoot}/logindex">登入頁面</a> <a --%>
+	<%-- 				href="${contextRoot}/customer/findAll">所有會員</a> <a --%>
+	<%-- 				href="${contextRoot}/personalFile">我的會員資料</a> <a --%>
+	<!-- 				href="https://codepen.io/jo_Geek/">留言板</a> <a -->
+	<!-- 				href="https://jsfiddle.net/user/jo_Geek/">聯絡我們</a> -->
+
+	<!-- 			<div class="btn-group"> -->
+	<!-- 				<button type="button" class="btn btn-success dropdown-toggle " -->
+	<!-- 					data-bs-toggle="dropdown" aria-expanded="false">Action</button> -->
+	<!-- 				<ul class="dropdown-menu"> -->
+	<%-- 					<li><a class="dropdown-item" href="${contextRoot}/login">管理者登入</a></li> --%>
+	<%-- 					<li><a class="dropdown-item" href="${contextRoot}/registerR">商家註冊</a></li> --%>
+	<%-- 					<li><a class="dropdown-item" href="${contextRoot}/registerC">顧客註冊</a></li> --%>
+	<!-- 					<li><hr class="dropdown-divider"></li> -->
+	<!-- 					<li><a class="dropdown-item" href="#">Separated link</a></li> -->
+	<!-- 				</ul> -->
+	<!-- 			</div> -->
+
+	<!-- 		</div> -->
+	<!-- 	</div> -->
 
 </body>
 

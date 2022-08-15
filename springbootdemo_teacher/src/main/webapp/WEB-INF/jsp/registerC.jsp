@@ -6,12 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>會員註冊</title>
-<!-- bootstrap 5.1.3 CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
 
 <!-- bootstrap 5.1.3 JS -->
 <script
@@ -19,65 +13,60 @@
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 
-<!-- jQuery 3.6.0 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
-
-<!-- font awesome 5.10.0 -->
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-
-<!-- 自定義CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/login.css">
-</head>
 
 
 
-<body class="vh-100">
+
+
+
+<body>
+<div class="container" >
+	<div style="margin: 20px;padding: 20px;padding-left: 200px;padding-right: 200px; margin-left: auto;margin-right: auto; width: 60%; border: solid 1px;border-radius: 5px;border-color: rgb(163, 163, 163);">
 	<form action="Customer/insert" method="post"
 		enctype="multipart/form-data">
 		<h2 class="h3 mb-3 fw-normal">會員註冊</h2>
-		<table>
-			<tr>
-				<td>姓:</td>
-				<td><input type="text" name="cFirstName" /></td>
-				<td>${errors.name}</td>
-			</tr>
-			<tr>
-				<td>名:</td>
-				<td><input type="text" name="cLastName" /></td>
-				<td>${errors.name}</td>
-			</tr>
-			<tr>
-				<td>帳號:</td>
-				<td><input type="text" name="cAccount" /></td>
-				<td>${errors.name}</td>
-			</tr>
-			<tr>
-				<td>密碼:</td>
-				<td><input type="password" name="cPwd" /></td>
-				<td>${errors.pwd}</td>
-			</tr>
-			<tr>
-				<td>生日:</td>
-				<td><input type="text" name="cbDate" /></td>
-				<td>${errors.pwd}</td>
-			</tr>
-			<tr>
-				<td>個人圖片:</td>
-				<td><input type="file" accept="image/*" name="cImg"  id="imgInp"/></td>
-				<td><img id="img" src="#"/></td>
-				<td>${errors.pwd}</td>
-			</tr>
-			<tr>
-				<td><button type="submit" class="btn btn-lg btn-primary">註冊</button></td>
-				<td>${errors.msg}</td>
-			</tr>
-		</table>
+		
+		<div class="mb-3">
+			<label for="exampleFormControlInput1" class="form-label">姓</label>
+			<input type="text" class="form-control" name="cFirstName">
+			<p style="color: red;">${errors.name}</p>
+		  </div>
+
+				
+				
+			
+			
+				名:
+				<input type="text" name="cLastName" />
+				${errors.name}
+			
+			
+				帳號:
+				<input type="text" name="cAccount" />
+				${errors.name}
+			密碼:
+				<input type="password" name="cPwd" />
+				${errors.pwd}
+			
+			
+				生日:
+				<input type="text" name="cbDate" />
+				${errors.pwd}
+			
+			
+				個人圖片:
+				<input type="file" accept="image/*" name="cImg"  id="imgInp"/>
+				<img width="350"  id="img" src=""/>
+				${errors.pwd}
+			
+			
+				<button type="submit" class="btn btn-lg btn-primary">註冊</button>
+				${errors.msg}
+			
+		
 	</form>
-	
+</div>
+</div>
 	<script>
 	
 	$('#imgInp').change(function() {

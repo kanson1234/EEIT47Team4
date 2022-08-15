@@ -36,5 +36,9 @@ public class CustomerService {
 		}
 		return null;
 	}
+	
+	public void deleteCustomer(Integer id) {
+		cDao.deleteById(id);
+	}
 
 }

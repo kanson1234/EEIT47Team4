@@ -62,11 +62,11 @@
 						<td>${c.cstatus}</td>
 						<td><a
 							href="">
-								<button class="btn btn-secondary">修改</button>
+								<button class="btn btn-secondary">修改帳號狀態</button>
 						</a></td>
-						<td><a
-							href="">
-								<button class="btn btn-warning">刪除</button>
+						<td><a onclick="confirm('確認刪除會員資料?');return confirm('真的要刪除此筆資料嗎?')"
+							href="${contextRoot}/deleteCustomer/${c.cid}">
+								<button class="btn btn-warning">X</button>
 						</a></td>
 					</tr>
 				</c:forEach>
