@@ -5,6 +5,7 @@
 <html>
 <head>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
+<link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>register Page</title>
 </head>
