@@ -53,9 +53,15 @@ public class ShopHouseService {
 		return page;
 	}
 	
+	//模糊查詢
+	public List<ShopHouseBean> findByKeyword(String word){
+		return sDao.findByKeyword(word);
+	}
 	
+	//產品類型搜尋
+	public List<ShopHouseBean> findByClassify(String word){
+		return sDao.findByClassify(word);
+	} 
 	
-	
-
 	
 }

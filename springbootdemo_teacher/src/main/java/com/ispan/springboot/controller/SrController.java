@@ -68,25 +68,25 @@ public class SrController {
 	@Autowired
 	private SrService SrService;
 
-	@GetMapping("record/add")
-	public ShoppingRecord addSR() {
-		Customer customer = new Customer();
-		customer.setcId(2000002);
-		
-	
-			ShoppingRecord newSR = new ShoppingRecord();
-			newSR.setCustomer(customer);
-			newSR.setShItemId(1);
-			newSR.setSrCount(5);
-			newSR.setSrState(true);
-			
-			System.out.println(newSR.getSrtime());
-		
-			ShoppingRecord success = SrService.addSR(newSR);
-		
-		System.out.println(newSR.getSrtime());
-		return newSR;
-	}
+//	@GetMapping("record/add")
+//	public ShoppingRecord addSR() {
+//		Customer customer = new Customer();
+//		customer.setcId(2000002);
+//		
+//	
+//			ShoppingRecord newSR = new ShoppingRecord();
+//			newSR.setCustomer(customer);
+//			newSR.setShItemId(1);
+//			newSR.setSrCount(5);
+//			newSR.setSrState(true);
+//			
+//			System.out.println(newSR.getSrtime());
+//		
+//			ShoppingRecord success = SrService.addSR(newSR);
+//		
+//		System.out.println(newSR.getSrtime());
+//		return newSR;
+//	}
 
 	
 	

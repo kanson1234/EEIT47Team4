@@ -78,7 +78,6 @@
 
 package com.ispan.springboot.model;
 
-import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -150,4 +149,3 @@ public class Customer {
 	}
 
 }
-

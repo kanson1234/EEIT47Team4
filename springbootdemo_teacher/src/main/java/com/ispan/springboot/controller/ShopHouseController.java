@@ -1,4 +1,5 @@
 
+
 package com.ispan.springboot.controller;
 
 import java.io.IOException;
@@ -68,7 +69,7 @@ public class ShopHouseController {
 //			List<ShopHouseBean> all = sService.findAllItem();
 //			model.addAttribute("AllItem", all);
 //			return "shopHouseItems";
-			return "redirect:/shopHouse/Allitem";
+			return "redirect:/ShopHouse/viewItems";
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "index";
@@ -103,7 +104,7 @@ public class ShopHouseController {
 
 		List<ShopHouseBean> all = sService.findAllItem();
 		model.addAttribute("AllItem", all);
-		return "shopHouseItems";
+		return "redirect:/ShopHouse/viewItems";
 	}
 
 	// 抓ID
@@ -135,7 +136,7 @@ public class ShopHouseController {
 
 			List<ShopHouseBean> all = sService.findAllItem();
 			model.addAttribute("AllItem", all);
-			return "shopHouseItems";
+			return "redirect:/ShopHouse/viewItems";
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -147,8 +148,27 @@ public class ShopHouseController {
 	public String viewMessagesPage(@RequestParam(name="p",defaultValue = "1") Integer pageNumber,Model model) {
 		Page<ShopHouseBean> page = sService.findByPage(pageNumber);
 		model.addAttribute("page",page);
-		
 		return "shopHouseItems";
 	}	
 
+	//模糊查詢
+	@GetMapping("/ShopHouse/findByKeyword")
+	public String findByKeyword(@RequestParam(name="word", defaultValue = "") String word,Model model) {
+		List<ShopHouseBean> keyword = sService.findByKeyword(word);
+//		System.out.println("size: " + keyword.size());
+//		System.out.println("itemName: " + keyword.get(0).getItemName());
+		model.addAttribute("keyword", keyword);
+		return "shopHouseItems";
+	}
+	
+	@GetMapping("/ShopHouse/findByClassify")
+	public String findByClassify(@RequestParam(name="classify",defaultValue = "") String classify,Model model) {
+		List<ShopHouseBean> category = sService.findByClassify(classify);
+		model.addAttribute("category", category);
+		return "shopHouseItems";
+	}
+
+	
 }
+
+
