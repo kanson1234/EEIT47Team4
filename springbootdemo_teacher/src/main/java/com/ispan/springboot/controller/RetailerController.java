@@ -89,8 +89,8 @@ public class RetailerController {
 	@GetMapping("/Retailer/editRetailer/{id}")
 	public String editMessagePage(@PathVariable Integer id,Model model) {
 		Retailer r =  rService.findById(id);
+		
 		model.addAttribute("Retailerinfo",r);
-		System.out.println(id);
 		return "editRetailer";
 	}
 	@PostMapping("/Retailer/editRetailer")
@@ -98,7 +98,7 @@ public class RetailerController {
 			@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, 
 			@RequestParam("rPhone") String rph, @RequestParam("logo") MultipartFile logo,
 			@RequestParam("photo") MultipartFile photo,@RequestParam("rInfo") String rInfo) throws IOException  {
-		Retailer r = new Retailer();
+			Retailer r = new Retailer();
 			r.setRid(id);
 		    r.setrName(rN);
 			r.setRaccount(ra);
