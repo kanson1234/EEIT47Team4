@@ -125,10 +125,10 @@ body {
 
 		<div class="nav-links">
 			<a href="${contextRoot}/logindex">登入頁面</a> <a
-				href="http://stackoverflow.com/users/4084003/">Stackoverflow</a> <a
-				href="https://in.linkedin.com/in/jonesvinothjoseph">LinkedIn</a> <a
-				href="https://codepen.io/jo_Geek/">Codepen</a> <a
-				href="https://jsfiddle.net/user/jo_Geek/">JsFiddle</a>
+				href="${contextRoot}/Customer/findAll">所有會員</a> <a
+				href="https://in.linkedin.com/in/jonesvinothjoseph">留言板</a> <a
+				href="https://codepen.io/jo_Geek/">購物車</a> <a
+				href="https://jsfiddle.net/user/jo_Geek/">聯絡我們</a>
 
 			<div class="btn-group">
 				<button type="button" class="btn btn-success dropdown-toggle "

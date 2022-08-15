@@ -4,10 +4,17 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +37,8 @@ public class CustomerController {
 		try {
 			Customer c = new Customer();
 			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date dutyDay =new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			Date dutyDay = new Date();
 			try {
 				dutyDay = (java.util.Date) sdf.parse(cbd);
 				c.setCbirthdate(dutyDay);
@@ -56,6 +63,28 @@ public class CustomerController {
 			e.printStackTrace();
 			return "login";
 		}
+
+	}
+
+	@GetMapping("/Customer/findAll")
+	public String findAllCustomer(Model m) {
+
+		List<Customer> allCustomer = cService.findAllCustomer();
+
+		m.addAttribute("customer", allCustomer);
+
+		return "allCustomer";
+	}
+
+	@GetMapping("/downloadImage/{id}")
+	public ResponseEntity<byte[]> downloadImage(@PathVariable Integer id) {
+		Customer photo = cService.getPhotoById(id);
+		byte[] photoByte = photo.getCimg();
+
+		HttpHeaders header = new HttpHeaders();
+		header.setContentType(MediaType.IMAGE_JPEG);
+
+		return new ResponseEntity<byte[]>(photoByte, header, HttpStatus.OK);
 
 	}
 
