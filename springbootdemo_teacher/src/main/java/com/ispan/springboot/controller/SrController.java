@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.ShoppingRecord;
+import com.ispan.springboot.model.StoreHouse;
 import com.ispan.springboot.service.SrService;
 
 @RestController
@@ -21,11 +22,12 @@ public class SrController {
 	public ShoppingRecord addSR() {
 		Customer customer = new Customer();
 		customer.setcId(2000002);
-		
+		StoreHouse storehouse = new StoreHouse();
+		storehouse.setShItemId(1);
 	
 			ShoppingRecord newSR = new ShoppingRecord();
 			newSR.setCustomer(customer);
-			newSR.setShItemId(1);
+			newSR.setStorehouse(storehouse);
 			newSR.setSrCount(5);
 			newSR.setSrState(true);
 			
@@ -51,7 +53,11 @@ public class SrController {
 		return  SrService.findAllByC1_id(cid);
 	}
 	
-	
+	@GetMapping("record/findAll2")
+	private List<ShoppingRecord> findAll2(@RequestParam(name="word",defaultValue = "") String word) {
+		
+		return  SrService.findAll2(word);
+	}
 	
 	
 }
