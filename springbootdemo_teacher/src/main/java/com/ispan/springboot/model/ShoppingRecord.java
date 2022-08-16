@@ -188,23 +188,35 @@ public class ShoppingRecord {
 	@Column(name = "sr_count")
 	private Integer srCount;
 
-	@Column(name = "c1_id")
-	@Transient
-	private Integer cid;
+//	@Column(name = "C1_Id")
+//	@Transient
+//	private Integer cid;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "c1_id")
 	private Customer customer;
 
-//	@ManyToOne
-//	@JoinColumn(name = "sh_item_id")
-	@Column(name = "sh_item_id")
-	private Integer shItemId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "sh_item_id")
+	private StoreHouse storehouse;
+//	=========================================================
 
-//	==============6===========================================
-	public ShoppingRecord() {
-		// TODO Auto-generated constructor stub
+	public ShoppingRecord(Integer srShoppingRecord_Id, Date srtime, boolean srState, Integer srCount, Customer customer,
+			StoreHouse storehouse) {
+		super();
+		this.srShoppingRecord_Id = srShoppingRecord_Id;
+		this.srtime = srtime;
+		this.srState = srState;
+		this.srCount = srCount;
+		this.customer = customer;
+		this.storehouse = storehouse;
 	}
+
+	public ShoppingRecord() {
+		super();
+	}
+
+//	=========================================================
 
 	public Integer getSrShoppingRecord_Id() {
 		return srShoppingRecord_Id;
@@ -218,9 +230,9 @@ public class ShoppingRecord {
 		return srtime;
 	}
 
-//	public void setSrtime(Date srtime) {
-//		this.srtime = srtime;
-//	}
+	public void setSrtime(Date srtime) {
+		this.srtime = srtime;
+	}
 
 	public boolean isSrState() {
 		return srState;
@@ -246,26 +258,12 @@ public class ShoppingRecord {
 		this.customer = customer;
 	}
 
-	public Integer getShItemId() {
-		return shItemId;
+	public StoreHouse getStorehouse() {
+		return storehouse;
 	}
 
-	public ShoppingRecord(Integer srShoppingRecord_Id, Date srtime, boolean srState, Integer srCount, Customer customer,
-			Integer shItemId) {
-		super();
-		this.srShoppingRecord_Id = srShoppingRecord_Id;
-		this.srtime = srtime;
-		this.srState = srState;
-		this.srCount = srCount;
-		this.customer = customer;
-		this.shItemId = shItemId;
+	public void setStorehouse(StoreHouse storehouse) {
+		this.storehouse = storehouse;
 	}
-
-	public void setShItemId(Integer shItemId) {
-		this.shItemId = shItemId;
-	}
-
-
-	
 }
 
