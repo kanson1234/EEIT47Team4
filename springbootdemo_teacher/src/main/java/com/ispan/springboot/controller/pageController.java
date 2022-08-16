@@ -37,5 +37,14 @@ public class pageController {
 		return "RetailerCRUD";
 	}
 
+	@GetMapping("/srselectpage")
+	public String srselectpage() {
+		return "srselectpage";
+	}
+	
+	@GetMapping("/srselectpageALL")
+	public String srselectpageALL() {
+		return "srselectpageALL";
+	}
 
 }
