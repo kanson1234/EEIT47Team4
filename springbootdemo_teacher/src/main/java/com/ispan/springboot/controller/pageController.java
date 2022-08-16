@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class pageController {
 	
+	@GetMapping("home")
+	public String Homepage() {
+		return "index";
+	}
+	
 	@GetMapping("/")
 	public String welcomeIndex() {
 		return "index";
