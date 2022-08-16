@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>會員登入</title>
-<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <!-- bootstrap 5.1.3 JS -->
 <script

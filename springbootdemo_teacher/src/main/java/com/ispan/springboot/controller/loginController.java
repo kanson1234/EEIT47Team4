@@ -3,6 +3,8 @@ package com.ispan.springboot.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.ispan.springboot.model.Admin;
 import com.ispan.springboot.model.Customer;
@@ -19,7 +22,7 @@ import com.ispan.springboot.service.CustomerService;
 import com.ispan.springboot.service.RetailerService;
 
 @Controller
-@SessionAttributes("loginOk")
+
 public class loginController {
 	@Autowired
 	private AdminService aService;
@@ -92,7 +95,8 @@ public class loginController {
 
 	// 會員登入
 	@PostMapping("/checkcustomerlogin")
-	public String customerLogin(@RequestParam("cAccount") String caccount, @RequestParam("cPwd") String cpwd, Model m) {
+	public String customerLogin(@RequestParam("cAccount") String caccount, @RequestParam("cPwd") String cpwd, Model m,
+			HttpSession session) {
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 
@@ -111,7 +115,7 @@ public class loginController {
 		Customer loginresult = cService.checkCustomerLogin(caccount);
 
 		if (loginresult != null) {
-			m.addAttribute("loginOk", loginresult);
+			session.setAttribute("loginOk", loginresult);
 
 			return "loginSuccess";
 		}
@@ -121,8 +125,13 @@ public class loginController {
 	}
 
 	@GetMapping("/logout")
-	public String logout() {
-		return "loginindex";
+	public String logout(HttpSession session, SessionStatus status) {
+		if (session.getAttribute("loginOk") != null) {
+			session.removeAttribute("loginOk");
+			status.setComplete();
+		}
+
+		return "redirect:/logindex";
 	}
 
 }

@@ -39,6 +39,7 @@
 					<label class="form-label">電子信箱</label> <input type="text"
 						class="form-control" name="cEmail">
 					<p style="color: red;">${errors.cbirthdate}</p>
+					
 					<label class="form-label">個人圖片</label> <input type="file"
 						accept="image/*" name="cImg" id="imgInp"><img width="350"
 						id="img" src="" />

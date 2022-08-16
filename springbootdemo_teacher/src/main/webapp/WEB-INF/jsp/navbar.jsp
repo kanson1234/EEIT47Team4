@@ -37,7 +37,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/customer/findAll">所有會員</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/personalFile">我的會員資料</a></li>
+						href="${contextRoot}/customer/findOne">我的會員資料</a></li>
 
 
 					<li class="nav-item dropdown">

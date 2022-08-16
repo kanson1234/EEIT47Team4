@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ispan.springboot.model.Admin;
 import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.service.CustomerService;
 import com.ispan.springboot.service.EmailSenderService;
 
 @Controller
-@SessionAttributes("loginOk")
+
 public class CustomerController {
 	@Autowired
 	private CustomerService cService;
@@ -39,10 +39,10 @@ public class CustomerController {
 	@PostMapping("/Customer/insert")
 	public String insertCustomer(@RequestParam("cFirstName") String cf, @RequestParam("cLastName") String cl,
 			@RequestParam("cAccount") String ca, @RequestParam("cPwd") String cpw, @RequestParam("cbDate") String cbd,
-			@RequestParam("cEmail") String cmail, @RequestParam("cImg") MultipartFile cimg, Model m) {
+			@RequestParam("cEmail") String cmail, @RequestParam("cImg") MultipartFile cimg, Model model) {
 		try {
 			Map<String, String> errors = new HashMap<String, String>();
-			m.addAttribute("errors", errors);
+			model.addAttribute("errors", errors);
 
 			Customer c = new Customer();
 			Date d = new Date();
@@ -109,8 +109,23 @@ public class CustomerController {
 
 	// 找自己
 	@GetMapping("/customer/findOne")
-	public String findOneById() {
-		return "personalFile";
+	public String findOneById(@SessionAttribute("loginOk") Customer customer, Model m) {
+		if (customer == null) {
+			m.addAttribute("msg", "尚未登入!即將跳轉到登入頁面..");
+			return "loginC";
+		} else {
+			Customer oneCustomer = cService.findCustomerById(customer.getCid());
+			m.addAttribute("oneCustomer", oneCustomer);
+			return "personalFile";
+		}
+	}
+
+	// 修改個人資料
+	@PostMapping("/updateCustomer/{id}")
+	public String updateCustomer() {
+		
+		
+		return "redirect:/customer/findOne";
 	}
 
 }
