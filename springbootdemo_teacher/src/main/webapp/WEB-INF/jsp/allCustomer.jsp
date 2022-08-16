@@ -54,7 +54,7 @@
 						<td>${c.cid}</td>
 						<td><img width="150" src="${contextRoot}/downloadImage/${c.cid}"></td>
 						<td>${c.cfirstName}</td>
-						<td>${c.classtName}</td>
+						<td>${c.clastName}</td>
 						<td>${c.caccount}</td>
 						<td>${c.cpwd}</td>
 						<td>${c.cbirthdate}</td>

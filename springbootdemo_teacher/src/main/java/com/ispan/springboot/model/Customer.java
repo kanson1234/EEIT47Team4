@@ -29,7 +29,7 @@ public class Customer {
 	private String cfirstName;
 
 	@Column(name = "C1_LastName")
-	private String classtName;
+	private String clastName;
 
 	@Column(name = "C1_Account")
 	private String caccount;
@@ -49,6 +49,9 @@ public class Customer {
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm") //SprongMVC
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date cbirthdate;
+	
+	@Column(name="C1_Email")
+	private String cemail;
 
 	@Column(name = "C1_Status")
 	private boolean cstatus;
@@ -72,12 +75,12 @@ public class Customer {
 		this.cfirstName = cfirstName;
 	}
 
-	public String getClasstName() {
-		return classtName;
+	public String getClastName() {
+		return clastName;
 	}
 
-	public void setClasstName(String classtName) {
-		this.classtName = classtName;
+	public void setClastName(String classtName) {
+		this.clastName = classtName;
 	}
 
 	public String getCaccount() {
@@ -118,6 +121,14 @@ public class Customer {
 
 	public void setCbirthdate(Date cbirthdate) {
 		this.cbirthdate = cbirthdate;
+	}
+	
+	public String getCemail() {
+		return cemail;
+	}
+
+	public void setCemail(String cemail) {
+		this.cemail = cemail;
 	}
 
 	public boolean isCstatus() {

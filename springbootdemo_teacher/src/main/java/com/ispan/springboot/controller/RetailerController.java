@@ -19,7 +19,8 @@ public class RetailerController {
 	@Autowired
 	private RetailerService rSrevice;
 
-	@PostMapping("/Retailer/insert.controller")
+	//註冊
+	@PostMapping("/Retailer/insert")
 	public String insertRetailer(@RequestParam("rName") String rn, @RequestParam("rAccount") String ra,
 			@RequestParam("rPwd") String rpw, @RequestParam("rPhone") String rph, @RequestParam("rInfo") String rif,
 			@RequestParam("rLogo") MultipartFile rlogo, @RequestParam("rPhoto") MultipartFile rphoto, Model m) {
@@ -45,7 +46,7 @@ public class RetailerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
-			return "login";
+			return "registerR";
 		}
 
 	}

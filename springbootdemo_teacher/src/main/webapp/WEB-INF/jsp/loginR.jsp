@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
 <jsp:include page="navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>登入頁面</title>
+<title>會員登入</title>
 
 
 <!-- bootstrap 5.1.3 JS -->
@@ -22,24 +21,22 @@
 		<div
 			style="margin: 20px; padding: 20px; padding-left: 200px; padding-right: 200px; margin-left: auto; margin-right: auto; width: 60%; border: solid 1px; border-radius: 5px; border-color: rgb(163, 163, 163);">
 
-			<form action="checkadminlogin" method="post"
+			<form action="checkretailerlogin" method="post"
 				style="margin: auto; width: 220px">
-				<h2 class="h3 mb-3 fw-normal">管理者登入</h2>
-				
-				<label class="form-label">管理者帳號</label> <input type="text" class="form-control"
-					name="adAccount" id="floatingInput" />
-				<p style="color: red;">${errors.account}</p>
-				
-				<label class="form-label">管理者密碼</label> <input type="password" class="form-control"
-					name="adPwd" id="floatingPassword" />
-				<p style="color: red;">${errors.pwd}</p>
+				<h2 class="h3 mb-3 fw-normal">商家登入</h2>
+				<label class="form-label">商家帳號</label> <input type="text" class="form-control"
+					name="rAccount" id="floatingInputR" />
+				<p style="color: red;">${errors.caccount}</p>
+				<label class="form-label">商家密碼</label> <input type="password" class="form-control"
+					name="rPwd" id="floatingPasswordR"/>
+				<p style="color: red;">${errors.cpwd}</p>
 
 				<button type="submit" class="btn btn-lg btn-primary">登入</button>
-				<p style="color: red;">${errors.msg}</p>
-
+				<p style="color: red;">${errors.rmsg}</p>
+				
 				<div class="text-center m-5">
 					快速登入:
-					<button class="btn btn-outline-info fastLogin">Admin</button>
+					<button class="btn btn-outline-info fastLogin">你好商店</button>
 				</div>
 
 			</form>
@@ -51,8 +48,8 @@
 <script type="text/javascript">
 	//快速登入
 	$(".fastLogin").click(function() {
-		$("#floatingInput").val("a123");
-		$("#floatingPassword").val("a4560");
+		$("#floatingInputR").val("2575");
+		$("#floatingPasswordR").val("45366");
 	});
 </script>
 

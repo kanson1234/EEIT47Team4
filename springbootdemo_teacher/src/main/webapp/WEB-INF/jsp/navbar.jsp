@@ -19,7 +19,7 @@
 
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">首頁</a>
+			<a class="navbar-brand" href="#">淘氣登山用品</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -29,28 +29,31 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">首頁</a></li>
+						aria-current="page" href="${contextRoot}/logindex">商城首頁</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/logindex">登入頁面</a></li>
+						href="${contextRoot}/registerR">商家註冊</a></li>
+						<li class="nav-item"><a class="nav-link"
+						href="${contextRoot}/registerC">會員註冊</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/customer/findAll">所有會員</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="https://codepen.io/jo_Geek">###</a></li>
-						
+						href="${contextRoot}/personalFile">我的會員資料</a></li>
+
 
 					<li class="nav-item dropdown">
-					<div class="btn-group">
-					<button type="button" class="btn btn-success dropdown-toggle "
-						data-bs-toggle="dropdown" aria-expanded="false">Action</button>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="${contextRoot}/login">管理者登入</a></li>
-						<li><a class="dropdown-item" href="${contextRoot}/registerR">商家註冊</a></li>
-						<li><a class="dropdown-item" href="${contextRoot}/registerC">顧客註冊</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#">Separated link</a>
-						</li>
-					</ul>
-					</div>
+						<div class="btn-group">
+							<button type="button" class="btn btn-success dropdown-toggle "
+								data-bs-toggle="dropdown" aria-expanded="false">登入</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${contextRoot}/login">管理者登入</a></li>
+								<li><a class="dropdown-item"
+									href="${contextRoot}/loginR">商家登入</a></li>
+								<li><a class="dropdown-item"
+									href="${contextRoot}/loginC">會員登入</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="${contextRoot}/logout">登出</a></li>
+							</ul>
+						</div>
 					</li>
 				</ul>
 			</div>

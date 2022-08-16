@@ -32,5 +32,15 @@ public class pageController {
 	public String oneCustomer() {
 		return "personalFile";
 	}
+	
+	@GetMapping("/loginC")
+	public String loginC() {
+		return "loginC";
+	}
+	
+	@GetMapping("/loginR")
+	public String loginR() {
+		return "loginR";
+	}
 
 }
