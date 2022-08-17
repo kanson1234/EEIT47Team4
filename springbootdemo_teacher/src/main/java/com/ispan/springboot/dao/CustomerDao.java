@@ -16,6 +16,7 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
 	
 	public  List<Customer> findAll();
 	
+	
 	@Query("from Customer where cid=:cid")
 	public Customer getById(@Param("cid")Integer cid);
 

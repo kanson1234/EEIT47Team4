@@ -32,6 +32,7 @@
 				<p style="color: red;">${errors.cpwd}</p>
 
 				<button type="submit" class="btn btn-lg btn-primary">登入</button>
+				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
 				<p style="color: red;">${errors.rmsg}</p>
 				
 				<div class="text-center m-5">
@@ -51,6 +52,12 @@
 		$("#floatingInputR").val("2575");
 		$("#floatingPasswordR").val("45366");
 	});
+	
+	//取消按鈕返回上頁
+	$("#cancel").click(function(event) {
+		event.preventDefault(); //取消預設行為
+		window.location.replace("http://localhost:8080/logindex"); //返回特定頁面
+	})
 </script>
 
 </html>

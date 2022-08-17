@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,9 +19,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ispan.springboot.model.Customer;
@@ -109,23 +110,57 @@ public class CustomerController {
 
 	// 找自己
 	@GetMapping("/customer/findOne")
-	public String findOneById(@SessionAttribute("loginOk") Customer customer, Model m) {
+	public String findOneById(@SessionAttribute("loginOk") Customer customer, Model model) {
 		if (customer == null) {
-			m.addAttribute("msg", "尚未登入!即將跳轉到登入頁面..");
+			model.addAttribute("msg", "尚未登入!即將跳轉到登入頁面..");
 			return "loginC";
 		} else {
 			Customer oneCustomer = cService.findCustomerById(customer.getCid());
-			m.addAttribute("oneCustomer", oneCustomer);
+			model.addAttribute("oneCustomer", oneCustomer);
+			
 			return "personalFile";
 		}
 	}
 
 	// 修改個人資料
-	@PostMapping("/updateCustomer/{id}")
-	public String updateCustomer() {
-		
-		
-		return "redirect:/customer/findOne";
+	@PostMapping("/updateCustomer")
+	public String updateCustomer(@RequestParam("customerId") Integer customerId, @RequestParam("cFirstName") String cf,
+			@RequestParam("cLastName") String cl, @RequestParam("cPwd") String cpw, @RequestParam("cbDate") String cbd,
+			@RequestParam("cEmail") String cmail, @RequestParam("cImg") MultipartFile cimg, Model model) {
+		try {
+//			Map<String, String> errors = new HashMap<String, String>();
+//			model.addAttribute("errors", errors);
+
+			Customer updateCustomer = cService.findCustomerById(customerId);
+
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			Date dutyDay = new Date();
+
+			try {
+				dutyDay = (java.util.Date) sdf.parse(cbd);
+				updateCustomer.setCbirthdate(dutyDay);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			updateCustomer.setCfirstName(cf);
+			updateCustomer.setClastName(cl);
+			updateCustomer.setCpwd(cpw);
+			updateCustomer.setCemail(cmail);
+
+			updateCustomer.setCimg(cimg.getBytes());
+
+			updateCustomer.setCdate(d);
+
+			cService.insertCustomer(updateCustomer);
+
+			return "redirect:/customer/findOne";
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "registerC";
+		}
+
 	}
 
 }
