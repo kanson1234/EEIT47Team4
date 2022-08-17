@@ -61,8 +61,21 @@
 
 	<main>
 		<div align='center'>
-			<input id='clickmeS' value="${RetailerShowAllid}" type="hidden" />
-			<hr>
+		<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+			<img src="${contextRoot}/showlogo/${RetailerInfo.rid}" 
+					class="card-img-top rounded-circle" alt="..."
+					width="150" height="150">
+			<input id='clickmeS' value="${RetailerInfo.rName}"  />
+			</div>
+			<div>
+			<textarea rows="10" cols="50">
+			${RetailerInfo.info}
+			</textarea>
+			</div>
+		</div>
+		</div>
 		<div class="container" align="center">
 		<div class="row">
 			<c:forEach items="${listItem}" var="Item">
