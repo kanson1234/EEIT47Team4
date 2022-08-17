@@ -35,8 +35,11 @@ public interface ShoppingRecordDao extends JpaRepository<ShoppingRecord, Integer
 	public List<ShoppingRecord> findAllByOrderBySrtime();
 	
 	
-	@Query("from Customer where C1_id = :cid")
-	public List<ShoppingRecord> findALLByC1_id(@Param("cid") Integer cid);
+	
+	public List<ShoppingRecord> findALLBycustomer_cId(@Param("cid") Integer cid);
+	
+	@Query(value="select * from ShoppingRecord where C1_Id LIKE ( '% :word %')" ,nativeQuery = true)
+	public  List<ShoppingRecord> findAll2(@Param("word") String word);
 	
 	
 //	@Query(value = "SELECT * FROM  [dbo].[ShoppingRecord] ORDER BY C1_Id",nativeQuery = true )
@@ -49,3 +52,4 @@ public interface ShoppingRecordDao extends JpaRepository<ShoppingRecord, Integer
 	
 	
 }	
+

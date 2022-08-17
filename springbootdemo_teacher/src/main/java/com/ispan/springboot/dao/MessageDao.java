@@ -6,7 +6,6 @@ import com.ispan.springboot.model.Message;
 
 public interface MessageDao extends JpaRepository<Message, Integer> {
 
-	
 }
 
 
