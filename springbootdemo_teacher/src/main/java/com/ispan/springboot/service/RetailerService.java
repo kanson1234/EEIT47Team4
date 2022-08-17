@@ -14,8 +14,8 @@ public class RetailerService {
 	@Autowired
 	private RetailerDao rDao;
 
-	public Retailer checkRetailerLogin(String raccount) {
-		Retailer ra = rDao.findByRetailerAccount(raccount);
+	public Retailer checkRetailerLogin(String raccount,String rpwd) {
+		Retailer ra = rDao.findByRetailerAccount(raccount,rpwd);
 		return ra;
 	}
 

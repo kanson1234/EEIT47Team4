@@ -39,26 +39,26 @@
 					<div>${oneCustomer.getCaccount()}</div>
 
 					<p style="color: red;">${errors.caccount}</p>
-					<label class="form-label">密碼</label> <input type="text"
+					<label class="form-label">密碼:</label> <input type="text"
 						class="form-control" name="cPwd" value="${oneCustomer.getCpwd()}">
 					<p style="color: red;">${errors.cpwd}</p>
-					<label class="form-label">姓</label> <input type="text"
+					<label class="form-label">姓:</label> <input type="text"
 						class="form-control" name="cFirstName"
 						value="${oneCustomer.getCfirstName()}">
 					<p style="color: red;">${errors.cfirstName}</p>
-					<label class="form-label">名</label> <input type="text"
+					<label class="form-label">名:</label> <input type="text"
 						class="form-control" name="cLastName"
 						value="${oneCustomer.getClastName()}">
 					<p style="color: red;">${errors.clastName}</p>
-					<label class="form-label">生日</label> <input type="text"
+					<label class="form-label">生日:</label> <input type="text"
 						class="form-control" name="cbDate"
 						value="${oneCustomer.getCbirthdate()}">
 					<p style="color: red;">${errors.cbirthdate}</p>
-					<label class="form-label">個人電子信箱</label> <input type="text"
+					<label class="form-label">個人電子信箱:</label> <input type="text"
 						class="form-control" name="cEmail"
 						value="${oneCustomer.getCemail()}">
 					<p style="color: red;">${errors.cbirthdate}</p>
-					<label class="form-label">個人圖片</label> <input type="file"
+					<label class="form-label">個人圖片:</label> <input type="file"
 						accept="image/*" name="cImg" id="imgInp"><img width="350"
 						id="img" src="${contextRoot}/downloadImage/${oneCustomer.cid}" />
 					<p style="color: red;">${errors.cimg}</p>

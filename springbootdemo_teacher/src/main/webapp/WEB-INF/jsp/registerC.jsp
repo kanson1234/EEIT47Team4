@@ -16,34 +16,34 @@
 	<div class="container">
 		<div
 			style="margin: 20px; padding: 20px; padding-left: 200px; padding-right: 200px; margin-left: auto; margin-right: auto; width: 60%; border: solid 1px; border-radius: 5px; border-color: rgb(163, 163, 163);">
-			<form action="Customer/insert" method="post"
+			<form action="customer/insert" method="post"
 				enctype="multipart/form-data">
 				<h2 class="h3 mb-3 fw-normal">會員註冊</h2>
 
 				<div class="mb-3">
 					<label class="form-label">姓</label> <input type="text"
 						class="form-control" name="cFirstName">
-					<p style="color: red;">${errors.cfname}</p>
+					<p style="color: red;">${errors.cFirstName}</p>
 					<label class="form-label">名</label> <input type="text"
 						class="form-control" name="cLastName">
-					<p style="color: red;">${errors.clastName}</p>
+					<p style="color: red;">${errors.cLastName}</p>
 					<label class="form-label">帳號</label> <input type="text"
 						class="form-control" name="cAccount">
-					<p style="color: red;">${errors.caccount}</p>
+					<p style="color: red;">${errors.cAccount}</p>
 					<label class="form-label">密碼</label> <input type="password"
 						class="form-control" name="cPwd">
-					<p style="color: red;">${errors.cpwd}</p>
+					<p style="color: red;">${errors.cPwd}</p>
 					<label class="form-label">生日</label> <input type="text"
 						class="form-control" name="cbDate">
-					<p style="color: red;">${errors.cbirthdate}</p>
+					<p style="color: red;">${errors.cbDate}</p>
 					<label class="form-label">電子信箱</label> <input type="text"
 						class="form-control" name="cEmail">
-					<p style="color: red;">${errors.cbirthdate}</p>
+					<p style="color: red;">${errors.cEmail}</p>
 					
 					<label class="form-label">個人圖片</label> <input type="file"
 						accept="image/*" name="cImg" id="imgInp"><img width="350"
 						id="img" src="" />
-					<p style="color: red;">${errors.cimg}</p>
+					<p style="color: red;">${errors.cImg}</p>
 
 				</div>
 

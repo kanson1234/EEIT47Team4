@@ -31,40 +31,73 @@ import com.ispan.springboot.service.EmailSenderService;
 @SessionAttributes(names = { "customerLoginOk", "adminLoginOk" })
 public class CustomerController {
 	@Autowired
-	private CustomerService cService;
+	private CustomerService customerService;
 	@Autowired
 	private EmailSenderService emailService;
 
 	// 會員註冊
-	@PostMapping("/Customer/insert")
-	public String insertCustomer(@RequestParam("cFirstName") String cf, @RequestParam("cLastName") String cl,
-			@RequestParam("cAccount") String ca, @RequestParam("cPwd") String cpw, @RequestParam("cbDate") String cbd,
-			@RequestParam("cEmail") String cmail, @RequestParam("cImg") MultipartFile cimg, Model model) {
+	@PostMapping("/customer/insert")
+	public String insertCustomer(@RequestParam("cFirstName") String cFirstName,
+			@RequestParam("cLastName") String cLastName, @RequestParam("cAccount") String cAccount,
+			@RequestParam("cPwd") String cPwd, @RequestParam("cbDate") String cbDate,
+			@RequestParam("cEmail") String cEmail, @RequestParam("cImg") MultipartFile cImg, Model model) {
 		try {
 			Map<String, String> errors = new HashMap<String, String>();
 			model.addAttribute("errors", errors);
 
-			Customer c = new Customer();
-			Date d = new Date();
+			if (cFirstName == null || cFirstName.length() == 0) {
+				errors.put("cFirstName", "姓氏不得為空!");
+			}
+
+			if (cLastName == null || cLastName.length() == 0) {
+				errors.put("cLastName", "名稱不得為空!");
+			}
+
+			if (cAccount == null || cAccount.length() == 0) {
+				errors.put("cAccount", "請輸入您的帳號!");
+			}
+
+			if (cPwd == null || cPwd.length() == 0) {
+				errors.put("cPwd", "請輸入您的密碼!");
+			}
+
+			if (cbDate == null || cbDate.length() == 0) {
+				errors.put("cbDate", "請輸入您的出生年月日!");
+			}
+
+			if (cEmail == null || cEmail.length() == 0) {
+				errors.put("cEmail", "請輸入個人電子郵件!");
+			}
+
+			if (cImg.getBytes() == null) {
+				errors.put("cImg", "請選擇一張個人圖片!");
+			}
+
+			if (errors != null && !errors.isEmpty()) {
+				return "registerC";
+			}
+
+			Customer newCustomer = new Customer();
+			Date registerTime = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			Date dutyDay = new Date();
 			try {
-				dutyDay = (java.util.Date) sdf.parse(cbd);
-				c.setCbirthdate(dutyDay);
+				dutyDay = (java.util.Date) sdf.parse(cbDate);
+				newCustomer.setCbirthdate(dutyDay);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 
-			c.setCfirstName(cf);
-			c.setClastName(cl);
-			c.setCaccount(ca);
-			c.setCpwd(cpw);
-			c.setCdate(d);
-			c.setCemail(cmail);
-			c.setCimg(cimg.getBytes());
-			c.setCstatus(true);
+			newCustomer.setCfirstName(cFirstName);
+			newCustomer.setClastName(cLastName);
+			newCustomer.setCaccount(cAccount);
+			newCustomer.setCpwd(cPwd);
+			newCustomer.setCdate(registerTime);
+			newCustomer.setCemail(cEmail);
+			newCustomer.setCimg(cImg.getBytes());
+			newCustomer.setCstatus(true);
 
-			cService.insertCustomer(c);
+			customerService.insertCustomer(newCustomer);
 
 			return "loginSuccess";
 
@@ -80,17 +113,17 @@ public class CustomerController {
 	@GetMapping("/customer/findAll")
 	public String findAllCustomer(Model m) {
 
-		List<Customer> allCustomer = cService.findAllCustomer();
+		List<Customer> allCustomer = customerService.findAllCustomer();
 
 		m.addAttribute("customer", allCustomer);
 
 		return "allCustomer";
 	}
 
-	//會員 圖片處理
+	// 會員 圖片處理
 	@GetMapping("/downloadImage/{id}")
 	public ResponseEntity<byte[]> downloadImage(@PathVariable Integer id) {
-		Customer photo = cService.getPhotoById(id);
+		Customer photo = customerService.getPhotoById(id);
 		byte[] photoByte = photo.getCimg();
 
 		HttpHeaders header = new HttpHeaders();
@@ -103,7 +136,7 @@ public class CustomerController {
 	// 刪除會員，用不到
 	@GetMapping("/deleteCustomer/{id}")
 	public String deleteById(@PathVariable Integer id) {
-		cService.deleteCustomer(id);
+		customerService.deleteCustomer(id);
 		return "redirect:/customer/findAll";
 	}
 
@@ -117,10 +150,10 @@ public class CustomerController {
 			if (admin != null) {
 				return "loginSuccess";
 			}
-			return "loginC";
+			return "redirect:/loginC";
 		} else {
 
-			Customer oneCustomer = cService.findCustomerById(customer.getCid());
+			Customer oneCustomer = customerService.findCustomerById(customer.getCid());
 			model.addAttribute("oneCustomer", oneCustomer);
 
 			return "personalFile";
@@ -137,7 +170,7 @@ public class CustomerController {
 //			Map<String, String> errors = new HashMap<String, String>();
 //			model.addAttribute("errors", errors);
 
-			Customer updateCustomer = cService.findCustomerById(customerId);
+			Customer updateCustomer = customerService.findCustomerById(customerId);
 
 			Date d = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -158,7 +191,7 @@ public class CustomerController {
 
 			updateCustomer.setCdate(d);
 
-			cService.insertCustomer(updateCustomer);
+			customerService.insertCustomer(updateCustomer);
 
 			return "redirect:/customer/findOne";
 

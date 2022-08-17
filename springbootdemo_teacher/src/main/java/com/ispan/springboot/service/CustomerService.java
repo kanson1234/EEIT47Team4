@@ -16,8 +16,8 @@ public class CustomerService {
 	@Autowired
 	private CustomerDao cDao;
 
-	public Customer checkCustomerLogin(String caccount) {
-		Customer ca = cDao.findByCustomerAccount(caccount);
+	public Customer checkCustomerLogin(String caccount,String cpwd) {
+		Customer ca = cDao.findByCustomerAccount(caccount,cpwd);
 		return ca;
 	}
 

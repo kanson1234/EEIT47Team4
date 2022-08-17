@@ -9,8 +9,8 @@ import com.ispan.springboot.model.Retailer;
 @Repository
 public interface RetailerDao extends JpaRepository<Retailer, Integer> {
 	
-	@Query("from Retailer where raccount=:raccount")
-	public Retailer findByRetailerAccount(@Param("raccount")String raccount);
+	@Query("from Retailer where raccount=:raccount and  rpwd=:rpwd")
+	public Retailer findByRetailerAccount(@Param("raccount")String raccount,@Param("rpwd")String rpwd);
 	
 
 }

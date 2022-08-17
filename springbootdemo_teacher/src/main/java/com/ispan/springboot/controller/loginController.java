@@ -79,7 +79,7 @@ public class loginController {
 			return "loginR";
 		}
 
-		Retailer result = rService.checkRetailerLogin(raccount);
+		Retailer result = rService.checkRetailerLogin(raccount,rpwd);
 
 		if (result != null) {
 
@@ -104,15 +104,17 @@ public class loginController {
 		if (cpwd == null || cpwd.length() == 0) {
 			errors.put("cpwd", "請輸入您的密碼!");
 		}
+		
+		
 
 		if (errors != null && !errors.isEmpty()) {
 			return "loginC";
 		}
 
-		Customer customerLoginResult = cService.checkCustomerLogin(caccount);
+		Customer customerLoginResult = cService.checkCustomerLogin(caccount,cpwd);
 
 		if (customerLoginResult != null) {
-			model.addAttribute("loginOk", customerLoginResult);
+			model.addAttribute("customerLoginOk", customerLoginResult);
 
 			return "loginSuccess";
 		}

@@ -11,8 +11,8 @@ import com.ispan.springboot.model.Customer;
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Integer> {
 
-	@Query("from Customer where caccount=:caccount")
-	public Customer findByCustomerAccount(@Param("caccount") String caccount);
+	@Query("from Customer where caccount=:caccount and cpwd=:cpwd")
+	public Customer findByCustomerAccount(@Param("caccount") String caccount,@Param("cpwd") String cpwd);
 	
 	public  List<Customer> findAll();
 	
