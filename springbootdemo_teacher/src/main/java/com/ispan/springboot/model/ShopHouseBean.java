@@ -4,9 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -65,7 +67,10 @@ public class ShopHouseBean {
 	public ShopHouseBean() {
 	}
 	
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "rid")
+	private Retailer RetailerBean;
+	
 	public ShopHouseBean(Integer id, String itemName, byte[] itemImg, Integer price, String classify, boolean status,
 			Date date, Integer c2Id) {
 		super();
@@ -78,7 +83,9 @@ public class ShopHouseBean {
 //		this.date = date;
 //		this.c2Id = c2Id;
 	}
-
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
