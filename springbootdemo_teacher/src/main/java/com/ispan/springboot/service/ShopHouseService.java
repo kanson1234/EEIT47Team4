@@ -21,7 +21,7 @@ import com.ispan.springboot.model.ShopHouseBean;
 public class ShopHouseService {
 	
 	@Autowired
-	private MessageDao mDao;
+	private MessageDao mDao2;
 	
 	@Autowired
 	private ShopHouseDao sDao;
@@ -68,6 +68,9 @@ public class ShopHouseService {
 		return sDao.findByClassify(word);
 	} 
 	
+	public ShopHouseBean insertNewShopHouseBean(ShopHouseBean shopHouseBean) {
+		return sDao.save(shopHouseBean);
+	}
 //	//查詢留言
 //	public List<Message> findAllMessageById(Integer id){
 //		return mDao.findAllById(null);

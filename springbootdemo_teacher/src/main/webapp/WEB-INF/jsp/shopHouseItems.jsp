@@ -38,7 +38,7 @@
 		<tr>
 					<td>${i.itemName}</td>
 					<td><a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img width="150"
-						src="${pageContext.request.contextPath}/downloadImg/${i.id}"></a>a></td>
+						src="${pageContext.request.contextPath}/downloadImg/${i.id}"></a></td>
 					<td>${i.price}</td>
 					<td>${i.classify}</td>
 					<td>${i.c2Id}</td>

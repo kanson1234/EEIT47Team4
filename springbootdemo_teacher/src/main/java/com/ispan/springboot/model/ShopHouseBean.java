@@ -64,9 +64,8 @@ public class ShopHouseBean {
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "StoreHouse", cascade = CascadeType.ALL)
 //	private Set<Message> message = new LinkedHashSet<Message>();
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "shopHouseBean", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopHouseBean", cascade = CascadeType.ALL)
 	private Set<Message> message = new LinkedHashSet<Message>();
-
 
 	public ShopHouseBean() {
 	}
@@ -132,13 +131,7 @@ public class ShopHouseBean {
 		this.status = status;
 	}
 	
-	public Set<Message> getMessage() {
-		return message;
-	}
-
-	public void setMessage(Set<Message> message) {
-		this.message = message;
-	}
+	
 
 //	public Date getDate() {
 //		return date;
@@ -148,6 +141,14 @@ public class ShopHouseBean {
 //		this.date = date;
 //	}
 
+
+	public Set<Message> getMessage() {
+		return message;
+	}
+
+	public void setMessage(Set<Message> message) {
+		this.message = message;
+	}
 
 	public Integer getC2Id() {
 		return c2Id;
