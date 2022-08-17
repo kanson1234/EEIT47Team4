@@ -3,8 +3,6 @@ package com.ispan.springboot.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +20,7 @@ import com.ispan.springboot.service.CustomerService;
 import com.ispan.springboot.service.RetailerService;
 
 @Controller
-
+@SessionAttributes(names = { "customerLoginOk", "adminLoginOk" })
 public class loginController {
 	@Autowired
 	private AdminService aService;
@@ -35,9 +33,10 @@ public class loginController {
 
 	// 管理者登入
 	@PostMapping("/checkadminlogin")
-	public String adminLogin(@RequestParam("adAccount") String account, @RequestParam("adPwd") String pwd, Model m) {
+	public String adminLogin(@RequestParam("adAccount") String account, @RequestParam("adPwd") String pwd,
+			Model model) {
 		Map<String, String> errors = new HashMap<String, String>();
-		m.addAttribute("errors", errors);
+		model.addAttribute("errors", errors);
 
 		if (account == null || account.length() == 0) {
 			errors.put("account", "請輸入帳號!");
@@ -51,11 +50,10 @@ public class loginController {
 			return "login";
 		}
 
-		Admin result = aService.checkAdminLogin(account);
+		Admin adminLoginResult = aService.checkAdminLogin(account);
 
-		if (result != null) {
-			m.addAttribute("account", account);
-			m.addAttribute("pwd", pwd);
+		if (adminLoginResult != null) {
+			model.addAttribute("adminLoginOk", adminLoginResult);
 			return "redirect:/customer/findAll";
 		}
 
@@ -84,8 +82,7 @@ public class loginController {
 		Retailer result = rService.checkRetailerLogin(raccount);
 
 		if (result != null) {
-			m.addAttribute("account", raccount);
-			m.addAttribute("pwd", rpwd);
+
 			return "loginSuccess";
 		}
 
@@ -95,10 +92,10 @@ public class loginController {
 
 	// 會員登入
 	@PostMapping("/checkcustomerlogin")
-	public String customerLogin(@RequestParam("cAccount") String caccount, @RequestParam("cPwd") String cpwd, Model m,
-			HttpSession session) {
+	public String customerLogin(@RequestParam("cAccount") String caccount, @RequestParam("cPwd") String cpwd,
+			Model model) {
 		Map<String, String> errors = new HashMap<String, String>();
-		m.addAttribute("errors", errors);
+		model.addAttribute("errors", errors);
 
 		if (caccount == null || caccount.length() == 0) {
 			errors.put("caccount", "請輸入您的帳號!");
@@ -112,10 +109,10 @@ public class loginController {
 			return "loginC";
 		}
 
-		Customer loginresult = cService.checkCustomerLogin(caccount);
+		Customer customerLoginResult = cService.checkCustomerLogin(caccount);
 
-		if (loginresult != null) {
-			session.setAttribute("loginOk", loginresult);
+		if (customerLoginResult != null) {
+			model.addAttribute("loginOk", customerLoginResult);
 
 			return "loginSuccess";
 		}
@@ -124,13 +121,12 @@ public class loginController {
 		return "loginC";
 	}
 
+//所有登出
 	@GetMapping("/logout")
-	public String logout(HttpSession session, SessionStatus status) {
-		if (session.getAttribute("loginOk") != null) {
-			session.removeAttribute("loginOk");
+	public String logout(SessionStatus status, Model model) {
+		if (model.getAttribute("customerLoginOk") != null || model.getAttribute("adminLoginOk") != null) {
 			status.setComplete();
 		}
-
 		return "redirect:/logindex";
 	}
 
