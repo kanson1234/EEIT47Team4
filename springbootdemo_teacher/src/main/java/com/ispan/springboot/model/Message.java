@@ -28,7 +28,7 @@ public class Message {
 	private String mcontext;
 
 	@Column(name = "Msg_Time")
-	private Date mdate;
+	private Date mdate;	
 
 	@PrePersist
 	public void onCreate() {
@@ -131,6 +131,22 @@ public class Message {
 
 	public void setMrid(Integer mrid) {
 		this.mrid = mrid;
+	}
+
+//	public Integer getMshid() {
+//		return mshid;
+//	}
+//
+//	public void setMshid(Integer mshid) {
+//		this.mshid = mshid;
+//	}
+
+	public ShopHouseBean getShopHouseBean() {
+		return shopHouseBean;
+	}
+
+	public void setShopHouseBean(ShopHouseBean shopHouseBean) {
+		this.shopHouseBean = shopHouseBean;
 	}
 
 //	==============================================================================================================

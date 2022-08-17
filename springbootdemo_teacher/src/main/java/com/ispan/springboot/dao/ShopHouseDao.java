@@ -23,6 +23,7 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	public List<ShopHouseBean> findByClassify(String word);
 	
 
+
 	@Query(value="select * FROM StoreHouse WHERE C2_Id=:id",nativeQuery = true)
 	public List<ShopHouseBean> findByC2Id( Integer id);
 	
@@ -34,4 +35,7 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	@Query()
 	public List<Message> findByItemId(Integer id);
 	}	
+
+
+}
 

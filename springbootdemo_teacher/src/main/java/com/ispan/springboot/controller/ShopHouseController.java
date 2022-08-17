@@ -15,12 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ispan.springboot.model.Customer;
+import com.ispan.springboot.model.Message;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.service.MessageService;
 import com.ispan.springboot.service.ShopHouseService;
@@ -30,6 +32,9 @@ public class ShopHouseController {
 	
 	@Autowired
 	private ShopHouseService sService;
+	
+	@Autowired
+	private MessageService mService;
 
 	// 顯示全部商品
 //	@GetMapping("/shopHouse/Allitem")
@@ -78,17 +83,6 @@ public class ShopHouseController {
 			return "index";
 		}
 	}
-
-// 測試新增一筆資料	
-//	@PostMapping("ShopHouse/addItem11")
-//	@ResponseBody
-//	public ShopHouseBean addItem1() {
-//		ShopHouseBean newShopHouse = new ShopHouseBean();
-//		    newShopHouse.setItemName("好帳篷");
-//			newShopHouse.setPrice(200);
-//			newShopHouse.setClassify("帳篷");
-//			newShopHouse.setStatus(true);
-//			newShopHouse.setC2Id(1000003);
 
 //
 //	// 用id找商品
@@ -207,11 +201,6 @@ public class ShopHouseController {
 	return "shopHouseBackpack";
 	}
 	
-//	//單品項看所有留言
-//	@GetMapping("/Shop/")
-//	public String findAllMessageByItem() {
-//		return "ItemDetail";
-//	}
 
 //	@GetMapping("/ShopHouse/memberSession")
 //	public String MemberSession(HttpSession session) {
