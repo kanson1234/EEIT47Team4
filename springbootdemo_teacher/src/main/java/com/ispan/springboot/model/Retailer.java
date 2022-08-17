@@ -1,12 +1,18 @@
 package com.ispan.springboot.model;
 
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -46,6 +52,9 @@ public class Retailer {
 	@Column(name = "C2_info")
 	private String info;
 
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "RetailerBean",cascade=CascadeType.ALL)
+	private Set<ShopHouseBean> shopHouseBean = new LinkedHashSet<ShopHouseBean>();
+	
 	public Retailer() {
 	}
 
@@ -130,4 +139,13 @@ public class Retailer {
 	public void setInfo(String info) {
 		this.info = info;
 	}
+
+	public Set<ShopHouseBean> getShopHouseBean() {
+		return shopHouseBean;
+	}
+
+	public void setShopHouseBean(Set<ShopHouseBean> shopHouseBean) {
+		this.shopHouseBean = shopHouseBean;
+	}
+	
 }
