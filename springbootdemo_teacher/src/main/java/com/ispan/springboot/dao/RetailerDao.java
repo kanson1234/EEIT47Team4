@@ -22,5 +22,7 @@ public interface RetailerDao extends JpaRepository<Retailer, Integer> {
 			+" OR C2_Account like %:name%", nativeQuery = true)
 	public List<Retailer> findAll(@Param("name") String keyword);
 	
+//	public List<Retailer> showAllByStatus(@Param("status") )
+	
 	
 }
