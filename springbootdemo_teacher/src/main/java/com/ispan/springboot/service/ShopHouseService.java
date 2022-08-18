@@ -68,6 +68,7 @@ public class ShopHouseService {
 		return sDao.findByClassify(word);
 	} 
 	
+	//建立實體化
 	public ShopHouseBean insertNewShopHouseBean(ShopHouseBean shopHouseBean) {
 		return sDao.save(shopHouseBean);
 	}

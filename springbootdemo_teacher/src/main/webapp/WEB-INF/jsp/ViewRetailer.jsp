@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="layout/shopNavbar.jsp" />
+<jsp:include page="layout/navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>

@@ -24,6 +24,8 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link"
+					href="${pageContext.request.contextPath}/showAllRetailerFront">店家一覽</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.request.contextPath}/ShopHouse/viewItems">所有商品
 						<span class="sr-only">(current)</span>
@@ -41,8 +43,8 @@
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="${pageContext.request.contextPath}/shopHouse/add">新增商品
-						<span class="sr-only">(current)</span>
+					href="${pageContext.request.contextPath}/shopHouse/add">新增商品 <span
+						class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
 				<li class="nav-item dropdown"><a
