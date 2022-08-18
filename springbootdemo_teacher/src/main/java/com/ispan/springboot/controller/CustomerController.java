@@ -61,7 +61,7 @@ public class CustomerController {
 				errors.put("cPwd", "請輸入您的密碼!");
 			}
 
-			if (cbDate == null || cbDate.length() == 0) {
+			if (cbDate == null) {
 				errors.put("cbDate", "請輸入您的出生年月日!");
 			}
 
@@ -79,9 +79,9 @@ public class CustomerController {
 
 			Customer newCustomer = new Customer();
 			Date registerTime = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			Date dutyDay = new Date();
 			try {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date dutyDay = new Date();
 				dutyDay = (java.util.Date) sdf.parse(cbDate);
 				newCustomer.setCbirthdate(dutyDay);
 			} catch (ParseException e) {
@@ -102,7 +102,6 @@ public class CustomerController {
 			return "loginSuccess";
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "registerC";
 		}
@@ -162,32 +161,31 @@ public class CustomerController {
 	}
 
 	// 修改會員個人資料
-	@PostMapping("/updateCustomer")
-	public String updateCustomer(@RequestParam("customerId") Integer customerId, @RequestParam("cFirstName") String cf,
-			@RequestParam("cLastName") String cl, @RequestParam("cPwd") String cpw, @RequestParam("cbDate") String cbd,
-			@RequestParam("cEmail") String cmail, @RequestParam("cImg") MultipartFile cimg, Model model) {
+	@PostMapping("/customer/update")
+	public String updateCustomer(@RequestParam("customerId") Integer customerId, @RequestParam("cFirstName") String cFirstName,
+			@RequestParam("cLastName") String cLastName, @RequestParam("cPwd") String cPwd, @RequestParam("cbDate") String cbDate,
+			@RequestParam("cEmail") String cEmail, @RequestParam("cImg") MultipartFile cImg, Model model) {
 		try {
 //			Map<String, String> errors = new HashMap<String, String>();
 //			model.addAttribute("errors", errors);
 
 			Customer updateCustomer = customerService.findCustomerById(customerId);
-
 			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			Date dutyDay = new Date();
 
 			try {
-				dutyDay = (java.util.Date) sdf.parse(cbd);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date dutyDay = new Date();
+				dutyDay = (java.util.Date) sdf.parse(cbDate);
 				updateCustomer.setCbirthdate(dutyDay);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			updateCustomer.setCfirstName(cf);
-			updateCustomer.setClastName(cl);
-			updateCustomer.setCpwd(cpw);
-			updateCustomer.setCemail(cmail);
+			updateCustomer.setCfirstName(cFirstName);
+			updateCustomer.setClastName(cLastName);
+			updateCustomer.setCpwd(cPwd);
+			updateCustomer.setCemail(cEmail);
 
-			updateCustomer.setCimg(cimg.getBytes());
+			updateCustomer.setCimg(cImg.getBytes());
 
 			updateCustomer.setCdate(d);
 

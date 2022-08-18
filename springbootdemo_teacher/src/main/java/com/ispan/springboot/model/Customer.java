@@ -46,7 +46,7 @@ public class Customer {
 
 	@Column(name = "C1_BirthDay")
 	@JsonFormat(pattern = "yyyy/MM/dd", timezone = "GMT+8")
-	@DateTimeFormat(pattern = "yyyy/MM/dd") //SprongMVC
+	@DateTimeFormat(pattern = "yyyy-MM-dd") //SprongMVC
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date cbirthdate;
 	

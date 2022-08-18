@@ -36,6 +36,7 @@
 				<button type="submit" class="btn btn-lg btn-primary">登入</button>
 				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
 				<p style="color: red;">${errors.cmsg}</p>
+				<p style="color: red;">${errors.status}</p>
 
 
 				<label class="form-label"><a href="">忘記密碼?</a></label>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="navbar.jsp" />
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@
 
 
 			<form
-				action="${contextRoot}/updateCustomer?id=${oneCustomer.getCid()}"
+				action="${contextRoot}/customer/update?id=${oneCustomer.getCid()}"
 				method="post" enctype="multipart/form-data">
 				<h6 style="color: green">${msg}</h6>
 				<h2>我的個人資料</h2>
@@ -50,9 +51,11 @@
 						class="form-control" name="cLastName"
 						value="${oneCustomer.getClastName()}">
 					<p style="color: red;">${errors.clastName}</p>
-					<label class="form-label">生日:</label> <input type="text"
-						class="form-control" name="cbDate"
-						value="${oneCustomer.getCbirthdate()}">
+					<label class="form-label">生日:</label>
+					<fmt:formatDate pattern="yyyy/MM/dd"
+						value="${oneCustomer.getCbirthdate()}" />
+					<input type="date" class="form-control" name="cbDate"
+						value="">
 					<p style="color: red;">${errors.cbirthdate}</p>
 					<label class="form-label">個人電子信箱:</label> <input type="text"
 						class="form-control" name="cEmail"

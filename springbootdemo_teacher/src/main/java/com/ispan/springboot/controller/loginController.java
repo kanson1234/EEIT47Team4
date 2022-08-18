@@ -20,16 +20,16 @@ import com.ispan.springboot.service.CustomerService;
 import com.ispan.springboot.service.RetailerService;
 
 @Controller
-@SessionAttributes(names = { "customerLoginOk", "adminLoginOk" })
+@SessionAttributes(names = { "customerLoginOk", "adminLoginOk", "retailerLoginOk" })
 public class loginController {
 	@Autowired
-	private AdminService aService;
+	private AdminService adminService;
 
 	@Autowired
-	private RetailerService rService;
+	private RetailerService retailerService;
 
 	@Autowired
-	private CustomerService cService;
+	private CustomerService customerService;
 
 	// 管理者登入
 	@PostMapping("/checkadminlogin")
@@ -50,7 +50,7 @@ public class loginController {
 			return "login";
 		}
 
-		Admin adminLoginResult = aService.checkAdminLogin(account);
+		Admin adminLoginResult = adminService.checkAdminLogin(account);
 
 		if (adminLoginResult != null) {
 			model.addAttribute("adminLoginOk", adminLoginResult);
@@ -79,7 +79,7 @@ public class loginController {
 			return "loginR";
 		}
 
-		Retailer result = rService.checkRetailerLogin(raccount,rpwd);
+		Retailer result = retailerService.checkRetailerLogin(raccount, rpwd);
 
 		if (result != null) {
 
@@ -111,22 +111,29 @@ public class loginController {
 			return "loginC";
 		}
 
-		Customer customerLoginResult = cService.checkCustomerLogin(caccount,cpwd);
+		Customer customerLoginResult = customerService.checkCustomerLogin(caccount, cpwd);
+		Customer checkStatus = customerService.findCustomerById(customerLoginResult.getCid());
+		boolean cstatus = checkStatus.isCstatus();
 
 		if (customerLoginResult != null) {
-			model.addAttribute("customerLoginOk", customerLoginResult);
 
-			return "loginSuccess";
-		}
+			if (cstatus == true) {
+				model.addAttribute("customerLoginOk", customerLoginResult);
 
-		errors.put("cmsg", "您的帳號或密碼有誤，請重新輸入!");
-		return "loginC";
+				return "loginSuccess";
+			} else {
+				errors.put("status", "您的帳號已遭停權，詳情請向管理員洽詢。");
+				return "loginC";
+			}
+
+		} 
 	}
 
 //所有登出
 	@GetMapping("/logout")
 	public String logout(SessionStatus status, Model model) {
-		if (model.getAttribute("customerLoginOk") != null || model.getAttribute("adminLoginOk") != null) {
+		if (model.getAttribute("customerLoginOk") != null || model.getAttribute("adminLoginOk") != null
+				|| model.getAttribute("retailerLoginOk") != null) {
 			status.setComplete();
 		}
 		return "redirect:/logindex";

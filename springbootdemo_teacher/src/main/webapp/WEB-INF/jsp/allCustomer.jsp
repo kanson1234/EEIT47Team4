@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +36,7 @@
 	<%-- 	<h3 style="color: red">${}</h3> --%>
 	<!-- 重複的結構 -->
 	<div>
-		<table  class="table table-hover table align-middle">
+		<table class="table table-hover table align-middle">
 			<thead>
 				<tr>
 					<td>ID</td>
@@ -44,7 +46,7 @@
 					<td>帳號</td>
 					<td>密碼</td>
 					<td>生日</td>
-					<td>註冊日期</td>
+					<td>註冊/更新日期</td>
 					<td>帳號狀態</td>
 				</tr>
 			</thead>
@@ -52,19 +54,21 @@
 				<c:forEach items="${customer}" var="c">
 					<tr>
 						<td>${c.cid}</td>
-						<td><img width="150" src="${contextRoot}/downloadImage/${c.cid}"></td>
+						<td><img width="150"
+							src="${contextRoot}/downloadImage/${c.cid}"></td>
 						<td>${c.cfirstName}</td>
 						<td>${c.clastName}</td>
 						<td>${c.caccount}</td>
 						<td>${c.cpwd}</td>
-						<td>${c.cbirthdate}</td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd"
+								value="${c.cbirthdate}" /></td>
 						<td>${c.cdate}</td>
 						<td>${c.cstatus}</td>
-						<td><a
-							href="">
+						<td><a href="">
 								<button class="btn btn-secondary">修改帳號狀態</button>
 						</a></td>
-						<td><a onclick="confirm('確認刪除會員資料?');return confirm('真的要刪除此筆資料嗎?')"
+						<td><a
+							onclick="return confirm('真的要刪除此筆資料嗎?')"
 							href="${contextRoot}/deleteCustomer/${c.cid}">
 								<button class="btn btn-warning">X</button>
 						</a></td>
