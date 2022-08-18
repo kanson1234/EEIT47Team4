@@ -73,7 +73,7 @@ public class ShopHouseBean {
 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "rid")
+	@JoinColumn(name = "C2_Id",insertable = false, updatable = false)
 	private Retailer RetailerBean;
 	
 

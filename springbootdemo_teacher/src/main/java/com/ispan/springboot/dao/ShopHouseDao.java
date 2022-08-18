@@ -27,15 +27,8 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	@Query(value="select * FROM StoreHouse WHERE C2_Id=:id",nativeQuery = true)
 	public List<ShopHouseBean> findByC2Id( Integer id);
 	
-
-	
 }	
 
-    //看商品的所有留言
-	@Query()
-	public List<Message> findByItemId(Integer id);
-	}	
 
 
-}
 
