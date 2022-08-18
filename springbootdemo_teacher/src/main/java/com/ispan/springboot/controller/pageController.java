@@ -25,11 +25,5 @@ public class pageController {
 	public String srselectpageALL() {
 		return "srselectpageALL";
 	}
-	
-	
-	@GetMapping("/ShoppingCar")
-	public String goToShoppingCar() {
-		return "ShoppingCar";
-	}
 
 }
