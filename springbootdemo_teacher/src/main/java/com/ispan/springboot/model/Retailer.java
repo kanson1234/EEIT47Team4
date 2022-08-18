@@ -1,13 +1,12 @@
 package com.ispan.springboot.model;
 
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -19,11 +18,8 @@ public class Retailer {
 	@Column(name = "C2_Id")
 	private Integer rid;
 
-	@Column(name = "C2_FirstName")
-	private String rfirstName;
-
-	@Column(name = "C2_LastName")
-	private String rlastName;
+	@Column(name = "C2_Name")
+	private String rName;
 
 	@Column(name = "C2_Account")
 	private String raccount;
@@ -34,11 +30,21 @@ public class Retailer {
 	@Column(name = "C2_Phone")
 	private String rphone;
 
-	@Column(name = "C2_Date")
-	private Date rdate;
+//	@Column(name = "C2_Date")
+//	private Date rdate;
 
 	@Column(name = "C2_State")
 	private boolean rstate;
+
+	@Column(name = "C2_logo")
+	private byte[] logo;
+
+	@Lob
+	@Column(name = "C2_photo")
+	private byte[] photo;
+
+	@Column(name = "C2_info")
+	private String info;
 
 	public Retailer() {
 	}
@@ -51,20 +57,14 @@ public class Retailer {
 		this.rid = rid;
 	}
 
-	public String getRfirstName() {
-		return rfirstName;
+
+
+	public String getrName() {
+		return rName;
 	}
 
-	public void setRfirstName(String rfirstName) {
-		this.rfirstName = rfirstName;
-	}
-
-	public String getRlastName() {
-		return rlastName;
-	}
-
-	public void setRlastName(String rlastName) {
-		this.rlastName = rlastName;
+	public void setrName(String rName) {
+		this.rName = rName;
 	}
 
 	public String getRaccount() {
@@ -91,13 +91,13 @@ public class Retailer {
 		this.rphone = rphone;
 	}
 
-	public Date getRdate() {
-		return rdate;
-	}
-
-	public void setRdate(Date rdate) {
-		this.rdate = rdate;
-	}
+//	public Date getRdate() {
+//		return rdate;
+//	}
+//
+//	public void setRdate(Date rdate) {
+//		this.rdate = rdate;
+//	}
 
 	public boolean isRstate() {
 		return rstate;
@@ -107,4 +107,27 @@ public class Retailer {
 		this.rstate = rstate;
 	}
 
+	public byte[] getLogo() {
+		return logo;
+	}
+
+	public void setLogo(byte[] logo) {
+		this.logo = logo;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
 }
