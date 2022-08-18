@@ -26,11 +26,11 @@
 				style="margin: auto; width: 220px">
 				<h2 class="h3 mb-3 fw-normal">管理者登入</h2>
 				
-				<label class="form-label">管理者帳號</label> <input type="text" class="form-control"
+				<label class="form-label">管理者帳號</label> <input type="text" class="form-control"  placeholder="輸入帳號"
 					name="adAccount" id="floatingInput" />
 				<p style="color: red;">${errors.account}</p>
 				
-				<label class="form-label">管理者密碼</label> <input type="password" class="form-control"
+				<label class="form-label">管理者密碼</label> <input type="password" class="form-control"  placeholder="輸入密碼"
 					name="adPwd" id="floatingPassword" />
 				<p style="color: red;">${errors.pwd}</p>
 

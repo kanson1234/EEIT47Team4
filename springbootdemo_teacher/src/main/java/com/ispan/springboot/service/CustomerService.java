@@ -20,6 +20,11 @@ public class CustomerService {
 		Customer ca = cDao.findByCustomerAccount(caccount,cpwd);
 		return ca;
 	}
+	
+	public Customer findCustomerAccount(String caccount) {
+		Customer ca = cDao.findCustomerAccount(caccount);
+		return ca;
+	}
 
 	public void insertCustomer(Customer ct) {
 		cDao.save(ct);

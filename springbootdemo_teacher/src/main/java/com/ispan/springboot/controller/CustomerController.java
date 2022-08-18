@@ -57,6 +57,10 @@ public class CustomerController {
 				errors.put("cAccount", "請輸入您的帳號!");
 			}
 
+			if (customerService.findCustomerAccount(cAccount) != null) {
+				errors.put("used", "該帳號已被註冊!");
+			}
+
 			if (cPwd == null || cPwd.length() == 0) {
 				errors.put("cPwd", "請輸入您的密碼!");
 			}
@@ -207,10 +211,38 @@ public class CustomerController {
 		Customer oneCustomer = (Customer) model.getAttribute("customer");
 		Customer findCustomer = customerService.findCustomerById(oneCustomer.getCid());
 		findCustomer.setCstatus(customerStatus);
-		
+
 		customerService.insertCustomer(findCustomer);
 
 		return "loginSuccess";
+	}
+
+	// 忘記密碼寄信
+	@GetMapping("sendForgotMail")
+	public String sendMail(@RequestParam("sendEmailAccount") String customerAccount, Model model) {
+
+		Map<String, String> errors = new HashMap<String, String>();
+		model.addAttribute("errors", errors);
+
+		if (customerAccount == null || customerAccount.length() == 0) {
+			errors.put("customerAccount", "請輸入帳號!");
+		}
+
+		if (errors != null && !errors.isEmpty()) {
+			return "forgotPassword";
+		}
+
+		if (customerService.findCustomerAccount(customerAccount) == null) {
+			errors.put("errorAccount", "帳號輸入錯誤，請重新輸入!");
+			return "forgotPassword";
+		} else {
+			Customer forgotCustomer = customerService.findCustomerAccount(customerAccount);
+			emailService.sendEmail(forgotCustomer.getCemail(), forgotCustomer.getCfirstName() + "會員，您好!",
+					"您的密碼為: " + forgotCustomer.getCpwd());
+			errors.put("success", "驗證成功!請至註冊信箱收取信件!");
+
+			return "forgotPassword";
+		}
 
 	}
 

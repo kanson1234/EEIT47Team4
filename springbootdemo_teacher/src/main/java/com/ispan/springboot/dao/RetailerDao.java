@@ -5,12 +5,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.Retailer;
+
 @Repository
 public interface RetailerDao extends JpaRepository<Retailer, Integer> {
-	
+
 	@Query("from Retailer where raccount=:raccount and  rpwd=:rpwd")
-	public Retailer findByRetailerAccount(@Param("raccount")String raccount,@Param("rpwd")String rpwd);
-	
+	public Retailer findByRetailerAccount(@Param("raccount") String raccount, @Param("rpwd") String rpwd);
+
+	@Query("from Retailer where raccount=:raccount")
+	public Retailer findRetailerAccount(@Param("raccount") String raccount);
 
 }

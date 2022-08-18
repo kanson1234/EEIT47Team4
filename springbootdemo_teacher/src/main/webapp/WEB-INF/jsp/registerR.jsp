@@ -24,28 +24,30 @@
 				<h2 class="h3 mb-3 fw-normal">零售商註冊</h2>
 
 				<div class="mb-3">
-					<label class="form-label">姓名</label> <input type="text" class="form-control"
-						name="rName" />
-					<p style="color: red;">${errors.cfirstName}</p>
-					<label class="form-label">帳號</label><input type="text" class="form-control"
-						name="rAccount" />
-					<p style="color: red;">${errors.cfirstName}</p>
-					<label class="form-label">密碼</label><input type="password" class="form-control" name="rPwd" />
-					<p style="color: red;">${errors.cfirstName}</p>
-					<label class="form-label">電話</label><input type="text" class="form-control"
-						name="rPhone" />
-					<p style="color: red;">${errors.cfirstName}</p>
-					<label class="form-label">商家描述</label> <input type="text" class="form-control"
-						name="rInfo" />
-					<p style="color: red;">${errors.cfirstName}</p>
+					<label class="form-label">姓名</label> <input type="text"
+						class="form-control" placeholder="請輸入姓名" name="rName" />
+					<p style="color: red;">${errors.rName}</p>
+					<label class="form-label">帳號</label><input type="text"
+						class="form-control" placeholder="請輸入帳號" name="rAccount" />
+					<p style="color: red;">${errors.rAccount}</p>
+					<p style="color: red;">${errors.used}</p>
+					<label class="form-label">密碼</label><input type="password"
+						class="form-control" placeholder="請輸入密碼" name="rPwd" />
+					<p style="color: red;">${errors.rPwd}</p>
+					<label class="form-label">電話</label><input type="text"
+						class="form-control" placeholder="請輸入電話" name="rPhone" />
+					<p style="color: red;">${errors.rPhone}</p>
+					<label class="form-label">商家描述</label> <input type="text"
+						class="form-control" placeholder="輸入商家描述" name="rInfo" />
+					<p style="color: red;">${errors.rInfo}</p>
 					<label class="form-label">Logo圖樣</label><input type="file"
-						accept="image/*" name="rLogo" id="imglogo" /> <img id="logo" width="350"
-						src="" />
-					<p style="color: red;">${errors.cfirstName}</p>
+						accept="image/*" name="rLogo" id="imglogo" /> <img id="logo"
+						width="350" src="" />
+					<p style="color: red;">${errors.rLogo}</p>
 					<label class="form-label">商家照片</label><input type="file"
-						accept="image/*" name="rPhoto" id="imgphoto" /> <img id="photo" width="350"
-						src="" />
-					<p style="color: red;">${errors.cfirstName}</p>
+						accept="image/*" name="rPhoto" id="imgphoto" /> <img id="photo"
+						width="350" src="" />
+					<p style="color: red;">${errors.rPhoto}</p>
 				</div>
 
 				<button type="submit" class="btn btn-lg btn-primary">註冊</button>

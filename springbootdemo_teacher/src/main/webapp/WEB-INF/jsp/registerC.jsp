@@ -26,22 +26,23 @@
 
 				<div class="mb-3">
 					<label class="form-label">姓</label> <input type="text"
-						class="form-control" name="cFirstName">
+						placeholder="請輸入姓氏" class="form-control" name="cFirstName">
 					<p style="color: red;">${errors.cFirstName}</p>
 					<label class="form-label">名</label> <input type="text"
-						class="form-control" name="cLastName">
+						placeholder="請輸入名稱" class="form-control" name="cLastName">
 					<p style="color: red;">${errors.cLastName}</p>
 					<label class="form-label">帳號</label> <input type="text"
-						class="form-control" name="cAccount">
+						placeholder="請輸入帳號" class="form-control" name="cAccount">
 					<p style="color: red;">${errors.cAccount}</p>
+					<p style="color: red;">${errors.used}</p>
 					<label class="form-label">密碼</label> <input type="password"
-						class="form-control" name="cPwd">
+						placeholder="輸入密碼" class="form-control" name="cPwd">
 					<p style="color: red;">${errors.cPwd}</p>
 					<label class="form-label">生日</label> <input type="date"
 						class="form-control" name="cbDate" max="2001-12-31">
 					<p style="color: red;">${errors.cbDate}</p>
 					<label class="form-label">電子信箱</label> <input type="text"
-						class="form-control" name="cEmail">
+						placeholder="請輸入個人電子信箱" class="form-control" name="cEmail">
 					<p style="color: red;">${errors.cEmail}</p>
 
 					<label class="form-label">個人圖片</label> <input type="file"

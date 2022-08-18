@@ -25,22 +25,25 @@ public class pageController {
 	public String loginIndex() {
 		return "loginindex";
 	}
-	
-	
-	
+
 	@GetMapping("/personalFile")
 	public String oneCustomer() {
 		return "personalFile";
 	}
-	
+
 	@GetMapping("/loginC")
 	public String loginC() {
 		return "loginC";
 	}
-	
+
 	@GetMapping("/loginR")
 	public String loginR() {
 		return "loginR";
+	}
+
+	@GetMapping("/forgotPassword")
+	public String forgotPassword() {
+		return "forgotPassword";
 	}
 
 }

@@ -24,10 +24,10 @@
 			<form action="checkretailerlogin" method="post"
 				style="margin: auto; width: 220px">
 				<h2 class="h3 mb-3 fw-normal">商家登入</h2>
-				<label class="form-label">商家帳號</label> <input type="text" class="form-control"
+				<label class="form-label">商家帳號</label> <input type="text" class="form-control" placeholder="輸入帳號"
 					name="rAccount" id="floatingInputR" />
 				<p style="color: red;">${errors.caccount}</p>
-				<label class="form-label">商家密碼</label> <input type="password" class="form-control"
+				<label class="form-label">商家密碼</label> <input type="password" class="form-control" placeholder="輸入密碼"
 					name="rPwd" id="floatingPasswordR"/>
 				<p style="color: red;">${errors.cpwd}</p>
 

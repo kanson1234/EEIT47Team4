@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="navbar.jsp" />
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,10 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous">
+	
 </script>
+
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 
 </head>
@@ -25,11 +29,11 @@
 				style="margin: auto; width: 220px">
 				<h2 class="h3 mb-3 fw-normal">會員登入</h2>
 
-				<label class="form-label">您的帳號</label> <input type="text"
+				<label class="form-label">您的帳號</label> <input type="text"  placeholder="輸入帳號"
 					class="form-control" name="cAccount" id="floatingInputC" />
 				<p style="color: red;">${errors.caccount}</p>
 
-				<label class="form-label">您的密碼</label> <input type="password"
+				<label class="form-label">您的密碼</label> <input type="password" placeholder="輸入密碼"
 					class="form-control" name="cPwd" id="floatingPasswordC" />
 				<p style="color: red;">${errors.cpwd}</p>
 
@@ -39,7 +43,7 @@
 				<p style="color: red;">${errors.status}</p>
 
 
-				<label class="form-label"><a href="">忘記密碼?</a></label>
+				<label class="form-label"><a href="${contextRoot}/forgotPassword">忘記密碼?</a></label>
 
 				<div class="text-center m-5">
 					快速登入:
