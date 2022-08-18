@@ -63,12 +63,14 @@
 						<td><fmt:formatDate pattern="yyyy/MM/dd"
 								value="${c.cbirthdate}" /></td>
 						<td>${c.cdate}</td>
-						<td>${c.cstatus}</td>
-						<td><a href="">
+						<td><select name="customerStatus">
+								<option value="true">啟用</option>
+								<option value="false">停用</option>
+						</select></td>
+						<td><a href="${contextRoot}/changeCustomerStatus?id=${c.cid}">
 								<button class="btn btn-secondary">修改帳號狀態</button>
 						</a></td>
-						<td><a
-							onclick="return confirm('真的要刪除此筆資料嗎?')"
+						<td><a onclick="return confirm('真的要刪除此筆資料嗎?')"
 							href="${contextRoot}/deleteCustomer/${c.cid}">
 								<button class="btn btn-warning">X</button>
 						</a></td>

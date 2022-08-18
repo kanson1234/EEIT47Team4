@@ -13,12 +13,13 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
 
 	@Query("from Customer where caccount=:caccount and cpwd=:cpwd")
 	public Customer findByCustomerAccount(@Param("caccount") String caccount,@Param("cpwd") String cpwd);
-	
     
-	
 	public  List<Customer> findAll();
 	
 	@Query("from Customer where cid=:cid")
 	public Customer getById(@Param("cid")Integer cid);
+	
+//	@("from Customer where cstatus=:cstatus")
+//	public Customer get
 
 }

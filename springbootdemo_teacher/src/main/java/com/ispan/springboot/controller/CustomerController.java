@@ -162,8 +162,9 @@ public class CustomerController {
 
 	// 修改會員個人資料
 	@PostMapping("/customer/update")
-	public String updateCustomer(@RequestParam("customerId") Integer customerId, @RequestParam("cFirstName") String cFirstName,
-			@RequestParam("cLastName") String cLastName, @RequestParam("cPwd") String cPwd, @RequestParam("cbDate") String cbDate,
+	public String updateCustomer(@RequestParam("customerId") Integer customerId,
+			@RequestParam("cFirstName") String cFirstName, @RequestParam("cLastName") String cLastName,
+			@RequestParam("cPwd") String cPwd, @RequestParam("cbDate") String cbDate,
 			@RequestParam("cEmail") String cEmail, @RequestParam("cImg") MultipartFile cImg, Model model) {
 		try {
 //			Map<String, String> errors = new HashMap<String, String>();
@@ -197,6 +198,15 @@ public class CustomerController {
 			e.printStackTrace();
 			return "registerC";
 		}
+
+	}
+
+	// 修改會員狀態
+	@GetMapping("/changeCustomerStatus")
+	public String changeCustomerStatus(@RequestParam("customerStatus") boolean customerStatus, Model model) {
+		
+
+		return "loginSuccess";
 
 	}
 

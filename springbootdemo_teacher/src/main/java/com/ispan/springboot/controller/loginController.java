@@ -104,29 +104,31 @@ public class loginController {
 		if (cpwd == null || cpwd.length() == 0) {
 			errors.put("cpwd", "請輸入您的密碼!");
 		}
-		
-		
 
 		if (errors != null && !errors.isEmpty()) {
 			return "loginC";
 		}
 
 		Customer customerLoginResult = customerService.checkCustomerLogin(caccount, cpwd);
+		
+		if (customerLoginResult == null) {
+			errors.put("cmsg", "您的帳號或密碼有誤，請重新輸入!");
+			return "loginC";
+		}
+		//因在此位置判斷customerLoginResult有錯，故須將if customerLoginResult == null敘述移到上方做判斷
 		Customer checkStatus = customerService.findCustomerById(customerLoginResult.getCid());
 		boolean cstatus = checkStatus.isCstatus();
 
-		if (customerLoginResult != null) {
+		if (cstatus == true) {
 
-			if (cstatus == true) {
-				model.addAttribute("customerLoginOk", customerLoginResult);
+			model.addAttribute("customerLoginOk", customerLoginResult);
+			return "loginSuccess";
 
-				return "loginSuccess";
-			} else {
-				errors.put("status", "您的帳號已遭停權，詳情請向管理員洽詢。");
-				return "loginC";
-			}
+		} else {
+			errors.put("status", "您的帳號已遭停權，詳情請向管理員洽詢。");
+			return "loginC";
+		}
 
-		} 
 	}
 
 //所有登出
