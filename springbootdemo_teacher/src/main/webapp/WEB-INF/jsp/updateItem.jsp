@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<jsp:include page="layout/navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,8 @@
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">產品名稱<input name="itemName"></th>
-					<th scope="col">照片<input type="file" name="file"></th>
+					<th scope="col">圖片<input type="file" name="file" accept="image/*" id="imgInp"><img width="100" id="img" src=""/></th>
+<!-- 					<label class="form-label">圖片:</label><input type="file" accept="image/*" name="file" id="imgInp"><img width="200" id="img" src=""/> -->
 					<th scope="col">價錢<input name="itemPrice"></th>
 					<th scope="col">種類<input name="classify"></th>
 					<th scope="col">狀態<input id="state" name="state"></th>
@@ -47,4 +49,16 @@
 </form>
 	</div>
 </body>
+
+<script type="text/javascript">
+$('#imgInp').change(function(){
+	var file = $('#imgInp')[0].files[0];
+	var reader = new FileReader;
+	reader.onload = function(e){
+		$('#img').attr('src',e.target.result);
+	};
+	reader.readAsDataURL(file);
+});
+</script>
+
 </html>

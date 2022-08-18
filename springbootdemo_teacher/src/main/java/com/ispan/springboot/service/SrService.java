@@ -62,9 +62,13 @@ public class SrService {
 	
 	
 	public List<ShoppingRecord> findAllByC1_id(Integer cid) {
-		return SrDao.findALLByC1_id(cid);
+		return SrDao.findALLBycustomer_cId(cid);
 	}
 	
+	
+	public List<ShoppingRecord> findAll2(String word) {
+		return SrDao.findAll2( word);
+	}
 	
 }
 

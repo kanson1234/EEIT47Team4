@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ispan.springboot.model.Message;
 import com.ispan.springboot.model.ShopHouseBean;
 
 public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
@@ -17,14 +18,24 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	public List<ShopHouseBean> findByKeyword(@RequestParam(name = "word") String word);
 	
 	
-	
 	//產品類型搜尋    @RequestParam(name="classify")
 	@Query(value="select * FROM StoreHouse WHERE SH_Classify=:word",nativeQuery = true)
-	public List<ShopHouseBean> findByClassify( String word);
+	public List<ShopHouseBean> findByClassify(String word);
 	
+
+
 	@Query(value="select * FROM StoreHouse WHERE C2_Id=:id",nativeQuery = true)
 	public List<ShopHouseBean> findByC2Id( Integer id);
 	
 
 	
 }	
+
+    //看商品的所有留言
+	@Query()
+	public List<Message> findByItemId(Integer id);
+	}	
+
+
+}
+

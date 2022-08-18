@@ -1,9 +1,10 @@
 
-
 package com.ispan.springboot.controller;
 
 import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,19 +15,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ispan.springboot.model.Customer;
+import com.ispan.springboot.model.Message;
 import com.ispan.springboot.model.ShopHouseBean;
+import com.ispan.springboot.service.MessageService;
 import com.ispan.springboot.service.ShopHouseService;
 
 @Controller
 public class ShopHouseController {
-
+	
 	@Autowired
 	private ShopHouseService sService;
+	
+	@Autowired
+	private MessageService mService;
 
 	// 顯示全部商品
 //	@GetMapping("/shopHouse/Allitem")
@@ -53,7 +61,7 @@ public class ShopHouseController {
 	@PostMapping("/shopHouse/addItem")
 	public String addItem(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
 			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
-			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id,Model model) {
+			@RequestParam("State") boolean status, @RequestParam("c2Id") Integer c2Id, Model model) {
 		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
 			newShopHouse.setItemName(itemName);
@@ -75,17 +83,6 @@ public class ShopHouseController {
 			return "index";
 		}
 	}
-
-// 測試新增一筆資料	
-//	@PostMapping("ShopHouse/addItem11")
-//	@ResponseBody
-//	public ShopHouseBean addItem1() {
-//		ShopHouseBean newShopHouse = new ShopHouseBean();
-//		    newShopHouse.setItemName("好帳篷");
-//			newShopHouse.setPrice(200);
-//			newShopHouse.setClassify("帳篷");
-//			newShopHouse.setStatus(true);
-//			newShopHouse.setC2Id(1000003);
 
 //
 //	// 用id找商品
@@ -116,14 +113,25 @@ public class ShopHouseController {
 		return "updateItem";
 	}
 
+	// 抓商品ID跳商品頁面
+	@GetMapping("/ShopHouse/itemDetail/{id}")
+	public String ItemDetail(@PathVariable Integer id, Model model) {
+		ShopHouseBean item = sService.findItemById(id);
+//		                     sService.findAllMessage(
+
+		model.addAttribute("shopHouseItem", item);
+		return "ItemDetail";
+	}
+
 	// 修改商品
 	@PostMapping("/ShopHouse/editItem")
 	public String updateItemPost(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
 			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
-			@RequestParam("state") boolean status, @RequestParam("c2Id") Integer c2Id, @RequestParam("id") Integer id,Model model) {
+			@RequestParam("state") boolean status, @RequestParam("c2Id") Integer c2Id, @RequestParam("id") Integer id,
+			Model model) {
 		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
-			
+
 			newShopHouse.setId(id);
 			newShopHouse.setItemName(itemName);
 			newShopHouse.setItemImg(itemImg.getBytes());
@@ -142,33 +150,64 @@ public class ShopHouseController {
 		}
 		return "updateItem";
 	}
-	
-    //分頁顯示商品
-	@GetMapping("/ShopHouse/viewItems")
-	public String viewMessagesPage(@RequestParam(name="p",defaultValue = "1") Integer pageNumber,Model model) {
-		Page<ShopHouseBean> page = sService.findByPage(pageNumber);
-		model.addAttribute("page",page);
-		return "shopHouseItems";
-	}	
 
-	//模糊查詢
+	// 分頁顯示商品
+	@GetMapping("/ShopHouse/viewItems")
+	public String viewMessagesPage(@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, Model model) {
+		Page<ShopHouseBean> page = sService.findByPage(pageNumber);
+		model.addAttribute("page", page);
+		return "shopHouseItems";
+	}
+
+	// 模糊查詢
 	@GetMapping("/ShopHouse/findByKeyword")
-	public String findByKeyword(@RequestParam(name="word", defaultValue = "") String word,Model model) {
+	public String findByKeyword(@RequestParam(name = "word", defaultValue = "") String word, Model model) {
 		List<ShopHouseBean> keyword = sService.findByKeyword(word);
 //		System.out.println("size: " + keyword.size());
 //		System.out.println("itemName: " + keyword.get(0).getItemName());
 		model.addAttribute("keyword", keyword);
 		return "shopHouseItems";
 	}
-	
+
+	// 種類搜尋
 	@GetMapping("/ShopHouse/findByClassify")
-	public String findByClassify(@RequestParam(name="classify",defaultValue = "") String classify,Model model) {
+	public String findByClassify(@RequestParam(name = "classify", defaultValue = "") String classify, Model model) {
 		List<ShopHouseBean> category = sService.findByClassify(classify);
 		model.addAttribute("category", category);
 		return "shopHouseItems";
 	}
-
 	
+	// 搜尋帳篷
+	@GetMapping("/ShopHouse/findByTent")
+	public String findByTent(Model model) {
+	List<ShopHouseBean> category = sService.findByClassify("帳篷");
+	model.addAttribute("tent", category);
+	return "shopHouseTent";
+	}
+	
+	//搜尋照明設備
+	@GetMapping("/ShopHouse/findByLight")
+	public String findByLight(Model model) {
+	List<ShopHouseBean> category = sService.findByClassify("燈具");
+	model.addAttribute("tent", category);
+	return "shopHouseLight";
+	}
+	
+	//搜尋背包
+	@GetMapping("/ShopHouse/findByBackpack")
+	public String findByBackpack(Model model) {
+	List<ShopHouseBean> category = sService.findByClassify("背包");
+	model.addAttribute("tent", category);
+	return "shopHouseBackpack";
+	}
+	
+
+//	@GetMapping("/ShopHouse/memberSession")
+//	public String MemberSession(HttpSession session) {
+//		Customer cus = new Customer();
+//		session.setAttribute("cus", cus);
+//		
+//		return"/";
+//	}
+
 }
-
-

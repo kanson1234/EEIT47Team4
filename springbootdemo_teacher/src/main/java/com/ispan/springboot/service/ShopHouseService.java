@@ -11,12 +11,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.ispan.springboot.dao.MessageDao;
 import com.ispan.springboot.dao.ShopHouseDao;
+import com.ispan.springboot.model.Message;
 import com.ispan.springboot.model.ShopHouseBean;
 
 @Service
 @Transactional
 public class ShopHouseService {
+	
+	@Autowired
+	private MessageDao mDao2;
 	
 	@Autowired
 	private ShopHouseDao sDao;
@@ -48,7 +53,7 @@ public class ShopHouseService {
 	
 	//分頁
 	public Page<ShopHouseBean> findByPage(Integer pageNumber){
-		PageRequest pgb = PageRequest.of(pageNumber-1, 6,Sort.Direction.DESC,"id");
+		PageRequest pgb = PageRequest.of(pageNumber-1, 6,Sort.Direction.ASC,"id");
 		Page<ShopHouseBean> page = sDao.findAll(pgb);
 		return page;
 	}
@@ -63,5 +68,12 @@ public class ShopHouseService {
 		return sDao.findByClassify(word);
 	} 
 	
+	public ShopHouseBean insertNewShopHouseBean(ShopHouseBean shopHouseBean) {
+		return sDao.save(shopHouseBean);
+	}
+//	//查詢留言
+//	public List<Message> findAllMessageById(Integer id){
+//		return mDao.findAllById(null);
+//	}
 	
 }

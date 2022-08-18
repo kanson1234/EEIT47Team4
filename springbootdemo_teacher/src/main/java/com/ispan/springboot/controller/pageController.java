@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class pageController {
 	
+	@GetMapping("home")
+	public String Homepage() {
+		return "index";
+	}
+	
 	@GetMapping("/")
 	public String welcomeIndex() {
 		return "index";
@@ -50,5 +55,14 @@ public class pageController {
 		return "RetailerCRUD";
 	}
 
+	@GetMapping("/srselectpage")
+	public String srselectpage() {
+		return "srselectpage";
+	}
+	
+	@GetMapping("/srselectpageALL")
+	public String srselectpageALL() {
+		return "srselectpageALL";
+	}
 
 }
