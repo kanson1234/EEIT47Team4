@@ -88,12 +88,12 @@ public class CustomerController {
 				e.printStackTrace();
 			}
 
-			newCustomer.setCfirstName(cFirstName);
-			newCustomer.setClastName(cLastName);
-			newCustomer.setCaccount(cAccount);
-			newCustomer.setCpwd(cPwd);
+			newCustomer.setCfirstName(cFirstName.trim());
+			newCustomer.setClastName(cLastName.trim());
+			newCustomer.setCaccount(cAccount.trim());
+			newCustomer.setCpwd(cPwd.trim());
 			newCustomer.setCdate(registerTime);
-			newCustomer.setCemail(cEmail);
+			newCustomer.setCemail(cEmail.trim());
 			newCustomer.setCimg(cImg.getBytes());
 			newCustomer.setCstatus(true);
 
@@ -181,10 +181,10 @@ public class CustomerController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			updateCustomer.setCfirstName(cFirstName);
-			updateCustomer.setClastName(cLastName);
-			updateCustomer.setCpwd(cPwd);
-			updateCustomer.setCemail(cEmail);
+			updateCustomer.setCfirstName(cFirstName.trim());
+			updateCustomer.setClastName(cLastName.trim());
+			updateCustomer.setCpwd(cPwd.trim());
+			updateCustomer.setCemail(cEmail.trim());
 
 			updateCustomer.setCimg(cImg.getBytes());
 
@@ -204,7 +204,11 @@ public class CustomerController {
 	// 修改會員狀態
 	@GetMapping("/changeCustomerStatus")
 	public String changeCustomerStatus(@RequestParam("customerStatus") boolean customerStatus, Model model) {
+		Customer oneCustomer = (Customer) model.getAttribute("customer");
+		Customer findCustomer = customerService.findCustomerById(oneCustomer.getCid());
+		findCustomer.setCstatus(customerStatus);
 		
+		customerService.insertCustomer(findCustomer);
 
 		return "loginSuccess";
 
