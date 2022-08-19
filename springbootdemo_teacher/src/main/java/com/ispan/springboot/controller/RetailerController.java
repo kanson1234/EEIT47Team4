@@ -75,7 +75,7 @@ public class RetailerController {
 	public ResponseEntity<byte[]> showlogo(@PathVariable Integer id) {
 		Retailer logo = rService.findById(id);
 
-		byte[] logoImg = logo.getLogo();
+		byte[] logoImg = logo.getRlogo();
 
 		HttpHeaders header = new HttpHeaders();
 		header.setContentType(MediaType.IMAGE_JPEG);
@@ -87,7 +87,7 @@ public class RetailerController {
 	public ResponseEntity<byte[]> showphoto(@PathVariable Integer id) {
 		Retailer photo = rService.findById(id);
 
-		byte[] photoImg = photo.getPhoto();
+		byte[] photoImg = photo.getRphoto();
 
 		HttpHeaders header = new HttpHeaders();
 		header.setContentType(MediaType.IMAGE_JPEG);
@@ -107,9 +107,9 @@ public class RetailerController {
 		r.setRpwd(rpw);
 		r.setRphone(rph);
 		r.setRstate(true);
-		r.setPhoto(photo.getBytes());
-		r.setLogo(logo.getBytes());
-		r.setInfo(rInfo);
+		r.setRphoto(photo.getBytes());
+		r.setRlogo(logo.getBytes());
+		r.setRinfo(rInfo);
 		rService.insertRetailer(r);
 		return "registerPage";
 
@@ -135,9 +135,9 @@ public class RetailerController {
 		r.setRpwd(rpw);
 		r.setRphone(rph);
 		r.setRstate(true);
-		r.setPhoto(photo.getBytes());
-		r.setLogo(logo.getBytes());
-		r.setInfo(rInfo);
+		r.setRphoto(photo.getBytes());
+		r.setRlogo(logo.getBytes());
+		r.setRinfo(rInfo);
 		rService.insertRetailer(r);
 		return "editRetailer";
 	}

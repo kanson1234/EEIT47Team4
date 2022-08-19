@@ -46,6 +46,10 @@
 					href="${pageContext.request.contextPath}/shopHouse/add">新增商品 <span
 						class="sr-only">(current)</span>
 				</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.request.contextPath}/admin/Admin">後臺管理 <span
+						class="sr-only">(current)</span>
+				</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
@@ -63,11 +67,13 @@
 			<!-- 			      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 			<!-- 			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
 			<!-- 			    </form> -->
+			<div align="right">
 			<form method="get"
 				action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-				<input class="form-control mr-sm-2" type="text" name="word" /> <input
-					type="submit" name="Search" value="搜尋" />
+				<input class="form-control mr-sm-2" type="text" name="word" /> 
+				<input	type="submit" name="Search" value="搜尋" />
 			</form>
+			</div>
 		</div>
 	</nav>
 

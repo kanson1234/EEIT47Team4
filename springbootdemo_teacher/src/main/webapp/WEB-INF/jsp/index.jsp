@@ -22,7 +22,6 @@
 <li><a href="${contextRoot}/Retailer/RetailerCRUD">查詢商家</a></li>
 </ul>
 
-<h1>首頁</h1>
 
 
 

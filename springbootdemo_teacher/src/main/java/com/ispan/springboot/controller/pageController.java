@@ -40,15 +40,13 @@ public class pageController {
 	public String registerPage() {
 		return "registerPage";
 	}
-	//取得id,轉發到商家頁面
-	//缺少標籤取值
-//	@GetMapping(value = "/RetailerShowAllItem",produces = { "application/json; charset=UTF-8" })
-//	public String RetailerShopPage(@RequestParam Integer id,Model model) {
-//		model.addAttribute("RetailerShowAllid",id);
-//		System.out.println("pageController"+id);
-////		return"RetailerShopPage";
-//		return"redirect:/retailerGetAllItem/{RetailerShowAllid}";
-//	}
+	
+	@GetMapping("/admin/Admin")
+	public String adminRetailer() {
+		return "adminPage";
+	}
+	
+
 	
 	@GetMapping("/retailerCRUD")
 	public String retailerCRUD() {

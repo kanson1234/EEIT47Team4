@@ -43,14 +43,38 @@ public class Retailer {
 	private boolean rstate;
 
 	@Column(name = "C2_logo")
-	private byte[] logo;
+	private byte[] rlogo;
 
 	@Lob
 	@Column(name = "C2_photo")
-	private byte[] photo;
+	private byte[] rphoto;
 
 	@Column(name = "C2_info")
-	private String info;
+	private String rinfo;
+
+	public byte[] getRlogo() {
+		return rlogo;
+	}
+
+	public void setRlogo(byte[] rlogo) {
+		this.rlogo = rlogo;
+	}
+
+	public byte[] getRphoto() {
+		return rphoto;
+	}
+
+	public void setRphoto(byte[] rphoto) {
+		this.rphoto = rphoto;
+	}
+
+	public String getRinfo() {
+		return rinfo;
+	}
+
+	public void setRinfo(String rinfo) {
+		this.rinfo = rinfo;
+	}
 
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "RetailerBean",cascade=CascadeType.ALL)
 	private Set<ShopHouseBean> shopHouseBean = new LinkedHashSet<ShopHouseBean>();
@@ -116,36 +140,14 @@ public class Retailer {
 		this.rstate = rstate;
 	}
 
-	public byte[] getLogo() {
-		return logo;
-	}
 
-	public void setLogo(byte[] logo) {
-		this.logo = logo;
-	}
 
-	public byte[] getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
-	}
-
-	public String getInfo() {
-		return info;
-	}
-
-	public void setInfo(String info) {
-		this.info = info;
-	}
-
-	public Set<ShopHouseBean> getShopHouseBean() {
-		return shopHouseBean;
-	}
-
-	public void setShopHouseBean(Set<ShopHouseBean> shopHouseBean) {
-		this.shopHouseBean = shopHouseBean;
-	}
+//	public Set<ShopHouseBean> getShopHouseBean() {
+//		return shopHouseBean;
+//	}
+//
+//	public void setShopHouseBean(Set<ShopHouseBean> shopHouseBean) {
+//		this.shopHouseBean = shopHouseBean;
+//	}
 	
 }
