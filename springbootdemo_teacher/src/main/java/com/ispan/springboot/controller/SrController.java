@@ -131,6 +131,7 @@ public class SrController {
 		
 		return  SrService.findAll2(word);
 	}
+
 	
 	
 }

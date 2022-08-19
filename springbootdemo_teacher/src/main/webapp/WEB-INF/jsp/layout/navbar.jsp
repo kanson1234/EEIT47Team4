@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet" />
 
@@ -56,12 +57,14 @@
 				</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
-					data-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+					data-toggle="dropdown" aria-expanded="false"> 登入 </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Action</a> <a
-							class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="${contextRoot}/loginA">管理者登入</a> <a
+							class="dropdown-item" href="${contextRoot}/loginR">商家登入</a>
+							<a
+							class="dropdown-item" href="${contextRoot}/loginC">會員登入</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
+						<a class="dropdown-item" href="${contextRoot}/logout">登出</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link disabled">Disabled</a>
 				</li>

@@ -1,3 +1,4 @@
+//
 //package com.ispan.springboot.controller;
 //
 //import java.util.HashMap;
@@ -8,7 +9,6 @@
 //import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RestController;
 //
 //import com.ispan.springboot.model.Admin;
 //import com.ispan.springboot.service.AdminService;
@@ -17,6 +17,7 @@
 //public class AdminController {
 //	@Autowired
 //	private AdminService aService;
+
 //
 ////	@PostMapping("admin/add")
 ////	public Admin addAdmin() {
@@ -48,7 +49,7 @@
 //			return "login";
 //		}
 //
-//		Admin result = aService.checkAdminLogin(account);
+//		Admin result = aService.checkAdminLogin(account, pwd);
 //
 //		if (result != null) {
 //			m.addAttribute("account", account);
@@ -59,4 +60,5 @@
 //		errors.put("msg", "please input correct account or password");
 //		return "login";
 //	}
+//
 //}
