@@ -4,8 +4,6 @@ package com.ispan.springboot.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
@@ -15,16 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ispan.springboot.model.Customer;
-import com.ispan.springboot.model.Message;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.service.MessageService;
+import com.ispan.springboot.service.RetailerService;
 import com.ispan.springboot.service.ShopHouseService;
 
 @Controller
@@ -35,6 +31,9 @@ public class ShopHouseController {
 	
 	@Autowired
 	private MessageService mService;
+	
+	@Autowired
+    private RetailerService rService;
 
 	// 顯示全部商品
 //	@GetMapping("/shopHouse/Allitem")
@@ -117,7 +116,6 @@ public class ShopHouseController {
 	@GetMapping("/ShopHouse/itemDetail/{id}")
 	public String ItemDetail(@PathVariable Integer id, Model model) {
 		ShopHouseBean item = sService.findItemById(id);
-//		                     sService.findAllMessage(
 
 		model.addAttribute("shopHouseItem", item);
 		return "ItemDetail";
@@ -151,12 +149,23 @@ public class ShopHouseController {
 		return "updateItem";
 	}
 
-	// 分頁顯示商品
+	//後台分頁顯示商品
 	@GetMapping("/ShopHouse/viewItems")
 	public String viewMessagesPage(@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, Model model) {
+		
+//        rService.findById(pageNumber)
+		
 		Page<ShopHouseBean> page = sService.findByPage(pageNumber);
 		model.addAttribute("page", page);
 		return "shopHouseItems";
+	}
+	
+	//前台分頁顯示商品
+	@GetMapping("/ShopHouse/FrontPageShopHouseItems")
+	public String frontPageViewMessagesPage(@RequestParam(name = "p", defaultValue = "1") Integer pagesNumber, Model model) {
+		Page<ShopHouseBean> page = sService.frontPageFindByPage(pagesNumber);
+		model.addAttribute("pages", page);
+		return "FrontPageShopHouseItems";
 	}
 
 	// 模糊查詢

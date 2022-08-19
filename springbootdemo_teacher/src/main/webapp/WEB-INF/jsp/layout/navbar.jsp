@@ -27,7 +27,7 @@
 				<li class="nav-item"><a class="nav-link"
 					href="${pageContext.request.contextPath}/showAllRetailerFront">店家一覽</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="${pageContext.request.contextPath}/ShopHouse/viewItems">所有商品
+					href="${pageContext.request.contextPath}/ShopHouse/FrontPageShopHouseItems">所有商品
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
@@ -46,7 +46,14 @@
 					href="${pageContext.request.contextPath}/shopHouse/add">新增商品 <span
 						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.request.contextPath}/">後臺管理<span
+						class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.request.contextPath}/ShopHouse/viewItems">後臺管理所有商品
+						<span class="sr-only">(current)</span>
+				</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
 					data-toggle="dropdown" aria-expanded="false"> Dropdown </a>

@@ -61,39 +61,39 @@
 
 	<main>
 		<div align='center'>
-		<div class="container">
-		<div class="row">
-			<div class="col-sm-6">
-			<img src="${contextRoot}/showlogo/${RetailerInfo.rid}" 
-					class="card-img-top rounded-circle" alt="..."
-					width="150" height="150">
-			<input id='clickmeS' value="${RetailerInfo.rName}"  />
-			</div>
-			<div>
-			<textarea rows="10" cols="50">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<img src="${contextRoot}/showlogo/${RetailerInfo.rid}"
+							class="card-img-top rounded-circle" alt="..." width="150"
+							height="150"> <input id='clickmeS'
+							value="${RetailerInfo.rName}" />
+					</div>
+					<div>
+						<textarea rows="10" cols="50">
 			${RetailerInfo.info}
 			</textarea>
+					</div>
+				</div>
+			</div>
+			<div class="container" align="center">
+				<div class="row">
+					<c:forEach items="${listItem}" var="Item">
+						<div class="card" style="width: 18rem;">
+							<a href="${contextRoot}/ShopHouse/itemDetail/${Item.id}">
+							<img src="${contextRoot}/downloadImg/${Item.id}"
+								class="card-img-top" alt="..."></a>
+											
+							<div class="card-body">
+								<p class="card-text">${Item.itemName}</p>
+								<p class="card-text">${Item.price}</p>
+							</div>
+
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
-		</div>
-		<div class="container" align="center">
-		<div class="row">
-			<c:forEach items="${listItem}" var="Item">
-				<div class="card" style="width: 18rem;">
-<%-- 					<a href="${contextRoot}/RetailerShowAllItem?id=${Item.id}"> --%>
-					<img src="${contextRoot}/downloadImg/${Item.id}" 
-					class="card-img-top" alt="...">
-<!-- 					</a> -->
-					<div class="card-body">
-						<p class="card-text">${Item.itemName}</p>
-						<p class="card-text">${Item.price}</p>
-					</div>
-
-				</div>
-			</c:forEach>
-		</div>
-	</div>
-	</div>
 
 	</main>
 </body>

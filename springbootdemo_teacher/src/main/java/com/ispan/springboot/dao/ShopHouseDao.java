@@ -22,10 +22,11 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	@Query(value="select * FROM StoreHouse WHERE SH_Classify=:word",nativeQuery = true)
 	public List<ShopHouseBean> findByClassify(String word);
 	
-
-
+	//店家ID找商品
 	@Query(value="select * FROM StoreHouse WHERE C2_Id=:id",nativeQuery = true)
 	public List<ShopHouseBean> findByC2Id( Integer id);
+	
+	
 	
 }	
 
