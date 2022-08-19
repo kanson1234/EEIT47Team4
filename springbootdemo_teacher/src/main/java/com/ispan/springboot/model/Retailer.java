@@ -139,7 +139,7 @@ public class Retailer {
 		this.rphoto = rphoto;
 	}
 
-<<<<<<< HEAD
+
 //	public Set<ShopHouseBean> getShopHouseBean() {
 //		return shopHouseBean;
 //	}
@@ -148,7 +148,7 @@ public class Retailer {
 //		this.shopHouseBean = shopHouseBean;
 //	}
 	
-=======
+
 	public Set<ShopHouseBean> getShopHouseBean() {
 		return shopHouseBean;
 	}
@@ -157,5 +157,4 @@ public class Retailer {
 		this.shopHouseBean = shopHouseBean;
 	}
 
->>>>>>> c29c9d6da3fbb67f65a4b1851aeb008f5bd83541
 }
