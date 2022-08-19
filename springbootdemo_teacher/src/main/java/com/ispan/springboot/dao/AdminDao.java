@@ -11,7 +11,7 @@ import com.ispan.springboot.model.Admin;
 @Repository
 public interface AdminDao extends JpaRepository<Admin, Integer> {
 	
-	@Query("from Admin where account=:account")
-	public Admin findByAdminAccount(@Param("account")String account);
+	@Query("from Admin where account=:account and pwd=:pwd" )
+	public Admin findByAdminAccount(@Param("account")String account,@Param("pwd")String pwd);
 
 }

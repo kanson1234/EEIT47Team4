@@ -50,7 +50,7 @@ public class loginController {
 			return "login";
 		}
 
-		Admin adminLoginResult = adminService.checkAdminLogin(account);
+		Admin adminLoginResult = adminService.checkAdminLogin(account,pwd);
 
 		if (adminLoginResult != null) {
 			model.addAttribute("adminLoginOk", adminLoginResult);
@@ -63,9 +63,9 @@ public class loginController {
 
 	// 商家登入
 	@PostMapping("/checkretailerlogin")
-	public String retailerLogin(@RequestParam("rAccount") String raccount, @RequestParam("rPwd") String rpwd, Model m) {
+	public String retailerLogin(@RequestParam("rAccount") String raccount, @RequestParam("rPwd") String rpwd, Model model) {
 		Map<String, String> errors = new HashMap<String, String>();
-		m.addAttribute("errors", errors);
+		model.addAttribute("errors", errors);
 
 		if (raccount == null || raccount.length() == 0) {
 			errors.put("caccount", "請輸入商家帳號!");
@@ -79,9 +79,10 @@ public class loginController {
 			return "loginR";
 		}
 
-		Retailer result = retailerService.checkRetailerLogin(raccount, rpwd);
+		Retailer retailerLoginResult = retailerService.checkRetailerLogin(raccount, rpwd);
 
-		if (result != null) {
+		if (retailerLoginResult != null) {
+			model.addAttribute("retailerLoginOk",retailerLoginResult);
 
 			return "loginSuccess";
 		}

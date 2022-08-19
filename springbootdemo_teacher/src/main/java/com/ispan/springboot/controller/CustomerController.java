@@ -24,11 +24,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ispan.springboot.model.Admin;
 import com.ispan.springboot.model.Customer;
+import com.ispan.springboot.model.Retailer;
 import com.ispan.springboot.service.CustomerService;
 import com.ispan.springboot.service.EmailSenderService;
 
 @Controller
-@SessionAttributes(names = { "customerLoginOk", "adminLoginOk" })
+@SessionAttributes(names = { "customerLoginOk", "adminLoginOk", "retailerLoginOk" })
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
@@ -114,13 +115,26 @@ public class CustomerController {
 
 	// 找所有會員
 	@GetMapping("/customer/findAll")
-	public String findAllCustomer(Model m) {
+	public String findAllCustomer(Model model) {
 
-		List<Customer> allCustomer = customerService.findAllCustomer();
+		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
+		Admin adminSession = (Admin) model.getAttribute("adminLoginOk");
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
 
-		m.addAttribute("customer", allCustomer);
+		if (adminSession == null) {
+			if (customerSession != null && retailerSession != null) {
+				return "loginSuccess";
+			}
+			return "redirect:/login";
 
-		return "allCustomer";
+		} else {
+
+			List<Customer> allCustomer = customerService.findAllCustomer();
+
+			model.addAttribute("customer", allCustomer);
+
+			return "allCustomer";
+		}
 	}
 
 	// 會員 圖片處理
@@ -146,17 +160,18 @@ public class CustomerController {
 	// 找已登入會員之個人資料
 	@GetMapping("/customer/findOne")
 	public String findOneById(Model model) {
-		Customer customer = (Customer) model.getAttribute("customerLoginOk");
-		Admin admin = (Admin) model.getAttribute("adminLoginOk");
+		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
+		Admin adminSession = (Admin) model.getAttribute("adminLoginOk");
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
 
-		if (customer == null) {
-			if (admin != null) {
+		if (customerSession == null) {
+			if (adminSession != null && retailerSession != null) {
 				return "loginSuccess";
 			}
 			return "redirect:/loginC";
 		} else {
 
-			Customer oneCustomer = customerService.findCustomerById(customer.getCid());
+			Customer oneCustomer = customerService.findCustomerById(customerSession.getCid());
 			model.addAttribute("oneCustomer", oneCustomer);
 
 			return "personalFile";
@@ -170,9 +185,48 @@ public class CustomerController {
 			@RequestParam("cFirstName") String cFirstName, @RequestParam("cLastName") String cLastName,
 			@RequestParam("cPwd") String cPwd, @RequestParam("cbDate") String cbDate,
 			@RequestParam("cEmail") String cEmail, @RequestParam("cImg") MultipartFile cImg, Model model) {
+		
+		Map<String, String> errors = new HashMap<String, String>();
+		model.addAttribute("errors", errors);
+		
+		if (cPwd == null || cPwd.length() == 0) {
+			errors.put("cPwd", "請輸入您的密碼!");
+		}
+
+		if (cFirstName == null || cFirstName.length() == 0) {
+			errors.put("cFirstName", "姓氏不得為空!");
+		}
+
+		if (cLastName == null || cLastName.length() == 0) {
+			errors.put("cLastName", "名稱不得為空!");
+		}
+
+		if (cbDate == null) {
+			errors.put("cbDate", "請輸入您的出生年月日!");
+		}
+
+		if (cEmail == null || cEmail.length() == 0) {
+			errors.put("cEmail", "請輸入個人電子郵件!");
+		}
+
+		
 		try {
-//			Map<String, String> errors = new HashMap<String, String>();
-//			model.addAttribute("errors", errors);
+			if (cImg.getBytes() == null) {
+				errors.put("cImg", "請選擇一張個人圖片!");
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+
+		if (errors != null && !errors.isEmpty()) {
+			
+			
+			
+			return "redirect:/customer/findOne";
+		}
+
+		try {
 
 			Customer updateCustomer = customerService.findCustomerById(customerId);
 			Date d = new Date();
@@ -200,7 +254,7 @@ public class CustomerController {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "registerC";
+			return "personalFile";
 		}
 
 	}

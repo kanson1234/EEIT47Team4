@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>零售商註冊</title>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 
 <!-- bootstrap 5.1.3 JS -->
@@ -19,7 +22,7 @@
 	<div class="container">
 		<div
 			style="margin: 20px; padding: 20px; padding-left: 200px; padding-right: 200px; margin-left: auto; margin-right: auto; width: 60%; border: solid 1px; border-radius: 5px; border-color: rgb(163, 163, 163);">
-			<form action="Retailer/insert" method="post"
+			<form action="${contextRoot}/Retailer/insert" method="post"
 				enctype="multipart/form-data">
 				<h2 class="h3 mb-3 fw-normal">零售商註冊</h2>
 

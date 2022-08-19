@@ -39,32 +39,31 @@
 					<div>帳號:</div>
 					<div>${oneCustomer.getCaccount()}</div>
 
-					<p style="color: red;">${errors.caccount}</p>
 					<label class="form-label">密碼:</label> <input type="text"
 						class="form-control" name="cPwd" value="${oneCustomer.getCpwd()}">
-					<p style="color: red;">${errors.cpwd}</p>
+					<p style="color: red;">${errors.cPwd}</p>
 					<label class="form-label">姓:</label> <input type="text"
 						class="form-control" name="cFirstName"
 						value="${oneCustomer.getCfirstName()}">
-					<p style="color: red;">${errors.cfirstName}</p>
+					<p style="color: red;">${errors.cFirstName}</p>
 					<label class="form-label">名:</label> <input type="text"
 						class="form-control" name="cLastName"
 						value="${oneCustomer.getClastName()}">
-					<p style="color: red;">${errors.clastName}</p>
+					<p style="color: red;">${errors.cLastName}</p>
 					<label class="form-label">生日:</label>
 					<fmt:formatDate pattern="yyyy/MM/dd"
 						value="${oneCustomer.getCbirthdate()}" />
 					<input type="date" class="form-control" name="cbDate"
 						value="">
-					<p style="color: red;">${errors.cbirthdate}</p>
+					<p style="color: red;">${errors.cbDate}</p>
 					<label class="form-label">個人電子信箱:</label> <input type="text"
 						class="form-control" name="cEmail"
 						value="${oneCustomer.getCemail()}">
-					<p style="color: red;">${errors.cbirthdate}</p>
+					<p style="color: red;">${errors.cEmail}</p>
 					<label class="form-label">個人圖片:</label> <input type="file"
 						accept="image/*" name="cImg" id="imgInp"><img width="350"
 						id="img" src="${contextRoot}/downloadImage/${oneCustomer.cid}" />
-					<p style="color: red;">${errors.cimg}</p>
+					<p style="color: red;">${errors.cImg}</p>
 
 				</div>
 				<a onclick="confirm('確認修改會員資料?');alert('修改成功！');">
