@@ -48,7 +48,7 @@
 						class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="${pageContext.request.contextPath}/">後臺管理<span
+					href="${pageContext.request.contextPath}/admin/Admin">後臺管理 <span
 						class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
@@ -60,8 +60,7 @@
 					data-toggle="dropdown" aria-expanded="false"> 登入 </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="${contextRoot}/loginA">管理者登入</a> <a
-							class="dropdown-item" href="${contextRoot}/loginR">商家登入</a>
-							<a
+							class="dropdown-item" href="${contextRoot}/loginR">商家登入</a> <a
 							class="dropdown-item" href="${contextRoot}/loginC">會員登入</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="${contextRoot}/logout">登出</a>
@@ -73,11 +72,13 @@
 			<!-- 			      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 			<!-- 			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
 			<!-- 			    </form> -->
-			<form method="get"
-				action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-				<input class="form-control mr-sm-2" type="text" name="word" /> <input
-					type="submit" name="Search" value="搜尋" />
-			</form>
+			<div align="right">
+				<form method="get"
+					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
+					<input class="form-control mr-sm-2" type="text" name="word" /> <input
+						type="submit" name="Search" value="搜尋" />
+				</form>
+			</div>
 		</div>
 	</nav>
 

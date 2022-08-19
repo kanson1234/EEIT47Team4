@@ -53,6 +53,31 @@ public class Retailer {
 	@Column(name = "C2_info")
 	private String rinfo;
 
+	public byte[] getRlogo() {
+		return rlogo;
+	}
+
+	public void setRlogo(byte[] rlogo) {
+		this.rlogo = rlogo;
+	}
+
+	public byte[] getRphoto() {
+		return rphoto;
+	}
+
+	public void setRphoto(byte[] rphoto) {
+		this.rphoto = rphoto;
+	}
+
+	public String getRinfo() {
+		return rinfo;
+	}
+
+	public void setRinfo(String rinfo) {
+		this.rinfo = rinfo;
+	}
+
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "RetailerBean", cascade = CascadeType.ALL)
 	private Set<ShopHouseBean> shopHouseBean = new LinkedHashSet<ShopHouseBean>();
 
@@ -115,29 +140,9 @@ public class Retailer {
 		this.rstate = rstate;
 	}
 
-	public String getRinfo() {
-		return rinfo;
+
 	}
 
-	public void setRinfo(String rinfo) {
-		this.rinfo = rinfo;
-	}
-
-	public byte[] getRlogo() {
-		return rlogo;
-	}
-
-	public void setRlogo(byte[] rlogo) {
-		this.rlogo = rlogo;
-	}
-
-	public byte[] getRphoto() {
-		return rphoto;
-	}
-
-	public void setRphoto(byte[] rphoto) {
-		this.rphoto = rphoto;
-	}
 
 
 //	public Set<ShopHouseBean> getShopHouseBean() {
@@ -149,12 +154,5 @@ public class Retailer {
 //	}
 	
 
-	public Set<ShopHouseBean> getShopHouseBean() {
-		return shopHouseBean;
-	}
 
-	public void setShopHouseBean(Set<ShopHouseBean> shopHouseBean) {
-		this.shopHouseBean = shopHouseBean;
-	}
 
-}
