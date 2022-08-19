@@ -1,5 +1,6 @@
 package com.ispan.springboot.model;
 
+import java.util.Date;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Retailer")
 public class Retailer {
-
+////////
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "C2_Id")
@@ -36,8 +37,8 @@ public class Retailer {
 	@Column(name = "C2_Phone")
 	private String rphone;
 
-//	@Column(name = "C2_Date")
-//	private Date rdate;
+	@Column(name = "C2_Date")
+	private Date rdate;
 
 	@Column(name = "C2_State")
 	private boolean rstate;
@@ -76,9 +77,10 @@ public class Retailer {
 		this.rinfo = rinfo;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "RetailerBean",cascade=CascadeType.ALL)
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "RetailerBean", cascade = CascadeType.ALL)
 	private Set<ShopHouseBean> shopHouseBean = new LinkedHashSet<ShopHouseBean>();
-	
+
 	public Retailer() {
 	}
 
@@ -89,8 +91,6 @@ public class Retailer {
 	public void setRid(Integer rid) {
 		this.rid = rid;
 	}
-
-
 
 	public String getrName() {
 		return rName;
@@ -124,13 +124,13 @@ public class Retailer {
 		this.rphone = rphone;
 	}
 
-//	public Date getRdate() {
-//		return rdate;
-//	}
-//
-//	public void setRdate(Date rdate) {
-//		this.rdate = rdate;
-//	}
+	public Date getRdate() {
+		return rdate;
+	}
+
+	public void setRdate(Date rdate) {
+		this.rdate = rdate;
+	}
 
 	public boolean isRstate() {
 		return rstate;
@@ -138,6 +138,9 @@ public class Retailer {
 
 	public void setRstate(boolean rstate) {
 		this.rstate = rstate;
+	}
+
+
 	}
 
 
@@ -150,4 +153,6 @@ public class Retailer {
 //		this.shopHouseBean = shopHouseBean;
 //	}
 	
-}
+
+
+

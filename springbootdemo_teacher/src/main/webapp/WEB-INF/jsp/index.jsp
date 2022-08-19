@@ -20,9 +20,9 @@
 <li><a href="${contextRoot}/shopHouse/add">新增商品</a></li>
 <li><a href="${contextRoot}/ShopHouse/findItemById">查詢商品</a></li>
 <li><a href="${contextRoot}/Retailer/RetailerCRUD">查詢商家</a></li>
+<li><a href="${contextRoot}/registerR">註冊新商家</a></li>
+<li><a href="${contextRoot}/registerC">註冊新會員</a></li>
 </ul>
-
-
 
 
 </body>

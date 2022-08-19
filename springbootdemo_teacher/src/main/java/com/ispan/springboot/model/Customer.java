@@ -1,83 +1,6 @@
-
-//package com.ispan.springboot.demol;
-//
-//
-//
-//import java.util.LinkedHashSet;
-//import java.util.Set;
-//
-//import javax.persistence.CascadeType;
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.FetchType;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.OneToMany;
-//import javax.persistence.Table;
-//
-//@Entity
-//@Table(name = "customer")
-//
-//public class Customer {
-//
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name = "c1_id",nullable = false)
-//	private int C1_Id;
-//
-//	@Column(name = "c1_lastname")
-//	private String C1_LastName;
-//
-//	@Column(name = "c1_status")
-//	private boolean C1_Status;
-//	
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
-//	private Set<ShoppingRecord> SR =new LinkedHashSet<>();
-//
-////==================================================================================
-//	public Customer() {
-//
-//	}
-//
-//	public Customer(int c1_Id, String c1_LastName, boolean c1_Status) {
-//		super();
-//		C1_Id = c1_Id;
-//		C1_LastName = c1_LastName;
-//		C1_Status = c1_Status;
-//	}
-//
-//
-////==================================================================================
-//
-//	public int getC1_Id() {
-//		return C1_Id;
-//	}
-//
-//	public void setC1_Id(int c1_Id) {
-//		C1_Id = c1_Id;
-//	}
-//
-//	public String getC1_LastName() {
-//		return C1_LastName;
-//	}
-//
-//	public void setC1_LastName(String c1_LastName) {
-//		C1_LastName = c1_LastName;
-//	}
-//
-//	public boolean isC1_Status() {
-//		return C1_Status;
-//	}
-//
-//	public void setC1_Status(boolean c1_Status) {
-//		C1_Status = c1_Status;
-//	}
-//	
-//}
-
 package com.ispan.springboot.model;
 
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -88,21 +11,54 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
-@Table(name = "customer")
+@Table(name = "Customer")
 
 public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "c1_id", nullable = false)
-	private int cId;
+	private Integer cId;
+
+	@Column(name = "C1_FirstName")
+	private String cFirstName;
 
 	@Column(name = "c1_lastname")
 	private String cLastName;
+
+	@Column(name = "C1_Account")
+	private String cAccount;
+
+	@Column(name = "C1_Pwd")
+	private String cPwd;
+
+	@Lob
+	@Column(name = "C1_Img")
+	private byte[] cImg;
+
+	@Column(name = "C1_Data")
+	private Date cDate;
+
+	@Column(name = "C1_BirthDay")
+	@JsonFormat(pattern = "yyyy/MM/dd", timezone = "GMT+8")
+	@DateTimeFormat(pattern = "yyyy-MM-dd") // SprongMVC
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date cBirthdate;
+
+	@Column(name = "C1_Email")
+	private String cEmail;
 
 	@Column(name = "c1_status")
 	private boolean cStatus;
@@ -110,9 +66,7 @@ public class Customer {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = CascadeType.ALL)
 	private Set<ShoppingRecord> SR = new LinkedHashSet<>();
 
-//==================================================================================
 	public Customer() {
-
 	}
 
 	public Customer(int c1_Id, String c1_LastName, boolean c1_Status) {
@@ -122,30 +76,84 @@ public class Customer {
 		cStatus = c1_Status;
 	}
 
-//==================================================================================
-
-	public int getcId() {
+	public Integer getcId() {
 		return cId;
 	}
 
-	public void setcId(int c1_Id) {
-		cId = c1_Id;
+	public void setcId(Integer cId) {
+		this.cId = cId;
+	}
+
+	public String getcFirstName() {
+		return cFirstName;
+	}
+
+	public void setcFirstName(String cFirstName) {
+		this.cFirstName = cFirstName;
 	}
 
 	public String getcLastName() {
 		return cLastName;
 	}
 
-	public void setcLastName(String c1_LastName) {
-		cLastName = c1_LastName;
+	public void setcLastName(String cLastName) {
+		this.cLastName = cLastName;
+	}
+
+	public String getcAccount() {
+		return cAccount;
+	}
+
+	public void setcAccount(String cAccount) {
+		this.cAccount = cAccount;
+	}
+
+	public String getcPwd() {
+		return cPwd;
+	}
+
+	public void setcPwd(String cPwd) {
+		this.cPwd = cPwd;
+	}
+
+	public byte[] getcImg() {
+		return cImg;
+	}
+
+	public void setcImg(byte[] cImg) {
+		this.cImg = cImg;
+	}
+
+	public Date getcDate() {
+		return cDate;
+	}
+
+	public void setcDate(Date cDate) {
+		this.cDate = cDate;
+	}
+
+	public Date getcBirthdate() {
+		return cBirthdate;
+	}
+
+	public void setcBirthdate(Date cBirthdate) {
+		this.cBirthdate = cBirthdate;
+	}
+
+	public String getcEmail() {
+		return cEmail;
+	}
+
+	public void setcEmail(String cEmail) {
+		this.cEmail = cEmail;
 	}
 
 	public boolean iscStatus() {
 		return cStatus;
 	}
 
-	public void setcStatus(boolean c1_Status) {
-		cStatus = c1_Status;
+	public void setcStatus(boolean cStatus) {
+		this.cStatus = cStatus;
 	}
 
 }

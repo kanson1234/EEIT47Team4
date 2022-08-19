@@ -51,12 +51,19 @@ public class ShopHouseService {
 		return sDao.findAll();
 	}
 	
-	//分頁
+	//後台分頁
 	public Page<ShopHouseBean> findByPage(Integer pageNumber){
 		PageRequest pgb = PageRequest.of(pageNumber-1, 6,Sort.Direction.ASC,"id");
 		Page<ShopHouseBean> page = sDao.findAll(pgb);
 		return page;
 	}
+	
+	//前台分頁
+		public Page<ShopHouseBean> frontPageFindByPage(Integer pagesNumber){
+			PageRequest pgb = PageRequest.of(pagesNumber-1, 9,Sort.Direction.ASC,"id");
+			Page<ShopHouseBean> page = sDao.findAll(pgb);
+			return page;
+		}
 	
 	//模糊查詢
 	public List<ShopHouseBean> findByKeyword(String word){

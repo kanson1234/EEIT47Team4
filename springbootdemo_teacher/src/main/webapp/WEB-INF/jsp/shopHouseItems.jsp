@@ -41,7 +41,8 @@
 						src="${pageContext.request.contextPath}/downloadImg/${i.id}"></a></td>
 					<td>${i.price}</td>
 					<td>${i.classify}</td>
-					<td>${i.c2Id}</td>
+<%-- 					<td>${i.c2Id}</td> --%>
+					<td>${i.RetailerBean.rName}</td>
 					<td><a href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button
 										type="submit">編輯</button></a> 
 					    <a onclick="return confirm('確認刪除?')"	href="${pageContext.request.contextPath}/ShopHouse/deleteById/${i.id}">
@@ -76,7 +77,8 @@
 						src="${pageContext.request.contextPath}/downloadImg/${i.id}"></a></td>
 					<td>${i.price}</td>
 					<td>${i.classify}</td>
-					<td>${i.c2Id}</td>
+<%-- 					<td>${i.c2Id}</td> --%>
+					<td>${i.RetailerBean.rName}</td>
 					<td><a
 								href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button
 										type="submit">編輯</button></a> <a onclick="return confirm('確認刪除?')"
@@ -88,7 +90,7 @@
 		</table>
 		</c:if>
 <!-- --------------------------------------------------------------------------------------------		 -->
-
+		
 
 		<c:if test="${empty keyword }">
 			<table class="table">
@@ -102,14 +104,17 @@
 					</tr>
 				</thead>
 				<tbody>
+				
 					<c:forEach items="${page.content}" var="i">
 						<tr>
 							<td>${i.itemName}</td>
+							
 							<td><a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img width="150"
 								src="${pageContext.request.contextPath}/downloadImg/${i.id}"></a></td>
 							<td>${i.price}</td>
 							<td>${i.classify}</td>
-							<td>${i.c2Id}</td>
+<%-- 							<td>${i.c2Id}</td> --%>
+							<td>${i.getRetailerBean().rName}</td>
 							<td><a
 								href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button
 										type="submit">編輯</button></a> <a onclick="return confirm('確認刪除?')"
@@ -119,9 +124,6 @@
 							<td></td>
 						</tr>
 					</c:forEach>
-
-
-
 
 				</tbody>
 
@@ -148,11 +150,5 @@
 		</c:if>
 	</div>
 </body>
-
-<script type="text/javascript">
-
-
-</script>
-
 
 </html>
