@@ -14,8 +14,8 @@ public class AdminService {
 	@Autowired
 	private AdminDao aDao;
 
-	public Admin checkAdminLogin(String account) {
-		Admin fa = aDao.findByAdminAccount(account);
+	public Admin checkAdminLogin(String account,String pwd) {
+		Admin fa = aDao.findByAdminAccount(account,pwd);
 		return fa;
 	}
 

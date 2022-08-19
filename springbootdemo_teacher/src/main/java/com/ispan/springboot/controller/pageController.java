@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class pageController {
+
 	
 	@GetMapping("home")
 	public String Homepage() {
@@ -26,13 +27,13 @@ public class pageController {
 	}
 
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
+	@GetMapping("/loginA")
+	public String loginA() {
+		return "loginA";
 	}
-	
+
 	@GetMapping("/registerR")
-	public String register() {
+	public String registerR() {
 		return "registerR";
 	}
 	
@@ -55,6 +56,31 @@ public class pageController {
 		return "RetailerCRUD";
 	}
 
+	@GetMapping("/registerC")
+	public String registerC() {
+		return "registerC";
+	}
+
+
+	@GetMapping("/personalFile")
+	public String oneCustomer() {
+		return "personalFile";
+	}
+
+	@GetMapping("/loginC")
+	public String loginC() {
+		return "loginC";
+	}
+
+	@GetMapping("/loginR")
+	public String loginR() {
+		return "loginR";
+	}
+
+	@GetMapping("/forgotPassword")
+	public String forgotPassword() {
+		return "forgotPassword";
+	}
 	@GetMapping("/srselectpage")
 	public String srselectpage() {
 		return "srselectpage";

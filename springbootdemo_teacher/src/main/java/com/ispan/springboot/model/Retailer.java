@@ -1,5 +1,6 @@
 package com.ispan.springboot.model;
 
+import java.util.Date;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -36,25 +37,25 @@ public class Retailer {
 	@Column(name = "C2_Phone")
 	private String rphone;
 
-//	@Column(name = "C2_Date")
-//	private Date rdate;
+	@Column(name = "C2_Date")
+	private Date rdate;
 
 	@Column(name = "C2_State")
 	private boolean rstate;
 
 	@Column(name = "C2_logo")
-	private byte[] logo;
+	private byte[] rlogo;
 
 	@Lob
 	@Column(name = "C2_photo")
-	private byte[] photo;
+	private byte[] rphoto;
 
 	@Column(name = "C2_info")
-	private String info;
+	private String rinfo;
 
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "RetailerBean",cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "RetailerBean", cascade = CascadeType.ALL)
 	private Set<ShopHouseBean> shopHouseBean = new LinkedHashSet<ShopHouseBean>();
-	
+
 	public Retailer() {
 	}
 
@@ -65,8 +66,6 @@ public class Retailer {
 	public void setRid(Integer rid) {
 		this.rid = rid;
 	}
-
-
 
 	public String getrName() {
 		return rName;
@@ -100,13 +99,13 @@ public class Retailer {
 		this.rphone = rphone;
 	}
 
-//	public Date getRdate() {
-//		return rdate;
-//	}
-//
-//	public void setRdate(Date rdate) {
-//		this.rdate = rdate;
-//	}
+	public Date getRdate() {
+		return rdate;
+	}
+
+	public void setRdate(Date rdate) {
+		this.rdate = rdate;
+	}
 
 	public boolean isRstate() {
 		return rstate;
@@ -116,30 +115,31 @@ public class Retailer {
 		this.rstate = rstate;
 	}
 
-	public byte[] getLogo() {
-		return logo;
+	public String getRinfo() {
+		return rinfo;
 	}
 
-	public void setLogo(byte[] logo) {
-		this.logo = logo;
+	public void setRinfo(String rinfo) {
+		this.rinfo = rinfo;
 	}
 
-	public byte[] getPhoto() {
-		return photo;
+	public byte[] getRlogo() {
+		return rlogo;
 	}
 
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
+	public void setRlogo(byte[] rlogo) {
+		this.rlogo = rlogo;
 	}
 
-	public String getInfo() {
-		return info;
+	public byte[] getRphoto() {
+		return rphoto;
 	}
 
-	public void setInfo(String info) {
-		this.info = info;
+	public void setRphoto(byte[] rphoto) {
+		this.rphoto = rphoto;
 	}
 
+<<<<<<< HEAD
 //	public Set<ShopHouseBean> getShopHouseBean() {
 //		return shopHouseBean;
 //	}
@@ -148,4 +148,14 @@ public class Retailer {
 //		this.shopHouseBean = shopHouseBean;
 //	}
 	
+=======
+	public Set<ShopHouseBean> getShopHouseBean() {
+		return shopHouseBean;
+	}
+
+	public void setShopHouseBean(Set<ShopHouseBean> shopHouseBean) {
+		this.shopHouseBean = shopHouseBean;
+	}
+
+>>>>>>> c29c9d6da3fbb67f65a4b1851aeb008f5bd83541
 }
