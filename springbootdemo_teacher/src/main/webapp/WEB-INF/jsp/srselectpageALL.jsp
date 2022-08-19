@@ -11,7 +11,6 @@
 				<script src="/js/jquery-3.6.0.min.js"></script>
 				<script src="/js/bootstrap.bundle.min.js"></script>
 				<Script>
-
 					window.onload = function () {
 						var selectByC1Id = document.getElementById("selectByC1Id")
 						var selectByC2Id = document.getElementById("selectByC2Id")
@@ -25,22 +24,17 @@
 								selectByC2Id.style = ('display:none')
 							}
 						}
-
-
 						$("#selectBy").change(function () {
 							selectByValue = document.getElementById("selectBy").value
 							if (selectByValue == "ByC1Id") {
 								$("#selectByC1Id").show();
 								$("#selectByC2Id").hide();
-
 							}
 							if (selectByValue == "ByC2Id") {
 								$("#selectByC1Id").hide();
 								$("#selectByC2Id").show();
 							}
 						})
-
-
 					}
 
 				</Script>
@@ -65,12 +59,6 @@
 					<div id="selectALL">
 						<button id="findallbytimeBtn" type="button">findAllByTimeBtn</button>
 					</div>
-
-
-
-
-
-
 					<div>
 						<table class="mytable" id="list_data_json">
 							<thead>

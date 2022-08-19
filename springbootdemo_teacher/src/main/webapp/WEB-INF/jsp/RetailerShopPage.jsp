@@ -71,7 +71,7 @@
 					</div>
 					<div>
 						<textarea rows="10" cols="50">
-			${RetailerInfo.info}
+			${RetailerInfo.rinfo}
 			</textarea>
 					</div>
 				</div>
