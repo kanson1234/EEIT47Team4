@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="navbar.jsp" />
+<jsp:include page="layout/navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +35,9 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 </head>
 <body>
-	<h3>登入成功!</h3>
+	<h3>註冊商家/會員成功!</h3>
 
-	<a href="${contextRoot}/logindex">回首頁</a>
+	<a href="${contextRoot}/">回商城首頁</a>
 
 </body>
 </html>

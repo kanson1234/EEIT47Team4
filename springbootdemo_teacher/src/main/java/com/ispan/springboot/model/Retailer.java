@@ -2,12 +2,18 @@ package com.ispan.springboot.model;
 
 import java.util.Date;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +26,7 @@ public class Retailer {
 	private Integer rid;
 
 	@Column(name = "C2_Name")
-	private String rname;
+	private String rName;
 
 	@Column(name = "C2_Account")
 	private String raccount;
@@ -37,15 +43,18 @@ public class Retailer {
 	@Column(name = "C2_State")
 	private boolean rstate;
 
-	@Column(name = "C2_info")
-	private String rinfo;
-
-	@Lob
 	@Column(name = "C2_logo")
 	private byte[] rlogo;
 
+	@Lob
 	@Column(name = "C2_photo")
 	private byte[] rphoto;
+
+	@Column(name = "C2_info")
+	private String rinfo;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "RetailerBean", cascade = CascadeType.ALL)
+	private Set<ShopHouseBean> shopHouseBean = new LinkedHashSet<ShopHouseBean>();
 
 	public Retailer() {
 	}
@@ -58,12 +67,12 @@ public class Retailer {
 		this.rid = rid;
 	}
 
-	public String getRname() {
-		return rname;
+	public String getrName() {
+		return rName;
 	}
 
-	public void setRname(String rname) {
-		this.rname = rname;
+	public void setrName(String rName) {
+		this.rName = rName;
 	}
 
 	public String getRaccount() {
@@ -128,6 +137,14 @@ public class Retailer {
 
 	public void setRphoto(byte[] rphoto) {
 		this.rphoto = rphoto;
+	}
+
+	public Set<ShopHouseBean> getShopHouseBean() {
+		return shopHouseBean;
+	}
+
+	public void setShopHouseBean(Set<ShopHouseBean> shopHouseBean) {
+		this.shopHouseBean = shopHouseBean;
 	}
 
 }

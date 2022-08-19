@@ -47,7 +47,7 @@ public class loginController {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			return "login";
+			return "loginA";
 		}
 
 		Admin adminLoginResult = adminService.checkAdminLogin(account,pwd);
@@ -58,7 +58,7 @@ public class loginController {
 		}
 
 		errors.put("msg", "帳號或密碼有誤，請重新輸入!");
-		return "login";
+		return "loginA";
 	}
 
 	// 商家登入
@@ -84,7 +84,7 @@ public class loginController {
 		if (retailerLoginResult != null) {
 			model.addAttribute("retailerLoginOk",retailerLoginResult);
 
-			return "loginSuccess";
+			return "redirect:/ShopHouse/viewItems";
 		}
 
 		errors.put("rmsg", "商家帳號或密碼有誤，請重新輸入!");
@@ -117,13 +117,13 @@ public class loginController {
 			return "loginC";
 		}
 		//因在此位置判斷customerLoginResult有錯，故須將if customerLoginResult == null敘述移到上方做判斷
-		Customer checkStatus = customerService.findCustomerById(customerLoginResult.getCid());
-		boolean cstatus = checkStatus.isCstatus();
+		Customer checkStatus = customerService.findCustomerById(customerLoginResult.getcId());
+		boolean cstatus = checkStatus.iscStatus();
 
 		if (cstatus == true) {
 
 			model.addAttribute("customerLoginOk", customerLoginResult);
-			return "loginSuccess";
+			return "redirect:/customer/findOne";
 
 		} else {
 			errors.put("status", "您的帳號已遭停權，詳情請向管理員洽詢。");
@@ -139,7 +139,7 @@ public class loginController {
 				|| model.getAttribute("retailerLoginOk") != null) {
 			status.setComplete();
 		}
-		return "redirect:/logindex";
+		return "redirect:/";
 	}
 
 }

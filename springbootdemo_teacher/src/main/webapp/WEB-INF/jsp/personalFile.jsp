@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:include page="navbar.jsp" />
+<jsp:include page="layout/navbar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +25,7 @@
 
 
 			<form
-				action="${contextRoot}/customer/update?id=${oneCustomer.getCid()}"
+				action="${contextRoot}/customer/update?id=${oneCustomer.getcId()}"
 				method="post" enctype="multipart/form-data">
 				<h6 style="color: green">${msg}</h6>
 				<h2>我的個人資料</h2>
@@ -34,35 +34,35 @@
 
 					<label class="form-label"></label> <input type="hidden"
 						class="form-control" name="customerId"
-						value="${oneCustomer.getCid()}">
+						value="${oneCustomer.getcId()}">
 
 					<div>帳號:</div>
-					<div>${oneCustomer.getCaccount()}</div>
+					<div>${oneCustomer.getcAccount()}</div>
 
 					<label class="form-label">密碼:</label> <input type="text"
-						class="form-control" name="cPwd" value="${oneCustomer.getCpwd()}">
+						class="form-control" name="cPwd" value="${oneCustomer.getcPwd()}">
 					<p style="color: red;">${errors.cPwd}</p>
 					<label class="form-label">姓:</label> <input type="text"
 						class="form-control" name="cFirstName"
-						value="${oneCustomer.getCfirstName()}">
+						value="${oneCustomer.getcFirstName()}">
 					<p style="color: red;">${errors.cFirstName}</p>
 					<label class="form-label">名:</label> <input type="text"
 						class="form-control" name="cLastName"
-						value="${oneCustomer.getClastName()}">
+						value="${oneCustomer.getcLastName()}">
 					<p style="color: red;">${errors.cLastName}</p>
 					<label class="form-label">生日:</label>
 					<fmt:formatDate pattern="yyyy/MM/dd"
-						value="${oneCustomer.getCbirthdate()}" />
+						value="${oneCustomer.getcBirthdate()}" />
 					<input type="date" class="form-control" name="cbDate"
 						value="">
 					<p style="color: red;">${errors.cbDate}</p>
 					<label class="form-label">個人電子信箱:</label> <input type="text"
 						class="form-control" name="cEmail"
-						value="${oneCustomer.getCemail()}">
+						value="${oneCustomer.getcEmail()}">
 					<p style="color: red;">${errors.cEmail}</p>
 					<label class="form-label">個人圖片:</label> <input type="file"
 						accept="image/*" name="cImg" id="imgInp"><img width="350"
-						id="img" src="${contextRoot}/downloadImage/${oneCustomer.cid}" />
+						id="img" src="${contextRoot}/downloadImage/${oneCustomer.cId}" />
 					<p style="color: red;">${errors.cImg}</p>
 
 				</div>

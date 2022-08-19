@@ -30,11 +30,7 @@
 
 </head>
 <body>
-	<jsp:include page="navbar.jsp" />
-	<%-- 	<h3 style="color: green">${}</h3> --%>
-	<%-- 	<h3 style="color: blue">${}</h3> --%>
-	<%-- 	<h3 style="color: red">${}</h3> --%>
-	<!-- 重複的結構 -->
+<jsp:include page="layout/navbar.jsp" />
 	<div>
 		<table class="table table-hover table align-middle">
 			<thead>
@@ -46,6 +42,7 @@
 					<td>帳號</td>
 					<td>密碼</td>
 					<td>生日</td>
+					<td>電子信箱</td>
 					<td>註冊/更新日期</td>
 					<td>帳號狀態</td>
 				</tr>
@@ -53,25 +50,26 @@
 			<tbody>
 				<c:forEach items="${customer}" var="c">
 					<tr>
-						<td>${c.cid}</td>
+						<td>${c.cId}</td>
 						<td><img width="150"
-							src="${contextRoot}/downloadImage/${c.cid}"></td>
-						<td>${c.cfirstName}</td>
-						<td>${c.clastName}</td>
-						<td>${c.caccount}</td>
-						<td>${c.cpwd}</td>
+							src="${contextRoot}/downloadImage/${c.cId}"></td>
+						<td>${c.cFirstName}</td>
+						<td>${c.cLastName}</td>
+						<td>${c.cAccount}</td>
+						<td>${c.cPwd}</td>
 						<td><fmt:formatDate pattern="yyyy/MM/dd"
-								value="${c.cbirthdate}" /></td>
-						<td>${c.cdate}</td>
+								value="${c.cBirthdate}" /></td>
+						<td>${c.cEmail}</td>
+						<td>${c.cDate}</td>
 						<td><select name="customerStatus">
 								<option value="true">啟用</option>
 								<option value="false">停用</option>
 						</select></td>
-						<td><a href="${contextRoot}/changeCustomerStatus?id=${c.cid}">
+						<td><a href="${contextRoot}/changeCustomerStatus?id=${c.cId}">
 								<button class="btn btn-secondary">修改帳號狀態</button>
 						</a></td>
 						<td><a onclick="return confirm('真的要刪除此筆資料嗎?')"
-							href="${contextRoot}/deleteCustomer/${c.cid}">
+							href="${contextRoot}/deleteCustomer/${c.cId}">
 								<button class="btn btn-warning">X</button>
 						</a></td>
 					</tr>

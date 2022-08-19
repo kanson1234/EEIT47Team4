@@ -88,19 +88,19 @@ public class CustomerController {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Date dutyDay = new Date();
 				dutyDay = (java.util.Date) sdf.parse(cbDate);
-				newCustomer.setCbirthdate(dutyDay);
+				newCustomer.setcBirthdate(dutyDay);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 
-			newCustomer.setCfirstName(cFirstName.trim());
-			newCustomer.setClastName(cLastName.trim());
-			newCustomer.setCaccount(cAccount.trim());
-			newCustomer.setCpwd(cPwd.trim());
-			newCustomer.setCdate(registerTime);
-			newCustomer.setCemail(cEmail.trim());
-			newCustomer.setCimg(cImg.getBytes());
-			newCustomer.setCstatus(true);
+			newCustomer.setcFirstName(cFirstName.trim());
+			newCustomer.setcLastName(cLastName.trim());
+			newCustomer.setcAccount(cAccount.trim());
+			newCustomer.setcPwd(cPwd.trim());
+			newCustomer.setcDate(registerTime);
+			newCustomer.setcEmail(cEmail.trim());
+			newCustomer.setcImg(cImg.getBytes());
+			newCustomer.setcStatus(true);
 
 			customerService.insertCustomer(newCustomer);
 
@@ -141,7 +141,7 @@ public class CustomerController {
 	@GetMapping("/downloadImage/{id}")
 	public ResponseEntity<byte[]> downloadImage(@PathVariable Integer id) {
 		Customer photo = customerService.getPhotoById(id);
-		byte[] photoByte = photo.getCimg();
+		byte[] photoByte = photo.getcImg();
 
 		HttpHeaders header = new HttpHeaders();
 		header.setContentType(MediaType.IMAGE_JPEG);
@@ -171,7 +171,7 @@ public class CustomerController {
 			return "redirect:/loginC";
 		} else {
 
-			Customer oneCustomer = customerService.findCustomerById(customerSession.getCid());
+			Customer oneCustomer = customerService.findCustomerById(customerSession.getcId());
 			model.addAttribute("oneCustomer", oneCustomer);
 
 			return "personalFile";
@@ -185,10 +185,10 @@ public class CustomerController {
 			@RequestParam("cFirstName") String cFirstName, @RequestParam("cLastName") String cLastName,
 			@RequestParam("cPwd") String cPwd, @RequestParam("cbDate") String cbDate,
 			@RequestParam("cEmail") String cEmail, @RequestParam("cImg") MultipartFile cImg, Model model) {
-		
+
 		Map<String, String> errors = new HashMap<String, String>();
 		model.addAttribute("errors", errors);
-		
+
 		if (cPwd == null || cPwd.length() == 0) {
 			errors.put("cPwd", "請輸入您的密碼!");
 		}
@@ -209,7 +209,6 @@ public class CustomerController {
 			errors.put("cEmail", "請輸入個人電子郵件!");
 		}
 
-		
 		try {
 			if (cImg.getBytes() == null) {
 				errors.put("cImg", "請選擇一張個人圖片!");
@@ -217,12 +216,9 @@ public class CustomerController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
 
 		if (errors != null && !errors.isEmpty()) {
-			
-			
-			
+
 			return "redirect:/customer/findOne";
 		}
 
@@ -235,18 +231,18 @@ public class CustomerController {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Date dutyDay = new Date();
 				dutyDay = (java.util.Date) sdf.parse(cbDate);
-				updateCustomer.setCbirthdate(dutyDay);
+				updateCustomer.setcBirthdate(dutyDay);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			updateCustomer.setCfirstName(cFirstName.trim());
-			updateCustomer.setClastName(cLastName.trim());
-			updateCustomer.setCpwd(cPwd.trim());
-			updateCustomer.setCemail(cEmail.trim());
+			updateCustomer.setcFirstName(cFirstName.trim());
+			updateCustomer.setcLastName(cLastName.trim());
+			updateCustomer.setcPwd(cPwd.trim());
+			updateCustomer.setcEmail(cEmail.trim());
 
-			updateCustomer.setCimg(cImg.getBytes());
+			updateCustomer.setcImg(cImg.getBytes());
 
-			updateCustomer.setCdate(d);
+			updateCustomer.setcDate(d);
 
 			customerService.insertCustomer(updateCustomer);
 
@@ -263,8 +259,8 @@ public class CustomerController {
 	@GetMapping("/changeCustomerStatus")
 	public String changeCustomerStatus(@RequestParam("customerStatus") boolean customerStatus, Model model) {
 		Customer oneCustomer = (Customer) model.getAttribute("customer");
-		Customer findCustomer = customerService.findCustomerById(oneCustomer.getCid());
-		findCustomer.setCstatus(customerStatus);
+		Customer findCustomer = customerService.findCustomerById(oneCustomer.getcId());
+		findCustomer.setcStatus(customerStatus);
 
 		customerService.insertCustomer(findCustomer);
 
@@ -291,8 +287,8 @@ public class CustomerController {
 			return "forgotPassword";
 		} else {
 			Customer forgotCustomer = customerService.findCustomerAccount(customerAccount);
-			emailService.sendEmail(forgotCustomer.getCemail(), forgotCustomer.getCfirstName() + "會員，您好!",
-					"您的密碼為: " + forgotCustomer.getCpwd());
+			emailService.sendEmail(forgotCustomer.getcEmail(), forgotCustomer.getcFirstName() + "會員，您好!",
+					"您的密碼為: " + forgotCustomer.getcPwd());
 			errors.put("success", "驗證成功!請至註冊信箱收取信件!");
 
 			return "forgotPassword";
