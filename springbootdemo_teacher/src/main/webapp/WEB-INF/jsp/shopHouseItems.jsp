@@ -41,8 +41,8 @@
 						src="${pageContext.request.contextPath}/downloadImg/${i.id}"></a></td>
 					<td>${i.price}</td>
 					<td>${i.classify}</td>
-					<td>${i.c2Id}</td>
-<%-- 					<td>${i.RetailerBean.rName}</td> --%>
+<%-- 					<td>${i.c2Id}</td> --%>
+					<td>${i.RetailerBean.rName}</td>
 					<td><a href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button
 										type="submit">編輯</button></a> 
 					    <a onclick="return confirm('確認刪除?')"	href="${pageContext.request.contextPath}/ShopHouse/deleteById/${i.id}">
@@ -77,8 +77,8 @@
 						src="${pageContext.request.contextPath}/downloadImg/${i.id}"></a></td>
 					<td>${i.price}</td>
 					<td>${i.classify}</td>
-					<td>${i.c2Id}</td>
-<%-- 					<td>${i.RetailerBean.rName}</td> --%>
+<%-- 					<td>${i.c2Id}</td> --%>
+					<td>${i.RetailerBean.rName}</td>
 					<td><a
 								href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button
 										type="submit">編輯</button></a> <a onclick="return confirm('確認刪除?')"
@@ -113,7 +113,7 @@
 								src="${pageContext.request.contextPath}/downloadImg/${i.id}"></a></td>
 							<td>${i.price}</td>
 							<td>${i.classify}</td>
-							<td>${i.c2Id}</td>
+<%-- 							<td>${i.c2Id}</td> --%>
 							<td>${i.getRetailerBean().rName}</td>
 							<td><a
 								href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button

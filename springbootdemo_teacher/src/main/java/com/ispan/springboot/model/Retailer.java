@@ -140,12 +140,12 @@ public class Retailer {
 		this.info = info;
 	}
 
-	public Set<ShopHouseBean> getShopHouseBean() {
-		return shopHouseBean;
-	}
-
-	public void setShopHouseBean(Set<ShopHouseBean> shopHouseBean) {
-		this.shopHouseBean = shopHouseBean;
-	}
+//	public Set<ShopHouseBean> getShopHouseBean() {
+//		return shopHouseBean;
+//	}
+//
+//	public void setShopHouseBean(Set<ShopHouseBean> shopHouseBean) {
+//		this.shopHouseBean = shopHouseBean;
+//	}
 	
 }

@@ -22,11 +22,15 @@
 	height: 200px;
 }
 
-.right {
-	width: 50%;
+.middle {
+	width: 25%;
 	height: 200px;
 }
-\
+
+.right {
+	width: 25%;
+	height: 200px;
+}
 </style>
 </head>
 <body>
@@ -42,17 +46,25 @@
 			<div class="wrap">
 
 				<div class="left" style="width: 18rem;">
-						<img src="${pageContext.request.contextPath}/downloadImg/${shopHouseItem.id}"
+					<img
+						src="${pageContext.request.contextPath}/downloadImg/${shopHouseItem.id}"
 						class="card-img-top" alt="...">
-					
+
 				</div>
+				
+				<div class="middle"><a href=""><button type="button">${shopHouseItem.classify }</button></a></div>
+				
 				<div class="right">
 					<p class="card-text">商品名稱:${shopHouseItem.itemName}</p>
 
 					<p class="card-text">價錢:${shopHouseItem.price}</p>
-					<div><a href=""><button type="submit">加入購物車</button></a></div> 
-					<div><input type="number" value="1"></div>
-					
+					<div>
+						<a href=""><button type="submit">加入購物車</button></a>
+					</div>
+					<div>
+						<input type="number" value="1">
+					</div>
+
 				</div>
 
 
@@ -79,7 +91,7 @@
 
 
 		<div class="card">
-			<div class="card-header">新增留言區</div>
+			<div class="card-header">留言板</div>
 			<div class="card-body">
 
 				<form
