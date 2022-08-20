@@ -132,6 +132,13 @@ public class RetailerController {
 		model.addAttribute("listRetailer", list);
 		return "RetailerCRUD";
 	}
+	//黑名單頁面
+	@GetMapping("/Retailer/RetailerBlock")
+	public String showAllBlockRetailer(Model model) {
+		List<Retailer> list = rService.getAllRetailerBloked();
+		model.addAttribute("listRetailer", list);
+		return "RetailerBlockList";
+	}
 
 	// 商家一覽頁面跳轉
 	@GetMapping("/showAllRetailerFront")
@@ -200,10 +207,16 @@ public class RetailerController {
 	}
 	//更改帳號狀態,可改成按鈕帶0,狀態false,1 true
 	@GetMapping("/Retailer/changeStatusF/{id}")
-	public String changeStatustofalse(@PathVariable Integer id) {
+	public String changeStatustoFalse(@PathVariable Integer id) {
 		rService.ChangeStatusById(false, id);
 		return "redirect:/Retailer/RetailerCRUD";
 	}
+	@GetMapping("/Retailer/changeStatusT/{id}")
+	public String changeStatustoTrue(@PathVariable Integer id) {
+		rService.ChangeStatusById(true, id);
+		return "redirect:/Retailer/RetailerBlock";
+	}
+	
 	//用id編輯
 	@PostMapping("/Retailer/editRetailer")
 	public String editMessagePage(@RequestParam Integer id, @RequestParam("rName") String rN,

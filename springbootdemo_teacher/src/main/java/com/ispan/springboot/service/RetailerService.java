@@ -53,7 +53,9 @@ public class RetailerService {
 		
 		return rDao.showAllByStatus(true);
 	}
-	
+	public List<Retailer> getAllRetailerBloked() {
+		return rDao.showAllByStatus(false);
+	}
 
 	public Retailer findById(Integer id) {
 		Optional<Retailer> optional= rDao.findById(id);
@@ -66,6 +68,8 @@ public class RetailerService {
 	public List<Retailer> getAllItemBy() {
 		return rDao.findAll();
 	}
+
+	
 
 
 }

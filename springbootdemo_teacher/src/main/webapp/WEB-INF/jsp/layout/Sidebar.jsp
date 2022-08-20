@@ -179,7 +179,7 @@
         </a>
       </li>
        <li>
-        <a id="retailerCRUDlink" href="/Retailer/RetailerCRUD" class="nav-link text-white">
+        <a id="retailerCRUDlink" href="/Retailer/RetailerBlock" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#person-x"></use></svg>
           blocklist
         </a>
