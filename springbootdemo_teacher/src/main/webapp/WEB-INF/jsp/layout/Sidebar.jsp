@@ -128,18 +128,19 @@
 <!-- <main> -->
 <!--   <h1 class="visually-hidden">Sidebars examples</h1> -->
 
-<nav class="sidebar">
+<nav class="sidebar" height="100%">
 <div class="container-left" >
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-secondary" style="width: 280px;height: calc(100vh - 48px);" >
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-secondary"  style="width: 280px;height: calc(100vh - 48px);" >
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <svg class="bi me-2" data-width="40" data-height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">Sidebar</span>
+       商家頭貼
     </a>
+   
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="#" class="nav-link text-white" aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
           Home
         </a>
@@ -169,67 +170,19 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a id="retailerCRUDlink" href="/Retailer/RetailerCRUD" class="nav-link text-white">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#person-lines-fill"></use></svg>
           Retailer Account
         </a>
       </li>
     </ul>
     <hr>
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
-      </a>
-      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
-  </div>
-	
-</div>
-</nav>
-<!--   <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;"> -->
-<!--     <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only"> -->
-<!--       <svg class="bi" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> -->
-<!--       <span class="visually-hidden">Icon-only</span> -->
-<!--     </a> -->
-<!--     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center"> -->
-<!--       <li class="nav-item"> -->
-<!--         <a href="#" class="nav-link active py-3 border-bottom" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home"> -->
-<!--           <svg class="bi" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"></use></svg> -->
-<!--         </a> -->
-<!--       </li> -->
-<!--       <li> -->
-<!--         <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard"> -->
-<!--           <svg class="bi" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg> -->
-<!--         </a> -->
-<!--       </li> -->
-<!--       <li> -->
-<!--         <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders"> -->
-<!--           <svg class="bi" width="24" height="24" role="img" aria-label="Orders"><use xlink:href="#table"></use></svg> -->
-<!--         </a> -->
-<!--       </li> -->
-<!--       <li> -->
-<!--         <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products"> -->
-<!--           <svg class="bi" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"></use></svg> -->
-<!--         </a> -->
-<!--       </li> -->
-<!--       <li> -->
-<!--         <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers"> -->
-<!--           <svg class="bi" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#people-circle"></use></svg> -->
-<!--         </a> -->
-<!--       </li> -->
-<!--     </ul> -->
-<!--     <div class="dropdown border-top"> -->
-<!--       <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false"> -->
-<!--         <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle"> -->
+<!--     <div class="dropdown"> -->
+<!--       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!--         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"> -->
+<!--         <strong>mdo</strong> -->
 <!--       </a> -->
-<!--       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3"> -->
+<!--       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2"> -->
 <!--         <li><a class="dropdown-item" href="#">New project...</a></li> -->
 <!--         <li><a class="dropdown-item" href="#">Settings</a></li> -->
 <!--         <li><a class="dropdown-item" href="#">Profile</a></li> -->
@@ -238,11 +191,10 @@
 <!--       </ul> -->
 <!--     </div> -->
 <!--   </div> -->
+	
+</div>
+</nav>
 
-<!--   <div class="b-example-divider"></div> -->
-  
-
-<!-- </main> -->
 		<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
 			data-integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 			data-crossorigin="anonymous"></script>

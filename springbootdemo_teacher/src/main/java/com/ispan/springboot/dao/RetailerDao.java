@@ -26,7 +26,10 @@ public interface RetailerDao extends JpaRepository<Retailer, Integer> {
 			+" OR C2_Account like %:name%", nativeQuery = true)
 	public List<Retailer> findAll(@Param("name") String keyword);
 	
-//	public List<Retailer> showAllByStatus(@Param("status") )
+	@Query("from Retailer where rstate=:rstate")
+	public List<Retailer> showAllByStatus(@Param("rstate") boolean state);
 	
+	@Query(value="update Retailer set C2_State = :rstate where C2_Id =:rid", nativeQuery = true)
+	public Retailer changeStatusById(@Param("rstate") boolean state,@Param("rid") Integer id);
 	
 }
