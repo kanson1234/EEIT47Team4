@@ -13,7 +13,7 @@
 
 </head>
 <body>
-
+<header>
 <h1>首頁</h1>
 <ul>
 <li><a href="${contextRoot}/ShopHouse/viewItems">所有商品</a></li>
@@ -23,6 +23,37 @@
 <li><a href="${contextRoot}/registerR">註冊新商家</a></li>
 <li><a href="${contextRoot}/registerC">註冊新會員</a></li>
 </ul>
+</header>
+<main>
+<section class="py-5 text-center container">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="${contextRoot}/img/4.jpg" width="400" height="400" class="d-block w-100" alt="">
+    </div>
+    <div class="carousel-item">
+      <img src="${contextRoot}/img/3.jpg" width="400" height="400" class="d-block w-100" alt="">
+    </div>
+     <div class="carousel-item">
+      <img src="${contextRoot}/img/1.png" width="400" height="400" class="d-block w-100" alt="">
+    </div>
+     <div class="carousel-item">
+      <img src="${contextRoot}/img/5.jpg" width="400" height="400" class="d-block w-100" alt="">
+    </div>
+<!--     <div class="carousel-item"> -->
+<!--       <img src="" class="d-block w-100" alt=""> -->
+<!--     </div> -->
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</section>
 
 <hr > 
 <span class="badge badge-danger">最新商品</span>
@@ -44,7 +75,7 @@
 		</c:forEach>
 		</div>
 </div>
-
+</main>
 
 </body>
 </html>

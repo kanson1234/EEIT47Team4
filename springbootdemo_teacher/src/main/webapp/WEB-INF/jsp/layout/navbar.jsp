@@ -75,7 +75,7 @@
 			<div align="right">
 				<form method="get"
 					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-					<input class="form-control mr-sm-2" type="text" name="word" /> <input
+					<input style="padding:5px" class="form-control mr-sm-2" type="text" name="word" /> <input
 						type="submit" name="Search" value="搜尋" />
 				</form>
 			</div>

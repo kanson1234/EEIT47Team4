@@ -147,12 +147,6 @@
 <!-- // 		}) -->
 <!-- 	</script> -->
 
-
-
-
-
-
-
 					<script>
 						$(document).ready(
 							function () {
