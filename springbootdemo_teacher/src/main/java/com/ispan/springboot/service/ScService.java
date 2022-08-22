@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ispan.springboot.model.ScDao;
+import com.ispan.springboot.dao.ScDao;
 import com.ispan.springboot.model.ShoopingCar;
 
 @Service

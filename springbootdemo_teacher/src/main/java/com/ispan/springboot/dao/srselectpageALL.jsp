@@ -47,10 +47,6 @@
 							}
 						})
 					}
-
-
-
-
 				</Script>
 			</head>
 
@@ -78,20 +74,20 @@
 							<thead>
 								<tr>
 									<!-- C1 -->
-									<th>消費者ID</th>
+									<th>cId</th>
 									<!-- SR -->
 									<th>srShoppingRecord_Id</th>
-									<th>消費時間</th>
-									<th>購買數量</th>
+									<th>srtime</th>
+									<th>srCount</th>
 									<!-- SH -->
-									<th>商品ID</th>
-									<th>商品名稱</th>
-									<th>商品圖片</th>
-									<th>價格</th>
-									<th>商品分類</th>
-									<th>商品狀況</th>
+									<th>shItemId</th>
+									<th>shItemName</th>
+									<th>shImg</th>
+									<th>shPrice</th>
+									<th>shClassify</th>
+									<th>shState</th>
 									<!-- C2 -->
-									<th>廠商ID</th>
+									<th>c2Id</th>
 									<th>成交狀況</th>
 								</tr>
 							</thead>
@@ -117,37 +113,36 @@
 
 									$.each(result, function (index, value) {
 										var state = '';
-										if (value.shophousebean.status == true) {
+										if (value.storehouse.shState == true) {
 											state = "商品上架中";
 										}
-										if (value.shophousebean.status == false) {
+										if (value.storehouse.shState == false) {
 											state = "商品已下架";
 										}
-
+										
+										var state2 = '';
+										console.log(value.storehouse.shState)
 										if (value.srState == true) {
-											state2 = "成交";
+											state2 = "已成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "已退貨";
 										}
-
-
+										
+										
+										
 										msg_data += '<tr>'
 										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
 										msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
 										msg_data += '<td>' + value.srtime + '</td>'
 										msg_data += '<td>' + value.srCount + '</td>'
-										msg_data += '<td>' + value.shophousebean.id + '</td>'
-										msg_data += '<td>' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td>' + value.shophousebean.itemImg + '</td>'
-										
-										msg_data += '<td>' + value.shophousebean.itemImg + '</td>'
-										
-										
-										msg_data += '<td>' + value.shophousebean.price + '</td>'
-										msg_data += '<td>' + value.shophousebean.classify + '</td>'
+										msg_data += '<td>' + value.storehouse.shItemId + '</td>'
+										msg_data += '<td>' + value.storehouse.shItemName + '</td>'
+										msg_data += '<td>' + value.storehouse.shImg + '</td>'
+										msg_data += '<td>' + value.storehouse.shPrice + '</td>'
+										msg_data += '<td>' + value.storehouse.shClassify + '</td>'
 										msg_data += '<td>' + state + '</td>'
-										msg_data += '<td><a href="' + value.shophousebean.c2Id + '">' + value.shophousebean.c2Id + '</a></td>'
+										msg_data += '<td><a href="' + value.storehouse.c2Id + '">' + value.storehouse.c2Id + '</a></td>'
 										msg_data += '<td>' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -186,37 +181,38 @@
 											$('#list_data_json tbody tr ').remove();
 											msg_data = '<tbody>'
 											$.each(result, function (index, value) {
-
 												var state = '';
-												console.log(value.shophousebean.status)
-												if (value.shophousebean.status == true) {
+												console.log(value.storehouse.shState)
+												if (value.storehouse.shState == true) {
 													state = "商品上架中";
 												}
-												if (value.shophousebean.status == false) {
+												if (value.storehouse.shState == false) {
 													state = "商品已下架";
 												}
-
+												
+												var state2 = '';
+												console.log(value.storehouse.shState)
 												if (value.srState == true) {
-													state2 = "成交";
+													state2 = "已成交";
 												}
 												if (value.srState == false) {
-													state2 = "退貨";
+													state2 = "已退貨";
 												}
-
+												
+												
 												msg_data += '<tr>'
 												msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
 												msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
 												msg_data += '<td>' + value.srtime + '</td>'
 												msg_data += '<td>' + value.srCount + '</td>'
-												msg_data += '<td>' + value.shophousebean.id + '</td>'
-												msg_data += '<td>' + value.shophousebean.itemName + '</td>'
-												msg_data += '<td>' + value.shophousebean.itemImg + '</td>'
-												msg_data += '<td>' + value.shophousebean.price + '</td>'
-												msg_data += '<td>' + value.shophousebean.classify + '</td>'
+												msg_data += '<td>' + value.storehouse.shItemId + '</td>'
+												msg_data += '<td>' + value.storehouse.shItemName + '</td>'
+												msg_data += '<td>' + value.storehouse.shImg + '</td>'
+												msg_data += '<td>' + value.storehouse.shPrice + '</td>'
+												msg_data += '<td>' + value.storehouse.shClassify + '</td>'
 												msg_data += '<td>' + state + '</td>'
-												msg_data += '<td><a href="' + value.shophousebean.c2Id + '">' + value.shophousebean.c2Id + '</a></td>'
+												msg_data += '<td><a href="' + value.storehouse.c2Id + '">' + value.storehouse.c2Id + '</a></td>'
 												msg_data += '<td>' + state2 + '</td>'
-
 												msg_data += '</tr>'
 											})
 											msg_data += '</tbody>'
@@ -227,7 +223,6 @@
 										}
 									})
 								})
-
 					})
 				</script>
 			</body>
