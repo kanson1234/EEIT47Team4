@@ -113,7 +113,7 @@ public class RetailerController {
 //		System.out.println("RetailerController:"+rId);
 //		return rId;
 //	}
-	// 取得id後addAttribute給前端
+	// 取得商品id後addAttribute給前端
 
 	@GetMapping(value = "/retailerGetAllItem", produces = { "application/json;charset=UTF-8" })
 	public String getAllItems(@RequestParam("id") Integer id, Model model, Model m2) {
@@ -186,11 +186,13 @@ public class RetailerController {
 			@RequestParam("rInfo") String rInfo) throws IOException {
 
 		Retailer r = new Retailer();
+		Date d = new Date();
 		r.setrName(rN);
 		r.setRaccount(ra);
 		r.setRpwd(rpw);
 		r.setRphone(rph);
 		r.setRstate(true);
+		r.setRdate(d);
 		r.setRphoto(photo.getBytes());
 		r.setRlogo(logo.getBytes());
 		r.setRinfo(rInfo);
@@ -224,11 +226,13 @@ public class RetailerController {
 			@RequestParam("logo") MultipartFile logo, @RequestParam("photo") MultipartFile photo,
 			@RequestParam("rInfo") String rInfo) throws IOException {
 		Retailer r = new Retailer();
+		Date d = new Date();
 		r.setRid(id);
 		r.setrName(rN);
 		r.setRaccount(ra);
 		r.setRpwd(rpw);
 		r.setRphone(rph);
+		r.setRdate(d);
 		r.setRstate(true);
 		r.setRphoto(photo.getBytes());
 		r.setRlogo(logo.getBytes());
