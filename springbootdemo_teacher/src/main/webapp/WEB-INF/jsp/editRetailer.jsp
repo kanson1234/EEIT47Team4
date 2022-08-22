@@ -45,7 +45,7 @@
 					</tr>
 					<tr>
 						<td><label for="rInfo">information:</label>
-						<textarea id="rInfo" name="rInfo" rows="5" cols="33">${Retailerinfo.info}</textarea>
+						<textarea id="rInfo" name="rInfo" rows="5" cols="33">${Retailerinfo.rinfo}</textarea>
 						</td>
 					</tr>
 					<tr>

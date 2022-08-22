@@ -21,12 +21,6 @@ public class pageController {
 		return "index";
 	}
 	
-	@GetMapping("shopHouse/add")
-	public String addItem() {
-		return "shopHouseTest";
-	}
-
-	
 	@GetMapping("/loginA")
 	public String loginA() {
 		return "loginA";
@@ -46,8 +40,6 @@ public class pageController {
 	public String adminRetailer() {
 		return "adminPage";
 	}
-	
-
 	
 	@GetMapping("/retailerCRUD")
 	public String retailerCRUD() {
@@ -88,7 +80,5 @@ public class pageController {
 	public String srselectpageALL() {
 		return "srselectpageALL";
 	}
-
-			
 
 }

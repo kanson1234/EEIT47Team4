@@ -52,9 +52,11 @@
 
 													<div class="right">
 														<a
-															href="${pageContext.request.contextPath}/retailerGetAllItem?id=${shopHouseItem.c2Id}"><button
-																type="button"
-																class="badge badge-warning">${shopHouseItem.getRetailerBean().rName}</button></a>
+															href="${pageContext.request.contextPath}/retailerGetAllItem?id=${shopHouseItem.c2Id}">
+															<button type="button"
+																class="badge badge-warning">${shopHouseItem.getRetailerBean().rName}
+															</button>
+														</a>
 
 														<p class="card-text">商品名稱:${shopHouseItem.itemName}</p>
 
@@ -63,40 +65,17 @@
 															href="${pageContext.request.contextPath}/ShopHouse/findByClassifyLabel?classify=${shopHouseItem.classify}">
 															<button type="button"
 																class="badge badge-secondary">${shopHouseItem.classify}</button></a>
-
 														<div>
-															<a
-																href=><button
-																	type="submit">加入購物車</button></a>
+															<a href=""><button type="submit"
+																	id="addToCar">加入購物車</button></a>
 														</div>
 														<div>
 															<input type="number" value="1" id="num">
-
+															<input type="text" value="${shopHouseItem.id}" id="itid">
 														</div>
-
-
-
-
-														<script type="text/javascript">
-															var Num = document.getElementById("num").value
-
-															var addToCar = document.getElementById("num")
-															addToCar.onclick(herf="${pageContext.request.contextPath}/ShoppingCar/add?num=Num  &itid=${shopHouseItem.id}")
-
-														</script>
-
-
-
-
-
-
 													</div>
-
-
 												</div>
 											</div>
-
-
 											<c:forEach items="${shopHouseItem.message}" var="m">
 												<div class="row justify-content-center">
 													<div class="col-8">
@@ -104,9 +83,7 @@
 															<div class="card-header">
 																留言時間 <span>${m.mdate}</span>
 															</div>
-
 															<div class="card-body">${m.mcontext}</div>
-
 															<div></div>
 														</div>
 													</div>
@@ -119,9 +96,9 @@
 												<div class="card-header">留言板</div>
 												<div class="card-body">
 
-													<form
+													<form <!--
 														action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
-														method="post">
+														method="post"> -->
 
 														留言區:
 														<textarea rows="3" cols="50" id="newMsg"
@@ -136,6 +113,42 @@
 											<div></div>
 					</header>
 					<footer> </footer>
+
+					<script>
+						$(document).ready(
+							function () {
+								// findAllByTime
+								$('#addToCar').click(
+									function () {
+										alert('addToCar')
+
+										var num = document.getElementById('num').value;
+										alert(num)
+										var itid = document.getElementById('itid').value;
+										alert(itid)
+								
+										
+										
+										
+										
+										$.ajax({
+											url: 'http://localhost:8080/record/add',
+											contentType: 'application/json', // 送過去的資料型別
+											dataType: 'json', // 回傳回來的資料型別
+											method: 'get',
+											success: function (result) {
+												console.log(result)
+											},
+											error: function (err) {
+												console.log(err)
+											}
+										})
+									})
+
+								// findAllByCidBtn
+							})
+					</script>
+
 				</body>
 
 				</html>
