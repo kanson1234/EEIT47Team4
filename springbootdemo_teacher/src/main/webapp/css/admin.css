@@ -14,11 +14,12 @@ body {
 
 .sidebar {
   position: fixed;
-  top: 7rem;
+  top: 5rem;
   /* rtl:raw:
   right: 0;
   */
   bottom: 0;
+  float: left;
   /* rtl:remove */
   left: 0;
   z-index: 100; /* Behind the navbar */

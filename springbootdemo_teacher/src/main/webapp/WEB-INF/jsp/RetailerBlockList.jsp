@@ -9,7 +9,7 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Account Manager</title>
+<title>BlockList</title>
 </head>
 <body>
 <%-- <jsp:include page="layout/Sidebar.jsp" /> --%>
@@ -22,17 +22,12 @@
 			<input type="text" name="keyword"/>
 			<input type="submit" name="Search"/>
 		</form>
-		</div>
-		<a href="${contextRoot}/registerPage">註冊新帳號</a>
-		<br/>
-		<div>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">id</th>
 					<th scope="col">名字</th>
 					<th scope="col">帳號</th>
-					<th scope="col">修改</th>
 					<th scope="col">刪除</th>
 				</tr>
 			</thead>
@@ -44,13 +39,8 @@
 						<td>${retailer.rName}</td>
 						<td>${retailer.raccount}</td>
 						<td>
-						<a href="${contextRoot}/Retailer/editRetailer/${retailer.rid}">
-						<button type="submit" class="btn btn-primary mb-2">修改</button>
-						</a>
-						</td>
-						<td>
-						<a onclick="return confirm('確認刪除?')" href="${contextRoot}/Retailer/changeStatusF/${retailer.rid}">
-						<button type="submit" class="btn btn-danger">刪除</button>
+						<a onclick="return confirm('確認復原?')" href="${contextRoot}/Retailer/changeStatusT/${retailer.rid}">
+						<button type="submit" class="btn btn-danger">復原帳號</button>
 						</a>
 						</td>
 					</tr>

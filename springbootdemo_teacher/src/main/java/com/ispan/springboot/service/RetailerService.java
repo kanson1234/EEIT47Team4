@@ -36,6 +36,11 @@ public class RetailerService {
 		rDao.save(rt);
 	}
 	
+	public boolean ChangeStatusById (boolean status,Integer rid) {
+		rDao.changeStatusById(status, rid);
+		return true;
+	}
+	
 	public List<Retailer> listAll(String keyword){
 		if(keyword !=null) {
 			return rDao.findAll(keyword);
@@ -45,9 +50,12 @@ public class RetailerService {
 	}
 	
 	public List<Retailer> getAllRetailer() {
-		return rDao.findAll();
+		
+		return rDao.showAllByStatus(true);
 	}
-	
+	public List<Retailer> getAllRetailerBloked() {
+		return rDao.showAllByStatus(false);
+	}
 
 	public Retailer findById(Integer id) {
 		Optional<Retailer> optional= rDao.findById(id);
@@ -60,6 +68,8 @@ public class RetailerService {
 	public List<Retailer> getAllItemBy() {
 		return rDao.findAll();
 	}
+
+	
 
 
 }
