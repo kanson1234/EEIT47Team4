@@ -17,6 +17,10 @@
 				<a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
 						width="150" src="${pageContext.request.contextPath}/downloadImg/${i.id}" class="card-img-top"
 						alt="..."></a>
+						
+						
+						
+					
 			    <div class="card-body">
 						<p class="card-text">${i.itemName}</p>
 						<p class="card-text">${i.price}</p>

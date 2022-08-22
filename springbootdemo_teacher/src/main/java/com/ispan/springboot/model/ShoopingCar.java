@@ -11,8 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shoopingcar")
-
+@Table(name = "shopingcar")
 public class ShoopingCar {
 
 	@Id
@@ -28,16 +27,30 @@ public class ShoopingCar {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sh_item_id")
-	private StoreHouse storehouse;
+	private ShopHouseBean shophousebean;
 
-	public ShoopingCar() {
-		// TODO Auto-generated constructor stub
-	}
+//	=============================================================
 
-	public ShoopingCar(Integer scId, Integer scCount) {
+	public ShoopingCar(Integer scId, Integer scCount, Customer customer, ShopHouseBean shophousebean) {
 		super();
 		this.scId = scId;
 		this.scCount = scCount;
+		this.customer = customer;
+		this.shophousebean = shophousebean;
+	}
+
+	public ShoopingCar() {
+		super();
+	}
+
+//	=============================================================
+
+	public Integer getScId() {
+		return scId;
+	}
+
+	public void setScId(Integer scId) {
+		this.scId = scId;
 	}
 
 	public Integer getScCount() {
@@ -54,6 +67,14 @@ public class ShoopingCar {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public ShopHouseBean getShophousebean() {
+		return shophousebean;
+	}
+
+	public void setShophousebean(ShopHouseBean shophousebean) {
+		this.shophousebean = shophousebean;
 	}
 
 }
