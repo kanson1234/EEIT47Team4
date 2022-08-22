@@ -97,6 +97,7 @@
 			<div class="card-header">留言板</div>
 			<div class="card-body">
 
+
 				<form>
 					
 					留言區:
@@ -106,39 +107,90 @@
 			</div>
 		</div>
 
+													<form>
+														<!--
+														action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
+														method="post"> -->
+
+
 		<div></div>
 	</header>
 	<footer> </footer>
 
-	<script>
-		$(document).ready(function() {
-			// findAllByTime
-			$('#addToCar').click(function() {
-				alert('addToCar')
+<!-- 	<script> -->
+<!-- // 		$(document).ready(function() { -->
+<!-- // 			// findAllByTime -->
+<!-- // 			$('#addToCar').click(function() { -->
+<!-- // 				alert('addToCar') -->
 
-				var num = document.getElementById('num').value;
-// 				alert(num)
-				var itid = document.getElementById('itid').value;
-// 				alert(itid)
+<!-- // 				var num = document.getElementById('num').value; -->
+<!-- //  				alert(num) -->
+<!-- // 				var itid = document.getElementById('itid').value; -->
+<!-- // 				alert(itid) -->
 
-				$.ajax({
-					url : 'http://localhost:8080/record/add',
-					contentType : 'application/json', // 送過去的資料型別
-					dataType : 'json', // 回傳回來的資料型別
-					method : 'get',
-					success : function(result) {
-						console.log(result)
-					},
-					error : function(err) {
-						console.log(err)
-					}
-				})
-			})
+<!-- // 				$.ajax({ -->
+<!-- // 					url : 'http://localhost:8080/record/add', -->
+<!-- // 					contentType : 'application/json', // 送過去的資料型別 -->
+<!-- // 					dataType : 'json', // 回傳回來的資料型別 -->
+<!-- // 					method : 'get', -->
+<!-- // 					success : function(result) { -->
+<!-- // 						console.log(result) -->
+<!-- // 					}, -->
+<!-- // 					error : function(err) { -->
+<!-- // 						console.log(err) -->
+<!-- // 					} -->
+<!-- // 				}) -->
+<!-- // 			}) -->
 
-			// findAllByCidBtn
-		})
-	</script>
 
-</body>
+<!-- // 			// findAllByCidBtn -->
+<!-- // 		}) -->
+<!-- 	</script> -->
 
-</html>
+
+
+
+
+
+
+					<script>
+						$(document).ready(
+							function () {
+								// findAllByTime
+								$('#addToCar').click(
+									function () {
+										alert('addToCar')
+										var num = document.getElementById('num').value;
+										alert(num)
+										var itid = document.getElementById('itid').value;
+										alert(itid)
+										// var dtoObj = {
+										// 	"num": num,
+										// 	"itid":itid
+										// };
+										// console.log(dtoObj)
+										// var dtoJson = JSON.stringify(dtoObj);
+										// console.log(dtoJson)
+										$.ajax({
+											url: 'http://localhost:8080/ShoppingCar/add?num='+num+"&itid="+itid,
+											contentType: 'application/json', // 送過去的資料型別
+											dataType: 'json', // 回傳回來的資料型別
+											method: 'get',
+											success: function (result) {
+												console.log(result)
+											},
+											error: function (err) {
+												console.log(err)
+											}
+										})
+									})
+
+								// findAllByCidBtn
+							})
+					</script>
+
+
+				</body>
+
+				</html>
+

@@ -50,7 +50,7 @@ public class loginController {
 			return "loginA";
 		}
 
-		Admin adminLoginResult = adminService.checkAdminLogin(account,pwd);
+		Admin adminLoginResult = adminService.checkAdminLogin(account, pwd);
 
 		if (adminLoginResult != null) {
 			model.addAttribute("adminLoginOk", adminLoginResult);
@@ -63,7 +63,8 @@ public class loginController {
 
 	// 商家登入
 	@PostMapping("/checkretailerlogin")
-	public String retailerLogin(@RequestParam("rAccount") String raccount, @RequestParam("rPwd") String rpwd, Model model) {
+	public String retailerLogin(@RequestParam("rAccount") String raccount, @RequestParam("rPwd") String rpwd,
+			Model model) {
 		Map<String, String> errors = new HashMap<String, String>();
 		model.addAttribute("errors", errors);
 
@@ -82,7 +83,7 @@ public class loginController {
 		Retailer retailerLoginResult = retailerService.checkRetailerLogin(raccount, rpwd);
 
 		if (retailerLoginResult != null) {
-			model.addAttribute("retailerLoginOk",retailerLoginResult);
+			model.addAttribute("retailerLoginOk", retailerLoginResult);
 
 			return "redirect:/ShopHouse/viewC2IdItems";
 		}
@@ -111,12 +112,12 @@ public class loginController {
 		}
 
 		Customer customerLoginResult = customerService.checkCustomerLogin(caccount, cpwd);
-		
+
 		if (customerLoginResult == null) {
 			errors.put("cmsg", "您的帳號或密碼有誤，請重新輸入!");
 			return "loginC";
 		}
-		//因在此位置判斷customerLoginResult有錯，故須將if customerLoginResult == null敘述移到上方做判斷
+		// 因在此位置判斷customerLoginResult有錯，故須將if customerLoginResult == null敘述移到上方做判斷
 		Customer checkStatus = customerService.findCustomerById(customerLoginResult.getcId());
 		boolean cstatus = checkStatus.iscStatus();
 
