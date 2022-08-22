@@ -19,6 +19,11 @@ public class pageController {
 	public String welcomeIndex() {
 		return "index";
 	}
+	
+	@GetMapping("shopHouse/addItem")
+	public String addItem() {
+		return "shopHouseTest";
+	}
 
 
 	@GetMapping("/loginA")
@@ -88,10 +93,7 @@ public class pageController {
 		return "ShoppingCar";
 	}
 	
-	@GetMapping("shopHouse/add")
-	public String addItem() {
-		return "shopHouseTest";
-	}
+
 // THT End----------------------------------------------------------------
 
 
