@@ -60,8 +60,10 @@ public class ScController {
 		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
 		Integer cid = customerSession.getcId();
 
-		System.out.println("cid------------------------------------------------------------------------------------"+cid);
-		System.out.println("num------------------------------------------------------------------------------------"+num);
+		System.out.println(
+				"cid------------------------------------------------------------------------------------" + cid);
+		System.out.println(
+				"num------------------------------------------------------------------------------------" + num);
 
 		Integer itId = itid;
 
@@ -73,14 +75,12 @@ public class ScController {
 		ShoopingCar newSC = new ShoopingCar();
 		newSC.setCustomer(customer);
 		newSC.setShophousebean(shophousebean);
-	
+
 		newSC.setScCount(num);
 
 		ShoopingCar success = scDao.save(newSC);
 
-		return
-				scService.findAllByScId(cid)
-				;
+		return scService.findAllByScId(cid);
 	}
 
 	@GetMapping("/gotoecpay")
