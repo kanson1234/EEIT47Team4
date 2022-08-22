@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class pageController {
 
-	
 	@GetMapping("home")
 	public String Homepage() {
 		return "index";
 	}
-	
+
 	@GetMapping("/")
 	public String welcomeIndex() {
 		return "index";
 	}
-	
+
+
 	@GetMapping("/loginA")
 	public String loginA() {
 		return "loginA";
@@ -30,17 +30,17 @@ public class pageController {
 	public String registerR() {
 		return "registerR";
 	}
-	
+
 	@GetMapping("/registerPage")
 	public String registerPage() {
 		return "registerPage";
 	}
-	
+
 	@GetMapping("/admin/Admin")
 	public String adminRetailer() {
 		return "adminPage";
 	}
-	
+
 	@GetMapping("/retailerCRUD")
 	public String retailerCRUD() {
 		return "RetailerCRUD";
@@ -50,7 +50,6 @@ public class pageController {
 	public String registerC() {
 		return "registerC";
 	}
-
 
 	@GetMapping("/personalFile")
 	public String oneCustomer() {
@@ -71,14 +70,29 @@ public class pageController {
 	public String forgotPassword() {
 		return "forgotPassword";
 	}
-	@GetMapping("/srselectpage")
+
+//THT Start----------------------------------------------------------------
+	@GetMapping("/record/srselectpage")
 	public String srselectpage() {
 		return "srselectpage";
 	}
-	
-	@GetMapping("/srselectpageALL")
+
+	@GetMapping("/record/srselectpageALL")
 	public String srselectpageALL() {
 		return "srselectpageALL";
 	}
+
+
+	@GetMapping("/gotoShoppingCar")
+	public String ShoppingCar() {
+		return "ShoppingCar";
+	}
+	
+	@GetMapping("shopHouse/add")
+	public String addItem() {
+		return "shopHouseTest";
+	}
+// THT End----------------------------------------------------------------
+
 
 }

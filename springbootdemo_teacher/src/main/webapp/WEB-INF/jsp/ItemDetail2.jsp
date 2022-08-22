@@ -96,7 +96,7 @@
 												<div class="card-header">留言板</div>
 												<div class="card-body">
 
-													<form <!--
+													<form><!--
 														action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
 														method="post"> -->
 
