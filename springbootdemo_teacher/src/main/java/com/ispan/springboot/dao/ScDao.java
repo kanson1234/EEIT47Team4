@@ -12,17 +12,17 @@ import com.ispan.springboot.model.ShoopingCar;
 
 public interface ScDao extends JpaRepository<ShoopingCar, Integer> {
 
-	public List<ShoopingCar> findAllBycustomer_cId(@Param("cid") Integer cid);
+ public List<ShoopingCar> findAllBycustomer_cId(@Param("cid") Integer cid);
 
-	@Transactional
-	@Modifying
-	@Query(value = "DELETE FROM ShopingCar WHERE SC_Id = :scId ",nativeQuery = true)
-	public void deleteByScId(@Param("scId")Integer scId);
+ @Transactional
+ @Modifying
+ @Query(value = "DELETE FROM ShopingCar WHERE SC_Id = :scId ",nativeQuery = true)
+ public void deleteByScId(@Param("scId")Integer scId);
 
-	@Transactional
-	@Modifying
-	@Query(value = "UPDATE ShopingCar SET SC_Count = :num WHERE C1_Id= :cid AND SH_Item_Id= :itid ",nativeQuery = true)
-	public void change(@Param("cid")Integer cid ,@Param("itid")Integer itid,@Param("num")Integer num);
+ @Transactional
+ @Modifying
+ @Query(value = "UPDATE ShopingCar SET SC_Count = :num WHERE C1_Id= :cid AND SH_Item_Id= :itid ",nativeQuery = true)
+ public void change(@Param("cid")Integer cid ,@Param("itid")Integer itid,@Param("num")Integer num);
 
-	
+ 
 }

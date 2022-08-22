@@ -14,15 +14,15 @@ import com.ispan.springboot.model.ShoopingCar;
 @Service
 @Transactional
 public class ScService {
-	@Autowired
-	private ScDao scDao;
-	
-	
-	
-	
-	public  List<ShoopingCar> findAllByScId(Integer cid ) {
-		
-		return scDao.findAllBycustomer_cId(cid);
-	}
+ @Autowired
+ private ScDao scDao;
+ 
+ 
+ 
+ 
+ public  List<ShoopingCar> findAllByScId(Integer cid ) {
+  
+  return scDao.findAllBycustomer_cId(cid);
+ }
 
 }
