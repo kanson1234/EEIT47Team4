@@ -65,7 +65,7 @@ public class ShopHouseBean {
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "StoreHouse", cascade = CascadeType.ALL)
 //	private Set<Message> message = new LinkedHashSet<Message>();
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "storehouse", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "shophousebean", cascade = CascadeType.ALL)
 	private Set<ShoppingRecord> SR = new LinkedHashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopHouseBean", cascade = CascadeType.ALL)
