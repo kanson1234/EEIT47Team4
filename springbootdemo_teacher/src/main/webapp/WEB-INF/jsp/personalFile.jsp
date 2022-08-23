@@ -27,8 +27,9 @@
 			<form
 				action="${contextRoot}/customer/update?id=${oneCustomer.getcId()}"
 				method="post" enctype="multipart/form-data">
-				<h2>我的個人資料</h2>
-
+				<div class="text-center">
+					<h2>修改個人資料</h2>
+				</div>
 				<div class="mb-3">
 
 					<label class="form-label"></label> <input type="hidden"
@@ -69,7 +70,6 @@
 					<button type="submit" class="btn btn-lg btn-primary">修改</button>
 				</a>
 				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
-				${errors.msg}
 			</form>
 		</div>
 	</div>
@@ -87,7 +87,7 @@
 		//取消按鈕返回上頁
 		$("#cancel").click(function(event) {
 			event.preventDefault(); //取消預設行為
-			window.location.replace("http://localhost:8080/logindex"); //返回特定頁面
+			window.location.replace("http://localhost:8080/"); //返回特定頁面
 		})
 	</script>
 

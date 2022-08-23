@@ -177,6 +177,28 @@ public class CustomerController {
 			Customer oneCustomer = customerService.findCustomerById(customerSession.getcId());
 			model.addAttribute("oneCustomer", oneCustomer);
 
+			return "customerFile";
+		}
+
+	}
+	
+	// 已登入會員之個人資料編輯
+	@GetMapping("/customer/editOne")
+	public String editOneById(Model model) {
+		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
+		Admin adminSession = (Admin) model.getAttribute("adminLoginOk");
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
+
+		if (customerSession == null) {
+			if (adminSession != null && retailerSession != null) {
+				return "loginSuccess";
+			}
+			return "redirect:/loginC";
+		} else {
+
+			Customer oneCustomer = customerService.findCustomerById(customerSession.getcId());
+			model.addAttribute("oneCustomer", oneCustomer);
+
 			return "personalFile";
 		}
 
@@ -245,13 +267,13 @@ public class CustomerController {
 
 			customerService.insertCustomer(updateCustomer);
 			Map<String, String> msg = new HashMap<String, String>();
-			model.addAttribute("msg", msg);
+			msg.put("success","修改成功");
 
 			return "redirect:/customer/findOne";
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "personalFile";
+			return "customerFile";
 		}
 
 	}
