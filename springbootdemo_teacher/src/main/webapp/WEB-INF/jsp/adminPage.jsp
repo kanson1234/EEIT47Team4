@@ -52,6 +52,9 @@
 						<li class="nav-item"><a class="nav-link" href="#"> <span
 								data-feather="shopping-cart"></span> 商品管理
 						</a></li>
+						<li class="nav-item"><a class="nav-link" href="${contextRoot}/record/srselectpageALL"> <span
+								data-feather="shopping-cart"></span> 交易紀錄
+						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span
 								data-feather="users"></span> Customers
 						</a></li>

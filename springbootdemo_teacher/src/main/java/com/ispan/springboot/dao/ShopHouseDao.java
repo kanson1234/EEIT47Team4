@@ -15,7 +15,7 @@ import com.ispan.springboot.model.ShopHouseBean;
 public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 
 	//模糊查詢
-	@Query(value=" select * FROM StoreHouse WHERE SH_ItemName LIKE %:word% " +
+	@Query(value=" select * FROM StoreHouse WHERE SH_ItemName LIKE %:word% " +	
 	               "OR C2_Id LIKE %:word%",nativeQuery = true)
 	public List<ShopHouseBean> findByKeyword(@RequestParam(name = "word") String word);
 	
@@ -32,6 +32,11 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	//店家ID找商品
 	@Query(value="select * FROM StoreHouse WHERE C2_Id=:id",nativeQuery = true)
 	public List<ShopHouseBean> findByC2Id( Integer id);
+	
+	
+	
+	
+	
 	
 }	
 
