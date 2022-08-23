@@ -94,8 +94,11 @@ public class RetailerController {
 			newRetailer.setRdate(d);
 			newRetailer.setRstate(true);
 			rService.insertRetailer(newRetailer);
+			Map<String, String> msg = new HashMap<String, String>();
+			model.addAttribute("msg", msg);
+			msg.put("success", "註冊成功!");
 
-			return "loginSuccess";
+			return "registerR";
 
 		} catch (IOException e) {
 			e.printStackTrace();

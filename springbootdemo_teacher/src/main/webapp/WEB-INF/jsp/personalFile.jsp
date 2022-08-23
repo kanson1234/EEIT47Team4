@@ -27,7 +27,6 @@
 			<form
 				action="${contextRoot}/customer/update?id=${oneCustomer.getcId()}"
 				method="post" enctype="multipart/form-data">
-				<h6 style="color: green">${msg}</h6>
 				<h2>我的個人資料</h2>
 
 				<div class="mb-3">
@@ -66,7 +65,7 @@
 					<p style="color: red;">${errors.cImg}</p>
 
 				</div>
-				<a onclick="confirm('確認修改會員資料?');alert('修改成功！');">
+				<a onclick="confirm('確認修改會員資料?');">
 					<button type="submit" class="btn btn-lg btn-primary">修改</button>
 				</a>
 				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
