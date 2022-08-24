@@ -17,6 +17,7 @@
 							justify-content: space-between;
 						}
 
+<<<<<<< HEAD
 						.left {
 							width: 50%;
 							height: 200px;
@@ -28,6 +29,26 @@
 						}
 					</style>
 				</head>
+=======
+.left {
+	width: 45%;
+	height: 200px;
+}
+
+.right {
+	width: 55%;
+	height: 200px;
+}
+
+.size{
+    width: 20%;
+}
+.mainSize{
+     width:150%;
+}
+</style>
+</head>
+>>>>>>> 3dda41fcf20dc147f7fd896e2e46b376f102aca2
 
 				<body>
 					<header>
@@ -42,10 +63,17 @@
 											<div class="container" align="center">
 												<div class="wrap">
 
+<<<<<<< HEAD
 													<div class="left" style="width: 18rem;">
 														<img width="400"
 															src="${pageContext.request.contextPath}/downloadImg/${shopHouseItem.id}"
 															class="card-img-top" alt="...">
+=======
+				<div class="left" style="width: 18rem;">
+					<img class="mainSize"
+						src="${pageContext.request.contextPath}/downloadImg/${shopHouseItem.id}"
+						class="card-img-top" alt="...">
+>>>>>>> 3dda41fcf20dc147f7fd896e2e46b376f102aca2
 
 													</div>
 
@@ -60,6 +88,7 @@
 
 														<p class="card-text">商品名稱:${shopHouseItem.itemName}</p>
 
+<<<<<<< HEAD
 														<p class="card-text">價錢:${shopHouseItem.price}</p>
 														<a
 															href="${pageContext.request.contextPath}/ShopHouse/findByClassifyLabel?classify=${shopHouseItem.classify}">
@@ -95,8 +124,63 @@
 											<div class="card">
 												<div class="card-header">留言板</div>
 												<div class="card-body">
+=======
+					<p class="card-text">價錢:${shopHouseItem.price}</p>
+					<a
+						href="${pageContext.request.contextPath}/ShopHouse/findByClassifyLabel?classify=${shopHouseItem.classify}">
+						<button type="button" class="badge badge-secondary">${shopHouseItem.classify}</button>
+					</a>
+					<div>
+						<a href=""><button type="submit" id="addToCar">加入購物車</button></a>
+					</div>
+					<div>
+						<input type="number" value="1" id="num"> <input
+							type="hidden" value="${shopHouseItem.id}" id="itid">
+					</div>
+					<div>你可能也會喜歡...</div>
+                    <c:forEach items="${category}" begin="1" end="3" var="x">
+					<a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${x.id}"><img
+						class="size" src="${pageContext.request.contextPath}/downloadImg/${x.id}" class="card-img-top"
+						alt="..."></a>
+					</c:forEach>	
+				</div>
+			</div>
+			<hr>
+			
+					<div class="card">
+			<div class="card-header">留言板</div>
+			<div class="card-body">
+		</div>
+		<c:forEach items="${shopHouseItem.message}" var="m">
+			<div class="row justify-content-center">
+				<div class="col-8">
+					<div class="card">
+						<div class="card-header">
+							留言時間 <span>${m.mdate}</span>
+						</div>
+						<div class="card-body">${m.mcontext}</div>
+						<div></div>
+					</div>
+				</div>
+			</div>
+			<br />
+		</c:forEach>
 
-													<form>
+
+
+
+
+				<form>
+					
+					留言區:
+					<textarea rows="3" cols="50" id="newMsg" name="newMsg"></textarea>
+					<button type="submit" class="btn btn-primary">送出</button>
+				</form>
+			</div>
+		</div>
+>>>>>>> 3dda41fcf20dc147f7fd896e2e46b376f102aca2
+
+													
 														<!--
 														action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
 														method="post"> -->
@@ -125,11 +209,11 @@
 								// findAllByTime
 								$('#addToCar').click(
 									function () {
-										alert('addToCar')
+										alert('成功加入購物車')
 										var num = document.getElementById('num').value;
-										alert(num)
+// 										alert(num)
 										var itid = document.getElementById('itid').value;
-										alert(itid)
+// 										alert(itid)
 										// var dtoObj = {
 										// 	"num": num,
 										// 	"itid":itid

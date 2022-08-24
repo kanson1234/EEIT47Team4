@@ -93,16 +93,6 @@ public class ShopHouseController {
 		}
 	}
 
-//
-//	// 用id找商品
-//	@GetMapping("findItemById/{id}")
-
-//	public String findItemById(@PathVariable Integer id) {
-//		sService.findItemById(id);
-//
-//		return "findItemById";
-//	}
-
 	// 刪除
 	@GetMapping("/ShopHouse/deleteById/{id}")
 	public String deleteItemById(@PathVariable Integer id) {
@@ -129,12 +119,27 @@ public class ShopHouseController {
 //		return "ItemDetail";
 //	}
 	
-	
+	//單一商品頁面
 	@GetMapping("/ShopHouse/itemDetail/{id}")
-	public String ItemDetail(@PathVariable Integer id, Model model) {
+	public String ItemDetail(@PathVariable Integer id,Model model) {
 		ShopHouseBean item = sService.findItemById(id);
-
+		List<ShopHouseBean> category = sService.findByClassify(item.getClassify());
+//		System.out.println("category.size()"+category.size());
+//		for (int i=0;i<category.size();i++) {
+//			System.out.println(category.get(i).getId());
+//			System.out.println(category.get(i).getItemName());
+//		}
+		
+		model.addAttribute("category", category);
 		model.addAttribute("shopHouseItem", item);
+		return "ItemDetail2";
+	}
+	
+	//itemDetail你可能會喜歡
+	@GetMapping("/ShopHouse/mayLike/{id}")
+	public String MayLike(@RequestParam(name = "classify", defaultValue = "") String classify, Model model) {
+		List<ShopHouseBean> category = sService.findByClassify(classify);
+		model.addAttribute("category", category);
 		return "ItemDetail2";
 	}
 
@@ -229,8 +234,6 @@ public class ShopHouseController {
 	@GetMapping("/ShopHouse/findByKeyword")
 	public String findByKeyword(@RequestParam(name = "word", defaultValue = "") String word, Model model) {
 		List<ShopHouseBean> keyword = sService.findByKeyword(word);
-//		System.out.println("size: " + keyword.size());
-//		System.out.println("itemName: " + keyword.get(0).getItemName());
 		model.addAttribute("keyword", keyword);
 		return "FuzzySearchByWord";
 	}
@@ -240,7 +243,7 @@ public class ShopHouseController {
 	public String findByClassify(@RequestParam(name = "classify", defaultValue = "") String classify, Model model) {
 		List<ShopHouseBean> category = sService.findByClassify(classify);
 		model.addAttribute("category", category);
-		return "shopHouseItems";
+		return "FrontPageShopHouseItems";
 	}
 
 	//商品種類頁籤
@@ -285,13 +288,20 @@ public class ShopHouseController {
 		return "shopHouseBackpack";
 	}
 	
-
-//	@GetMapping("/ShopHouse/memberSession")
-//	public String MemberSession(HttpSession session) {
-//		Customer cus = new Customer();
-//		session.setAttribute("cus", cus);
-//		
-//		return"/";
-//	}
+	//價格排序由大至小
+	@GetMapping("/ShopHouse/highPrice")
+	public String orderByHigherPrice(Model model) {
+		List<ShopHouseBean> higherPrice = sService.getByOrderByPriceDesc();
+		model.addAttribute("higherPrice", higherPrice);
+		return "FrontPageShopHouseItems";
+	}
+	
+	//價格排序由小至大
+	@GetMapping("/ShopHouse/lowerPrice")
+	public String orderByLowerPrice(Model model) {
+		List<ShopHouseBean> lowerPrice = sService.getByOrderByPriceAsc();
+		model.addAttribute("lowerPrice", lowerPrice);
+		return "FrontPageShopHouseItems";
+	}
 
 }

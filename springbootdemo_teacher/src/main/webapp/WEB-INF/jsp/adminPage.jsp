@@ -8,19 +8,14 @@
 <head>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/admin.css">
 <meta charset="UTF-8">
 <title>Admin</title>
-<script>
-	$(document).ready(function() {
-		$("#retailerCRUDlink").click(function() {
-			$("#div_content").load("RetailerCRUD.jsp");
-		});
-	});
-</script>
+<style type="text/css">
+
+</style>
 </head>
 <body>
+<<<<<<< HEAD
 <<<<<<< HEAD
 	<header
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -90,11 +85,17 @@
 <%-- 						<li class="nav-item"><a class="nav-link" href="${contextRoot}/Retailer/RetailerCRUD"> <span --%>
 <!-- 								data-feather="file" id="retailerCRUDlink"></span> 商家帳號管理 -->
 >>>>>>> e34289924ad60a3b00e2a5f25f0b3021ff268257
+=======
 
-	<main>
+>>>>>>> 3dda41fcf20dc147f7fd896e2e46b376f102aca2
+
+<main>
 	<div id="div_content"> 
 	
 	</div>
-	</main>
+</main>
+
+	
+
 </body>
 </html>
