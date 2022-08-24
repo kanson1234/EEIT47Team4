@@ -56,6 +56,12 @@
 					href="${pageContext.request.contextPath}/ShopHouse/viewItems">後臺管理所有商品
 						<span class="sr-only">(current)</span>
 				</a></li>
+				
+			</ul>
+			
+		<div class="dropdown text-end">
+			<c:if test="${empty customerLoginOk && empty adminLoginOk && empty retailerLoginOk}">
+				<ul class="navbar-nav mr-auto">
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
 					data-toggle="dropdown" aria-expanded="false"> 登入 </a>
@@ -63,22 +69,77 @@
 						<a class="dropdown-item" href="${contextRoot}/loginA">管理者登入</a> <a
 							class="dropdown-item" href="${contextRoot}/loginR">商家登入</a> <a
 							class="dropdown-item" href="${contextRoot}/loginC">會員登入</a>
-						<div class="dropdown-divider"></div>
+					</div></li>
+				</ul>	
+			</c:if>
+			<c:if test="${!empty retailerLoginOk}">
+			<c:set var="retailer" value="retailerLoginOk" />
+			<div>
+			<a class="nav-link dropdown-toggle" href="#" role="button"
+					data-toggle="dropdown" aria-expanded="false">
+					<img src="${contextRoot}/showlogo/${retailerLoginOk.rid}" width="45" height="45" class="rounded-circle"> 
+					<span>${retailerLoginOk.rName }</span> 
+			</a>
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown">
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">商家資訊</a> <a
+							class="dropdown-item" href="${contextRoot}/ShopHouse/viewC2IdItems">商品管理</a> <a
+							class="dropdown-item" href="${contextRoot}/logout">登出</a>
+					</div></li>
+				</ul>
+				</div>
+			</c:if>	
+			<c:if test="${!empty customerLoginOk}">
+			<c:set var="customer" value="customerLoginOk" />
+			<div>
+			<a class="nav-link dropdown-toggle" href="#" role="button"
+					data-toggle="dropdown" aria-expanded="false">
+					<img src="${contextRoot}/downloadImage/${customerLoginOk.cId}" width="45" height="45" class="rounded-circle"> 
+					<span>${customerLoginOk.cFirstName}</span> 
+					</a>
+			
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown">
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">顧客資訊</a> 
+						<a class="dropdown-item" href="#">訂單管理</a> 
 						<a class="dropdown-item" href="${contextRoot}/logout">登出</a>
 					</div></li>
-				<li class="nav-item"><a class="nav-link disabled">Disabled</a>
-				</li>
-			</ul>
-			<%-- 			    <form class="form-inline my-2 my-lg-0" method="get" action="${pageContext.request.contextPath}/ShopHouse/findByKeyword"> --%>
-			<!-- 			      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-			<!-- 			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-			<!-- 			    </form> -->
-			<div align="right">
-				<form method="get"
-					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-					<input style="padding:5px" class="form-control mr-sm-2" type="text" name="word" /> <input
-						type="submit" name="Search" value="搜尋" />
-				</form>
+				</ul>
+				</div>
+			</c:if>	
+			<c:if test="${!empty adminLoginOk}">
+			<c:set var="admin" value="adminLoginOk" />
+			<div>
+			<a class="nav-link dropdown-toggle" href="#" role="button"
+					data-toggle="dropdown" aria-expanded="false">
+					<img src="" width="45" height="45" class="rounded-circle" alt="..."> 
+					<span>${adminLoginOk.id}</span> 
+					</a>
+			
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown">
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">後臺管理</a> 
+						<a class="dropdown-item" href="${contextRoot}/logout">登出</a>
+					</div></li>
+				</ul>
+				</div>
+			</c:if>	
+			
+			
+		</div>
+
+			<div class="row align-end">
+					<form class="row g-3" method="get" action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
+					 <div class="col-md-6">
+					<input style="padding:5px" class="form-control mr-sm-2" type="text" name="word" /> 
+					</div>
+					 <div class="col-md-4">
+					<input type="submit" name="Search" value="搜尋" />
+					</div>
+					</form>
 			</div>
 		</div>
 	</nav>

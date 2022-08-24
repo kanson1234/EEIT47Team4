@@ -23,7 +23,7 @@
 			<input type="submit" name="Search"/>
 		</form>
 		</div>
-		<a href="${contextRoot}/registerPage">註冊新帳號</a>
+		<a href="${contextRoot}/registerR">註冊新帳號</a>
 		<br/>
 		<div>
 		<table class="table">

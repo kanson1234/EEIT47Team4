@@ -223,8 +223,47 @@ public class RetailerController {
 	@PostMapping("/Retailer/editRetailer")
 	public String editMessagePage(@RequestParam Integer id, @RequestParam("rName") String rN,
 			@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, @RequestParam("rPhone") String rph,
-			@RequestParam("logo") MultipartFile logo, @RequestParam("photo") MultipartFile photo,
-			@RequestParam("rInfo") String rInfo) throws IOException {
+			@RequestParam("rLogo") MultipartFile rLogo, @RequestParam("rPhoto") MultipartFile rPhoto,
+			@RequestParam("rInfo") String rInfo,Model model) {
+		try {
+			Map<String, String> errors = new HashMap<String, String>();
+			model.addAttribute("errors", errors);
+
+			if (rN == null || rN.length() == 0) {
+				errors.put("rName", "姓名不得為空!");
+			}
+
+			if (ra == null || ra.length() == 0) {
+				errors.put("rAccount", "請輸入您的帳號!");
+			}
+
+			if (rService.findRetailerAccount(ra) != null) {
+				errors.put("used", "該帳號已被註冊!");
+			}
+
+			if (rpw == null || rpw.length() == 0) {
+				errors.put("rPwd", "請輸入您的密碼!");
+			}
+
+			if (rph == null || rph.length() == 0) {
+				errors.put("rPhone", "請輸入電話!");
+			}
+
+			if (rInfo == null || rInfo.length() == 0) {
+				errors.put("rInfo", "請輸入商家描述!");
+			}
+
+			if (rLogo.getBytes() == null) {
+				errors.put("rLogo", "請選擇一張商家Logo!");
+			}
+
+			if (rPhoto.getBytes() == null) {
+				errors.put("rPhoto", "請選擇商家照片!");
+			}
+
+			if (errors != null && !errors.isEmpty()) {
+				return "registerR";
+			}	
 		Retailer r = new Retailer();
 		Date d = new Date();
 		r.setRid(id);
@@ -234,11 +273,15 @@ public class RetailerController {
 		r.setRphone(rph);
 		r.setRdate(d);
 		r.setRstate(true);
-		r.setRphoto(photo.getBytes());
-		r.setRlogo(logo.getBytes());
+		r.setRphoto(rPhoto.getBytes());
+		r.setRlogo(rLogo.getBytes());
 		r.setRinfo(rInfo);
 		rService.insertRetailer(r);
 		return "editRetailer";
+		}catch (IOException e){
+			e.printStackTrace();
+			return "registerR";
+		}
 	}
 
 	@GetMapping("Retailer/get/{id}")
