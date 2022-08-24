@@ -6,20 +6,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/admin.css">
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/admin.css">
 <meta charset="UTF-8">
 <title>Admin</title>
+<style type="text/css">
+
+</style>
 </head>
 <body>
-	<main>
+
+
+<main>
 	<div id="div_content"> 
 	
 	</div>
-	</main>
+</main>
+
+	
+
 </body>
 </html>
