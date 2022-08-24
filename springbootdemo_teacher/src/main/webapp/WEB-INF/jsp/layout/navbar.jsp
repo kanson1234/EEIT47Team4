@@ -43,7 +43,7 @@ button {
 <body>
 
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:1;">
 		<a class="navbar-brand"
 			href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems"><img
 			width="100px" src="${contextRoot}/img/Logo1.png"></a>
