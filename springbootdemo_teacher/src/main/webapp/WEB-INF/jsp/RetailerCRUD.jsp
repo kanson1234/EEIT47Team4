@@ -12,8 +12,8 @@
 <title>Account Manager</title>
 </head>
 <body>
-<%-- <jsp:include page="layout/Sidebar.jsp" /> --%>
 <main>
+<%-- <jsp:include page="layout/Sidebar.jsp" /> --%>
 <div class="container">
 	<div align='center'>
 		<h2>Account Manager</h2>
