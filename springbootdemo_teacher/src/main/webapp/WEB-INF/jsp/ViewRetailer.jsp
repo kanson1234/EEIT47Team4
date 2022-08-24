@@ -10,23 +10,7 @@
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>ViewRetailer</title>
-<!-- <script> -->
-<!--  $(function(){ -->
-<!--      var $li = $('ul.tab-title li'); -->
-<!--          $($li. eq(0) .addClass('active').find('a').attr('href')).siblings('.tab-inner').hide(); -->
-    
-<!--          $li.click(function(){ -->
-<!--              $($(this).find('a'). attr ('href')).show().siblings ('.tab-inner').hide(); -->
-<!--             $(this).addClass('active'). siblings ('.active').removeClass('active'); -->
-<!--          }); -->
-<!--      }); -->
-<!-- </script> -->
-<!-- <script type="text/javascript"> -->
-<!-- 	var firstTabEl = document.querySelector('#myTab li:last-child a') -->
-<!-- 	var firstTab = new bootstrap.Tab(firstTabEl) -->
-	
-<!-- 	firstTab.show() -->
-<!-- </script> -->
+
 	<style type="text/css">
 			#tab {
 			    width: auto;
@@ -80,7 +64,8 @@
 			#tab-1:target ~ #tab > ul li a[href$="#tab-1"],
 			#tab-2:target ~ #tab > ul li a[href$="#tab-2"],
 			#tab-3:target ~ #tab > ul li a[href$="#tab-3"],
-			#tab-4:target ~ #tab > ul li a[href$="#tab-4"] {
+			#tab-4:target ~ #tab > ul li a[href$="#tab-4"],
+			#tab-5:target ~ #tab > ul li a[href$="#tab-5"] {
 			    background: #fff;
 			    border-radius: 5px 5px 0 0;
 			}
@@ -89,7 +74,8 @@
 			#tab-1:target ~ #tab > ul li a[href$="#tab-1"]::before,
 			#tab-2:target ~ #tab > ul li a[href$="#tab-2"]::before,
 			#tab-3:target ~ #tab > ul li a[href$="#tab-3"]::before,
-			#tab-4:target ~ #tab > ul li a[href$="#tab-4"]::before {
+			#tab-4:target ~ #tab > ul li a[href$="#tab-4"]::before,
+			#tab-5:target ~ #tab > ul li a[href$="#tab-5"]::before {
 			    background-color: white;
 			    height: 100%;
 			}
@@ -99,7 +85,8 @@
 			#tab-1:target ~ #tab > div.tab-content-1,
 			#tab-2:target ~ #tab > div.tab-content-2,
 			#tab-3:target ~ #tab > div.tab-content-3,
-			#tab-4:target ~ #tab > div.tab-content-4 {
+			#tab-4:target ~ #tab > div.tab-content-4,
+			#tab-5:target ~ #tab > div.tab-content-5 {
 			    visibility: visible;
 			    height: auto;
 			    background: #fff;
@@ -113,27 +100,27 @@
 <body>
 	<header>
 		<div align="center">店家一覽</div>
-
 	</header>
 	<main>
-	<div class="container" align="center">
+<div class="container" align="center">
 		<span id="tab-1">主頁</span>
 		<span id="tab-2">頁面1</span>
 		<span id="tab-3">頁面2</span>
 		<span id="tab-4">頁面3</span>
+		<span id="tab-5">頁面4</span>
 		
 		<!-- 頁籤按鈕 -->
 		<div id="tab">
 		    <ul>
 		        <li><a href="#tab-1">主頁</a></li>
-		        <li><a href="#tab-2">j開頭</a></li>
-		        <li><a href="#tab-3">A開頭</a></li>
-		        <li><a href="#tab-4">W開頭</a></li>
+		        <li><a href="#tab-2">A開頭</a></li>
+		        <li><a href="#tab-3">C開頭</a></li>
+		        <li><a href="#tab-4">S開頭</a></li>
+		         <li><a href="#tab-5">T開頭</a></li>
 		    </ul>
 		
 		    <!-- 頁籤的內容區塊 -->
 		    <div class="tab-content-1">
-<!-- 		     <div class="container" > -->
 				<div class="row" align="center">
 					<c:forEach items="${listRetailer}" var="retailer">
 						<div class="card" style="width: 17rem;">
@@ -148,27 +135,9 @@
 						</div>
 					</c:forEach>
 				</div>
-<!-- 			</div> -->
+				<hr/>
 		    </div>
 		    <div class="tab-content-2">
-		      <div class="row" align="center">
-					<c:forEach items="${listRetailer}" var="retailer">
-					<c:if test='${fn:startsWith(retailer.rName,"j")||fn:startsWith(retailer.rName,"J")}'>
-						<div class="card" style="width: 17rem;">
-							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
-							<img src="${contextRoot}/showlogo/${retailer.rid}" 
-							class="card-img-top" alt="...">
-							</a>
-							<div class="card-body">
-								<p class="card-text">${retailer.rName}</p>
-							</div>
-		
-						</div>
-						</c:if>
-					</c:forEach>
-				</div>
-		    </div>
-		    <div class="tab-content-3">
 		      <div class="row" align="center">
 					<c:forEach items="${listRetailer}" var="retailer">
 					<c:if test='${fn:startsWith(retailer.rName,"A")||fn:startsWith(retailer.rName,"a")}'>
@@ -185,12 +154,12 @@
 						</c:if>
 					</c:forEach>
 				</div>
+				<hr/>
 		    </div>
-		    
-		    <div class="tab-content-4">
-		       <div class="row" align="center">
+		    <div class="tab-content-3">
+		      <div class="row" align="center">
 					<c:forEach items="${listRetailer}" var="retailer">
-					<c:if test='${fn:startsWith(retailer.rName,"W")}'>
+					<c:if test='${fn:startsWith(retailer.rName,"C")||fn:startsWith(retailer.rName,"c")}'>
 						<div class="card" style="width: 17rem;">
 							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
 							<img src="${contextRoot}/showlogo/${retailer.rid}" 
@@ -204,74 +173,54 @@
 						</c:if>
 					</c:forEach>
 				</div>
+				<hr/>
 		    </div>
+		    
+		    <div class="tab-content-4">
+		       <div class="row" align="center">
+					<c:forEach items="${listRetailer}" var="retailer">
+					<c:if test='${fn:startsWith(retailer.rName,"S")||fn:startsWith(retailer.rName,"s")}'>
+						<div class="card" style="width: 17rem;">
+							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
+							<img src="${contextRoot}/showlogo/${retailer.rid}" 
+							class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class="card-text">${retailer.rName}</p>
+							</div>
+		
+						</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				<hr/>
+		    </div>
+		    
+		    <div class="tab-content-5">
+		       <div class="row" align="center">
+					<c:forEach items="${listRetailer}" var="retailer">
+					<c:if test='${fn:startsWith(retailer.rName,"T")||fn:startsWith(retailer.rName,"t")}'>
+						<div class="card" style="width: 17rem;">
+							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
+							<img src="${contextRoot}/showlogo/${retailer.rid}" 
+							class="card-img-top" alt="...">
+							</a>
+							<div class="card-body">
+								<p class="card-text">${retailer.rName}</p>
+							</div>
+		
+						</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				<hr/>
+		    </div>
+		    
 	</div>
-<!-- 	<ul class="nav nav-tabs" id="myTab" role="tablist"> -->
-<!-- 	  <li class="nav-item" role="presentation"> -->
-<!-- 	    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button> -->
-<!-- 	  </li> -->
-<!-- 	  <li class="nav-item" role="presentation"> -->
-<!-- 	    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button> -->
-<!-- 	  </li> -->
-<!-- 	  <li class="nav-item" role="presentation"> -->
-<!-- 	    <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Messages</button> -->
-<!-- 	  </li> -->
-<!-- 	  <li class="nav-item" role="presentation"> -->
-<!-- 	    <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button> -->
-<!-- 	  </li> -->
-<!-- 	</ul> -->
+</div>
 
-<!-- 	<div class="tab-content"> -->
-<!-- 	  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab"> -->
-<!-- 	  <div class="container" align="center"> -->
-<!-- 		<div class="row"> -->
-<%-- 			<c:forEach items="${listRetailer}" var="retailer"> --%>
-<!-- 				<div class="card" style="width: 18rem;"> -->
-<%-- 					<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}"> --%>
-<%-- 					<img src="${contextRoot}/showlogo/${retailer.rid}"  --%>
-<!-- 					class="card-img-top" alt="..."> -->
-<!-- 					</a> -->
-<!-- 					<div class="card-body"> -->
-<%-- 						<p class="card-text">${retailer.rName}</p> --%>
-<!-- 					</div> -->
-
-<!-- 				</div> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- 	  </div> -->
-<!-- 	  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div> -->
-<!-- 	  <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div> -->
-<!-- 	  <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">...</div> -->
-<!-- 	</div> -->
-
-
-<!-- 	<div class="container" align="center"> -->
-<!-- 		<div class="row"> -->
-<%-- 			<c:forEach items="${listRetailer}" var="retailer"> --%>
-<!-- 				<div class="card" style="width: 18rem;"> -->
-<%-- 					<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}"> --%>
-<%-- 					<img src="${contextRoot}/showlogo/${retailer.rid}"  --%>
-<!-- 					class="card-img-top" alt="..."> -->
-<!-- 					</a> -->
-<!-- 					<div class="card-body"> -->
-<%-- 						<p class="card-text">${retailer.rName}</p> --%>
-<!-- 					</div> -->
-
-<!-- 				</div> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</div> -->
-<!-- 	</div> -->
 
 	</main>
-<!-- 	<script type="text/javascript"> -->
-<!--          $(".nav-link").click(function(){ -->
-<!--          	console.log("xx"); -->
-<!--          	$($(this).addClass('active').find('button').attr('data-bs-target')).siblings('.tab-pane fade').hide(); -->
-<!--              $($(this).find('button'). attr ('aria-controls')).show().siblings ('.tab-pane').hide(); -->
-<!--              $(this).addClass('active'). siblings ('.active').removeClass('active'); -->
-<!--          }); -->
 
-<!-- </script> -->
 </body>
 </html>
