@@ -49,9 +49,6 @@ public class ShopHouseService {
 		return null;
 	}
 
-	// 查詢C2ID的商品
-//	public 
-
 	// 查詢全部
 	public List<ShopHouseBean> findAllItem() {
 		return sDao.findAll();
@@ -97,5 +94,13 @@ public class ShopHouseService {
 		Page<ShopHouseBean> page = sDao.findAll(pgb);
 		return page;
 	}
-
+	
+	//價格排序由大至小
+	public List<ShopHouseBean> getByOrderByPriceDesc(){
+		return sDao.getByOrderByPriceDesc();
+	}
+	//價格排序由小至大
+	public List<ShopHouseBean> getByOrderByPriceAsc(){
+		return sDao.getByOrderByPriceAsc();
+	}
 }

@@ -45,11 +45,11 @@
 
 				<div class="mb-3">
 
-					<label class="form-label">名稱: <input type="text" id="itemName" name="itemName"></label> 
-					<label class="form-label">圖片:<input type="file" name="file" accept="image/*" id="imgInp"><img width="100" id="img" src="" /></label>
-					<label class="form-label">價錢:<input id="itemPrice" name="itemPrice"></label> 
-					<label class="form-label">種類:<input id="classify" name="classify"></label> 
-					<label class="form-label">上架:<input id="State" name="State"></label>
+					<label class="form-label">名稱: <input class="form-control" type="text" id="itemName" name="itemName"></label> 
+					<label class="form-label">圖片:<input class="form-control" type="file" name="file" accept="image/*" id="imgInp"><img width="100" id="img" src="" /></label>
+					<label class="form-label">價錢:<input class="form-control" id="itemPrice" name="itemPrice"></label> 
+					<label class="form-label">種類:<input class="form-control" id="classify" name="classify"></label> 
+					<label class="form-label">上架:<input class="form-control" id="State" name="State"></label>
 				    <label class="form-label"><input type="hidden" id="c2Id" name="c2Id" value="${c2Id}"></label></div>
 					<button type="submit" class="btn btn-lg btn-primary">確認</button>
 					<hr>

@@ -19,13 +19,20 @@
 }
 
 .left {
-	width: 50%;
+	width: 45%;
 	height: 200px;
 }
 
 .right {
-	width: 35%;
+	width: 55%;
 	height: 200px;
+}
+
+.size{
+    width: 20%;
+}
+.mainSize{
+     width:150%;
 }
 </style>
 </head>
@@ -44,7 +51,7 @@
 			<div class="wrap">
 
 				<div class="left" style="width: 18rem;">
-					<img width="100"
+					<img class="mainSize"
 						src="${pageContext.request.contextPath}/downloadImg/${shopHouseItem.id}"
 						class="card-img-top" alt="...">
 
@@ -72,10 +79,19 @@
 						<input type="number" value="1" id="num"> <input
 							type="hidden" value="${shopHouseItem.id}" id="itid">
 					</div>
-					<div>你可能會喜歡...</div>
-					
+					<div>你可能也會喜歡...</div>
+                    <c:forEach items="${category}" begin="1" end="3" var="x">
+					<a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${x.id}"><img
+						class="size" src="${pageContext.request.contextPath}/downloadImg/${x.id}" class="card-img-top"
+						alt="..."></a>
+					</c:forEach>	
 				</div>
 			</div>
+			<hr>
+			
+					<div class="card">
+			<div class="card-header">留言板</div>
+			<div class="card-body">
 		</div>
 		<c:forEach items="${shopHouseItem.message}" var="m">
 			<div class="row justify-content-center">
@@ -93,9 +109,7 @@
 		</c:forEach>
 
 
-		<div class="card">
-			<div class="card-header">留言板</div>
-			<div class="card-body">
+
 
 
 				<form>
@@ -107,7 +121,7 @@
 			</div>
 		</div>
 
-													<form>
+													
 														<!--
 														action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
 														method="post"> -->
@@ -153,11 +167,11 @@
 								// findAllByTime
 								$('#addToCar').click(
 									function () {
-										alert('addToCar')
+										alert('成功加入購物車')
 										var num = document.getElementById('num').value;
-										alert(num)
+// 										alert(num)
 										var itid = document.getElementById('itid').value;
-										alert(itid)
+// 										alert(itid)
 										// var dtoObj = {
 										// 	"num": num,
 										// 	"itid":itid

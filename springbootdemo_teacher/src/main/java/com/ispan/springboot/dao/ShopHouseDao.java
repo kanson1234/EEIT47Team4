@@ -33,6 +33,12 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	@Query(value="select * FROM StoreHouse WHERE C2_Id=:id",nativeQuery = true)
 	public List<ShopHouseBean> findByC2Id( Integer id);
 	
+	//價格排序由大至小
+	public List<ShopHouseBean> getByOrderByPriceDesc();
+	
+	//價格排序由小至大
+	public List<ShopHouseBean> getByOrderByPriceAsc();
+	
 }	
 
 

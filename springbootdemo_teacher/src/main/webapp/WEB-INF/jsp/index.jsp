@@ -14,31 +14,31 @@
 </head>
 <body>
 <header>
-<h1>首頁</h1>
-<ul>
-<li><a href="${contextRoot}/ShopHouse/viewItems">所有商品</a></li>
-<li><a href="${contextRoot}/shopHouse/add">新增商品</a></li>
-<li><a href="${contextRoot}/ShopHouse/findItemById">查詢商品</a></li>
-<li><a href="${contextRoot}/Retailer/RetailerCRUD">查詢商家</a></li>
-<li><a href="${contextRoot}/registerR">註冊新商家</a></li>
-<li><a href="${contextRoot}/registerC">註冊新會員</a></li>
-</ul>
+<!-- <h1>首頁</h1> -->
+<!-- <ul> -->
+<%-- <li><a href="${contextRoot}/ShopHouse/viewItems">所有商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/shopHouse/add">新增商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/ShopHouse/findItemById">查詢商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/Retailer/RetailerCRUD">查詢商家</a></li> --%>
+<%-- <li><a href="${contextRoot}/registerR">註冊新商家</a></li> --%>
+<%-- <li><a href="${contextRoot}/registerC">註冊新會員</a></li> --%>
+<!-- </ul> -->
 </header>
 <main>
 <section class="py-5 text-center container">
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="${contextRoot}/img/4.jpg" width="400" height="400" class="d-block w-100" alt="">
+      <img src="${contextRoot}/img/4.jpg" width="300" height="350" class="d-block w-100" alt="">
     </div>
     <div class="carousel-item">
-      <img src="${contextRoot}/img/3.jpg" width="400" height="400" class="d-block w-100" alt="">
+      <img src="${contextRoot}/img/3.jpg" width="300" height="350" class="d-block w-100" alt="">
     </div>
      <div class="carousel-item">
-      <img src="${contextRoot}/img/1.png" width="400" height="400" class="d-block w-100" alt="">
+      <img src="${contextRoot}/img/1.png" width="300" height="350" class="d-block w-100" alt="">
     </div>
      <div class="carousel-item">
-      <img src="${contextRoot}/img/5.jpg" width="400" height="400" class="d-block w-100" alt="">
+      <img src="${contextRoot}/img/5.jpg" width="300" height="350" class="d-block w-100" alt="">
     </div>
 <!--     <div class="carousel-item"> -->
 <!--       <img src="" class="d-block w-100" alt=""> -->

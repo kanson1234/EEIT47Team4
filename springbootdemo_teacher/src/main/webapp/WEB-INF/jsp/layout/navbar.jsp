@@ -6,6 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.navSearch {
+	display: flex;
+	align-items: center;
+	margin-left: auto; input ,button{ border : none;
+	outline: none;
+	height: 30px;
+	background-color: #ffffff;
+}
+
+input {
+	padding-left: 12px;
+	width: 80%;
+	border-radius: 100px 0 0 100px;
+}
+
+button {
+	width: 20%;
+	border-radius: 0 100px 100px 0;
+	cursor: pointer;
+}
+
+.fa-search {
+	color: #555555; &: hover { color : #26ff93;
+	transition: all 0.3s;
+}
+}
+}
+</style>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -16,7 +45,9 @@
 
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems">首頁</a>
+		<a class="navbar-brand"
+			href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems"><img
+			width="100px" src="${contextRoot}/img/Logo1.png"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -74,10 +105,10 @@
 			<!-- 			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
 			<!-- 			    </form> -->
 			<div align="right">
-				<form method="get"
-					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-					<input style="padding:5px" class="form-control mr-sm-2" type="text" name="word" /> <input
-						type="submit" name="Search" value="搜尋" />
+				<form method="get" class="form-inline my-2 my-lg-0"
+					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword"> 
+					<input style="padding: 5px" class="form-control mr-sm-2" type="text" placeholder="Coleman"
+						name="word" /> <input type="submit" name="Search" value="搜尋" class="btn btn-outline-success my-2 my-sm-0"/>
 				</form>
 			</div>
 		</div>
