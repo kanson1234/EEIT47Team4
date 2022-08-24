@@ -33,8 +33,8 @@
 	<jsp:include page="layout/navbar.jsp" />
 	<div align='center'>
 		<form action="${contextRoot}/findCustomerByKeywords" method="get" enctype="multipart/form-data">
-			<input type="text" name="keywords" placeholder="輸入會員姓、名或帳號" maxlength="20" size="20"><br>
-			<button class="btn btn-primary">搜尋會員資訊</button>
+			<input type="text" name="keywords" placeholder="輸入會員姓、名或帳號" maxlength="30" size="30"><br>
+			<button class="btn btn-outline-success">搜尋會員資訊</button>
 		</form>
 	</div>
 	<div>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>我的個人資料</title>
+<title>修改個人資料</title>
 
 <!-- bootstrap 5.1.3 JS -->
 <script
@@ -36,33 +36,34 @@
 						class="form-control" name="customerId"
 						value="${oneCustomer.getcId()}">
 
-					<div>帳號:</div>
+					<div>
+						<font size="4">帳號:</font>
+					</div>
 					<div>${oneCustomer.getcAccount()}</div>
 
-					<label class="form-label">密碼:</label> <input type="text"
-						class="form-control" name="cPwd" value="${oneCustomer.getcPwd()}">
+					<label class="form-label"><font size="4">密碼:</font></label> <input
+						type="text" class="form-control" name="cPwd"
+						value="${oneCustomer.getcPwd()}">
 					<p style="color: red;">${errors.cPwd}</p>
-					<label class="form-label">姓:</label> <input type="text"
-						class="form-control" name="cFirstName"
+					<label class="form-label"><font size="4">姓:</font></label> <input
+						type="text" class="form-control" name="cFirstName"
 						value="${oneCustomer.getcFirstName()}">
 					<p style="color: red;">${errors.cFirstName}</p>
-					<label class="form-label">名:</label> <input type="text"
-						class="form-control" name="cLastName"
+					<label class="form-label"><font size="4">名:</font></label> <input
+						type="text" class="form-control" name="cLastName"
 						value="${oneCustomer.getcLastName()}">
 					<p style="color: red;">${errors.cLastName}</p>
-					<label class="form-label">生日:</label>
-					<fmt:formatDate pattern="yyyy/MM/dd"
-						value="${oneCustomer.getcBirthdate()}" />
-					<input type="date" class="form-control" name="cbDate"
-						value="">
+					<label class="form-label"><font size="4">生日:</font></label> <input
+						type="date" class="form-control" name="cbDate" value="">
 					<p style="color: red;">${errors.cbDate}</p>
-					<label class="form-label">個人電子信箱:</label> <input type="text"
-						class="form-control" name="cEmail"
+					<label class="form-label"><font size="4">個人電子信箱:</font></label> <input
+						type="text" class="form-control" name="cEmail"
 						value="${oneCustomer.getcEmail()}">
 					<p style="color: red;">${errors.cEmail}</p>
-					<label class="form-label">個人圖片:</label> <input type="file"
-						accept="image/*" name="cImg" id="imgInp"><img width="350"
-						id="img" src="${contextRoot}/downloadImage/${oneCustomer.cId}" />
+					<label class="form-label"><font size="4">個人圖片:</font></label> <input
+						type="file" accept="image/*" name="cImg" id="imgInp"><img
+						width="350" id="img"
+						src="${contextRoot}/downloadImage/${oneCustomer.cId}" />
 					<p style="color: red;">${errors.cImg}</p>
 
 				</div>
@@ -89,6 +90,9 @@
 			event.preventDefault(); //取消預設行為
 			window.location.replace("http://localhost:8080/"); //返回特定頁面
 		})
+
+		var dateControl = document.querySelector('input[type="date"]');
+		dateControl.value = '${oneCustomer.getcBirthdate()}'
 	</script>
 
 </body>

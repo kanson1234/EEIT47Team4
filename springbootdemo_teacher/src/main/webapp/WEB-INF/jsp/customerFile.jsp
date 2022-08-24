@@ -28,27 +28,26 @@
 					class="form-control" name="customerId"
 					value="${oneCustomer.getcId()}"> <label class="form-label"></label>
 				<img width="350" id="img"
-					src="${contextRoot}/downloadImage/${oneCustomer.cId}" />
-					<br>
+					src="${contextRoot}/downloadImage/${oneCustomer.cId}" /> <br>
 
-				<div>帳號:</div>
-				<div>${oneCustomer.getcAccount()}</div>
-
-				<label class="form-label">密碼:</label> <input type="password"
-					class="form-control" name="cPwd" readonly="readonly"
-					value="${oneCustomer.getcPwd()}"> <label class="form-label">姓:</label>
-				<input type="text" class="form-control" name="cFirstName"
+				<label class="form-label"><font size="4">帳號:</font></label> <input
+					type="text" class="form-control" name="cAccount"
+					readonly="readonly" value="${oneCustomer.getcAccount()}"> <label
+					class="form-label"><font size="4">密碼:</font></label> <input
+					type="password" class="form-control" name="cPwd"
+					readonly="readonly" value="${oneCustomer.getcPwd()}"> <label
+					class="form-label"><font size="4">姓:</font></label> <input
+					type="text" class="form-control" name="cFirstName"
 					readonly="readonly" value="${oneCustomer.getcFirstName()}">
-				<label class="form-label">名:</label> <input type="text"
-					class="form-control" name="cLastName" readonly="readonly"
-					value="${oneCustomer.getcLastName()}"> <label
-					class="form-label">生日:</label>
-				<fmt:formatDate pattern="yyyy/MM/dd"
-					value="${oneCustomer.getcBirthdate()}" />
-				<input type="date" class="form-control" name="cbDate"
-					readonly="readonly" value=""> <label class="form-label">個人電子信箱:</label>
-				<input type="text" class="form-control" name="cEmail"
-					readonly="readonly" value="${oneCustomer.getcEmail()}">
+				<label class="form-label"><font size="4">名:</font></label> <input
+					type="text" class="form-control" name="cLastName"
+					readonly="readonly" value="${oneCustomer.getcLastName()}">
+				<label class="form-label">生日</label> <input type="date"
+					class="form-control" name="cbDate" value="" id="cDate"
+					readonly="readonly"> <label class="form-label"><font
+					size="4">個人電子信箱:</font></label> <input type="text" class="form-control"
+					name="cEmail" readonly="readonly"
+					value="${oneCustomer.getcEmail()}">
 
 			</div>
 			<a href="${contextRoot}/customer/editOne">
@@ -85,5 +84,8 @@
 		// 			}
 		// 			$(this).toggleClass('fa-eye').toggleClass('fa-eye-slash');
 		// 		});
+
+		var dateControl = document.querySelector('input[type="date"]');
+		dateControl.value = '${oneCustomer.getcBirthdate()}'
 	</script>
 </html>

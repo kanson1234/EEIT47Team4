@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -53,6 +52,10 @@
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.request.contextPath}/ShopHouse/viewItems">後臺管理所有商品
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.request.contextPath}">所有留言
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<!-- 				<li class="nav-item dropdown"><a -->
@@ -127,14 +130,13 @@
 					<c:set var="admin" value="adminLoginOk" />
 					<div>
 						<a class="nav-link dropdown-toggle" href="#" role="button"
-							data-toggle="dropdown" aria-expanded="false"> <img src=""
-							width="45" height="45" class="rounded-circle" alt="..."> <span>${adminLoginOk.id}</span>
+							data-toggle="dropdown" aria-expanded="false"><span>${adminLoginOk.firstName}</span>
 						</a>
 
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">後臺管理</a> <a
+									<a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a> <a
 										class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
