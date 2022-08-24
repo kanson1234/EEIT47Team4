@@ -1,5 +1,6 @@
 package com.ispan.springboot.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -29,8 +30,7 @@ public class ShoppingRecord {
 	@Column(name = "sr_shoppingrecord_id")
 	private Integer srShoppingRecord_Id;
 
-	
-	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss",timezone = "Asia/Taipei") // JSON
+	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "Asia/Taipei") // JSON
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss") // SpringMVC
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "sr_time")
@@ -97,10 +97,7 @@ public class ShoppingRecord {
 	}
 
 	public Date getSrtime() {
-		
-		
-		
-		
+
 		return srtime;
 	}
 

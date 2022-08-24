@@ -6,12 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ispan.springboot.dao.ShoppingRecordDao;
@@ -23,15 +24,85 @@ import com.ispan.springboot.model.ShoppingRecord;
 import com.ispan.springboot.service.SrService;
 
 @SessionAttributes(names = { "customerLoginOk", "adminLoginOk", "retailerLoginOk" })
-@RestController
+@Controller
 public class SrController {
 	@Autowired
 	private SrService SrService;
 
 	@Autowired
 	private ShoppingRecordDao srDao;
+//	---------------------------------------------------------------------------------
 
-	//
+	@GetMapping("/Admin/SalesRecord3")
+	private String findAllByTime(Model model) {
+		List<ShoppingRecord> findAllToA1 = SrService.findAllByTime();
+		model.addAttribute("data", findAllToA1);
+
+		return "AdminSR2";
+	}
+
+	@GetMapping("/findbyKeyWord")
+	private String findbyKeyWord(Model model, @RequestParam(name = "keyword") String keyword) {
+		System.out.println(keyword);
+
+		int intKeyWord = 0;
+
+		try {
+			intKeyWord = Integer.parseInt(keyword);
+		} catch (Exception e) {
+
+		}
+		// 卻認為商家
+		if (1000000 <= intKeyWord & intKeyWord < 2000000) {
+			System.out.println("C2_ID " + keyword);
+			List<ShoppingRecord> findAllToA1ByC2 = srDao.findALLByc2id(intKeyWord);
+			model.addAttribute("data", findAllToA1ByC2);
+
+			return "AdminSR-findby-c2";
+			// 卻認為客戶
+		} else if (2000000 <= intKeyWord) {
+			System.out.println("C1_ID " + keyword);
+			List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(intKeyWord);
+			model.addAttribute("data", findAllToA1ByC1);
+			return "AdminSR-findby-c1";
+			// 卻認為其他
+		} else if (intKeyWord < 1000000) {
+			System.out.println(" str " + keyword);
+//			商品查找
+			List<ShoppingRecord> findByitemNameLike = SrService.findByitemNameLike(keyword);
+			model.addAttribute("data", findByitemNameLike);
+
+			if (!findByitemNameLike.isEmpty()) {
+				System.err.println(" not id " + keyword);
+				
+				
+				return "AdminSR-findby-it-Name";
+			}
+			return "AdminSR-findby-it-Name";
+		}
+		model.addAttribute("data", null);
+		return "AdminSR2";
+
+	}
+
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+//========================================================================================================================================================
+	@ResponseBody
 	@GetMapping("record/add")
 	public ShoppingRecord addSR(Model model) {
 		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
@@ -62,14 +133,10 @@ public class SrController {
 	}
 
 	// find all sr to A1
-	@GetMapping("/admin/record/findallbytime")
-	private List<ShoppingRecord> findAllByTime() {
-		return SrService.findAllByTime();
-	}
 
 	// find all sr to C1
 	@GetMapping("record/findallbyCid")
-	private List<ShoppingRecord> findallbyC1id(Model model) {
+	private List<ShoppingRecord> findallbyC1id(Model model, @RequestParam(name = "cid") Integer ci) {
 
 		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
 		Integer cid = customerSession.getcId();
@@ -84,27 +151,7 @@ public class SrController {
 
 	}
 
-	// find all sr to A1
-	@GetMapping("Admin/record/findallbyCid")
-	private List<ShoppingRecord> findallbyC1id(@RequestParam(name = "cid") Integer cid) {
-
-		List<ShoppingRecord> findAllByC1_id = SrService.findAllByC1_id(cid);
-		System.out.println(findAllByC1_id.isEmpty());
-		if (findAllByC1_id.isEmpty()) {
-			return null;
-		} else {
-			return findAllByC1_id;
-		}
-
-	}
-	// find all by C2ID to a1
-		@GetMapping("admin/record/c2id") // findbyc2id
-		private List<ShoppingRecord> findALLByc2id(@RequestParam(name = "c2id") Integer c2id) {
-			
-			return srDao.findALLByc2id(c2id);
-		}
 	
-
 	// find all sr to C2
 	@GetMapping("/record/c2id") // findbyc2id
 	private List<ShoppingRecord> findALLByc2id(Model model) {
@@ -139,7 +186,7 @@ public class SrController {
 
 		String dateS = dateDto.getDateStar();
 		String dateE = dateDto.getDateEnd();
-		
+
 		System.out.println(dateS);
 		System.out.println(dateE);
 

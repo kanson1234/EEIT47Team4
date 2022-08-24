@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
@@ -16,7 +15,7 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>會員中心</title>
+<title>平台管理頁面</title>
 
 <!-- <link rel="canonical" href="https://bootstrap5.hexschool.com/docs/5.1/examples/dashboard/"> -->
 
@@ -41,9 +40,9 @@
 
 
 <!-- Bootstrap core CSS -->
-<!--                 <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" -->
-<!--                     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" -->
-<!--                     crossorigin="anonymous"> -->
+<!-- <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
+                    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+                    crossorigin="anonymous"> -->
 
 <!-- Favicons -->
 <!-- <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -54,7 +53,18 @@
                 <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
                 <meta name="theme-color" content="#7952b3"> -->
 
+
+
+
 <style>
+table tbody tr td {
+	vertical-align: middle;
+}
+
+.i {
+	vertical-align: middle;
+}
+
 /* .bd-placeholder-img {
                     font-size: 1.125rem;
                     text-anchor: middle;
@@ -71,43 +81,49 @@
 </style>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Custom styles for this template -->
 <!-- <link href="dashboard.css" rel="stylesheet"> -->
 </head>
 
 <body>
-	<!-- C1SearchBar -->
-	<jsp:include page="C1Bar\C1SearchBar.jsp" />
-	<!-- C1SearchBar -->
+	<!-- SearchBar -->
+	<jsp:include page="AdminBar/SearchBar.jsp" />
+	<!-- SearchBar -->
 
 	<div class="container-fluid">
 		<div class="row">
 
-			<!-- C1SideBar -->
-			<jsp:include page="C1Bar\C1SideBar.jsp" />
-			<!-- C1SideBar -->
+			<!-- AdminSideBar -->
+			<jsp:include page="AdminBar/AdminSideBar.jsp" />
+			<!-- AdminSideBar -->
 
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-				<c:if test="${!empty findAllToA1}">
-					<h2>購物紀錄</h2>
-				</c:if>
+				<!-- outputbar -->
+				<jsp:include page="AdminBar/outputbar.jsp" />
+				<!-- outputbar -->
 
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+					<!-- timeBar -->
+					<jsp:include page="AdminBar/timeBar.jsp" />
+					<!-- timeBar -->
+
+				</div>
+
+				<h2>所有交易紀錄</h2>
 				<div class="table-responsive">
 					<table class="table table-striped table-sm">
 						<thead>
 							<tr>
+								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">消費者ID</th>
+								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">消費時間</th>
+								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">購買數量</th>
+								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品ID</th>
 								<th scope="col"
 									style="vertical-align: middle; vertical-align: top">商品名稱</th>
 								<th scope="col"
@@ -115,37 +131,57 @@
 								<th scope="col"
 									style="vertical-align: middle; vertical-align: top">價格</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top">購買數量</th>
+									style="vertical-align: middle; vertical-align: top">商品分類</th>
+								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">廠商ID</th>
 								<th scope="col"
 									style="vertical-align: middle; vertical-align: top">廠商名稱</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top"></th>
+									style="vertical-align: middle; vertical-align: top">成交狀況</th>
 							</tr>
 						</thead>
 						<tbody>
-							<h2>我的購物車</h2>
+							<c:if test="${empty data}">
+								<h2>無交易紀錄</h2>
+							</c:if>
+
 							<c:forEach items="${data}" var="findall">
 								<tr>
-									<td style="vertical-align: middle;">
-										${findall.shophousebean.itemName}</td>
+
+									<td style="vertical-align: middle;">${findall.customer.cId}</td>
+									<td style="vertical-align: middle;"><fmt:formatDate
+											pattern="yyyy/MM/dd HH:mm:ss" value="${findall.srtime}" /></td>
+
+
+									<td style="vertical-align: middle;">${findall.srCount}</td>
+									<td style="vertical-align: middle;">${findall.shophousebean.id}
+									</td>
+									<td style="vertical-align: middle;">${findall.shophousebean.itemName}
+									</td>
 									<td style="vertical-align: middle;"><a
-										href="${pageContext.request.contextPath}/ShopHouse/itemDetail/"
-										+${findall.shophousebean.id}><img width="150"
+										href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${findall.shophousebean.id}"><img
+											width="150"
 											src="${pageContext.request.contextPath}/downloadImg/${findall.shophousebean.id}"></a>
 									</td>
-									<td style="vertical-align: middle;">${findall.shophousebean.price}
+									<td style="vertical-align: middle;">${findall.shophousebean.price}</td>
+									<td style="vertical-align: middle;">${findall.shophousebean.classify}
 									</td>
-									<td style="vertical-align: middle;">${findall.scCount}</td>
-
-									<td style="vertical-align: middle;"><a
-										href="${pageContext.request.contextPath}/retailerGetAllItem?id=${findall.shophousebean.retailerBean.rid }">
-											${findall.shophousebean.retailerBean.rName} </a></td>
+									<td style="vertical-align: middle;">
+										${findall.shophousebean.retailerBean.rid}</td>
+									<td style="vertical-align: middle;">
+										${findall.shophousebean.retailerBean.rName}</td>
+									<c:if test="${findall.srState==true}">
+										<td style="vertical-align: middle;">成交</td>
+									</c:if>
+									<c:if test="${findall.srState==false}">
+										<td style="vertical-align: middle;">退貨</td>
+									</c:if>
 									<!-- <td style="vertical-align:middle;">${findall.srState}</td> -->
+
+
+
 								</tr>
 							</c:forEach>
-							<c:if test="${!empty data}">
-								<form:button>結帳</form:button>
-							</c:if>
 
 						</tbody>
 					</table>
@@ -155,9 +191,9 @@
 	</div>
 
 
-	<!--                 <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" -->
-	<!--                     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" -->
-	<!--                     crossorigin="anonymous"></script> -->
+	<!-- <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                    crossorigin="anonymous"></script> -->
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
@@ -167,7 +203,7 @@
 		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
 		integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
 		crossorigin="anonymous"></script>
-	<!--                 <script src="dashboard.js"></script> -->
+	<!-- <script src="dashboard.js"></script> -->
 </body>
 
 </html>

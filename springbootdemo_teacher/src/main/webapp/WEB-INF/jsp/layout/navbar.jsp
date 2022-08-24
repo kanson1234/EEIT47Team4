@@ -5,14 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet" />
-
-
 </head>
 <body>
+
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems">首頁</a>
@@ -55,6 +53,10 @@
 					href="${pageContext.request.contextPath}/ShopHouse/viewItems">後臺管理所有商品
 						<span class="sr-only">(current)</span>
 				</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.request.contextPath}/Member/MemberCenter">會員中心
+						<span class="sr-only">(current)</span>
+				</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
 					data-toggle="dropdown" aria-expanded="false"> 登入 </a>
@@ -75,7 +77,7 @@
 			<div align="right">
 				<form method="get"
 					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-					<input class="form-control mr-sm-2" type="text" name="word" /> <input
+					<input style="padding:5px" class="form-control mr-sm-2" type="text" name="word" /> <input
 						type="submit" name="Search" value="搜尋" />
 				</form>
 			</div>

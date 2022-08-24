@@ -81,12 +81,23 @@ public class pageController {
 	public String srselectpage() {
 		return "srselectpage";
 	}
+	@GetMapping("/Member/MemberCenter")
+	public String MemberCenter() {
+		return "MemberCenter";
+	}
+	
+	
 
 	@GetMapping("/record/srselectpageALL")
 	public String srselectpageALL() {
 		return "srselectpageALL";
 	}
 
+	@GetMapping("/Admin/SalesRecord")
+	public String AdminSR() {
+		return "AdminSR";
+	}
+	
 
 	@GetMapping("/gotoShoppingCar")
 	public String ShoppingCar() {

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
@@ -8,7 +7,6 @@
 
 <jsp:include page="layout/navbar.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,43 +107,65 @@
 						<thead>
 							<tr>
 								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">消費時間</th>
+								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">購買數量</th>
+								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品ID</th>
+								<th scope="col"
 									style="vertical-align: middle; vertical-align: top">商品名稱</th>
 								<th scope="col"
 									style="vertical-align: middle; vertical-align: top">商品圖片</th>
 								<th scope="col"
 									style="vertical-align: middle; vertical-align: top">價格</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top">購買數量</th>
+									style="vertical-align: middle; vertical-align: top">商品分類</th>
+								<th scope="col"
+									style="vertical-align: middle; vertical-align: top">廠商ID</th>
 								<th scope="col"
 									style="vertical-align: middle; vertical-align: top">廠商名稱</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top"></th>
+									style="vertical-align: middle; vertical-align: top">成交狀況</th>
 							</tr>
 						</thead>
 						<tbody>
-							<h2>我的購物車</h2>
+							<c:if test="${empty data}">
+								<h2>無交易紀錄</h2>
+							</c:if>
 							<c:forEach items="${data}" var="findall">
 								<tr>
-									<td style="vertical-align: middle;">
-										${findall.shophousebean.itemName}</td>
+									<td style="vertical-align: middle;"><fmt:formatDate
+											pattern="yyyy/MM/dd HH:mm:ss" value="${findall.srtime}" /></td>
+									<td style="vertical-align: middle;">${findall.srCount}</td>
+									<td style="vertical-align: middle;">${findall.shophousebean.id}
+									</td>
+									<td style="vertical-align: middle;">${findall.shophousebean.itemName}
+									</td>
 									<td style="vertical-align: middle;"><a
-										href="${pageContext.request.contextPath}/ShopHouse/itemDetail/"
-										+${findall.shophousebean.id}><img width="150"
+										href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${findall.shophousebean.id}"><img
+											width="150"
 											src="${pageContext.request.contextPath}/downloadImg/${findall.shophousebean.id}"></a>
 									</td>
-									<td style="vertical-align: middle;">${findall.shophousebean.price}
+									<td style="vertical-align: middle;">${findall.shophousebean.price}</td>
+									<td style="vertical-align: middle;">${findall.shophousebean.classify}
 									</td>
-									<td style="vertical-align: middle;">${findall.scCount}</td>
-
-									<td style="vertical-align: middle;"><a
-										href="${pageContext.request.contextPath}/retailerGetAllItem?id=${findall.shophousebean.retailerBean.rid }">
-											${findall.shophousebean.retailerBean.rName} </a></td>
+									<td style="vertical-align: middle;">
+										${findall.shophousebean.retailerBean.rid}</td>
+									<td style="vertical-align: middle;">
+										${findall.shophousebean.retailerBean.rName}</td>
+									<c:if test="${findall.srState==true}">
+										<td style="vertical-align: middle;">成交</td>
+									</c:if>
+									<c:if test="${findall.srState==false}">
+										<td style="vertical-align: middle;">退貨</td>
+									</c:if>
 									<!-- <td style="vertical-align:middle;">${findall.srState}</td> -->
+
+
+
 								</tr>
 							</c:forEach>
-							<c:if test="${!empty data}">
-								<form:button>結帳</form:button>
-							</c:if>
+
 
 						</tbody>
 					</table>

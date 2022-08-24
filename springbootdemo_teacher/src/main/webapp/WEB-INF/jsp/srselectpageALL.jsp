@@ -81,13 +81,13 @@
 						<button id="findallbytimeBtn" type="button" style="margin: 1px;">findAllByTimeBtn</button>
 					</div>
 
-					<div>
+					
+				
+<div>
 						<span>開始時間</span><input type="date" id="dateStar" style="margin: 1px;">
 						<span>結束時間</span><input type="date" id="dateEnd" style="margin: 1px;">
 						<button type="button" id="findByTime">查詢</button style="margin: 1px;">
 					</div>
-				</div>
-
 				<div>
 					<table class="mytable" id="list_data_json">
 						<thead>
