@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <style type="text/css">
 .navSearch {
 	display: flex;
@@ -99,8 +98,8 @@ button {
 							data-toggle="dropdown" aria-expanded="false"> 登入 </a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="${contextRoot}/loginA">管理者登入</a>
-								<a class="dropdown-item" href="${contextRoot}/loginR">商家登入</a> <a
-									class="dropdown-item" href="${contextRoot}/loginC">會員登入</a>
+								<a class="dropdown-item" href="${contextRoot}/loginR">商家登入</a> 
+								<a class="dropdown-item" href="${contextRoot}/loginC">會員登入</a>
 							</div></li>
 					</ul>
 				</c:if>
@@ -171,13 +170,12 @@ button {
 			<div align="right">
 							<form method="get" class="form-inline my-2 my-lg-0"
 								action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-								<input style="padding: 5px" class="form-control mr-sm-2"
+								<input style="padding: 4px" class="form-control mr-sm-1"
 									type="text" placeholder="Coleman" name="word" /> <input
 									type="submit" name="Search" value="搜尋"
 									class="btn btn-outline-success my-2 my-sm-0" />
 							</form>
 
-							
 						</div>
 
 		</div>

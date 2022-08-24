@@ -7,133 +7,155 @@
 <head>
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-#div1,#div2,#div3{
-display:inline-block;
-}
+<title>商品頁面</title>
 
+
+<style type="text/css">
+#div1, #div2, #div3 {
+	display: inline-block;
+}
 </style>
 
 </head>
 <body>
 	<div align="center">
-	    <div id="div1"> 
-		<form name="classifySearch"
-			action="${pageContext.request.contextPath}/ShopHouse/findByClassify"
-			method="get">
-			<select name="classify">
-				<option value="烤肉架">烤肉架</option>
-				<option value="鞋子">鞋子</option>
-				<option value="帳篷">帳篷</option>
-				<option value="椅子">椅子</option>
-				<option value="燈具">燈具</option>
-				<option value="餐具">餐具</option>
-			</select> <input type="submit" value="搜尋">
-		</form>
+
+		<!-- 		<div id="div1"> -->
+		<!-- 			<form name="classifySearch" -->
+		<%-- 				action="${pageContext.request.contextPath}/ShopHouse/findByClassify" --%>
+		<!-- 				method="get"> -->
+		<!-- 				<select name="classify"> -->
+		<!-- 					<option value="烤肉架">烤肉架</option> -->
+		<!-- 					<option value="鞋子">鞋子</option> -->
+		<!-- 					<option value="帳篷">帳篷</option> -->
+		<!-- 					<option value="椅子">椅子</option> -->
+		<!-- 					<option value="燈具">燈具</option> -->
+		<!-- 					<option value="餐具">餐具</option> -->
+		<!-- 				</select> <input type="submit" value="搜尋"> -->
+		<!-- 			</form> -->
+		<!-- 		</div> -->
+		<div>
+		<div id="div1">
+			<div class="dropdown text-end">
+
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" role="button"
+						data-toggle="dropdown" aria-expanded="false">種類</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item"
+								href="${contextRoot}/ShopHouse/findByClassify?classify=帳篷">帳篷</a>
+							<a class="dropdown-item"
+								href="${contextRoot}/ShopHouse/findByClassify?classify=鞋子">鞋子</a>
+							<a class="dropdown-item"
+								href="${contextRoot}/ShopHouse/findByClassify?classify=烤肉架">烤肉架</a>
+							<a class="dropdown-item"
+								href="${contextRoot}/ShopHouse/findByClassify?classify=椅子">椅子</a>	
+						</div></li>
+				</ul>
+			</div>
+
+			<div id="div2">
+				<form name="classifySearch"
+					action="${pageContext.request.contextPath}/ShopHouse/lowerPrice"
+					method="get">
+					<button type="submit" class="badge badge-light">最低價</button>
+				</form>
+			</div>
+			<div id="div3">
+				<form name="classifySearch"
+					action="${pageContext.request.contextPath}/ShopHouse/highPrice"
+					method="get">
+					<button type="submit" class="badge badge-light">最高價</button>
+				</form>
+			</div>
 		</div>
-		<div id="div2">
-		<form name="classifySearch"
-			action="${pageContext.request.contextPath}/ShopHouse/lowerPrice"
-			method="get">
-			<button type="submit" class="badge badge-light">最低價</button>
-		</form>
-		</div>
-		<div id="div3">
-		<form name="classifySearch"
-			action="${pageContext.request.contextPath}/ShopHouse/highPrice"
-			method="get">
-			<button type="submit" class="badge badge-light">最高價</button>
-		</form>
-		</div>
-	</div>	
-		
-		
-		
-		<div class="container" align="center">
-		<div class="row">
-			<c:forEach items="${lowerPrice}" var="i">
-				<div class="card" style="width: 18rem;">
-					<a
-						href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
-						width="150"
-						src="${pageContext.request.contextPath}/downloadImg/${i.id}"
-						class="card-img-top" alt="..."></a>
+</div>
 
-					<div class="card-body">
-						<p class="card-text">${i.itemName}</p>
-						<p class="card-text">${i.price}</p>
+
+
+
+		<div class="container">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4" >
+				<c:forEach items="${lowerPrice}" var="i">
+				<div class="col">
+					<div class="card" style="width: 14rem;">
+						<a
+							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
+							width="150"
+							src="${pageContext.request.contextPath}/downloadImg/${i.id}"
+							class="card-img-top" alt="..."></a>
+
+						<div class="card-body">
+							<p class="card-text">${i.itemName}</p>
+							<p class="card-text" style="color:red;">${i.price}</p>
+						</div>
+						<div>
+							<a href=""><button type="submit">加入購物車</button></a>
+						</div>
 					</div>
-					<div>
-						<a href=""><button type="submit">加入購物車</button></a>
 					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
 		</div>
 		
 		
-		
 
-<!-- 		<form name="classifySearch" -->
-<%-- 			action="${pageContext.request.contextPath}/ShopHouse/highPrice" --%>
-<!-- 			method="get"> -->
-<!-- 			<button type="submit">最高價</button> -->
-<!-- 		</form> -->
-		
-		<div class="container" align="center">
-		<div class="row">
-			<c:forEach items="${higherPrice}" var="i">
-				<div class="card" style="width: 18rem;">
-					<a
-						href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
-						width="150"
-						src="${pageContext.request.contextPath}/downloadImg/${i.id}"
-						class="card-img-top" alt="..."></a>
+		<div class="container">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" >
+				<c:forEach items="${higherPrice}" var="i">
+				<div class="col">
+					<div class="card" style="width: 14rem;">
+						<a
+							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
+							width="150"
+							src="${pageContext.request.contextPath}/downloadImg/${i.id}"
+							class="card-img-top" alt="..."></a>
 
-					<div class="card-body">
-						<p class="card-text">${i.itemName}</p>
-						<p class="card-text">${i.price}</p>
+						<div class="card-body">
+							<p class="card-text">${i.itemName}</p>
+							<p class="card-text" style="color:red;">${i.price}</p>
+						</div>
+						<div>
+							<a href=""><button type="submit">加入購物車</button></a>
+						</div>
 					</div>
-					<div>
-						<a href=""><button type="submit">加入購物車</button></a>
 					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
+
+
 		</div>
-
-
-	</div>
-	<div class="container" align="center">
-		<div class="row">
-			<c:forEach items="${category}" var="i">
-				<div class="card" style="width: 18rem;">
-					<a
-						href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
-						width="150"
-						src="${pageContext.request.contextPath}/downloadImg/${i.id}"
-						class="card-img-top" alt="..."></a>
-
-
-
-
-					<div class="card-body">
-						<p class="card-text">${i.itemName}</p>
-						<p class="card-text">${i.price}</p>
+		<div class="container">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" >
+				<c:forEach items="${category}" var="i">
+				<div class="col">
+					<div class="card" style="width: 14rem;">
+						<a
+							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
+							width="150"
+							src="${pageContext.request.contextPath}/downloadImg/${i.id}"
+							class="card-img-top" alt="..."></a>
+						<div class="card-body">
+							<p class="card-text">${i.itemName}</p>
+							<p class="card-text" style="color:red;">${i.price}</p>
+						</div>
+						<div>
+							<a href=""><button type="submit">加入購物車</button></a>
+						</div>
 					</div>
-					<div>
-						<a href=""><button type="submit">加入購物車</button></a>
 					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
 		</div>
 
 
 
-
-		<div class="container" align="center">
-			<div class="row">
+		<div class="container">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" >
 				<c:forEach items="${pages.content}" var="i">
-					<div class="card" style="width: 18rem;">
+				<div class="col">
+					<div class="card" style="width: 14rem;">
 						<a
 							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
 							width="150"
@@ -145,11 +167,12 @@ display:inline-block;
 
 						<div class="card-body">
 							<p class="card-text">${i.itemName}</p>
-							<p class="card-text">${i.price}</p>
+							<p class="card-text" style="color:red;">${i.price}</p>
 						</div>
 						<div>
 							<a href=""><button type="submit">加入購物車</button></a>
 						</div>
+					</div>
 					</div>
 				</c:forEach>
 			</div>
