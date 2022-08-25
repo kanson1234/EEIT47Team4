@@ -251,9 +251,6 @@ public class RetailerController {
 				errors.put("rAccount", "請輸入您的帳號!");
 			}
 
-//			if (rService.findRetailerAccount(ra) != null) {
-//				errors.put("used", "該帳號已被註冊!");
-//			}
 
 			if (rpw == null || rpw.length() == 0) {
 				errors.put("rPwd", "請輸入您的密碼!");

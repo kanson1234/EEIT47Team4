@@ -21,10 +21,9 @@
 </head>
 <body>
 <main>
-<%-- <jsp:include page="layout/Sidebar.jsp" /> --%>
 <div class="container">
 	<div align='center'>
-		<h2>Account Manager</h2>
+		<h2>帳號管理</h2>
 		<div>
 		<form method="get" action="${contextRoot}/Retailer/getByAccount">
 			<input type="text" name="keyword"/>
@@ -40,7 +39,6 @@
 					<th scope="col">id</th>
 					<th scope="col">名字</th>
 					<th scope="col">帳號</th>
-					<th scope="col">修改</th>
 					<th scope="col">刪除</th>
 				</tr>
 			</thead>
@@ -51,11 +49,6 @@
 						<td>${retailer.rid}</td>
 						<td>${retailer.rName}</td>
 						<td>${retailer.raccount}</td>
-						<td>
-						<a href="${contextRoot}/Retailer/editRetailer/${retailer.rid}">
-						<button type="submit" class="btn btn-primary mb-2">修改</button>
-						</a>
-						</td>
 						<td>
 						<a onclick="return confirm('確認刪除?')" href="${contextRoot}/Retailer/changeStatusF/${retailer.rid}">
 						<button type="submit" class="btn btn-danger">刪除</button>
