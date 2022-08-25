@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<jsp:include page="layout/navbar.jsp" />
+<jsp:include page="layout/Sidebar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,9 @@
 <title>Account Manager</title>
 </head>
 <body>
+<main>
+<%-- <jsp:include page="layout/Sidebar.jsp" /> --%>
+<div class="container">
 	<div align='center'>
 		<h2>Account Manager</h2>
 		<div>
@@ -19,7 +23,7 @@
 			<input type="submit" name="Search"/>
 		</form>
 		</div>
-		<a href="${contextRoot}/registerPage">註冊新帳號</a>
+		<a href="${contextRoot}/registerR">註冊新帳號</a>
 		<br/>
 		<div>
 		<table class="table">
@@ -45,7 +49,7 @@
 						</a>
 						</td>
 						<td>
-						<a onclick="return confirm('確認刪除?')" href="${contextRoot}/message/deleteMessage/${retailer.rid}">
+						<a onclick="return confirm('確認刪除?')" href="${contextRoot}/Retailer/changeStatusF/${retailer.rid}">
 						<button type="submit" class="btn btn-danger">刪除</button>
 						</a>
 						</td>
@@ -56,5 +60,7 @@
 		</table>
 	</div>
 	</div>
+</div>
+</main>
 </body>
 </html>

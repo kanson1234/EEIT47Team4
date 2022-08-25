@@ -5,6 +5,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<style type="text/css">
+.navSearch {
+	display: flex;
+	align-items: center;
+	margin-left: auto; input ,button{ border : none;
+	outline: none;
+	height: 30px;
+	background-color: #ffffff;
+}
+
+input {
+	padding-left: 12px;
+	width: 80%;
+	border-radius: 100px 0 0 100px;
+}
+
+button {
+	width: 20%;
+	border-radius: 0 100px 100px 0;
+	cursor: pointer;
+}
+
+.fa-search {
+	color: #555555; &: hover { color : #26ff93;
+	transition: all 0.3s;
+}
+}
+}
+</style>
+
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -13,8 +44,11 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="${pageContext.request.contextPath}/home">首頁</a>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:1;">
+		<a class="navbar-brand"
+			href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems"><img
+			width="100px" src="${contextRoot}/img/Logo1.png"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -54,32 +88,22 @@
 					href="${pageContext.request.contextPath}/ShopHouse/viewItems">後臺管理所有商品
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<!-- 				<li class="nav-item dropdown"><a -->
-				<!-- 					class="nav-link dropdown-toggle" href="#" role="button" -->
-				<!-- 					data-toggle="dropdown" aria-expanded="false"> 登入 </a> -->
-				<!-- 					<div class="dropdown-menu"> -->
-				<%-- 						<a class="dropdown-item" href="${contextRoot}/loginA">管理者登入</a> <a --%>
-				<%-- 							class="dropdown-item" href="${contextRoot}/loginR">商家登入</a> <a --%>
-				<%-- 							class="dropdown-item" href="${contextRoot}/loginC">會員登入</a> --%>
-				<!-- 						<div class="dropdown-divider"></div> -->
-				<%-- 						<a class="dropdown-item" href="${contextRoot}/logout">登出</a> --%>
-				<!-- 					</div></li> -->
-				<!-- 				<li class="nav-item"><a class="nav-link disabled">Disabled</a> -->
-				<!-- 				</li> -->
 
+
+				
 			</ul>
 
 
-
-			<!-- 			更改 -->
 			<div class="dropdown text-end">
 				<c:if
 					test="${empty customerLoginOk && empty adminLoginOk && empty retailerLoginOk}">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item dropdown"><a
+
 							class="nav-link dropdown-toggle" href="${contextRoot}/loginC" role="button"
 							 aria-expanded="false"> 登入 </a>
 							</li>
+
 					</ul>
 				</c:if>
 				<c:if test="${!empty retailerLoginOk}">
@@ -114,25 +138,35 @@
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
+
 									<a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a> <a
-										class="dropdown-item" href="#">訂單管理</a> <a
+<a class="dropdown-item" href="#">訂單管理</a> <a
 										class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
+
+
+
 						</ul>
-					</div>
+					</div>	
 				</c:if>
+
+
 				<c:if test="${!empty adminLoginOk}">
 					<c:set var="admin" value="adminLoginOk" />
 					<div>
 						<a class="nav-link dropdown-toggle" href="#" role="button"
+
 							data-toggle="dropdown" aria-expanded="false"><span>${adminLoginOk.firstName}</span>
+
 						</a>
 
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
+
 									<a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a> <a
+
 										class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
@@ -140,21 +174,18 @@
 					</div>
 				</c:if>
 
-
 			</div>
-
-
-			<%-- 			    <form class="form-inline my-2 my-lg-0" method="get" action="${pageContext.request.contextPath}/ShopHouse/findByKeyword"> --%>
-			<!-- 			      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-			<!-- 			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-			<!-- 			    </form> -->
 			<div align="right">
-				<form method="get"
-					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-					<input class="form-control mr-sm-2" type="text" name="word" /> <input
-						type="submit" name="Search" value="搜尋" />
-				</form>
-			</div>
+							<form method="get" class="form-inline my-2 my-lg-0"
+								action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
+								<input style="padding: 4px" class="form-control mr-sm-1"
+									type="text" placeholder="Coleman" name="word" /> <input
+									type="submit" name="Search" value="搜尋"
+									class="btn btn-outline-success my-2 my-sm-0" />
+							</form>
+
+						</div>
+
 		</div>
 	</nav>
 

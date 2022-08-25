@@ -20,10 +20,14 @@ public class pageController {
 		return "index";
 	}
 
-	@GetMapping("shopHouse/add")
+
+
+	
+	@GetMapping("shopHouse/addItem")
 	public String addItem() {
 		return "shopHouseTest";
 	}
+
 
 	@GetMapping("/loginA")
 	public String loginA() {
@@ -75,15 +79,18 @@ public class pageController {
 		return "forgotPassword";
 	}
 
-	@GetMapping("/srselectpage")
+
+	@GetMapping("/record/srselectpage")
 	public String srselectpage() {
 		return "srselectpage";
 	}
 
-	@GetMapping("/srselectpageALL")
+
+	@GetMapping("/record/srselectpageALL")
 	public String srselectpageALL() {
 		return "srselectpageALL";
 	}
+
 
 	@GetMapping("/customerFile")
 	public String customerFile() {
@@ -93,7 +100,14 @@ public class pageController {
 	@GetMapping("/newMessage")
 	public String newMessage() {
 		return "newMessage";
-
 	}
+
+	@GetMapping("/gotoShoppingCar")
+	public String ShoppingCar() {
+		return "ShoppingCar";
+	}
+	
+// THT End----------------------------------------------------------------
+
 
 }

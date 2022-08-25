@@ -116,7 +116,7 @@ public class RetailerController {
 //		System.out.println("RetailerController:"+rId);
 //		return rId;
 //	}
-	// 取得id後addAttribute給前端
+	// 取得商品id後addAttribute給前端
 
 	@GetMapping(value = "/retailerGetAllItem", produces = { "application/json;charset=UTF-8" })
 	public String getAllItems(@RequestParam("id") Integer id, Model model, Model m2) {
@@ -135,6 +135,13 @@ public class RetailerController {
 		model.addAttribute("listRetailer", list);
 		return "RetailerCRUD";
 	}
+	//黑名單頁面
+	@GetMapping("/Retailer/RetailerBlock")
+	public String showAllBlockRetailer(Model model) {
+		List<Retailer> list = rService.getAllRetailerBloked();
+		model.addAttribute("listRetailer", list);
+		return "RetailerBlockList";
+	}
 
 	// 商家一覽頁面跳轉
 	@GetMapping("/showAllRetailerFront")
@@ -143,14 +150,14 @@ public class RetailerController {
 		model.addAttribute("listRetailer", list);
 		return "ViewRetailer";
 	}
-
+	//模糊查詢帳號及名稱
 	@GetMapping("/Retailer/getByAccount")
 	public String searchByAccount(@RequestParam("keyword") String keyword, Model model) {
 		List<Retailer> list = rService.listAll(keyword);
 		model.addAttribute("listRetailer", list);
 		return "RetailerCRUD";
 	}
-
+	//抓id 秀logo
 	@GetMapping("/showlogo/{id}")
 	public ResponseEntity<byte[]> showlogo(@PathVariable Integer id) {
 		Retailer logo = rService.findById(id);
@@ -162,7 +169,7 @@ public class RetailerController {
 
 		return new ResponseEntity<byte[]>(logoImg, header, HttpStatus.OK);
 	}
-
+	//抓id秀圖片
 	@GetMapping("/showphoto/{id}")
 	public ResponseEntity<byte[]> showphoto(@PathVariable Integer id) {
 		Retailer photo = rService.findById(id);
@@ -174,7 +181,7 @@ public class RetailerController {
 
 		return new ResponseEntity<byte[]>(photoImg, header, HttpStatus.OK);
 	}
-
+	//註冊商家
 	@PostMapping("/Retailer/registerPage")
 	public String addRetailer(@RequestParam("rName") String rN, @RequestParam("rAccount") String ra,
 			@RequestParam("rPwd") String rpw, @RequestParam("rPhone") String rph,
@@ -182,11 +189,13 @@ public class RetailerController {
 			@RequestParam("rInfo") String rInfo) throws IOException {
 
 		Retailer r = new Retailer();
+		Date d = new Date();
 		r.setrName(rN);
 		r.setRaccount(ra);
 		r.setRpwd(rpw);
 		r.setRphone(rph);
 		r.setRstate(true);
+		r.setRdate(d);
 		r.setRphoto(photo.getBytes());
 		r.setRlogo(logo.getBytes());
 		r.setRinfo(rInfo);
@@ -194,32 +203,88 @@ public class RetailerController {
 		return "registerPage";
 
 	}
-
+	//抓id傳給編輯頁
 	@GetMapping("/Retailer/editRetailer/{id}")
 	public String editMessagePage(@PathVariable Integer id, Model model) {
 		Retailer r = rService.findById(id);
-
 		model.addAttribute("Retailerinfo", r);
 		return "editRetailer";
 	}
-
+	//更改帳號狀態,可改成按鈕帶0,狀態false,1 true
+	@GetMapping("/Retailer/changeStatusF/{id}")
+	public String changeStatustoFalse(@PathVariable Integer id) {
+		rService.ChangeStatusById(false, id);
+		return "redirect:/Retailer/RetailerCRUD";
+	}
+	@GetMapping("/Retailer/changeStatusT/{id}")
+	public String changeStatustoTrue(@PathVariable Integer id) {
+		rService.ChangeStatusById(true, id);
+		return "redirect:/Retailer/RetailerBlock";
+	}
+	
+	//用id編輯
 	@PostMapping("/Retailer/editRetailer")
 	public String editMessagePage(@RequestParam Integer id, @RequestParam("rName") String rN,
 			@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, @RequestParam("rPhone") String rph,
-			@RequestParam("logo") MultipartFile logo, @RequestParam("photo") MultipartFile photo,
-			@RequestParam("rInfo") String rInfo) throws IOException {
+			@RequestParam("rLogo") MultipartFile rLogo, @RequestParam("rPhoto") MultipartFile rPhoto,
+			@RequestParam("rInfo") String rInfo,Model model) {
+		try {
+			Map<String, String> errors = new HashMap<String, String>();
+			model.addAttribute("errors", errors);
+
+			if (rN == null || rN.length() == 0) {
+				errors.put("rName", "姓名不得為空!");
+			}
+
+			if (ra == null || ra.length() == 0) {
+				errors.put("rAccount", "請輸入您的帳號!");
+			}
+
+			if (rService.findRetailerAccount(ra) != null) {
+				errors.put("used", "該帳號已被註冊!");
+			}
+
+			if (rpw == null || rpw.length() == 0) {
+				errors.put("rPwd", "請輸入您的密碼!");
+			}
+
+			if (rph == null || rph.length() == 0) {
+				errors.put("rPhone", "請輸入電話!");
+			}
+
+			if (rInfo == null || rInfo.length() == 0) {
+				errors.put("rInfo", "請輸入商家描述!");
+			}
+
+			if (rLogo.getBytes() == null) {
+				errors.put("rLogo", "請選擇一張商家Logo!");
+			}
+
+			if (rPhoto.getBytes() == null) {
+				errors.put("rPhoto", "請選擇商家照片!");
+			}
+
+			if (errors != null && !errors.isEmpty()) {
+				return "registerR";
+			}	
 		Retailer r = new Retailer();
+		Date d = new Date();
 		r.setRid(id);
 		r.setrName(rN);
 		r.setRaccount(ra);
 		r.setRpwd(rpw);
 		r.setRphone(rph);
+		r.setRdate(d);
 		r.setRstate(true);
-		r.setRphoto(photo.getBytes());
-		r.setRlogo(logo.getBytes());
+		r.setRphoto(rPhoto.getBytes());
+		r.setRlogo(rLogo.getBytes());
 		r.setRinfo(rInfo);
 		rService.insertRetailer(r);
 		return "editRetailer";
+		}catch (IOException e){
+			e.printStackTrace();
+			return "registerR";
+		}
 	}
 
 	@GetMapping("Retailer/get/{id}")

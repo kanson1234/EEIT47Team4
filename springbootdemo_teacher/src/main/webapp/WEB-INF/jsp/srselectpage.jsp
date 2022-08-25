@@ -14,11 +14,14 @@
 
 
 	<button>
-		<a href="${contextRoot}/srselectpage" >消費紀錄查詢頁面</a>
+		<a href="${contextRoot}/record/srselectpage" >消費紀錄查詢頁面</a>
 	</button>
 	
 	<button>
-		<a href="${contextRoot}/srselectpageALL" >查詢所有消費紀錄</a>
+		<a href="${contextRoot}/record/srselectpageALL" >查詢所有消費紀錄</a>
+	</button>
+	<button>
+		<a href="${contextRoot}/gotoShoppingCar" >購物車</a>
 	</button>
 	
 

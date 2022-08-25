@@ -10,6 +10,17 @@
 				<title>srselectpageALL</title>
 				<script src="/js/jquery-3.6.0.min.js"></script>
 				<script src="/js/bootstrap.bundle.min.js"></script>
+				<style type="text/css">
+					thead>tr>th {
+						text-align: center;
+						border: 1px red solid;
+					}
+
+					tbody>tr>td {
+						text-align: center;
+						border: 1px red solid;
+					}
+				</style>
 				<Script>
 					window.onload = function () {
 						var selectByC1Id = document.getElementById("selectByC1Id")
@@ -36,6 +47,9 @@
 							}
 						})
 					}
+
+
+
 
 				</Script>
 			</head>
@@ -64,21 +78,21 @@
 							<thead>
 								<tr>
 									<!-- C1 -->
-									<th>cId</th>
+									<th>消費者ID</th>
 									<!-- SR -->
 									<th>srShoppingRecord_Id</th>
-									<th>srtime</th>
-									<th>srCount</th>
+									<th>消費時間</th>
+									<th>購買數量</th>
 									<!-- SH -->
-									<th>shItemId</th>
-									<th>shItemName</th>
-									<th>shImg</th>
-									<th>shPrice</th>
-									<th>shClassify</th>
-									<th>shState</th>
+									<th>商品ID</th>
+									<th>商品名稱</th>
+									<th>商品圖片</th>
+									<th>價格</th>
+									<th>商品分類</th>
+									<th>商品狀況</th>
 									<!-- C2 -->
-									<th>c2Id</th>
-									<th></th>
+									<th>廠商ID</th>
+									<th>成交狀況</th>
 								</tr>
 							</thead>
 						</table>
@@ -86,123 +100,135 @@
 				</div>
 
 				<script>
-					$(document)
-						.ready(
-							function () {
-								// findAllByTime
-								$('#findallbytimeBtn')
-									.click(
-										function () {
-											console.log('findallbytimeBtn')
-											$.ajax({
-												url: 'http://localhost:8080/record/findallbytime',
-												contentType: 'application/json', // 送過去的資料型別
-												dataType: 'json', // 回傳回來的資料型別
-												method: 'get',
-												success: function (result) {
-													console.log(result.append === [])
-													$('#list_data_json tbody tr ').remove();
-													msg_data = '<tbody>'
+					$(document).ready(function () {
+						// findAllByTime
+						$('#findallbytimeBtn').click(function () {
+							console.log('findallbytimeBtn')
 
-													$.each(result, function (index, value) {
-														var state = '';
-														if (value.storehouse.shState == true) {
-															state = "成交";
-														}
-														if (value.storehouse.shState == false) {
-															state = "退貨";
-														}
+							$.ajax({
+								url: 'http://localhost:8080/record/findallbytime',
+								contentType: 'application/json', // 送過去的資料型別
+								dataType: 'json', // 回傳回來的資料型別
+								method: 'get',
+								success: function (result) {
+									console.log(result.append === [])
+									$('#list_data_json tbody tr ').remove();
+									msg_data = '<tbody>'
+
+									$.each(result, function (index, value) {
+										var state = '';
+										if (value.shophousebean.status == true) {
+											state = "商品上架中";
+										}
+										if (value.shophousebean.status == false) {
+											state = "商品已下架";
+										}
+
+										if (value.srState == true) {
+											state2 = "成交";
+										}
+										if (value.srState == false) {
+											state2 = "退貨";
+										}
 
 
-
-														msg_data += '<tr>'
-														msg_data +='<td><a href="'+value.customer.cId+'">'+ value.customer.cId + '</a></td>'
-
-														msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
-														msg_data += '<td>' + value.srtime + '</td>'
-														msg_data += '<td>' + value.srCount + '</td>'
-														msg_data += '<td>' + value.storehouse.shItemId + '</td>'
-														msg_data += '<td>' + value.storehouse.shItemName + '</td>'
-														msg_data += '<td>' + value.storehouse.shImg + '</td>'
-														msg_data += '<td>' + value.storehouse.shPrice + '</td>'
-
-														msg_data += '<td>' + value.storehouse.shClassify + '</td>'
-
-														msg_data += '<td>' + state + '</td>'
-														msg_data += '<td><a href="'+value.storehouse.c2Id+'">' + value.storehouse.c2Id+ '</a></td>'
-														
-														msg_data += '</tr>'
-													})
-													msg_data += '</tbody>'
-													$('#list_data_json').append(msg_data)
-												},
-												error: function (err) {
-													console.log(err)
-												}
-											})
-										})
-
-								// findAllByCidBtn
-								$('#findallbyC1idBtn')
-									.click(
-										function () {
-
-											var textcid = document
-												.getElementById('cid').value;
-											console.log(textcid)
-
-											var dtoObj = {
-												"cid": textcid
-											};
-											console.log(dtoObj)
-
-											var dtoJson = JSON.stringify(dtoObj);
-											console.log(dtoJson)
-
-											$.ajax({
-												url: "http://localhost:8080/record/findallbyCid?cid=" + textcid,
-												contentType: 'application/json', // 送過去的資料型別
-												dataType: 'json', // 回傳回來的資料型別
-												method: 'get',
-												// data:dtoJson,
-												success: function (result) {
-													console.log(result.append === [])
-
-													$('#list_data_json tbody tr ').remove();
-													msg_data = '<tbody>'
-													$.each(result, function (index, value) {
-														var state = '';
-														console.log(value.storehouse.shState)
-														if (value.storehouse.shState == true) {
-															state = "成交";
-														}
-														if (value.storehouse.shState == false) {
-															state = "退貨";
-														}
-														msg_data += '<tr>'
-														msg_data +='<td><a href="'+value.customer.cId+'">'+ value.customer.cId + '</a></td>'
-														msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
-														msg_data += '<td>' + value.srtime + '</td>'
-														msg_data += '<td>' + value.srCount + '</td>'
-														msg_data += '<td>' + value.storehouse.shItemId + '</td>'
-														msg_data += '<td>' + value.storehouse.shItemName + '</td>'
-														msg_data += '<td>' + value.storehouse.shImg + '</td>'
-														msg_data += '<td>' + value.storehouse.shPrice + '</td>'
-														msg_data += '<td>' + value.storehouse.shClassify + '</td>'
-														msg_data += '<td>' + state + '</td>'
-														msg_data += '<td><a href="'+value.storehouse.c2Id+'">' + value.storehouse.c2Id+ '</a></td>'
-														msg_data += '</tr>'
-													})
-													msg_data += '</tbody>'
-													$('#list_data_json').append(msg_data)
-												},
-												error: function (err) {
-													alert('輸入ID 不存在，請在試一次')
-												}
-											})
-										})
-
+										msg_data += '<tr>'
+										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
+										msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
+										msg_data += '<td>' + value.srtime + '</td>'
+										msg_data += '<td>' + value.srCount + '</td>'
+										msg_data += '<td>' + value.shophousebean.id + '</td>'
+										msg_data += '<td>' + value.shophousebean.itemName + '</td>'
+										msg_data += '<td>' + value.shophousebean.itemImg + '</td>'
+										
+										msg_data += '<td>' + value.shophousebean.itemImg + '</td>'
+										
+										
+										msg_data += '<td>' + value.shophousebean.price + '</td>'
+										msg_data += '<td>' + value.shophousebean.classify + '</td>'
+										msg_data += '<td>' + state + '</td>'
+										msg_data += '<td><a href="' + value.shophousebean.c2Id + '">' + value.shophousebean.c2Id + '</a></td>'
+										msg_data += '<td>' + state2 + '</td>'
+										msg_data += '</tr>'
+									})
+									msg_data += '</tbody>'
+									$('#list_data_json').append(msg_data)
+								},
+								error: function (err) {
+									console.log(err)
+								}
 							})
+						})
+
+						// findAllByCidBtn
+						$('#findallbyC1idBtn')
+							.click(
+								function () {
+
+									var textcid = document
+										.getElementById('cid').value;
+									console.log(textcid)
+									var dtoObj = {
+										"cid": textcid
+									};
+									console.log(dtoObj)
+									var dtoJson = JSON.stringify(dtoObj);
+									console.log(dtoJson)
+
+									$.ajax({
+										url: "http://localhost:8080/record/findallbyCid?cid=" + textcid,
+										contentType: 'application/json', // 送過去的資料型別
+										dataType: 'json', // 回傳回來的資料型別
+										method: 'get',
+										// data:dtoJson,
+										success: function (result) {
+											console.log(result.append === [])
+											$('#list_data_json tbody tr ').remove();
+											msg_data = '<tbody>'
+											$.each(result, function (index, value) {
+
+												var state = '';
+												console.log(value.shophousebean.status)
+												if (value.shophousebean.status == true) {
+													state = "商品上架中";
+												}
+												if (value.shophousebean.status == false) {
+													state = "商品已下架";
+												}
+
+												if (value.srState == true) {
+													state2 = "成交";
+												}
+												if (value.srState == false) {
+													state2 = "退貨";
+												}
+
+												msg_data += '<tr>'
+												msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
+												msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
+												msg_data += '<td>' + value.srtime + '</td>'
+												msg_data += '<td>' + value.srCount + '</td>'
+												msg_data += '<td>' + value.shophousebean.id + '</td>'
+												msg_data += '<td>' + value.shophousebean.itemName + '</td>'
+												msg_data += '<td>' + value.shophousebean.itemImg + '</td>'
+												msg_data += '<td>' + value.shophousebean.price + '</td>'
+												msg_data += '<td>' + value.shophousebean.classify + '</td>'
+												msg_data += '<td>' + state + '</td>'
+												msg_data += '<td><a href="' + value.shophousebean.c2Id + '">' + value.shophousebean.c2Id + '</a></td>'
+												msg_data += '<td>' + state2 + '</td>'
+
+												msg_data += '</tr>'
+											})
+											msg_data += '</tbody>'
+											$('#list_data_json').append(msg_data)
+										},
+										error: function (err) {
+											alert('輸入ID 不存在，請在試一次')
+										}
+									})
+								})
+
+					})
 				</script>
 			</body>
 
