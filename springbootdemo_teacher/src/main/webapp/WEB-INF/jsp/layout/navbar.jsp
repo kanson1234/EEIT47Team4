@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
-=======
+
 <style type="text/css">
 .navSearch {
 	display: flex;
@@ -36,7 +35,6 @@ button {
 }
 }
 </style>
->>>>>>> 3dda41fcf20dc147f7fd896e2e46b376f102aca2
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -44,7 +42,8 @@ button {
 <body>
 
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:1;">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		style="z-index: 1;">
 		<a class="navbar-brand"
 			href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems"><img
 			width="100px" src="${contextRoot}/img/Logo1.png"></a>
@@ -87,7 +86,7 @@ button {
 					href="${pageContext.request.contextPath}/ShopHouse/viewItems">後臺管理所有商品
 						<span class="sr-only">(current)</span>
 				</a></li>
-<<<<<<< HEAD
+
 				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.request.contextPath}/Member/MemberCenter">會員中心
 						<span class="sr-only">(current)</span>
@@ -104,9 +103,7 @@ button {
 					</div></li>
 				<li class="nav-item"><a class="nav-link disabled">Disabled</a>
 				</li>
-=======
-				
->>>>>>> 3dda41fcf20dc147f7fd896e2e46b376f102aca2
+
 			</ul>
 
 			<div class="dropdown text-end">
@@ -118,8 +115,8 @@ button {
 							data-toggle="dropdown" aria-expanded="false"> 登入 </a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="${contextRoot}/loginA">管理者登入</a>
-								<a class="dropdown-item" href="${contextRoot}/loginR">商家登入</a> 
-								<a class="dropdown-item" href="${contextRoot}/loginC">會員登入</a>
+								<a class="dropdown-item" href="${contextRoot}/loginR">商家登入</a> <a
+									class="dropdown-item" href="${contextRoot}/loginC">會員登入</a>
 							</div></li>
 					</ul>
 				</c:if>
@@ -163,7 +160,7 @@ button {
 
 
 						</ul>
-					</div>	
+					</div>
 				</c:if>
 
 				<c:if test="${!empty adminLoginOk}">
@@ -188,15 +185,15 @@ button {
 
 			</div>
 			<div align="right">
-							<form method="get" class="form-inline my-2 my-lg-0"
-								action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-								<input style="padding: 4px" class="form-control mr-sm-1"
-									type="text" placeholder="Coleman" name="word" /> <input
-									type="submit" name="Search" value="搜尋"
-									class="btn btn-outline-success my-2 my-sm-0" />
-							</form>
+				<form method="get" class="form-inline my-2 my-lg-0"
+					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
+					<input style="padding: 4px" class="form-control mr-sm-1"
+						type="text" placeholder="Coleman" name="word" /> <input
+						type="submit" name="Search" value="搜尋"
+						class="btn btn-outline-success my-2 my-sm-0" />
+				</form>
 
-						</div>
+			</div>
 
 		</div>
 	</nav>

@@ -11,12 +11,10 @@
 <title>Account Manager</title>
 </head>
 <body>
-<<<<<<< HEAD
-=======
+
 <main>
 <%-- <jsp:include page="layout/Sidebar.jsp" /> --%>
 <div class="container">
->>>>>>> 3dda41fcf20dc147f7fd896e2e46b376f102aca2
 	<div align='center'>
 		<h2>Account Manager</h2>
 		<div>
