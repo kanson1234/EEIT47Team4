@@ -23,7 +23,7 @@
 					method="post" enctype="multipart/form-data">
 					<h2 class="h3 mb-3 fw-normal">修改使用者資料</h2>
 					<div class="mb-3">
-						<label class="form-label">姓名</label> <input type="text"
+						<label class="form-label">商家名稱</label> <input type="text"
 							class="form-control" placeholder="請輸入姓名" name="rName"
 							value="${Retailerinfo.rName}" />
 						<p style="color: red;">${errors.rName}</p>

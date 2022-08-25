@@ -85,7 +85,7 @@ public class loginController {
 		if (retailerLoginResult != null) {
 			model.addAttribute("retailerLoginOk", retailerLoginResult);
 
-			return "redirect:/ShopHouse/viewC2IdItems";
+			return "redirect:/ShopHouse/indexShopHouseItems";
 		}
 
 		errors.put("rmsg", "商家帳號或密碼有誤，請重新輸入!");
