@@ -32,7 +32,7 @@ public class MessageController {
 
 		model.addAttribute("Messages", newMsg);
 
-		return "ItemDetail";
+		return "ItemDetail2";
 	}
 
 	@PostMapping("/ShopHouse/postMessages")
@@ -44,6 +44,8 @@ public class MessageController {
 		Set<Message> msgList = shopHouseBean.getMessage();
 		Message message = new Message();
 		message.setMcontext(mcontext);
+		message.setMstate(true);
+		message.setMstatec(true);
 		message.setMrid(1);
 		message.setMsid(1);
 		message.setShopHouseBean(shopHouseBean);//實體化shopHouseBean
