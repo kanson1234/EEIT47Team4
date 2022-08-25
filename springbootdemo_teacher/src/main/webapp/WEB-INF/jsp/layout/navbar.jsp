@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 
 <style type="text/css">
+.navbar{
+	background-color: #D1AC00;
+}
 .navSearch {
 	display: flex;
 	align-items: center;
@@ -15,7 +18,9 @@
 	height: 30px;
 	background-color: #ffffff;
 }
-
+div#dropdownSignINSignOut{
+	background-color:#004643;
+}
 input {
 	padding-left: 12px;
 	width: 80%;
@@ -45,8 +50,12 @@ button {
 <body>
 
 
+<<<<<<< HEAD
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="z-index: 1;">
+=======
+	<nav class="navbar navbar-expand-lg navbar-light " style="z-index:1;">
+>>>>>>> 645e2025a6c0085e8af08a076e1ae631e4787435
 		<a class="navbar-brand"
 			href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems"><img
 			width="100px" src="${contextRoot}/img/Logo1.png"></a>
@@ -57,7 +66,7 @@ button {
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link"
 					href="${pageContext.request.contextPath}/showAllRetailerFront">店家一覽</a></li>
@@ -82,10 +91,6 @@ button {
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="${pageContext.request.contextPath}/shopHouse/add">新增商品 <span
-						class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.request.contextPath}/admin/Admin">後臺管理 <span
 						class="sr-only">(current)</span>
 				</a></li>
@@ -99,7 +104,7 @@ button {
 			</ul>
 
 
-			<div class="dropdown text-end">
+			<div class="dropdown text-end rounded-pill text-light" style="background-color:#C7A200;" >
 				<c:if
 					test="${empty customerLoginOk && empty adminLoginOk && empty retailerLoginOk}">
 					<ul class="navbar-nav mr-auto">
@@ -111,18 +116,18 @@ button {
 				</c:if>
 				<c:if test="${!empty retailerLoginOk}">
 					<c:set var="retailer" value="retailerLoginOk" />
-					<div>
+					<div >
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-toggle="dropdown" aria-expanded="false"> <img
 							src="${contextRoot}/showlogo/${retailerLoginOk.rid}" width="45"
-							height="45" class="rounded-circle"> <span>${retailerLoginOk.rName }</span>
+							height="45" class="rounded-circle"> <span class="text-dark">${retailerLoginOk.rName }</span>
 						</a>
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">商家資訊</a> <a
+									<a class="dropdown-item" href="${contextRoot}/Retailer/retailerInfoPage/${retailerLoginOk.rid}">商家資訊</a> <a
 										class="dropdown-item"
-										href="${contextRoot}/ShopHouse/viewC2IdItems">商品管理</a> <a
+										href="${contextRoot}/ShopHouse/viewC2IdItems?id=${retailerLoginOk.rid}">商品管理</a> <a
 										class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
@@ -135,12 +140,13 @@ button {
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-toggle="dropdown" aria-expanded="false"> <img
 							src="${contextRoot}/downloadImage/${customerLoginOk.cId}"
-							width="45" height="45" class="rounded-circle"> <span>${customerLoginOk.cFirstName}</span>
+							width="45" height="45" class="rounded-circle"> <span class="text-dark">${customerLoginOk.cFirstName}</span>
 						</a>
 
-						<ul class="navbar-nav mr-auto">
+						<ul class="navbar-nav mr-auto ">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
+<<<<<<< HEAD
 									<a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a>
 									<a class="dropdown-item" href="#">訂單管理</a> <a
 										class="dropdown-item" href="${contextRoot}/logout">登出</a>
@@ -148,6 +154,14 @@ button {
 							</li>
 
 
+=======
+
+									<a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a>
+									 <a class="dropdown-item" href="#">訂單管理</a>
+ 									<a class="dropdown-item" href="${contextRoot}/logout">登出</a>
+								</div>
+							</li>
+>>>>>>> 645e2025a6c0085e8af08a076e1ae631e4787435
 						</ul>
 					</div>
 				</c:if>
@@ -156,9 +170,14 @@ button {
 				<c:if test="${!empty adminLoginOk}">
 					<c:set var="admin" value="adminLoginOk" />
 					<div>
+<<<<<<< HEAD
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-toggle="dropdown" aria-expanded="false"><span>${adminLoginOk.firstName}</span>
 
+=======
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+						<span>${adminLoginOk.firstName}</span>
+>>>>>>> 645e2025a6c0085e8af08a076e1ae631e4787435
 						</a>
 
 						<ul class="navbar-nav mr-auto">

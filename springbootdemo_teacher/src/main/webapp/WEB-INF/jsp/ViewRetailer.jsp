@@ -12,10 +12,14 @@
 <title>ViewRetailer</title>
 
 	<style type="text/css">
+			body{
+			background-color:#FAF4D3;
+			}
+
 			#tab {
 			    width: auto;
-			    background: #1caa5d;
-			    border: solid 1px #1caa5d;
+			    background: #004643;
+			    border: solid 1px #004643;
 			}
 			
 			/* 頁籤ul */
@@ -33,7 +37,7 @@
 			#tab > ul > li > a { 
 			    text-decoration: none;
 			    font-size: 15px;
-			    color: #333;
+			    color: #D1AC00;
 			    float: left;
 			    padding: 10px;
 			    margin-left: 5px;
@@ -50,7 +54,7 @@
 			
 			/*第一筆的底色*/
 			span:target ~ #tab > ul li:first-child a {
-			    background: #1caa5d;
+			    background: #0C1618;
 			}
 			
 			span:target ~ #tab > div:first-of-type {
@@ -99,10 +103,14 @@
 </head>
 <body>
 	<header>
-		<div align="center">店家一覽</div>
+	<figure class="text-center">
+		<blockquote class="blockquote">
+			<b>店家一覽</b>
+		</blockquote>
+	</figure>
 	</header>
 	<main>
-<div class="container" align="center">
+	<div class="container" align="center">
 		<span id="tab-1">主頁</span>
 		<span id="tab-2">頁面1</span>
 		<span id="tab-3">頁面2</span>
@@ -126,7 +134,7 @@
 						<div class="card" style="width: 17rem;">
 							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
 							<img src="${contextRoot}/showlogo/${retailer.rid}" 
-							class="card-img-top" alt="...">
+							class="card-img-top" alt="..."  height="180px">
 							</a>
 							<div class="card-body">
 								<p class="card-text">${retailer.rName}</p>
@@ -135,7 +143,8 @@
 						</div>
 					</c:forEach>
 				</div>
-				<hr/>
+				
+				<hr>
 		    </div>
 		    <div class="tab-content-2">
 		      <div class="row" align="center">
@@ -144,7 +153,7 @@
 						<div class="card" style="width: 17rem;">
 							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
 							<img src="${contextRoot}/showlogo/${retailer.rid}" 
-							class="card-img-top" alt="...">
+							class="card-img-top" alt="..." height="180px">
 							</a>
 							<div class="card-body">
 								<p class="card-text">${retailer.rName}</p>
@@ -154,7 +163,6 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<hr/>
 		    </div>
 		    <div class="tab-content-3">
 		      <div class="row" align="center">
@@ -163,7 +171,7 @@
 						<div class="card" style="width: 17rem;">
 							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
 							<img src="${contextRoot}/showlogo/${retailer.rid}" 
-							class="card-img-top" alt="...">
+							class="card-img-top" alt="..." height="180px">
 							</a>
 							<div class="card-body">
 								<p class="card-text">${retailer.rName}</p>
@@ -183,7 +191,7 @@
 						<div class="card" style="width: 17rem;">
 							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
 							<img src="${contextRoot}/showlogo/${retailer.rid}" 
-							class="card-img-top" alt="...">
+							class="card-img-top" alt="..." height="180px">
 							</a>
 							<div class="card-body">
 								<p class="card-text">${retailer.rName}</p>
@@ -193,7 +201,6 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<hr/>
 		    </div>
 		    
 		    <div class="tab-content-5">
@@ -203,7 +210,7 @@
 						<div class="card" style="width: 17rem;">
 							<a href="${contextRoot}/retailerGetAllItem?id=${retailer.rid}">
 							<img src="${contextRoot}/showlogo/${retailer.rid}" 
-							class="card-img-top" alt="...">
+							class="card-img-top" alt="..." height="180px">
 							</a>
 							<div class="card-body">
 								<p class="card-text">${retailer.rName}</p>
@@ -213,13 +220,10 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<hr/>
 		    </div>
 		    
 	</div>
 </div>
-
-
 	</main>
 
 </body>
