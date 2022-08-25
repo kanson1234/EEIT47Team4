@@ -108,10 +108,6 @@
 			<br />
 		</c:forEach>
 
-
-
-
-
 				<form action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
 														method="post"> 
 					

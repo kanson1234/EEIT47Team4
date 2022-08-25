@@ -40,11 +40,11 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	public List<ShopHouseBean> getByOrderByPriceAsc();
 	
 	//種類價格排序由小至大
-	@Query(value="SELECT * FROM StoreHouse WHERE SH_Classify=':name' ORDER BY SH_Price ASC;",nativeQuery = true)
+	@Query(value="SELECT * FROM StoreHouse WHERE SH_Classify=:name ORDER BY SH_Price ASC;",nativeQuery = true)
 	public List<ShopHouseBean> sortByClassifyAsc(String name);
 	
 	//種類價格排序由大至小
-	@Query(value="SELECT * FROM StoreHouse WHERE SH_Classify=':name' ORDER BY SH_Price DESC;",nativeQuery = true)
+	@Query(value="SELECT * FROM StoreHouse WHERE SH_Classify= :name ORDER BY SH_Price DESC;",nativeQuery = true)
 	public List<ShopHouseBean> sortByClassifyDesc(String name);
 	
 }	

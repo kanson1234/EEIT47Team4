@@ -27,12 +27,17 @@
 				</form>
 			</div>
 			<div id="div3">
-				<form name="classifySearch"
-					action="${pageContext.request.contextPath}/ShopHouse/classifyHigherPrice/${category.classify}"
-					method="get">
-					<button type="submit" class="badge badge-light">最高價</button>
-				</form>
+				
+					<a href="${pageContext.request.contextPath}/ShopHouse/classifyHigherPrice?classify=服飾"><button type="submit" class="badge badge-light">最高價</button></a>
+				
 			</div>
+<!-- 			<div id="div3"> -->
+<!-- 				<form name="classifySearch" -->
+<%-- 					action="${pageContext.request.contextPath}/ShopHouse/classifyHigherPrice?classify=服飾" --%>
+<!-- 					method="get"> -->
+<!-- 					<button type="submit" class="badge badge-light">最高價</button> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
 		</div>
 
 		<div class="container">
