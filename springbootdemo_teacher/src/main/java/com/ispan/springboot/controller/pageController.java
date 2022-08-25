@@ -19,6 +19,9 @@ public class pageController {
 	public String welcomeIndex() {
 		return "index";
 	}
+
+
+
 	
 	@GetMapping("shopHouse/addItem")
 	public String addItem() {
@@ -76,11 +79,12 @@ public class pageController {
 		return "forgotPassword";
 	}
 
-//THT Start----------------------------------------------------------------
+
 	@GetMapping("/record/srselectpage")
 	public String srselectpage() {
 		return "srselectpage";
 	}
+
 
 	@GetMapping("/record/srselectpageALL")
 	public String srselectpageALL() {
@@ -88,12 +92,21 @@ public class pageController {
 	}
 
 
+	@GetMapping("/customerFile")
+	public String customerFile() {
+		return "customerFile";
+	}
+
+	@GetMapping("/newMessage")
+	public String newMessage() {
+		return "newMessage";
+	}
+
 	@GetMapping("/gotoShoppingCar")
 	public String ShoppingCar() {
 		return "ShoppingCar";
 	}
 	
-
 // THT End----------------------------------------------------------------
 
 

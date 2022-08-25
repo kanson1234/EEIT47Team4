@@ -73,8 +73,8 @@ public class CustomerController {
 			if (cEmail == null || cEmail.length() == 0) {
 				errors.put("cEmail", "請輸入個人電子郵件!");
 			}
-
-			if (cImg.getBytes() == null) {
+			
+			if (cImg.isEmpty()) {
 				errors.put("cImg", "請選擇一張個人圖片!");
 			}
 
@@ -103,8 +103,11 @@ public class CustomerController {
 			newCustomer.setcStatus(true);
 
 			customerService.insertCustomer(newCustomer);
+			Map<String, String> msg = new HashMap<String, String>();
+			model.addAttribute("msg", msg);
+			msg.put("success", "會員註冊成功!");
 
-			return "loginSuccess";
+			return "registerC";
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -174,6 +177,28 @@ public class CustomerController {
 			Customer oneCustomer = customerService.findCustomerById(customerSession.getcId());
 			model.addAttribute("oneCustomer", oneCustomer);
 
+			return "customerFile";
+		}
+
+	}
+	
+	// 已登入會員之個人資料編輯
+	@GetMapping("/customer/editOne")
+	public String editOneById(Model model) {
+		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
+		Admin adminSession = (Admin) model.getAttribute("adminLoginOk");
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
+
+		if (customerSession == null) {
+			if (adminSession != null && retailerSession != null) {
+				return "loginSuccess";
+			}
+			return "redirect:/loginC";
+		} else {
+
+			Customer oneCustomer = customerService.findCustomerById(customerSession.getcId());
+			model.addAttribute("oneCustomer", oneCustomer);
+
 			return "personalFile";
 		}
 
@@ -209,12 +234,8 @@ public class CustomerController {
 			errors.put("cEmail", "請輸入個人電子郵件!");
 		}
 
-		try {
-			if (cImg.getBytes() == null) {
-				errors.put("cImg", "請選擇一張個人圖片!");
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		if (cImg.isEmpty()) {
+			errors.put("cImg", "請選擇一張個人圖片!");
 		}
 
 		if (errors != null && !errors.isEmpty()) {
@@ -245,26 +266,31 @@ public class CustomerController {
 			updateCustomer.setcDate(d);
 
 			customerService.insertCustomer(updateCustomer);
+			Map<String, String> msg = new HashMap<String, String>();
+			msg.put("success","修改成功");
 
 			return "redirect:/customer/findOne";
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "personalFile";
+			return "customerFile";
 		}
 
 	}
 
 	// 修改會員狀態
-	@GetMapping("/changeCustomerStatus")
-	public String changeCustomerStatus(@RequestParam("customerStatus") boolean customerStatus, Model model) {
-		Customer oneCustomer = (Customer) model.getAttribute("customer");
-		Customer findCustomer = customerService.findCustomerById(oneCustomer.getcId());
-		findCustomer.setcStatus(customerStatus);
+	@GetMapping("/changeCustomerStatus/{id}")
+	public String changeCustomerStatus(@PathVariable Integer id, Model model) {
+		Customer customer = customerService.findCustomerById(id);
+		boolean iscStatus = customer.iscStatus();
+		if (iscStatus == true) {
+			customer.setcStatus(false);
+		} else {
+			customer.setcStatus(true);
+		}
+		customerService.insertCustomer(customer);
 
-		customerService.insertCustomer(findCustomer);
-
-		return "loginSuccess";
+		return "redirect:/customer/findAll";
 	}
 
 	// 忘記密碼寄信
@@ -295,5 +321,23 @@ public class CustomerController {
 		}
 
 	}
+
+	// 模糊搜尋會員資料
+	@GetMapping("/findCustomerByKeywords")
+	public String findSpecialCustomer(@RequestParam("keywords") String keywords, Model model) {
+		List<Customer> findSpecialCustomer = customerService.findSpecialCustomer(keywords);
+		model.addAttribute("customer", findSpecialCustomer);
+		return "allCustomer";
+	}
+
+//	// Ajax驗證帳號
+//	@GetMapping("/checkAccount/{account}")
+//	public boolean checkAccount(@PathVariable String cAccount) {
+//		Customer findCustomerAccount = customerService.findCustomerAccount(cAccount);
+//		if (findCustomerAccount != null) {
+//			return false;
+//		}
+//		return true;
+//	}
 
 }

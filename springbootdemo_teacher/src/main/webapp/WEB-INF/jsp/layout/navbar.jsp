@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <style type="text/css">
 .navbar{
 	background-color: #D1AC00;
@@ -39,6 +40,7 @@ button {
 }
 }
 </style>
+
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -68,6 +70,10 @@ button {
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.request.contextPath}/ShopHouse/findByClothes">服飾
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.request.contextPath}/ShopHouse/findByTent">帳篷
 						<span class="sr-only">(current)</span>
 				</a></li>
@@ -91,21 +97,22 @@ button {
 					href="${pageContext.request.contextPath}/ShopHouse/viewItems">後臺管理所有商品
 						<span class="sr-only">(current)</span>
 				</a></li>
+
+
 				
 			</ul>
+
 
 			<div class="dropdown text-end rounded-pill text-light" style="background-color:#C7A200;" >
 				<c:if
 					test="${empty customerLoginOk && empty adminLoginOk && empty retailerLoginOk}">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-toggle="dropdown" aria-expanded="false"> 登入 </a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="${contextRoot}/loginA">管理者登入</a>
-								<a class="dropdown-item" href="${contextRoot}/loginR">商家登入</a> <a
-									class="dropdown-item" href="${contextRoot}/loginC">會員登入</a>
-							</div></li>
+
+							class="nav-link dropdown-toggle" href="${contextRoot}/loginC" role="button"
+							 aria-expanded="false"> 登入 </a>
+							</li>
+
 					</ul>
 				</c:if>
 				<c:if test="${!empty retailerLoginOk}">
@@ -140,29 +147,30 @@ button {
 						<ul class="navbar-nav mr-auto ">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">顧客資訊</a> <a
-										class="dropdown-item" href="#">訂單管理</a> <a
-										class="dropdown-item" href="${contextRoot}/logout">登出</a>
+
+									<a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a>
+									 <a class="dropdown-item" href="#">訂單管理</a>
+ 									<a class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
-
-
 						</ul>
 					</div>	
 				</c:if>
 
+
 				<c:if test="${!empty adminLoginOk}">
 					<c:set var="admin" value="adminLoginOk" />
 					<div>
-						<a class="nav-link dropdown-toggle" href="#" role="button"
-							data-toggle="dropdown" aria-expanded="false"> <img src=""
-							width="45" height="45" class="rounded-circle" alt="..."> <span class="text-dark">${adminLoginOk.id}</span>
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+						<span>${adminLoginOk.firstName}</span>
 						</a>
 
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">後臺管理</a> <a
+
+									<a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a> <a
+
 										class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
@@ -170,18 +178,16 @@ button {
 					</div>
 				</c:if>
 
-
 			</div>
 			<div align="right">
 							<form method="get" class="form-inline my-2 my-lg-0"
 								action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-								<input style="padding: 5px" class="form-control mr-sm-2"
+								<input style="padding: 4px" class="form-control mr-sm-1"
 									type="text" placeholder="Coleman" name="word" /> <input
 									type="submit" name="Search" value="搜尋"
 									class="btn btn-outline-success my-2 my-sm-0" />
 							</form>
 
-							
 						</div>
 
 		</div>

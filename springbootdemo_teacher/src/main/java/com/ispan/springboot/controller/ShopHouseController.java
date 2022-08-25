@@ -274,6 +274,14 @@ public class ShopHouseController {
 		return "shopHouseBackpack";
 	}
 	
+	// 搜尋服飾
+	@GetMapping("/ShopHouse/findByClothes")
+	public String findByClothes(Model model) {
+		List<ShopHouseBean> category = sService.findByClassify("服飾");
+		model.addAttribute("tent", category);
+		return "shopHouseClothes";
+	}
+	
 	//價格排序由大至小
 	@GetMapping("/ShopHouse/highPrice")
 	public String orderByHigherPrice(Model model) {

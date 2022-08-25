@@ -16,7 +16,7 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 
 	//模糊查詢
 	@Query(value=" select * FROM StoreHouse WHERE SH_ItemName LIKE %:word% " +
-	               "OR C2_Id LIKE %:word%",nativeQuery = true)
+	               "OR C2_Id LIKE %:word% OR SH_Classify LIKE %:word%",nativeQuery = true)
 	public List<ShopHouseBean> findByKeyword(@RequestParam(name = "word") String word);
 	
 	@Transactional // 蓋掉上方交易預設設定

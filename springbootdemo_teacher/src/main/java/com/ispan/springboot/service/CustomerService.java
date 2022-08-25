@@ -49,5 +49,9 @@ public class CustomerService {
 	public  Customer findCustomerById(Integer id) {
 		return cDao.getById(id);
 	}
+	
+	public List<Customer> findSpecialCustomer(String keywords){
+		return cDao.findSpecial(keywords);
+	}
 
 }
