@@ -30,7 +30,13 @@
 
 </head>
 <body>
-<jsp:include page="layout/navbar.jsp" />
+	<jsp:include page="layout/navbar.jsp" />
+	<div align='center'>
+		<form action="${contextRoot}/findCustomerByKeywords" method="get" enctype="multipart/form-data">
+			<input type="text" name="keywords" placeholder="輸入會員姓、名或帳號" maxlength="30" size="30"><br>
+			<button class="btn btn-outline-success">搜尋會員資訊</button>
+		</form>
+	</div>
 	<div>
 		<table class="table table-hover table align-middle">
 			<thead>
@@ -61,11 +67,8 @@
 								value="${c.cBirthdate}" /></td>
 						<td>${c.cEmail}</td>
 						<td>${c.cDate}</td>
-						<td><select name="customerStatus">
-								<option value="true">啟用</option>
-								<option value="false">停用</option>
-						</select></td>
-						<td><a href="${contextRoot}/changeCustomerStatus?id=${c.cId}">
+						<td>${c.cStatus}</td>
+						<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}">
 								<button class="btn btn-secondary">修改帳號狀態</button>
 						</a></td>
 						<td><a onclick="return confirm('真的要刪除此筆資料嗎?')"

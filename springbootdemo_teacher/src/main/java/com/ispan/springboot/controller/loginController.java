@@ -54,7 +54,7 @@ public class loginController {
 
 		if (adminLoginResult != null) {
 			model.addAttribute("adminLoginOk", adminLoginResult);
-			return "redirect:/customer/findAll";
+			return "index";
 		}
 
 		errors.put("msg", "帳號或密碼有誤，請重新輸入!");
@@ -124,10 +124,10 @@ public class loginController {
 		if (cstatus == true) {
 
 			model.addAttribute("customerLoginOk", customerLoginResult);
-			return "redirect:/customer/findOne";
+			return "index";
 
 		} else {
-			errors.put("status", "您的帳號已遭停權，詳情請向管理員洽詢。");
+			errors.put("status", "您的帳號尚未開通或已遭停權，詳情請向管理員洽詢。");
 			return "loginC";
 		}
 
