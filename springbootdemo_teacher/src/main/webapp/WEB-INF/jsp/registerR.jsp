@@ -24,24 +24,25 @@
 			style="margin: 20px; padding: 20px; padding-left: 200px; padding-right: 200px; margin-left: auto; margin-right: auto; width: 60%; border: solid 1px; border-radius: 5px; border-color: rgb(163, 163, 163);">
 			<form action="${contextRoot}/Retailer/insert" method="post"
 				enctype="multipart/form-data">
+				<h5 style="color: green">${msg.success}</h5>
 				<h2 class="h3 mb-3 fw-normal">零售商註冊</h2>
 
 				<div class="mb-3">
-					<label class="form-label">姓名</label> <input type="text"
-						class="form-control" placeholder="請輸入姓名" name="rName" />
+					<label class="form-label">商店名稱</label> <input type="text"
+						class="form-control" placeholder="請輸入商店名稱" name="rName" id="rName"/>
 					<p style="color: red;">${errors.rName}</p>
 					<label class="form-label">帳號</label><input type="text"
-						class="form-control" placeholder="請輸入帳號" name="rAccount" />
+						class="form-control" placeholder="請輸入帳號" name="rAccount" id="rAccount"/>
 					<p style="color: red;">${errors.rAccount}</p>
 					<p style="color: red;">${errors.used}</p>
 					<label class="form-label">密碼</label><input type="password"
-						class="form-control" placeholder="請輸入密碼" name="rPwd" />
+						class="form-control" placeholder="請輸入密碼" name="rPwd" id="rPwd"/>
 					<p style="color: red;">${errors.rPwd}</p>
 					<label class="form-label">電話</label><input type="text"
-						class="form-control" placeholder="請輸入電話" name="rPhone" />
+						class="form-control" placeholder="請輸入聯絡電話" name="rPhone" id="rPhone"/>
 					<p style="color: red;">${errors.rPhone}</p>
 					<label class="form-label">商家描述</label> <input type="text"
-						class="form-control" placeholder="輸入商家描述" name="rInfo" />
+						class="form-control" placeholder="輸入商家描述" name="rInfo" id="rInfo"/>
 					<p style="color: red;">${errors.rInfo}</p>
 					<label class="form-label">Logo圖樣</label><input type="file"
 						accept="image/*" name="rLogo" id="imglogo" /> <img id="logo"
@@ -54,12 +55,28 @@
 				</div>
 
 				<button type="submit" class="btn btn-lg btn-primary">註冊</button>
-				${errors.msg}
+				
+				<div class="text-center m-5">
+					一鍵註冊:
+					<button type="button"  class="btn btn-outline-info fastRegister">傳品</button>
+				</div>
 
 			</form>
 		</div>
 	</div>
 	<script>
+	//快速註冊
+	$(".fastRegister").click(function() {
+		$("#rName").val("傳品登山用品");
+		$("#rAccount").val("sss123");
+		$("#rPwd").val("sss456");
+		$("#rPhone").val("0930228768");
+		$("#rInfo").val("做您舒適的登山體驗最堅實的後盾");
+// 		$("#imglogo").attr("src","C:\Users\Student\Pictures\A.jpg");
+// 		$("#imgphoto").attr("src","C:\Users\Student\Pictures\A.jpg");
+	});
+	
+	
 		$('#imglogo').change(function() {
 			var file = $('#imglogo')[0].files[0];
 			var reader = new FileReader;

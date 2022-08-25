@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>我的個人資料</title>
+<title>修改個人資料</title>
 
 <!-- bootstrap 5.1.3 JS -->
 <script
@@ -27,50 +27,50 @@
 			<form
 				action="${contextRoot}/customer/update?id=${oneCustomer.getcId()}"
 				method="post" enctype="multipart/form-data">
-				<h6 style="color: green">${msg}</h6>
-				<h2>我的個人資料</h2>
-
+				<div class="text-center">
+					<h2>修改個人資料</h2>
+				</div>
 				<div class="mb-3">
 
 					<label class="form-label"></label> <input type="hidden"
 						class="form-control" name="customerId"
 						value="${oneCustomer.getcId()}">
 
-					<div>帳號:</div>
+					<div>
+						<font size="4">帳號:</font>
+					</div>
 					<div>${oneCustomer.getcAccount()}</div>
 
-					<label class="form-label">密碼:</label> <input type="text"
-						class="form-control" name="cPwd" value="${oneCustomer.getcPwd()}">
+					<label class="form-label"><font size="4">密碼:</font></label> <input
+						type="text" class="form-control" name="cPwd"
+						value="${oneCustomer.getcPwd()}">
 					<p style="color: red;">${errors.cPwd}</p>
-					<label class="form-label">姓:</label> <input type="text"
-						class="form-control" name="cFirstName"
+					<label class="form-label"><font size="4">姓:</font></label> <input
+						type="text" class="form-control" name="cFirstName"
 						value="${oneCustomer.getcFirstName()}">
 					<p style="color: red;">${errors.cFirstName}</p>
-					<label class="form-label">名:</label> <input type="text"
-						class="form-control" name="cLastName"
+					<label class="form-label"><font size="4">名:</font></label> <input
+						type="text" class="form-control" name="cLastName"
 						value="${oneCustomer.getcLastName()}">
 					<p style="color: red;">${errors.cLastName}</p>
-					<label class="form-label">生日:</label>
-					<fmt:formatDate pattern="yyyy/MM/dd"
-						value="${oneCustomer.getcBirthdate()}" />
-					<input type="date" class="form-control" name="cbDate"
-						value="">
+					<label class="form-label"><font size="4">生日:</font></label> <input
+						type="date" class="form-control" name="cbDate" value="">
 					<p style="color: red;">${errors.cbDate}</p>
-					<label class="form-label">個人電子信箱:</label> <input type="text"
-						class="form-control" name="cEmail"
+					<label class="form-label"><font size="4">個人電子信箱:</font></label> <input
+						type="text" class="form-control" name="cEmail"
 						value="${oneCustomer.getcEmail()}">
 					<p style="color: red;">${errors.cEmail}</p>
-					<label class="form-label">個人圖片:</label> <input type="file"
-						accept="image/*" name="cImg" id="imgInp"><img width="350"
-						id="img" src="${contextRoot}/downloadImage/${oneCustomer.cId}" />
+					<label class="form-label"><font size="4">個人圖片:</font></label> <input
+						type="file" accept="image/*" name="cImg" id="imgInp"><img
+						width="350" id="img"
+						src="${contextRoot}/downloadImage/${oneCustomer.cId}" />
 					<p style="color: red;">${errors.cImg}</p>
 
 				</div>
-				<a onclick="confirm('確認修改會員資料?');alert('修改成功！');">
+				<a onclick="confirm('確認修改會員資料?');">
 					<button type="submit" class="btn btn-lg btn-primary">修改</button>
 				</a>
 				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
-				${errors.msg}
 			</form>
 		</div>
 	</div>
@@ -88,8 +88,11 @@
 		//取消按鈕返回上頁
 		$("#cancel").click(function(event) {
 			event.preventDefault(); //取消預設行為
-			window.location.replace("http://localhost:8080/logindex"); //返回特定頁面
+			window.location.replace("http://localhost:8080/"); //返回特定頁面
 		})
+
+		var dateControl = document.querySelector('input[type="date"]');
+		dateControl.value = '${oneCustomer.getcBirthdate()}'
 	</script>
 
 </body>
