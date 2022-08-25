@@ -86,10 +86,6 @@ button {
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="${pageContext.request.contextPath}/shopHouse/add">新增商品 <span
-						class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.request.contextPath}/admin/Admin">後臺管理 <span
 						class="sr-only">(current)</span>
 				</a></li>
