@@ -278,18 +278,16 @@ public class ShopHouseController {
 	@GetMapping("/ShopHouse/findByClothes")
 	public String findByClothes(Model model) {
 		List<ShopHouseBean> category = sService.findByClassify("服飾");
-		List<ShopHouseBean> clotheslowerPrice = sService.sortByClassifyPriceAsc("服飾");
 
-		model.addAttribute("clotheslowerPrice", clotheslowerPrice);
 		model.addAttribute("tent", category);
 		return "shopHouseClothes";
 	}
 
 	// 種類價格排序由大至小
-	@GetMapping("/ShopHouse/classifyHigherPrice/{classify}")
-	public String sortByClassifyPriceAsc(@PathVariable String classify,Model model) {
+	@GetMapping("/ShopHouse/classifyHigherPrice")
+	public String sortByClassifyPriceAsc(@RequestParam("classify") String classify,Model model) {
 		List<ShopHouseBean> clotheslowerPrice = sService.sortByClassifyPriceAsc(classify);
-
+        System.out.println("sdasdasdasdad"+clotheslowerPrice.size()+classify);
 		model.addAttribute("clotheslowerPrice", clotheslowerPrice);
 		return "shopHouseClothes";
 	}

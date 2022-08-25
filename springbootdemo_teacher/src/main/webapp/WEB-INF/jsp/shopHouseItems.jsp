@@ -68,7 +68,7 @@
 					<th scope="col">照片</th>
 					<th scope="col">價錢</th>
 					<th scope="col">種類</th>
-					<th scope="col">店家</	th>
+					<th scope="col">店家</th>
 				</tr>
 			</thead>
 			<c:forEach items="${keyword}" var="i">
