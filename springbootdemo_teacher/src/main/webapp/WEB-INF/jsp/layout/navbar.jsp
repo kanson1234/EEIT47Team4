@@ -50,12 +50,8 @@ button {
 <body>
 
 
-<<<<<<< HEAD
-	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="z-index: 1;">
-=======
 	<nav class="navbar navbar-expand-lg navbar-light " style="z-index:1;">
->>>>>>> 645e2025a6c0085e8af08a076e1ae631e4787435
+
 		<a class="navbar-brand"
 			href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems"><img
 			width="100px" src="${contextRoot}/img/Logo1.png"></a>
@@ -146,22 +142,13 @@ button {
 						<ul class="navbar-nav mr-auto ">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
-<<<<<<< HEAD
+
 									<a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a>
 									<a class="dropdown-item" href="#">訂單管理</a> <a
 										class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
 
-
-=======
-
-									<a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a>
-									 <a class="dropdown-item" href="#">訂單管理</a>
- 									<a class="dropdown-item" href="${contextRoot}/logout">登出</a>
-								</div>
-							</li>
->>>>>>> 645e2025a6c0085e8af08a076e1ae631e4787435
 						</ul>
 					</div>
 				</c:if>
@@ -170,14 +157,11 @@ button {
 				<c:if test="${!empty adminLoginOk}">
 					<c:set var="admin" value="adminLoginOk" />
 					<div>
-<<<<<<< HEAD
+
 						<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-toggle="dropdown" aria-expanded="false"><span>${adminLoginOk.firstName}</span>
 
-=======
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-						<span>${adminLoginOk.firstName}</span>
->>>>>>> 645e2025a6c0085e8af08a076e1ae631e4787435
+
 						</a>
 
 						<ul class="navbar-nav mr-auto">
