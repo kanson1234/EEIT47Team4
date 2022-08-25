@@ -4,7 +4,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="layout/navbar.jsp" />
-
+<jsp:include page="layout/SidebarRetailer.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 

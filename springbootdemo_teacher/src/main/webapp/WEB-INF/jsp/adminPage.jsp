@@ -11,13 +11,12 @@
 <meta charset="UTF-8">
 <title>Admin</title>
 <style type="text/css">
-
 </style>
 </head>
-<body>
+<body >
 
 
-<main>
+<main >
 	<div id="div_content"> 
 	
 	</div>
