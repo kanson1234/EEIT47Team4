@@ -105,6 +105,7 @@
 			
 
 
+<<<<<<< HEAD
 		<!--
 														action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
 														method="post"> -->
@@ -117,6 +118,19 @@
 		</form>
 		</div>
 		</div>
+=======
+
+				<form action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
+														method="post"> 
+					
+					留言區:
+					<textarea rows="3" cols="50" id="newMsg" name="newMsg"></textarea>
+					<button type="submit" class="btn btn-primary">送出</button>
+				</form>
+			</div>
+		</div>
+
+>>>>>>> 65d27b922ef93dc25e6f6d32c7550b603398cfd4
 
 		<div></div>
 	</header>

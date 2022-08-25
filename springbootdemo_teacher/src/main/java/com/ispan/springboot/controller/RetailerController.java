@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ispan.springboot.dao.ShopHouseDao;
@@ -25,6 +26,7 @@ import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.service.RetailerService;
 
 @Controller
+@SessionAttributes(names = { "customerLoginOk", "adminLoginOk", "retailerLoginOk" })
 public class RetailerController {
 
 	@Autowired
@@ -94,8 +96,11 @@ public class RetailerController {
 			newRetailer.setRdate(d);
 			newRetailer.setRstate(true);
 			rService.insertRetailer(newRetailer);
+			Map<String, String> msg = new HashMap<String, String>();
+			model.addAttribute("msg", msg);
+			msg.put("success", "註冊成功!");
 
-			return "loginSuccess";
+			return "registerR";
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -194,17 +199,46 @@ public class RetailerController {
 
 	@GetMapping("/Retailer/editRetailer/{id}")
 	public String editMessagePage(@PathVariable Integer id, Model model) {
+<<<<<<< HEAD
 		Retailer r = rService.findById(id);
 
 		model.addAttribute("Retailerinfo", r);
 		return "editRetailer";
 	}
 
+=======
+		Retailer retailersession = (Retailer)model.getAttribute("retailerLoginOk");
+		Retailer oneRetailer = rService.findById(retailersession.getRid());
+		model.addAttribute("Retailerinfo", oneRetailer);
+		return "editRetailer";
+	}
+	@GetMapping("/Retailer/retailerInfoPage/{id}")
+	public String retailerInfoPage(@PathVariable Integer id, Model model) {
+		Retailer retailersession = (Retailer)model.getAttribute("retailerLoginOk");
+		Retailer oneRetailer = rService.findById(retailersession.getRid());
+		model.addAttribute("Retailerinfo", oneRetailer);
+		return "retailerInfoPage";
+	}
+	//更改帳號狀態,可改成按鈕帶0,狀態false,1 true
+	@GetMapping("/Retailer/changeStatusF/{id}")
+	public String changeStatustoFalse(@PathVariable Integer id) {
+		rService.ChangeStatusById(false, id);
+		return "redirect:/Retailer/RetailerCRUD";
+	}
+	@GetMapping("/Retailer/changeStatusT/{id}")
+	public String changeStatustoTrue(@PathVariable Integer id) {
+		rService.ChangeStatusById(true, id);
+		return "redirect:/Retailer/RetailerBlock";
+	}
+	
+	//用id編輯
+>>>>>>> 65d27b922ef93dc25e6f6d32c7550b603398cfd4
 	@PostMapping("/Retailer/editRetailer")
 	public String editMessagePage(@RequestParam Integer id, @RequestParam("rName") String rN,
 			@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, @RequestParam("rPhone") String rph,
 			@RequestParam("rLogo") MultipartFile rLogo, @RequestParam("rPhoto") MultipartFile rPhoto,
 			@RequestParam("rInfo") String rInfo,Model model) {
+		Retailer retailersession = (Retailer)model.getAttribute("retailerLoginOk");
 		try {
 			Map<String, String> errors = new HashMap<String, String>();
 			model.addAttribute("errors", errors);
@@ -217,9 +251,9 @@ public class RetailerController {
 				errors.put("rAccount", "請輸入您的帳號!");
 			}
 
-			if (rService.findRetailerAccount(ra) != null) {
-				errors.put("used", "該帳號已被註冊!");
-			}
+//			if (rService.findRetailerAccount(ra) != null) {
+//				errors.put("used", "該帳號已被註冊!");
+//			}
 
 			if (rpw == null || rpw.length() == 0) {
 				errors.put("rPwd", "請輸入您的密碼!");
@@ -255,7 +289,7 @@ public class RetailerController {
 		r.setRlogo(rLogo.getBytes());
 		r.setRinfo(rInfo);
 		rService.insertRetailer(r);
-		return "editRetailer";
+		return "redirect:/Retailer/retailerInfoPage/"+retailersession.getRid();
 		}catch (IOException e){
 			e.printStackTrace();
 			return "registerR";

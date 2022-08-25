@@ -103,4 +103,17 @@ public class ShopHouseService {
 	public List<ShopHouseBean> getByOrderByPriceAsc(){
 		return sDao.getByOrderByPriceAsc();
 	}
+	
+	//種類價格排序由小至大
+	public List<ShopHouseBean> sortByClassifyPriceAsc(String name){
+		return sDao.sortByClassifyAsc(name);
+	}
+	
+	//種類價格排序由大至小
+	public List<ShopHouseBean> sortByClassifyPriceDesc(String name){
+		return sDao.sortByClassifyDesc(name);
+	}
+	
+	
+	
 }

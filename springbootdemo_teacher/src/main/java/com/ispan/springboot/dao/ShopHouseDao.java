@@ -15,8 +15,13 @@ import com.ispan.springboot.model.ShopHouseBean;
 public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 
 	//模糊查詢
+<<<<<<< HEAD
 	@Query(value=" select * FROM StoreHouse WHERE SH_ItemName LIKE %:word% " +	
 	               "OR C2_Id LIKE %:word%",nativeQuery = true)
+=======
+	@Query(value=" select * FROM StoreHouse WHERE SH_ItemName LIKE %:word% " +
+	               "OR C2_Id LIKE %:word% OR SH_Classify LIKE %:word%",nativeQuery = true)
+>>>>>>> 65d27b922ef93dc25e6f6d32c7550b603398cfd4
 	public List<ShopHouseBean> findByKeyword(@RequestParam(name = "word") String word);
 	
 	@Transactional // 蓋掉上方交易預設設定
@@ -32,13 +37,25 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	//店家ID找商品
 	@Query(value="select * FROM StoreHouse WHERE C2_Id=:id",nativeQuery = true)
 	public List<ShopHouseBean> findByC2Id( Integer id);
+<<<<<<< HEAD
 	
 
+=======
+	 
+>>>>>>> 65d27b922ef93dc25e6f6d32c7550b603398cfd4
 	//價格排序由大至小
 	public List<ShopHouseBean> getByOrderByPriceDesc();
 	
 	//價格排序由小至大
 	public List<ShopHouseBean> getByOrderByPriceAsc();
+	
+	//種類價格排序由小至大
+	@Query(value="SELECT * FROM StoreHouse WHERE SH_Classify=':name' ORDER BY SH_Price ASC;",nativeQuery = true)
+	public List<ShopHouseBean> sortByClassifyAsc(String name);
+	
+	//種類價格排序由大至小
+	@Query(value="SELECT * FROM StoreHouse WHERE SH_Classify=':name' ORDER BY SH_Price DESC;",nativeQuery = true)
+	public List<ShopHouseBean> sortByClassifyDesc(String name);
 	
 }	
 

@@ -13,6 +13,20 @@
 
 </head>
 <body>
+<<<<<<< HEAD
+=======
+<header>
+<!-- <h1>首頁</h1> -->
+<ul>
+<%-- <li><a href="${contextRoot}/ShopHouse/viewItems">所有商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/shopHouse/add">新增商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/ShopHouse/findItemById">查詢商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/Retailer/RetailerCRUD">查詢商家</a></li> --%>
+<%-- <li><a href="${contextRoot}/registerR">註冊新商家</a></li> --%>
+<%-- <li><a href="${contextRoot}/registerC">註冊新會員</a></li> --%>
+</ul>
+</header>
+>>>>>>> 65d27b922ef93dc25e6f6d32c7550b603398cfd4
 <main>
 <section class="py-5 text-center container">
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -44,15 +58,23 @@
 </div>
 </section>
 
+
+<!-- <h1>首頁</h1> -->
+<!-- <ul> -->
+<%-- <li><a href="${contextRoot}/ShopHouse/viewItems">所有商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/shopHouse/add">新增商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/ShopHouse/findItemById">查詢商品</a></li> --%>
+<%-- <li><a href="${contextRoot}/Retailer/RetailerCRUD">查詢商家</a></li> --%>
+<!-- </ul> -->
 <hr > 
 <span class="badge badge-danger">最新商品</span>
 
 <div class="container" align="center">
 	<div class="row">
 		<c:forEach items="${pages.content}" var="i">
-			<div class="card" style="width: 14rem;">
+			<div class="card" style="width: 14rem; height: 380px;">
 				<a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
-						width="150" src="${pageContext.request.contextPath}/downloadImg/${i.id}" class="card-img-top"
+						height="180"" src="${pageContext.request.contextPath}/downloadImg/${i.id}" class="card-img-top"
 						alt="..."></a>
 			    <div class="card-body">
 						<p class="card-text">${i.itemName}</p>

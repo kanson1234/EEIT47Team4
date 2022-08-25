@@ -9,6 +9,14 @@
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Account Manager</title>
+<style>
+	body{
+			background-color:#FAF4D3;
+			}
+	div.container{
+			background-color:#FBF7DD;
+	}
+</style>
 </head>
 <body>
 
@@ -25,8 +33,8 @@
 		</div>
 		<a href="${contextRoot}/registerR">註冊新帳號</a>
 		<br/>
-		<div>
-		<table class="table">
+		<div class="container">
+		<table class="table" style="background-color:#FDFAEB">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">id</th>

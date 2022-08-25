@@ -28,7 +28,7 @@
 			</div>
 			<div id="div3">
 				<form name="classifySearch"
-					action="${pageContext.request.contextPath}/ShopHouse/highPrice"
+					action="${pageContext.request.contextPath}/ShopHouse/classifyHigherPrice/${category.classify}"
 					method="get">
 					<button type="submit" class="badge badge-light">最高價</button>
 				</form>
@@ -37,17 +37,17 @@
 
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-				<c:forEach items="${lowerPrice}" var="i">
+				<c:forEach items="${clotheslowerPrice}" var="i">
 					<div class="card" style="width: 14rem; height: 380px;">
 						<a
-							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
+							href="${pageContext.request.contextPath}/ShopHouse/itemDetail2/${i.id}"><img
 							height="180"
 							src="${pageContext.request.contextPath}/downloadImg/${i.id}"
 							class="card-img-top" alt="..."></a>
 
 						<div class="card-body">
 							<p class="card-text">${i.itemName}</p>
-							<p class="card-text" style="color: red;">${i.price}</p>
+							<p class="card-text" style="color:red;">${i.price}</p>
 						</div>
 						<div>
 							<a href=""><button type="submit">加入購物車</button></a>
@@ -57,7 +57,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="container">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 			<c:forEach items="${higherPrice}" var="i">
@@ -71,7 +71,7 @@
 
 						<div class="card-body">
 							<p class="card-text">${i.itemName}</p>
-							<p class="card-text" style="color: red;">${i.price}</p>
+							<p class="card-text" style="color:red;">${i.price}</p>
 						</div>
 						<div>
 							<a href=""><button type="submit">加入購物車</button></a>
@@ -89,20 +89,17 @@
 					<div class="card" style="width: 14rem; height: 380px;">
 						<a
 							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}">
-							<img height="180"
-							src="${pageContext.request.contextPath}/downloadImg/${i.id}"
+							<img height="180" src="${pageContext.request.contextPath}/downloadImg/${i.id}"
 							class="card-img-top" alt="...">
 						</a>
 
 						<div class="card-body">
 							<p class="card-text">${i.itemName}</p>
-							<p class="card-text" style="color: red;">${i.price}</p>
-							<div class="position-relative">
-							<div class="position-absolute bottom-0 start-50 translate-middle-x">
-								<a href=""><button type="submit">加入購物車</button></a></div>
-							</div>
+							<p class="card-text" style="color:red;">${i.price}</p>
 						</div>
-
+						<div align="center">
+							<a href=""><button type="submit">加入購物車</button></a>
+						</div>
 					</div>
 				</div>
 			</c:forEach>

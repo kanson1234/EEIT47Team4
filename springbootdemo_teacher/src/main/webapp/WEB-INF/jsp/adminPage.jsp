@@ -11,9 +11,9 @@
 <meta charset="UTF-8">
 <title>Admin</title>
 <style type="text/css">
-
 </style>
 </head>
+<<<<<<< HEAD
 <body>
 	<header
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -79,6 +79,9 @@
 <!-- 					out</a></li> -->
 <!-- 		</ul> -->
 <!-- 	</header> -->
+=======
+<body >
+>>>>>>> 65d27b922ef93dc25e6f6d32c7550b603398cfd4
 
 <%-- 						<li class="nav-item"><a class="nav-link" href="${contextRoot}/Retailer/RetailerCRUD"> <span --%>
 <!-- 								data-feather="file" id="retailerCRUDlink"></span> 商家帳號管理 -->
@@ -87,7 +90,7 @@
 
 >>>>>>> 3dda41fcf20dc147f7fd896e2e46b376f102aca2
 
-<main>
+<main >
 	<div id="div_content"> 
 	
 	</div>
