@@ -199,14 +199,6 @@ public class RetailerController {
 
 	@GetMapping("/Retailer/editRetailer/{id}")
 	public String editMessagePage(@PathVariable Integer id, Model model) {
-<<<<<<< HEAD
-		Retailer r = rService.findById(id);
-
-		model.addAttribute("Retailerinfo", r);
-		return "editRetailer";
-	}
-
-=======
 		Retailer retailersession = (Retailer)model.getAttribute("retailerLoginOk");
 		Retailer oneRetailer = rService.findById(retailersession.getRid());
 		model.addAttribute("Retailerinfo", oneRetailer);
@@ -232,7 +224,7 @@ public class RetailerController {
 	}
 	
 	//用id編輯
->>>>>>> 65d27b922ef93dc25e6f6d32c7550b603398cfd4
+
 	@PostMapping("/Retailer/editRetailer")
 	public String editMessagePage(@RequestParam Integer id, @RequestParam("rName") String rN,
 			@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, @RequestParam("rPhone") String rph,
