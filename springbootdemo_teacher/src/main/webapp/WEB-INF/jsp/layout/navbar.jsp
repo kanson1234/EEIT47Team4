@@ -45,7 +45,8 @@ button {
 <body>
 
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:1;">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		style="z-index: 1;">
 		<a class="navbar-brand"
 			href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems"><img
 			width="100px" src="${contextRoot}/img/Logo1.png"></a>
@@ -94,7 +95,7 @@ button {
 				</a></li>
 
 
-				
+
 			</ul>
 
 
@@ -103,10 +104,8 @@ button {
 					test="${empty customerLoginOk && empty adminLoginOk && empty retailerLoginOk}">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item dropdown"><a
-
-							class="nav-link dropdown-toggle" href="${contextRoot}/loginC" role="button"
-							 aria-expanded="false"> 登入 </a>
-							</li>
+							class="nav-link dropdown-toggle" href="${contextRoot}/loginC"
+							role="button" aria-expanded="false"> 登入 </a></li>
 
 					</ul>
 				</c:if>
@@ -142,17 +141,15 @@ button {
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
-
-									<a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a> <a
-<a class="dropdown-item" href="#">訂單管理</a> <a
+									<a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a>
+									<a class="dropdown-item" href="#">訂單管理</a> <a
 										class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
 
 
-
 						</ul>
-					</div>	
+					</div>
 				</c:if>
 
 
@@ -160,7 +157,6 @@ button {
 					<c:set var="admin" value="adminLoginOk" />
 					<div>
 						<a class="nav-link dropdown-toggle" href="#" role="button"
-
 							data-toggle="dropdown" aria-expanded="false"><span>${adminLoginOk.firstName}</span>
 
 						</a>
@@ -169,9 +165,8 @@ button {
 							<li class="nav-item dropdown">
 								<div class="dropdown-menu">
 
-									<a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a> <a
-
-										class="dropdown-item" href="${contextRoot}/logout">登出</a>
+									<a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a>
+									<a class="dropdown-item" href="${contextRoot}/logout">登出</a>
 								</div>
 							</li>
 						</ul>
@@ -180,15 +175,15 @@ button {
 
 			</div>
 			<div align="right">
-							<form method="get" class="form-inline my-2 my-lg-0"
-								action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
-								<input style="padding: 4px" class="form-control mr-sm-1"
-									type="text" placeholder="Coleman" name="word" /> <input
-									type="submit" name="Search" value="搜尋"
-									class="btn btn-outline-success my-2 my-sm-0" />
-							</form>
+				<form method="get" class="form-inline my-2 my-lg-0"
+					action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
+					<input style="padding: 4px" class="form-control mr-sm-1"
+						type="text" placeholder="Coleman" name="word" /> <input
+						type="submit" name="Search" value="搜尋"
+						class="btn btn-outline-success my-2 my-sm-0" />
+				</form>
 
-						</div>
+			</div>
 
 		</div>
 	</nav>

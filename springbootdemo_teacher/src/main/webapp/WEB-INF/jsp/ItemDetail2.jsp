@@ -112,7 +112,8 @@
 
 
 
-				<form>
+				<form action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
+														method="post"> 
 					
 					留言區:
 					<textarea rows="3" cols="50" id="newMsg" name="newMsg"></textarea>
@@ -120,11 +121,6 @@
 				</form>
 			</div>
 		</div>
-
-													
-														<!--
-														action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
-														method="post"> -->
 
 
 		<div></div>
