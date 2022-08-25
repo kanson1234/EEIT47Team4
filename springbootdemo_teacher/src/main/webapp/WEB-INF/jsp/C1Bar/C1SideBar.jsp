@@ -47,7 +47,7 @@
 					href="${pageContext.request.contextPath}/Member/ShoppingCar">
 						<span data-feather="file"></span> 我的購物車
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"> <span
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer/findOne"> <span
 						data-feather="shopping-cart"></span> 我的資料
 				</a></li>
 

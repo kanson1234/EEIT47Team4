@@ -109,45 +109,60 @@
 						<thead>
 							<tr>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top">商品名稱</th>
+									style="vertical-align: middle; text-align: center; vertical-align: top">
+									商品名稱</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top">商品圖片</th>
+									style="vertical-align: middle; text-align: center; vertical-align: top">
+									商品圖片</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top">價格</th>
+									style="vertical-align: middle; text-align: center; vertical-align: top">
+									價格</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top">購買數量</th>
+									style="vertical-align: middle; text-align: center; vertical-align: top">
+									購買數量</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top">廠商名稱</th>
+									style="vertical-align: middle; text-align: center; vertical-align: top">
+									廠商名稱</th>
 								<th scope="col"
-									style="vertical-align: middle; vertical-align: top"></th>
+									style="vertical-align: middle; text-align: center; vertical-align: top">
+								</th>
 							</tr>
 						</thead>
-						<tbody>
+						
 							<h2>我的購物車</h2>
-							<c:forEach items="${data}" var="findall">
-								<tr>
-									<td style="vertical-align: middle;">
-										${findall.shophousebean.itemName}</td>
-									<td style="vertical-align: middle;"><a
-										href="${pageContext.request.contextPath}/ShopHouse/itemDetail/"
-										+${findall.shophousebean.id}><img width="150"
-											src="${pageContext.request.contextPath}/downloadImg/${findall.shophousebean.id}"></a>
-									</td>
-									<td style="vertical-align: middle;">${findall.shophousebean.price}
-									</td>
-									<td style="vertical-align: middle;">${findall.scCount}</td>
+							<tbody>
+							<form action="      " method="post" enctype="multipart/form-data">
+								<c:forEach items="${data}" var="findall">
 
-									<td style="vertical-align: middle;"><a
-										href="${pageContext.request.contextPath}/retailerGetAllItem?id=${findall.shophousebean.retailerBean.rid }">
-											${findall.shophousebean.retailerBean.rName} </a></td>
-									<!-- <td style="vertical-align:middle;">${findall.srState}</td> -->
-								</tr>
-							</c:forEach>
-							<c:if test="${!empty data}">
-								<form:button>結帳</form:button>
-							</c:if>
+									<tr>
+										<td style="display: none;"></td>
+										<td style="vertical-align: middle;">
+											${findall.shophousebean.itemName}</td>
+										<td style="vertical-align: middle; text-align: center;"><a
+											href="${pageContext.request.contextPath}/ShopHouse/itemDetail/"
+											+${findall.shophousebean.id}> <img width="150"
+												src="${pageContext.request.contextPath}/downloadImg/${findall.shophousebean.id}"></a>
+										</td>
+										<td style="vertical-align: middle; text-align: center;">
+											${findall.shophousebean.price}</td>
+										<td style="vertical-align: middle; text-align: center;">
+											${findall.scCount}</td>
 
-						</tbody>
+										<td style="vertical-align: middle; text-align: center;"><a
+											href="${pageContext.request.contextPath}/retailerGetAllItem?id=${findall.shophousebean.retailerBean.rid }">
+												${findall.shophousebean.retailerBean.rName} </a></td>
+										<td style="vertical-align: middle; text-align: center;"><button
+												href="${pageContext.request.contextPath}/ShoppingCar/removebyscid?scid=${findall.scId }">刪除
+											</button></td>
+									</tr>
+								</c:forEach>
+								<button id="stepsubmit">送出</button>
+							</tbody>
+							</form>
+						
+
+
+
 					</table>
 				</div>
 			</main>

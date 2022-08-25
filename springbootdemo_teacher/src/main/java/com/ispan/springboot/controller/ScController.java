@@ -9,13 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ispan.springboot.dao.ScDao;
 import com.ispan.springboot.model.Customer;
-import com.ispan.springboot.model.Retailer;
 import com.ispan.springboot.model.ShoopingCar;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.service.ScService;
@@ -36,25 +36,45 @@ public class ScController {
 	@Autowired
 	private ScDao scDao;
 
+//	U	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	// remove one SC by scid
+	@ResponseBody
+	@GetMapping("ShoppingCar/removebyscid")
+	private String remove(@RequestParam(name = "scid") Integer scid, Model model, HttpSession session) {
+		try {
+			scDao.deleteByScId(scid);
+			Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
+
+			Integer cid = customerSession.getcId();
+			List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
+			model.addAttribute("data", findAllByScId);
+
+			return "ShoppingCar";
+
+		} catch (Exception e) {
+			Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
+
+			Integer cid = customerSession.getcId();
+			List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
+			model.addAttribute("data", findAllByScId);
+
+			return "ShoppingCar";
+
+		}
+	}
+
 //	R	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// find all sc for C1
 	@GetMapping("Member/ShoppingCar")
-
-	public List<ShoopingCar> findAllByScId(Model model, HttpSession session) {
-		System.out.println(1);
-
+	public String findAllByScId(Model model, HttpSession session) {
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
-		System.out.println(2);
 
 		Integer cid = customerSession.getcId();
-		System.out.println(3);
-		System.err.println(cid);
-		System.out.println(4);
 		List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
-//		model.addAttribute("data", findAllByScId);
+		model.addAttribute("data", findAllByScId);
 
-		return null;
-//		return findAllByScId;
+		return "ShoppingCar";
 	}
 
 //	============================================================================
@@ -63,10 +83,46 @@ public class ScController {
 
 //	C	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// add 1 or more sc to sc or
-	@ResponseBody
 	@GetMapping("ShoppingCar/add")
-	public List<ShoopingCar> addToCar(@RequestParam(name = "num") Integer num, Model model,
-			HttpSession session,
+	public String addToCar(@RequestParam(name = "num") Integer num, Model model, HttpSession session,
+			@RequestParam(name = "itid") Integer itid) {
+
+		Customer customerSession = (Customer) session.getAttribute("customerLoginOk");
+		Integer cid = customerSession.getcId();
+		Customer customer = new Customer();
+		customer.setcId(cid);
+
+		Integer itId = itid;
+		ShopHouseBean shophousebean = new ShopHouseBean();
+		shophousebean.setId(itId);
+
+		Integer check = scDao.check(cid, itid);
+		ShoopingCar newSC = new ShoopingCar();
+		newSC.setCustomer(customer);
+		newSC.setShophousebean(shophousebean);
+		newSC.setScCount(num);
+
+		if (check == null) {
+			scDao.save(newSC);
+			List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
+			model.addAttribute("data", findAllByScId);
+
+			return "ShoppingCar";
+		} else {
+			scDao.change(cid, itid, num + check);
+
+			List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
+			model.addAttribute("data", findAllByScId);
+
+			return "ShoppingCar";
+
+		}
+
+	}
+
+//	______________________________________________________________________________________________________
+	@GetMapping("ShoppingCar/add2")
+	public List<ShoopingCar> addToCar2(@RequestParam(name = "num") Integer num, Model model, HttpSession session,
 			@RequestParam(name = "itid") Integer itid) {
 
 		Customer customerSession = (Customer) session.getAttribute("customerLoginOk");
@@ -94,20 +150,6 @@ public class ScController {
 
 		}
 
-	}
-
-//	U	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-	// remove one SC by scid
-	@ResponseBody
-	@GetMapping("ShoppingCar/removebyscid")
-	private Boolean remove(@RequestParam(name = "scid") Integer scid) {
-		try {
-			scDao.deleteByC1id(scid);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
 	}
 
 	// change num for sc by c1_id & it_id
