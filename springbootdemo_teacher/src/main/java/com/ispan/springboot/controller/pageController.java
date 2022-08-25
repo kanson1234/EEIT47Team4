@@ -84,10 +84,16 @@ public class pageController {
 	public String srselectpageALL() {
 		return "srselectpageALL";
 	}
-	
+
 	@GetMapping("/customerFile")
 	public String customerFile() {
 		return "customerFile";
+	}
+
+	@GetMapping("/newMessage")
+	public String newMessage() {
+		return "newMessage";
+
 	}
 
 }
