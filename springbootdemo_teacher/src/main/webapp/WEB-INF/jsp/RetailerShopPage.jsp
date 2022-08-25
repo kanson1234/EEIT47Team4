@@ -46,7 +46,7 @@
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 						<c:forEach items="${listItem}" var="Item">
 						<div class="col">
-							<div class="card" style="width: 14rem;">
+							<div class="card" style="width: 14rem; height: 380px;">
 								<a href="${contextRoot}/ShopHouse/itemDetail/${Item.id}"> <img
 									src="${contextRoot}/downloadImg/${Item.id}"
 									class="card-img-top" alt="...">

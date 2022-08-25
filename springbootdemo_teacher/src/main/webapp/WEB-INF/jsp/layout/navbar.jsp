@@ -63,6 +63,10 @@ button {
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.request.contextPath}/ShopHouse/findByClothes">服飾
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.request.contextPath}/ShopHouse/findByTent">帳篷
 						<span class="sr-only">(current)</span>
 				</a></li>

@@ -39,10 +39,10 @@
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" >
 			<c:forEach items="${lowerPrice}" var="i">
 			<div class="col">
-				<div class="card" style="width: 14rem;">
+				<div class="card" style="width: 14rem; height: 380px;">
 					<a
 						href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
-						width="150"
+						height="180"
 						src="${pageContext.request.contextPath}/downloadImg/${i.id}"
 						class="card-img-top" alt="..."></a>
 
@@ -63,10 +63,10 @@
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" >
 			<c:forEach items="${higherPrice}" var="i">
 			<div class="col">
-				<div class="card" style="width: 14rem;">
+				<div class="card" style="width: 14rem; height: 380px;">
 					<a
 						href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
-						width="150"
+						height="180"
 						src="${pageContext.request.contextPath}/downloadImg/${i.id}"
 						class="card-img-top" alt="..."></a>
 
@@ -88,10 +88,10 @@
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" >
 				<c:forEach items="${keyword}" var="i">
 					<div class="col">
-						<div class="card" style="width: 14rem;">
+						<div class="card" style="width: 14rem; height: 380px;">
 							<a
 								href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}">
-								<img
+								<img height="180"
 								src="${pageContext.request.contextPath}/downloadImg/${i.id}"
 								class="card-img-top" alt="...">
 							</a>
