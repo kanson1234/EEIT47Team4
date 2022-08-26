@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ispan.springboot.model.Retailer;
@@ -216,11 +217,31 @@ public class ShopHouseController {
 
 	// 模糊查詢
 	@GetMapping("/ShopHouse/findByKeyword")
-	public String findByKeyword(@RequestParam(name = "word", defaultValue = "") String word, Model model) {
-		List<ShopHouseBean> keyword = sService.findByKeyword(word);
+	public String findByKeyword(@RequestParam(name = "word", defaultValue = "") String word, Model model, HttpSession session) {
+		List<ShopHouseBean> keyword = sService.findByKeyword(word);		
 		model.addAttribute("keyword", keyword);
+		session.setAttribute("word", word);
 		return "FuzzySearchByWord";
 	}
+	
+	//模糊搜尋價格排序由大至小
+	@GetMapping("/ShopHouse/findByKeywordOrderByPrice")
+	public String findByKeywordOrderByPrice(@RequestParam(name = "word", defaultValue = "") String word, Model model) {
+//		String word = session.getAttribute(word).toString();
+		List<ShopHouseBean> lowerkeyword = sService.findByKeywordOrderByPrice(word);
+		model.addAttribute("higherPrice", lowerkeyword);
+		return "FuzzySearchByWord";
+	}
+	
+	//模糊搜尋價格排序由大至小
+	@GetMapping("/ShopHouse/findByKeywordOrderByPriceASC")
+	public String findByKeywordOrderByPriceASC(@RequestParam(name = "word", defaultValue = "") String word, Model model) {
+//		String word = session.getAttribute(word).toString();
+		List<ShopHouseBean> lowerkeyword = sService.findByKeywordOrderByPriceASC(word);
+		model.addAttribute("lowerPrice", lowerkeyword);
+		return "FuzzySearchByWord";
+	}
+	
 
 	// 種類搜尋
 	@GetMapping("/ShopHouse/findByClassify")
@@ -283,13 +304,76 @@ public class ShopHouseController {
 		return "shopHouseClothes";
 	}
 
+	// 種類價格排序由小至大
+	@GetMapping("/ShopHouse/classifyLowerPrice")
+	public String sortByClassifyPriceAsc(@RequestParam("classify") String classify, Model model) {
+		List<ShopHouseBean> classifylowerPrice = sService.sortByClassifyPriceAsc(classify);
+
+		model.addAttribute("classifylowerPrice", classifylowerPrice);
+		return "shopHouseClothes";
+	}
+
 	// 種類價格排序由大至小
 	@GetMapping("/ShopHouse/classifyHigherPrice")
-	public String sortByClassifyPriceAsc(@RequestParam("classify") String classify,Model model) {
-		List<ShopHouseBean> clotheslowerPrice = sService.sortByClassifyPriceAsc(classify);
-        System.out.println("sdasdasdasdad"+clotheslowerPrice.size()+classify);
-		model.addAttribute("clotheslowerPrice", clotheslowerPrice);
+	public String sortByClassifyPriceDesc(@RequestParam("classify") String classify, Model model) {
+		List<ShopHouseBean> classifyHigherPrice = sService.sortByClassifyPriceDesc(classify);
+
+		model.addAttribute("classifyHigherPrice", classifyHigherPrice);
 		return "shopHouseClothes";
+	}
+
+	// 帳篷價格排序由小至大
+	@GetMapping("/ShopHouse/classifyLowerPriceTent")
+	public String tentSortByClassifyPriceAsc(@RequestParam("classify") String classify, Model model) {
+		List<ShopHouseBean> classifylowerPrice = sService.sortByClassifyPriceAsc(classify);
+
+		model.addAttribute("classifylowerPrice", classifylowerPrice);
+		return "shopHouseTent";
+	}
+
+	// 帳篷價格排序由大至小
+	@GetMapping("/ShopHouse/classifyHigherPriceTent")
+	public String tentSortByClassifyPriceDesc(@RequestParam("classify") String classify, Model model) {
+		List<ShopHouseBean> classifyHigherPrice = sService.sortByClassifyPriceDesc(classify);
+
+		model.addAttribute("classifyHigherPrice", classifyHigherPrice);
+		return "shopHouseTent";
+	}
+
+	// 背包價格排序由小至大
+	@GetMapping("/ShopHouse/classifyLowerPriceBackpack")
+	public String backPackSortByClassifyPriceAsc(@RequestParam("classify") String classify, Model model) {
+		List<ShopHouseBean> classifylowerPrice = sService.sortByClassifyPriceAsc(classify);
+
+		model.addAttribute("classifylowerPrice", classifylowerPrice);
+		return "shopHouseBackpack";
+	}
+
+	// 背包價格排序由大至小
+	@GetMapping("/ShopHouse/classifyHigherPriceBackpack")
+	public String backPackSortByClassifyPriceDesc(@RequestParam("classify") String classify, Model model) {
+		List<ShopHouseBean> classifyHigherPrice = sService.sortByClassifyPriceDesc(classify);
+
+		model.addAttribute("classifyHigherPrice", classifyHigherPrice);
+		return "shopHouseBackpack";
+	}
+	
+	// 燈價格排序由小至大
+	@GetMapping("/ShopHouse/classifyLowerPriceLight")
+	public String lightSortByClassifyPriceAsc(@RequestParam("classify") String classify, Model model) {
+		List<ShopHouseBean> classifylowerPrice = sService.sortByClassifyPriceAsc(classify);
+
+		model.addAttribute("classifylowerPrice", classifylowerPrice);
+		return "shopHouseLight";
+	}
+
+	// 燈價格排序由大至小
+	@GetMapping("/ShopHouse/classifyHigherPriceLight")
+	public String lightSortByClassifyPriceDesc(@RequestParam("classify") String classify, Model model) {
+		List<ShopHouseBean> classifyHigherPrice = sService.sortByClassifyPriceDesc(classify);
+
+		model.addAttribute("classifyHigherPrice", classifyHigherPrice);
+		return "shopHouseLight";
 	}
 
 	// 價格排序由大至小
