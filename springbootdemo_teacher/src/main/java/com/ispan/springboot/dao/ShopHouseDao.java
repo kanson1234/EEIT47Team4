@@ -19,12 +19,23 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 	               "OR C2_Id LIKE %:word% OR SH_Classify LIKE %:word%",nativeQuery = true)
 	public List<ShopHouseBean> findByKeyword(@RequestParam(name = "word") String word);
 	
+	//模糊搜尋價格排序由大至小
+	@Query(value=" SELECT * FROM StoreHouse WHERE SH_ItemName LIKE %:word% OR C2_Id LIKE %:word% "
+			+ "OR SH_Classify LIKE %:word% ORDER BY SH_Price DESC " ,nativeQuery = true)
+	public List<ShopHouseBean> findByKeywordOrderByPrice(@RequestParam("word") String word);
+	
+	//模糊搜尋價格排序由小至大
+	@Query(value=" SELECT * FROM StoreHouse WHERE SH_ItemName LIKE %:word% OR C2_Id LIKE %:word% "
+			+ "OR SH_Classify LIKE %:word% ORDER BY SH_Price ASC " ,nativeQuery = true)
+	public List<ShopHouseBean> findByKeywordOrderByPriceASC(@RequestParam("word") String word);
+	
+	
 	@Transactional // 蓋掉上方交易預設設定
 	@Modifying
 	@Query(value="delete from StoreHouse where SH_Item_Id = :SH_Item_Id", nativeQuery = true)
 	public void deleteByItemId(@Param("SH_Item_Id") Integer id);
-	
-	
+
+
 	//產品類型搜尋    @RequestParam(name="classify")
 	@Query(value="select * FROM StoreHouse WHERE SH_Classify=:word",nativeQuery = true)
 	public List<ShopHouseBean> findByClassify(String word);

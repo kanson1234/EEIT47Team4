@@ -7,6 +7,59 @@
 <head>
 <meta charset="UTF-8">
 <title>會員登入</title>
+<style>
+body {
+	padding: 0;
+	margin: 0;
+	min-height: 100vh;
+	background: -webkit-linear-gradient(transparent, rgba(255, 255, 255, .3)),
+		-webkit-linear-gradient(350deg, rgba(0, 70, 67, .8) 30%, #B0EAE8 120%);
+	background: linear-gradient(transparent, rgba(110, 110, 110, .3)),
+		linear-gradient(100deg, rgba(0, 70, 67, .8) 30%, #D1AC00 120%);
+}
+
+.text-center h2 {
+	margin: 0;
+	display: inline-block;
+	color: #333;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 1.3rem;
+	position: relative;
+	z-index: 2;
+	vertical-align: middle;
+}
+
+.text-center h2::before {
+	content: '';
+	position: absolute;
+	width: 110%;
+	/*  max-width: 13.8rem;
+*/
+	height: 1rem;
+	/*更改標題顏色*/
+	background: #F6BE9A;
+	left: -5px;
+	top: 50%;
+	z-index: -1;
+}
+
+.box {
+	background-color: #E6E4D6;
+	margin: 20px;
+	padding: 20px;
+	padding-left: 100px;
+	padding-right: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+	border: solid 1px;
+	border-radius: 5px;
+	border-color: rgb(163, 163, 163);
+	box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px
+		rgba(0, 0, 0, .2);
+}
+</style>
 
 
 <!-- bootstrap 5.1.3 JS -->
@@ -27,30 +80,26 @@
 	<div class="container">
 
 
-		<div
-			style="margin: 20px; padding: 20px; padding-left: 100px; padding-right: 100px; margin-left: auto; margin-right: auto; width: 60%; border: solid 1px; border-radius: 5px; border-color: rgb(163, 163, 163);">
+		<div class="box">
 
 			<!-- 頁籤 -->
-			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-				<li class="nav-item" role="presentation">
-					<a
-					href="${contextRoot}/loginC"><button class="nav-link" id="pills-home-tab"
-						data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
-						role="tab" aria-controls="pills-home" aria-selected="true">會員登入</button></a>
+			<ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
+				<li class="nav-item" role="presentation"><a
+					href="${contextRoot}/loginC"><button class="btn btn-light"
+							id="pills-home-tab" data-bs-toggle="pill"
+							data-bs-target="#pills-home" type="button" role="tab"
+							aria-controls="pills-home" aria-selected="false">會員登入</button></a></li>
+				<li class="nav-item" role="presentation"><a
+					href="${contextRoot}/loginR"><button class="btn btn-light"
+							id="pills-profile-tab" data-bs-toggle="pill"
+							data-bs-target="#pills-profile" type="button" role="tab"
+							aria-controls="pills-profile" aria-selected="false">商家登入</button></a>
 				</li>
-				<li class="nav-item" role="presentation">
-					<a
-					href="${contextRoot}/loginR"><button class="nav-link" id="pills-profile-tab"
-						data-bs-toggle="pill" data-bs-target="#pills-profile"
-						type="button" role="tab" aria-controls="pills-profile"
-						aria-selected="false">商家登入</button></a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a
-					href="${contextRoot}/loginA"><button class="nav-link" id="pills-contact-tab"
-						data-bs-toggle="pill" data-bs-target="#pills-contact"
-						type="button" role="tab" aria-controls="pills-contact"
-						aria-selected="false">管理者登入</button></a>
+				<li class="nav-item" role="presentation"><a
+					href="${contextRoot}/loginA"><button class="btn btn-light"
+							id="pills-contact-tab" data-bs-toggle="pill"
+							data-bs-target="#pills-contact" type="button" role="tab"
+							aria-controls="pills-contact" aria-selected="false">管理者登入</button></a>
 				</li>
 			</ul>
 
@@ -78,7 +127,7 @@
 					href="${contextRoot}/forgotPassword">忘記密碼?</a></label> <br> <a
 					href="${contextRoot}/registerC">
 					<button type="button"
-						class="btn btn-outline-warning btn-lg btn-block">註冊會員</button>
+						class="btn btn-outline-success btn-lg btn-block">我要露營</button>
 				</a>
 
 				<div class="text-center m-5">

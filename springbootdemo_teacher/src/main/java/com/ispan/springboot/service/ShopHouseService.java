@@ -72,6 +72,16 @@ public class ShopHouseService {
 	public List<ShopHouseBean> findByKeyword(String word) {
 		return sDao.findByKeyword(word);
 	}
+	
+	//模糊搜尋價格排序由大至小
+	public List<ShopHouseBean> findByKeywordOrderByPrice(String word){
+		return sDao.findByKeywordOrderByPrice(word);
+	}
+	
+	//模糊搜尋價格排序由大至小
+	public List<ShopHouseBean> findByKeywordOrderByPriceASC(String word){
+		return sDao.findByKeywordOrderByPriceASC(word);
+	}
 
 	// 產品類型搜尋
 	public List<ShopHouseBean> findByClassify(String word) {
