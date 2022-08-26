@@ -213,6 +213,7 @@ public class RetailerController {
 		model.addAttribute("Retailerinfo", oneRetailer);
 		return "editRetailer";
 	}
+	//取得id回傳商家資訊業面
 	@GetMapping("/Retailer/retailerInfoPage/{id}")
 	public String retailerInfoPage(@PathVariable Integer id, Model model) {
 		Retailer retailersession = (Retailer)model.getAttribute("retailerLoginOk");
@@ -226,6 +227,7 @@ public class RetailerController {
 		rService.ChangeStatusById(false, id);
 		return "redirect:/Retailer/RetailerCRUD";
 	}
+	//更改狀態回傳給黑名單頁面
 	@GetMapping("/Retailer/changeStatusT/{id}")
 	public String changeStatustoTrue(@PathVariable Integer id) {
 		rService.ChangeStatusById(true, id);
