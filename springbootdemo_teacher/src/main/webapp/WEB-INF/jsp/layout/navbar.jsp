@@ -168,7 +168,11 @@ button {
        <li class="nav-item dropdown">
         <div class="dropdown-menu">
 
+<<<<<<< HEAD
          <a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a>
+=======
+         <a class="dropdown-item" href="${contextRoot}/admin/Admin">後臺管理</a>
+>>>>>>> e08a52d270dffeb48032826d25b2cebf0f2d31ca
          <a class="dropdown-item" href="${contextRoot}/logout">登出</a>
         </div>
        </li>
