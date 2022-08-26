@@ -9,17 +9,41 @@
 <meta charset="UTF-8">
 <title>會員註冊</title>
 
-<!-- bootstrap 5.1.3 JS -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
+<style>
+body {
+	padding: 0;
+	margin: 0;
+	min-height: 100vh;
+	background: -webkit-linear-gradient(transparent, rgba(91, 192, 235, .3)),
+		-webkit-linear-gradient(100deg, rgba(209, 172, 0, .8) 30%, #B0EAE8
+		120%);
+	background: linear-gradient(transparent, rgba(91, 192, 235, .3)),
+		linear-gradient(350deg, rgba(209, 172, 0, .8) 10%, #004643 120%);
+}
+
+.box {
+	background-color: #E6E4D6;
+	margin: 20px;
+	padding: 20px;
+	padding-left: 200px;
+	padding-right: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+	border: solid 1px;
+	border-radius: 5px;
+	border-color: rgb(163, 163, 163); 
+	box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px
+		rgba(0, 0, 0, .2);
+}
+</style>
+
+
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <body>
 	<div class="container">
-		<div
-			style="margin: 20px; padding: 20px; padding-left: 200px; padding-right: 200px; margin-left: auto; margin-right: auto; width: 60%; border: solid 1px; border-radius: 5px; border-color: rgb(163, 163, 163);">
+		<div class="box">
 			<form action="${contextRoot}/customer/insert" method="post"
 				enctype="multipart/form-data">
 				<h5 style="color: green">${msg.success}</h5>
@@ -27,10 +51,12 @@
 
 				<div class="mb-3">
 					<label class="form-label">姓</label> <input type="text"
-						placeholder="請輸入姓氏" class="form-control" name="cFirstName" id="cFirstName">
+						placeholder="請輸入姓氏" class="form-control" name="cFirstName"
+						id="cFirstName">
 					<p style="color: red;">${errors.cFirstName}</p>
 					<label class="form-label">名</label> <input type="text"
-						placeholder="請輸入名稱" class="form-control" name="cLastName" id="cLastName">
+						placeholder="請輸入名稱" class="form-control" name="cLastName"
+						id="cLastName">
 					<p style="color: red;">${errors.cLastName}</p>
 					<label class="form-label">帳號</label> <input type="text"
 						placeholder="請輸入帳號" class="form-control" name="cAccount"
@@ -41,10 +67,12 @@
 						placeholder="輸入密碼" class="form-control" name="cPwd" id="cPwd">
 					<p style="color: red;">${errors.cPwd}</p>
 					<label class="form-label">生日</label> <input type="date"
-						class="form-control" name="cbDate" value="" max="2001-12-31" id="cbDate">
+						class="form-control" name="cbDate" value="" max="2001-12-31"
+						id="cbDate">
 					<p style="color: red;">${errors.cbDate}</p>
 					<label class="form-label">電子信箱</label> <input type="text"
-						placeholder="請輸入個人電子信箱" class="form-control" name="cEmail" id="cEmail">
+						placeholder="請輸入個人電子信箱" class="form-control" name="cEmail"
+						id="cEmail">
 					<p style="color: red;">${errors.cEmail}</p>
 
 					<label class="form-label">個人圖片</label> <input type="file"
@@ -55,6 +83,7 @@
 				</div>
 
 				<button type="submit" class="btn btn-lg btn-primary" id="create">註冊</button>
+				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
 
 				<div class="text-center m-5">
 					一鍵註冊會員:
@@ -102,11 +131,15 @@
 			reader.readAsDataURL(file);
 		});
 
+		//取消按鈕返回上頁
+		$("#cancel").click(function(event) {
+			event.preventDefault(); //取消預設行為
+			window.location.replace("http://localhost:8080/"); //返回特定頁面
+		})
+
 		// 		$("#create").click(function() {
 		// 				alert("註冊成功")
 		// 		})
-		
-		
 	</script>
 
 </body>

@@ -5,6 +5,7 @@
 <jsp:include page="layout/navbar.jsp" />
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 
@@ -35,24 +36,13 @@ body {
 		linear-gradient(100deg, rgba(0, 70, 67, .8) 30%, #D1AC00 120%);
 }
 
-.sidebar_wrapper {
-	width: 100%;
-	max-width: 26rem;
-}
-
 .about-dev {
 	width: 100%;
-	max-width: 26rem;
+	max-width: 36rem;
 	margin: auto;
+	/*陰影設置*/
 	box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px
 		rgba(0, 0, 0, .2);
-	animation: profile_in 0.8s;
-}
-
-/* profile card header */
-.profile-card_header-container {
-	max-width: 15rem;
-	margin: auto;
 }
 
 .profile-card_header {
@@ -66,13 +56,13 @@ body {
 /* profile picture */
 .profile-card_header-imgbox {
 	display: block;
-	width: 9.5rem;
-	height: 9.5rem;
+	width: 13rem;
+	height: 13rem;
 	overflow: hidden;
 	border-radius: 50%;
 	margin: auto;
 	background: rgba(250, 214, 195, 1);
-	border: 0.375rem solid rgba(250, 214, 195, 1);
+	border: 0.2rem solid #D1AC00;
 }
 
 .profile-card_header img {
@@ -92,50 +82,34 @@ body {
 /* about section */
 .profile-card_about {
 	line-height: 1.5;
-	background: #ededed;
+	background: #E6E4D6;
 	padding: 1.5em 2rem;
-	color: #222;
 	font-family: 'Lato', sans-serif;
 }
 
-.profile-card_about h2 {
+.form-label {
 	margin: 0;
 	display: inline-block;
 	color: #333;
 	font-weight: normal;
 	text-transform: uppercase;
-	font-size: 1.3rem;
 	position: relative;
 	z-index: 2;
 	vertical-align: middle;
 }
 
-.profile-card_about h2::before {
+.form-label ::before {
 	content: '';
 	position: absolute;
 	width: 110%;
 	/*  max-width: 13.8rem;
 */
 	height: 1rem;
-	/*更改標題顏色*/
+	/*更改label顏色*/
 	background: #F6BE9A;
 	left: -5px;
-	top: 50%;
+	top: 40%;
 	z-index: -1;
-}
-
-.profile-card_about p {
-	font-weight: 300;
-}
-
-@media screen and (max-width: 26em) {
-	.side_wrapper {
-		min-height: 100vh;
-		background: #ededed;
-	}
-	.about-dev {
-		box-shadow: none;
-	}
 }
 
 @media screen and (min-width: 33em) {
@@ -146,25 +120,11 @@ body {
 		padding: 1.5em 4em 1em;
 	}
 }
-
-@media screen and (min-height: 46em) {
-	.side_wrapper {
-		width: 100%;
-		max-width: 26rem;
-		margin: 0;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	.about-dev {
-		max-width: 26rem;
-	}
-}
 </style>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 </head>
+
 <body>
 
 
@@ -175,7 +135,7 @@ body {
 	<!-- 			style="margin: 20px; padding: 20px; padding-left: 200px; padding-right: 200px; margin-left: auto; margin-right: auto; width: 60%; border: solid 1px; border-radius: 5px; border-color: rgb(163, 163, 163);"> -->
 
 
-	<%-- 			<p style="color: red;">${msg.success}</p> --%>
+	<%-- <p style="color: red;">${msg.success}</p> --%>
 	<!-- 			<div class="text-center"> -->
 	<!-- 				<h2>我的個人資料</h2> -->
 	<!-- 			</div> -->
@@ -183,31 +143,31 @@ body {
 
 	<!-- 				<label class="form-label"></label> <input type="hidden" -->
 	<!-- 					class="form-control" name="customerId" -->
-	<%-- 					value="${oneCustomer.getcId()}"> <label class="form-label"></label> --%>
+	<%-- value="${oneCustomer.getcId()}"> <label class="form-label"></label> --%>
 	<!-- 				<img width="350" id="img" -->
-	<%-- 					src="${contextRoot}/downloadImage/${oneCustomer.cId}" /> <br> --%>
+	<%-- src="${contextRoot}/downloadImage/${oneCustomer.cId}" /> <br> --%>
 
 	<!-- 				<label class="form-label"><font size="4">帳號:</font></label> <input -->
 	<!-- 					type="text" class="form-control" name="cAccount" -->
-	<%-- 					readonly="readonly" value="${oneCustomer.getcAccount()}"> <label --%>
+	<%-- readonly="readonly" value="${oneCustomer.getcAccount()}"> <label --%>
 	<!-- 					class="form-label"><font size="4">密碼:</font></label> <input -->
 	<!-- 					type="password" class="form-control" name="cPwd" -->
-	<%-- 					readonly="readonly" value="${oneCustomer.getcPwd()}"> <label --%>
+	<%-- readonly="readonly" value="${oneCustomer.getcPwd()}"> <label --%>
 	<!-- 					class="form-label"><font size="4">姓:</font></label> <input -->
 	<!-- 					type="text" class="form-control" name="cFirstName" -->
-	<%-- 					readonly="readonly" value="${oneCustomer.getcFirstName()}"> --%>
+	<%-- readonly="readonly" value="${oneCustomer.getcFirstName()}"> --%>
 	<!-- 				<label class="form-label"><font size="4">名:</font></label> <input -->
 	<!-- 					type="text" class="form-control" name="cLastName" -->
-	<%-- 					readonly="readonly" value="${oneCustomer.getcLastName()}"> --%>
+	<%-- readonly="readonly" value="${oneCustomer.getcLastName()}"> --%>
 	<!-- 				<label class="form-label">生日</label> <input type="date" -->
 	<!-- 					class="form-control" name="cbDate" value="" id="cDate" -->
 	<!-- 					readonly="readonly"> <label class="form-label"><font -->
 	<!-- 					size="4">個人電子信箱:</font></label> <input type="text" class="form-control" -->
 	<!-- 					name="cEmail" readonly="readonly" -->
-	<%-- 					value="${oneCustomer.getcEmail()}"> --%>
+	<%-- value="${oneCustomer.getcEmail()}"> --%>
 
 	<!-- 			</div> -->
-	<%-- 			<a href="${contextRoot}/customer/editOne"> --%>
+	<%-- <a href="${contextRoot}/customer/editOne"> --%>
 	<!-- 				<button type="button" class="btn btn-lg btn-primary">編輯個人資料</button> -->
 	<!-- 			</a> -->
 	<!-- 			<button class="btn btn-lg btn-secondary" id="cancel">取消</button> -->
@@ -228,19 +188,24 @@ body {
 				</div>
 			</header>
 			<div class="profile-card_about">
-				<label class="form-label"></label> <input type="hidden"
+				<label class="form-label"> <input type="hidden"
 					class="form-control" name="customerId"
-					value="${oneCustomer.getcId()}"> <label class="form-label"></label>
-				<h2>帳號:</h2>
-				<p>${oneCustomer.getcAccount()}</p>
-				<label class="form-label"><font size="4">密碼:</font></label> <input
+					value="${oneCustomer.getcId()}"></label> <label class="form-label">
+					<font size="5">帳號:</font>
+				</label> <input type="text" class="form-control" name="cAccount"
+					style="margin-bottom: 10px;" readonly="readonly"
+					value="${oneCustomer.getcAccount()}"> <label
+					class="form-label"><font size="5"> 密碼:</font> </label> <input
 					type="password" class="form-control" name="cPwd"
-					readonly="readonly" value="${oneCustomer.getcPwd()}"> <label
-					class="form-label">生日</label> <input type="date"
-					class="form-control" name="cbDate" value="" id="cDate"
-					readonly="readonly"> <label class="form-label"><font
-					size="4">個人電子信箱:</font></label> <input type="text" class="form-control"
-					name="cEmail" readonly="readonly"
+					style="margin-bottom: 10px;" readonly="readonly"
+					value="${oneCustomer.getcPwd()}"> <label class="form-label">
+					<font size="5">出生年月日:</font>
+				</label> <input type="date" class="form-control" name="cbDate"
+					style="margin-bottom: 10px;" value="" id="cDate"
+					readonly="readonly"> <label class="form-label"> <font
+					size="5">個人電子信箱:</font>
+				</label> <input type="text" class="form-control" name="cEmail"
+					style="margin-bottom: 10px;" readonly="readonly"
 					value="${oneCustomer.getcEmail()}"> <br> <br> <a
 					href="${contextRoot}/customer/editOne"
 					style="text-decoration: none;">
