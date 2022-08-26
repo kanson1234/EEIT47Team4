@@ -1,4 +1,4 @@
-package com.ispan.springboot.model;
+package com.ispan.springboot.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

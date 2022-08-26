@@ -163,7 +163,7 @@ table tbody tr td {
 											width="150"
 											src="${pageContext.request.contextPath}/downloadImg/${findall.shophousebean.id}"></a>
 									</td>
-									<td style="vertical-align: middle;">${findall.shophousebean.price}</td>
+									<td style="vertical-align: middle;">${findall.srTotalPrice}</td>
 									<td style="vertical-align: middle;">${findall.shophousebean.classify}
 									</td>
 									<td style="vertical-align: middle;">

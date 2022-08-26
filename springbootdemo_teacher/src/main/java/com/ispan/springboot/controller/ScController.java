@@ -39,7 +39,7 @@ public class ScController {
 //	U	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 	// remove one SC by scid
-	@ResponseBody
+
 	@GetMapping("ShoppingCar/removebyscid")
 	private String remove(@RequestParam(name = "scid") Integer scid, Model model, HttpSession session) {
 		try {
@@ -67,16 +67,32 @@ public class ScController {
 //	R	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// find all sc for C1
 	@GetMapping("Member/ShoppingCar")
-	public String findAllByScId(Model model, HttpSession session) {
+	public String findAllByScId2(Model model, HttpSession session) {
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
+		model.getAttribute("customerLoginOk");
+		 
+		
+		if (model.getAttribute("customerLoginOk")==null) {
+			return  "loginC";
+		} else {
+			Integer cid = customerSession.getcId();
+			List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
+			model.addAttribute("data", findAllByScId);
 
-		Integer cid = customerSession.getcId();
-		List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
-		model.addAttribute("data", findAllByScId);
-
-		return "ShoppingCar";
+			return "ShoppingCar";
+		}
+		
+		
+		
 	}
-
+	@ResponseBody
+	@GetMapping("Member/ShoppingCar/test")
+	public List<ShoopingCar> findAllByScId() {
+		
+		List<ShoopingCar> findAllByScId = scService.findAllByScId(2000004);
+		
+		return findAllByScId;
+	}
 //	============================================================================
 //	============================================================================
 //	============================================================================
@@ -202,5 +218,7 @@ public class ScController {
 			System.out.println("error");
 		}
 	}
+
+	
 
 }

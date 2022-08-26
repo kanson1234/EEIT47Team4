@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ispan.springboot.dao.ShoppingRecordDao;
+import com.ispan.springboot.dto.DateDto;
 import com.ispan.springboot.model.Customer;
-import com.ispan.springboot.model.DateDto;
 import com.ispan.springboot.model.Retailer;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.model.ShoppingRecord;
@@ -40,7 +40,7 @@ public class SrController {
 
 		return "AdminSR2";
 	}
-
+	
 	@GetMapping("/findbyKeyWord")
 	private String findbyKeyWord(Model model, @RequestParam(name = "keyword") String keyword) {
 		System.out.println(keyword);
@@ -180,6 +180,7 @@ public class SrController {
 			@RequestParam(name = "srid") Integer srid) {
 		return SrService.changeStste(setbool, srid);
 	}
+	
 
 	@PostMapping("admin/record/date") // findbyName
 	private List<ShoppingRecord> Between(@RequestBody DateDto dateDto) {
