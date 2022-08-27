@@ -13,6 +13,8 @@
 
 </head>
 <body>
+<<<<<<< HEAD
+=======
 <header>
 <!-- <h1>首頁</h1> -->
 <ul>
@@ -24,6 +26,7 @@
 <%-- <li><a href="${contextRoot}/registerC">註冊新會員</a></li> --%>
 </ul>
 </header>
+>>>>>>> 65d27b922ef93dc25e6f6d32c7550b603398cfd4
 <main>
 <section class="py-5 text-center container">
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -84,7 +87,7 @@
 		</c:forEach>
 		</div>
 </div>
-</main>
+
 
 </body>
 </html>

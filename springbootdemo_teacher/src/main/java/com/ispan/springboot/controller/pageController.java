@@ -84,6 +84,9 @@ public class pageController {
 	public String srselectpage() {
 		return "srselectpage";
 	}
+	
+	
+	
 
 
 	@GetMapping("/record/srselectpageALL")
@@ -91,6 +94,11 @@ public class pageController {
 		return "srselectpageALL";
 	}
 
+	@GetMapping("/Admin/SalesRecord")
+	public String AdminSR() {
+		return "AdminSR";
+	}
+	
 
 	@GetMapping("/customerFile")
 	public String customerFile() {

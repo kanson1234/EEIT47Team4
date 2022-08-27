@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="layout/navbar.jsp" />
-<jsp:include page="layout/Sidebar.jsp" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +20,7 @@
 </style>
 </head>
 <body>
+
 <main>
 <div class="container">
 	<div align='center'>
@@ -50,7 +50,9 @@
 						<td>${retailer.rid}</td>
 						<td>${retailer.rName}</td>
 						<td>${retailer.raccount}</td>
+
 						<td><a onclick="return confirm('確認刪除?')" href="${contextRoot}/Retailer/changeStatusF/${retailer.rid}">
+
 						<button type="submit" class="btn btn-danger">刪除</button>
 						</a>
 						</td>
@@ -82,8 +84,10 @@
         </script>
 	</div>
 	</div>
+
 </div>
 </main>
  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
 </body>
 </html>

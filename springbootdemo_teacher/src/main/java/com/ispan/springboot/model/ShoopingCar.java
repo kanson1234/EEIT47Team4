@@ -18,6 +18,7 @@ public class ShoopingCar {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sc_id")
 	private Integer scId;
+	
 	@Column(name = "sc_count")
 	private Integer scCount;
 

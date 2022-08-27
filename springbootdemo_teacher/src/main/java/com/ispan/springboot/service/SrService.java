@@ -28,9 +28,6 @@ public class SrService {
 	public List<ShoppingRecord> findAllByC1_id(Integer cid) {
 		return SrDao.findALLBycustomer_cId(cid);
 	}
-//	public List<ShoppingRecord> findAllByC2_id(Integer rid) {
-//		return SrDao.findALLByshophousebean_c2Id(rid);
-//	}
 
 	public List<ShoppingRecord> findBysrStateTrue() {
 		return SrDao.findBysrStateTrue();
@@ -45,15 +42,12 @@ public class SrService {
 	}
 
 	public Boolean changeStste(Boolean setbool, Integer srid) {
-
 		if (setbool != null) {
 			SrDao.changeStste(setbool, srid);
 			return setbool;
-
 		} else {
 			return null;
 		}
-
 	}
 
 }
