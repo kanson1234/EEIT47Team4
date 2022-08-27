@@ -16,6 +16,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "StoreHouse")
@@ -29,6 +30,14 @@ public class ShopHouseBean {
 	@Column(name = "SH_ItemName")
 	private String itemName;
 
+//	public Set<ShoppingRecord> getSR() {
+//		return SR;
+//	}
+//
+//	public void setSR(Set<ShoppingRecord> sR) {
+//		SR = sR;
+//	}
+
 	@Lob
 	@Column(name = "SH_Img")
 	private byte[] itemImg;
@@ -41,7 +50,8 @@ public class ShopHouseBean {
 
 	@Column(name = "SH_State")
 	private boolean status;
-
+	
+	@Transient
 	@Column(name = "C2_Id")
 	private Integer c2Id;
 

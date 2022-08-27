@@ -63,3 +63,4 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer>{
 
 
 
+

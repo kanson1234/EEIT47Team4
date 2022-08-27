@@ -21,6 +21,7 @@ import com.ispan.springboot.model.ShopHouseBean;
 @Transactional
 public class ShopHouseService {
 
+
 	@Autowired
 	private MessageDao mDao2;
 
@@ -127,3 +128,4 @@ public class ShopHouseService {
 	
 	
 }
+

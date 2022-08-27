@@ -41,7 +41,7 @@ public class Message {
 	}
 
 	@Column(name = "Msg_State", nullable = true, columnDefinition = "boolean default true")
-	private Boolean mstate;
+	private boolean mstate;
 
 	@Column(name = "Msg_C1C2_Status")
 	private boolean mstatec;

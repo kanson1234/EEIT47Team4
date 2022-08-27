@@ -1,5 +1,6 @@
 package com.ispan.springboot.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "shoppingrecord")
@@ -23,6 +30,9 @@ public class ShoppingRecord {
 	@Column(name = "sr_shoppingrecord_id")
 	private Integer srShoppingRecord_Id;
 
+	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "Asia/Taipei") // JSON
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss") // SpringMVC
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "sr_time")
 	private Date srtime;
 
@@ -45,9 +55,9 @@ public class ShoppingRecord {
 	@Column(name = "sr_totalprice")
 	private Integer srTotalPrice;
 
-//	@Column(name = "C1_Id")
-//	@Transient
-//	private Integer cid;
+	@Column(name = "C1_Id")
+	@Transient
+	private Integer cid;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "c1_id")
@@ -59,7 +69,7 @@ public class ShoppingRecord {
 //	=========================================================
 
 	public ShoppingRecord(Integer srShoppingRecord_Id, Date srtime, Boolean srState, Integer srCount,
-			Integer srDiscount, Integer srTotalPrice, Customer customer, ShopHouseBean shophousebean) {
+			Integer srDiscount, Integer srTotalPrice, Integer cid, Customer customer, ShopHouseBean shophousebean) {
 		super();
 		this.srShoppingRecord_Id = srShoppingRecord_Id;
 		this.srtime = srtime;
@@ -67,6 +77,7 @@ public class ShoppingRecord {
 		this.srCount = srCount;
 		this.srDiscount = srDiscount;
 		this.srTotalPrice = srTotalPrice;
+		this.cid = cid;
 		this.customer = customer;
 		this.shophousebean = shophousebean;
 	}
@@ -86,6 +97,7 @@ public class ShoppingRecord {
 	}
 
 	public Date getSrtime() {
+
 		return srtime;
 	}
 
@@ -139,6 +151,14 @@ public class ShoppingRecord {
 
 	public void setShophousebean(ShopHouseBean shophousebean) {
 		this.shophousebean = shophousebean;
+	}
+
+	public Integer getCid() {
+		return cid;
+	}
+
+	public void setCid(Integer cid) {
+		this.cid = cid;
 	}
 
 }
