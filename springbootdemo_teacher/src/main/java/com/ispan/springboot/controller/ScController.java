@@ -148,6 +148,8 @@ public class ScController {
 		
 	}
 //	______________________________________________________________________________________________________
+	
+	@ResponseBody
 	@GetMapping("ShoppingCar/add")
 	public String addToCar(@RequestParam(name = "num") Integer num, Model model, HttpSession session,
 			@RequestParam(name = "itid") Integer itid) {

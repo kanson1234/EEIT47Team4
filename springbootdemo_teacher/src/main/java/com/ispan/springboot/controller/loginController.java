@@ -54,11 +54,11 @@ public class loginController {
 
 		if (adminLoginResult != null) {
 			model.addAttribute("adminLoginOk", adminLoginResult);
-			return "index";
+			return "redirect:/ShopHouse/indexShopHouseItems";
 		}
 
 		errors.put("msg", "帳號或密碼有誤，請重新輸入!");
-		return "loginA";
+		return "loginA";	
 	}
 
 	// 商家登入
@@ -124,7 +124,7 @@ public class loginController {
 		if (cstatus == true) {
 
 			model.addAttribute("customerLoginOk", customerLoginResult);
-			return "index";
+			return "redirect:/ShopHouse/indexShopHouseItems";
 
 		} else {
 			errors.put("status", "您的帳號尚未開通或已遭停權，詳情請向管理員洽詢。");
@@ -140,7 +140,7 @@ public class loginController {
 				|| model.getAttribute("retailerLoginOk") != null) {
 			status.setComplete();
 		}
-		return "redirect:/";
+		return "redirect:/ShopHouse/indexShopHouseItems";
 	}
 
 }

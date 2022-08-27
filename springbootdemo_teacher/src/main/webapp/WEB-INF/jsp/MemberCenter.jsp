@@ -134,30 +134,30 @@
 							</c:if>
 							<c:forEach items="${data}" var="findall">
 								<tr>
-									<td style="vertical-align: middle;"><fmt:formatDate
+									<td style="vertical-align: middle; text-align: center;"><fmt:formatDate
 											pattern="yyyy/MM/dd HH:mm:ss" value="${findall.srtime}" /></td>
-									<td style="vertical-align: middle;">${findall.srCount}</td>
-									<td style="vertical-align: middle;">${findall.shophousebean.id}
+									<td style="vertical-align: middle; text-align: center;">${findall.srCount}</td>
+									<td style="vertical-align: middle; text-align: center;">${findall.shophousebean.id}
 									</td>
-									<td style="vertical-align: middle;">${findall.shophousebean.itemName}
+									<td style="vertical-align: middle; text-align: center;">${findall.shophousebean.itemName}
 									</td>
-									<td style="vertical-align: middle;"><a
+									<td style="vertical-align: middle; text-align: center;"><a
 										href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${findall.shophousebean.id}"><img
 											width="150"
 											src="${pageContext.request.contextPath}/downloadImg/${findall.shophousebean.id}"></a>
 									</td>
-									<td style="vertical-align: middle;">${findall.srTotalPrice}</td>
-									<td style="vertical-align: middle;">${findall.shophousebean.classify}
+									<td style="vertical-align: middle; text-align: center;">${findall.srTotalPrice}</td>
+									<td style="vertical-align: middle; text-align: center;">${findall.shophousebean.classify}
 									</td>
-									<td style="vertical-align: middle;">
+									<td style="vertical-align: middle; text-align: center;">
 										${findall.shophousebean.retailerBean.rid}</td>
-									<td style="vertical-align: middle;">
+									<td style="vertical-align: middle; text-align: center;">
 										${findall.shophousebean.retailerBean.rName}</td>
 									<c:if test="${findall.srState==true}">
-										<td style="vertical-align: middle;">成交</td>
+										<td style="vertical-align: middle; text-align: center;">成交</td>
 									</c:if>
 									<c:if test="${findall.srState==false}">
-										<td style="vertical-align: middle;">退貨</td>
+										<td style="vertical-align: middle; text-align: center;">退貨</td>
 									</c:if>
 									<!-- <td style="vertical-align:middle;">${findall.srState}</td> -->
 
