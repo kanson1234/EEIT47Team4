@@ -41,6 +41,27 @@ public class SrController {
 		return "AdminSR2";
 	}
 	
+	@GetMapping("/Member/MemberCenter")
+	public String MemberCenter(Model model) {
+		
+		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
+		Integer cid = customerSession.getcId();
+		
+		System.out.println(cid);
+		
+		
+		
+		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
+		model.addAttribute("data", findAllToA1ByC1);
+		return "MemberCenter";
+		
+		
+	}
+	
+	
+	
+	
+	
 	@GetMapping("/findbyKeyWord")
 	private String findbyKeyWord(Model model, @RequestParam(name = "keyword") String keyword) {
 		System.out.println(keyword);

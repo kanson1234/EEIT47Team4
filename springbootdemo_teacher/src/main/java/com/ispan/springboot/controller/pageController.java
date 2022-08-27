@@ -84,10 +84,7 @@ public class pageController {
 	public String srselectpage() {
 		return "srselectpage";
 	}
-	@GetMapping("/Member/MemberCenter")
-	public String MemberCenter() {
-		return "MemberCenter";
-	}
+	
 	
 	
 

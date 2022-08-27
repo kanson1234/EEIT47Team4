@@ -3,14 +3,20 @@ package com.ispan.springboot.dto;
 public class DtoSc {
 
 	private Integer scid;
-	private Integer count;
-	private Integer itid;
+	private Integer price;
+	private Integer sccount;
+	private Integer scTotalPrice;
 
-	public DtoSc(Integer scid, Integer count, Integer itid) {
+	public DtoSc() {
+		super();
+	}
+
+	public DtoSc(Integer scid, Integer price, Integer sccount, Integer scTotalPrice) {
 		super();
 		this.scid = scid;
-		this.count = count;
-		this.itid = itid;
+		this.price = price;
+		this.sccount = sccount;
+		this.scTotalPrice = scTotalPrice;
 	}
 
 	public Integer getScid() {
@@ -21,24 +27,28 @@ public class DtoSc {
 		this.scid = scid;
 	}
 
-	public Integer getCount() {
-		return count;
+	public Integer getPrice() {
+		return price;
 	}
 
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setPrice(Float price) {
+		this.price = Math.round(price);
 	}
 
-	public Integer getItid() {
-		return itid;
+	public Integer getSccount() {
+		return sccount;
 	}
 
-	public void setItid(Integer itid) {
-		this.itid = itid;
+	public void setSccount(Integer sccount) {
+		this.sccount = sccount;
 	}
 
-	public DtoSc() {
-		// TODO Auto-generated constructor stub
+	public Integer getScTotalPrice() {
+		return scTotalPrice;
+	}
+
+	public void setScTotalPrice(Integer scTotalPrice) {
+		this.scTotalPrice = scTotalPrice;
 	}
 
 }
