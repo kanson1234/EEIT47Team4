@@ -25,8 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ispan.springboot.model.Admin;
 import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.Retailer;
+import com.ispan.springboot.model.ShoppingRecord;
 import com.ispan.springboot.service.CustomerService;
 import com.ispan.springboot.service.EmailSenderService;
+import com.ispan.springboot.service.SrService;
 
 @Controller
 @SessionAttributes(names = { "customerLoginOk", "adminLoginOk", "retailerLoginOk" })
@@ -73,7 +75,7 @@ public class CustomerController {
 			if (cEmail == null || cEmail.length() == 0) {
 				errors.put("cEmail", "請輸入個人電子郵件!");
 			}
-			
+
 			if (cImg.isEmpty()) {
 				errors.put("cImg", "請選擇一張個人圖片!");
 			}
@@ -181,7 +183,7 @@ public class CustomerController {
 		}
 
 	}
-	
+
 	// 已登入會員之個人資料編輯
 	@GetMapping("/customer/editOne")
 	public String editOneById(Model model) {
@@ -267,7 +269,7 @@ public class CustomerController {
 
 			customerService.insertCustomer(updateCustomer);
 			Map<String, String> msg = new HashMap<String, String>();
-			msg.put("success","修改成功");
+			msg.put("success", "修改成功");
 
 			return "redirect:/customer/findOne";
 
@@ -339,5 +341,8 @@ public class CustomerController {
 //		}
 //		return true;
 //	}
+
+
+	
 
 }

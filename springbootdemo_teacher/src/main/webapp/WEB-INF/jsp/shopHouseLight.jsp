@@ -32,16 +32,17 @@
 				<div class="col">
 					<div class="card" style="width: 14rem; height: 380px;">
 						<a
-							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
-							height="180"
+							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}">
+							<img height="180"
 							src="${pageContext.request.contextPath}/downloadImg/${i.id}"
-							class="card-img-top" alt="..."></a>
+							class="card-img-top" alt="...">
+						</a>
 
 						<div class="card-body">
 							<p class="card-text">${i.itemName}</p>
 							<p class="card-text" style="color: red;">${i.price}</p>
 						</div>
-						<div>
+						<div align="center">
 							<a href=""><button type="submit">加入購物車</button></a>
 						</div>
 					</div>
@@ -57,16 +58,17 @@
 				<div class="col">
 					<div class="card" style="width: 14rem; height: 380px;">
 						<a
-							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
-							height="180"
+							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}">
+							<img height="180"
 							src="${pageContext.request.contextPath}/downloadImg/${i.id}"
-							class="card-img-top" alt="..."></a>
+							class="card-img-top" alt="...">
+						</a>
 
 						<div class="card-body">
 							<p class="card-text">${i.itemName}</p>
 							<p class="card-text" style="color: red;">${i.price}</p>
 						</div>
-						<div>
+						<div align="center">
 							<a href=""><button type="submit">加入購物車</button></a>
 						</div>
 					</div>
@@ -91,7 +93,7 @@
 							<p class="card-text">${i.itemName}</p>
 							<p class="card-text" style="color: red;">${i.price}</p>
 						</div>
-						<div>
+						<div align="center">
 							<a href=""><button type="submit">加入購物車</button></a>
 						</div>
 					</div>

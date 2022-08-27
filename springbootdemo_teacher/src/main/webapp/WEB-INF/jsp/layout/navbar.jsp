@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
 <style type="text/css">
+
+
 .navbar{
  background-color: #D1AC00;
+
 }
+
 .navSearch {
  display: flex;
  align-items: center;
@@ -18,9 +24,12 @@
  height: 30px;
  background-color: #ffffff;
 }
+
 div#dropdownSignINSignOut{
  background-color:#004643;
+
 }
+
 input {
  padding-left: 12px;
  width: 80%;
@@ -48,6 +57,7 @@ button {
 
 </head>
 <body>
+
 
 
  <nav class="navbar navbar-expand-lg navbar-light " style="z-index:1;">
@@ -144,8 +154,8 @@ button {
         <div class="dropdown-menu">
 
          <a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a>
-         <a class="dropdown-item" href="#">訂單管理</a> <a
-          class="dropdown-item" href="${contextRoot}/logout">登出</a>
+         <a class="dropdown-item"	href="${pageContext.request.contextPath}/Member/MemberCenter">會員中心</a>
+         <a  class="dropdown-item" href="${contextRoot}/logout">登出</a>
         </div>
        </li>
 
@@ -170,6 +180,11 @@ button {
 
          <a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a>
          <a class="dropdown-item" href="${contextRoot}/logout">登出</a>
+         
+    
+         
+         
+         
         </div>
        </li>
       </ul>
@@ -183,7 +198,7 @@ button {
      <input style="padding: 4px" class="form-control mr-sm-1"
       type="text" placeholder="Coleman" name="word" /> <input
       type="submit" name="Search" value="搜尋"
-      class="btn btn-outline-success my-2 my-sm-0" />
+      class="btn btn-outline-inverse my-2 my-sm-0" />
     </form>
 
    </div>
@@ -196,6 +211,7 @@ button {
  <script
   src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"
   type="text/javascript"></script>
+
 
 </body>
 </html>
