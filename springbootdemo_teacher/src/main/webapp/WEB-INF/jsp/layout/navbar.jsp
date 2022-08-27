@@ -154,8 +154,8 @@ button {
         <div class="dropdown-menu">
 
          <a class="dropdown-item" href="${contextRoot}/customer/findOne">顧客資訊</a>
-         <a class="dropdown-item" href="#">訂單管理</a> <a
-          class="dropdown-item" href="${contextRoot}/logout">登出</a>
+         <a class="dropdown-item"	href="${pageContext.request.contextPath}/Member/MemberCenter">會員中心</a>
+         <a  class="dropdown-item" href="${contextRoot}/logout">登出</a>
         </div>
        </li>
 
@@ -179,7 +179,6 @@ button {
         <div class="dropdown-menu">
 
          <a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a>
-         <a class="dropdown-item"	href="${pageContext.request.contextPath}/Member/MemberCenter">會員中心</a>
          <a class="dropdown-item" href="${contextRoot}/logout">登出</a>
          
     
