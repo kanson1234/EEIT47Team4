@@ -183,7 +183,7 @@ button {
      <input style="padding: 4px" class="form-control mr-sm-1"
       type="text" placeholder="Coleman" name="word" /> <input
       type="submit" name="Search" value="搜尋"
-      class="btn btn-outline-success my-2 my-sm-0" />
+      class="btn btn-outline-inverse my-2 my-sm-0" />
     </form>
 
    </div>

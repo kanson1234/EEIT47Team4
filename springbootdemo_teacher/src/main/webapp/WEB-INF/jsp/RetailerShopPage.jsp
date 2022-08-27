@@ -86,7 +86,7 @@
 											let y = $(b).find('.itemprice').text();
 											
 											return parseInt(x.substring(0, x.length-2)) > parseInt(y.substring(0, y.length-2)) ? 1: -1;
-										}
+										}	
 
 										var desc = function(a, b) {
 											let x = $(a).find('.itemprice').text();
