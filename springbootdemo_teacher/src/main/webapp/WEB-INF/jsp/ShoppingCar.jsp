@@ -156,6 +156,7 @@
 												method: 'post',
 												data: JSONsc,
 												success:function (result){
+													alert(result)
 													window.location.href="http://localhost:8080/Member/MemberCenter"
 												}
 
