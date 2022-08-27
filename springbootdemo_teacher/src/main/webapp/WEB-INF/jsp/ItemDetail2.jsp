@@ -128,7 +128,7 @@
 											"itid": itid
 										};
 										
-										alert("u3ru8 bj4re.4j4tk")
+										alert("成功加入購物車")
 										console.log(dtoObj)
 										var dtoJson = JSON.stringify(dtoObj);
 										console.log(dtoJson)

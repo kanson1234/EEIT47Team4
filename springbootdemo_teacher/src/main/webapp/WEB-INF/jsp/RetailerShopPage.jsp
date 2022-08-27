@@ -42,10 +42,8 @@
 				</div>
 				<div id="sortItems" style="height: 100px;">
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio"
-							name="inlineRadioOptions" id="inlineRadio1" value="option1"
-							disabled> <label class="form-check-label"
-							for="inlineRadio1">全部商品</label>
+						 <label class="form-check-label" 
+							for="inlineRadio1">全部商品:</label>
 					</div>
 					<div class="form-check form-check-inline">
 						<input class="form-check-input" type="radio"
@@ -61,16 +59,16 @@
 				</div>
 				<div class="container" id="ItemsCard">
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-						<c:forEach items="${listItem}" var="Item">
+						<c:forEach items="${listItem}" var="ItemList">
 							<div class="col">
 								<div class="card" style="width: 14rem; height: 380px;">
-									<a href="${contextRoot}/ShopHouse/itemDetail/${Item.id}"> <img
-										src="${contextRoot}/downloadImg/${Item.id}"
+									<a href="${contextRoot}/ShopHouse/itemDetail/${ItemList.id}"> <img
+										src="${contextRoot}/downloadImg/${ItemList.id}"
 										class="card-img-top" alt="...">
 									</a>
 									<div class="card-body">
-										<p class="card-text itemname">${Item.itemName}</p>
-										<p class="card-text itemprice" style="color: red;" >${Item.price}</p>
+										<p class="card-text itemname">${ItemList.itemName}</p>
+										<p class="card-text itemprice" style="color: red;" >${ItemList.price}</p>
 									</div>
 								</div>
 							</div>
@@ -101,11 +99,11 @@
 											$('#ItemsCard>div').empty().append(sortEle);
 										}
 
-										$('#inlineRadio2').click(function() {
+										$('#inlineRadio3').click(function() {
 											sortByInput(desc);
 										});
 
-										$('#inlineRadio3').click(function() {
+										$('#inlineRadio2').click(function() {
 											sortByInput(asc);
 										});
 									})

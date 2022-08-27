@@ -103,6 +103,12 @@ body {font-family: "Roboto", sans-serif}
 	  	黑名單商家
 	  	</a>
 	  </li>
+	  <li class="nav-item">
+	  	<a class="nav-link" href="${contextRoot}/Admin/SalesRecord3"> 
+	  	<span data-feather="shopping-cart"></span> 
+	  	交易紀錄2
+		</a>
+	  </li>
     
  </ul>
   </div>
