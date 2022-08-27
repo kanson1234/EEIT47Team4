@@ -165,7 +165,11 @@
 												method: 'post',
 												data: JSONsc,
 												success:function (result){
+<<<<<<< HEAD
 													alert(result);
+=======
+													alert(result)
+>>>>>>> 1f186395f41f3665bd8479f4fc6bf1b484b2bec1
 													window.location.href="http://localhost:8080/Member/MemberCenter"
 												}
 

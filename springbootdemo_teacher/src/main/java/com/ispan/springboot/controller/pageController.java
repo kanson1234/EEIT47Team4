@@ -19,7 +19,11 @@ public class pageController {
 	public String welcomeIndex() {
 		return "index";
 	}
-
+	
+	@GetMapping("/test")
+	public String test() {
+		return "ECPAYTEST";
+	}
 
 
 	

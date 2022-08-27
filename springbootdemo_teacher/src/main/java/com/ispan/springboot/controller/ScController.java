@@ -209,6 +209,7 @@ public class ScController {
 
 	@GetMapping("/gotoecpay")
 	public void gotoecpay() {
+		System.out.println(123);
 		AllInOne aio = new AllInOne("");
 		AioCheckOutDevide obj = new AioCheckOutDevide();
 		obj.setMerchantTradeNo("testorder20250315");

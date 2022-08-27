@@ -97,12 +97,8 @@ button {
       <span class="sr-only">(current)</span>
     </a></li>
     <li class="nav-item active"><a class="nav-link"
-     href="${pageContext.request.contextPath}/admin/Admin">後臺管理 <span
+     href="${contextRoot}/Admin/SalesRecord3">後臺管理 <span
       class="sr-only">(current)</span>
-    </a></li>
-    <li class="nav-item active"><a class="nav-link"
-     href="${pageContext.request.contextPath}/ShopHouse/viewItems">後臺管理所有商品
-      <span class="sr-only">(current)</span>
     </a></li>
 
 
@@ -178,7 +174,7 @@ button {
        <li class="nav-item dropdown">
         <div class="dropdown-menu">
 
-         <a class="dropdown-item" href="${contextRoot}/customer/findAll">後臺管理</a>
+         <a class="dropdown-item" href="${contextRoot}/Admin/SalesRecord3">後臺管理</a>
          <a class="dropdown-item" href="${contextRoot}/logout">登出</a>
          
     

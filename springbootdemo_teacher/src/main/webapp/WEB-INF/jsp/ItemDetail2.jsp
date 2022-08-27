@@ -67,6 +67,7 @@
 
 					<p class="card-text">商品名稱:${shopHouseItem.itemName}</p>
 
+<<<<<<< HEAD
 					<p class="card-text">價錢:${shopHouseItem.price}</p>
 					<a
 						href="${pageContext.request.contextPath}/ShopHouse/findByClassifyLabel?classify=${shopHouseItem.classify}">
@@ -152,6 +153,52 @@
 <!-- // 			// findAllByCidBtn -->
 <!-- // 		}) -->
 <!-- 	</script> -->
+=======
+														<p class="card-text">價錢:${shopHouseItem.price}</p>
+														<a
+															href="${pageContext.request.contextPath}/ShopHouse/findByClassifyLabel?classify=${shopHouseItem.classify}">
+															<button type="button"
+																class="badge badge-secondary">${shopHouseItem.classify}</button>
+														</a>
+														<div>
+															<a href=""><button type="submit"
+																	id="addToCar">加入購物車</button></a>
+														</div>
+														<div>
+															<input type="number" value="1" id="num"> <input type="text"
+																value="${shopHouseItem.id}" id="itid">
+														</div>
+													</div>
+												</div>
+											</div>
+											<c:forEach items="${shopHouseItem.message}" var="m">
+												<div class="row justify-content-center">
+													<div class="col-8">
+														<div class="card">
+															<div class="card-header">
+																留言時間 <span>${m.mdate}</span>
+															</div>
+															<div class="card-body">${m.mcontext}</div>
+															<div></div>
+														</div>
+													</div>
+												</div>
+												<br />
+											</c:forEach>
+											<div class="card">
+												<div class="card-header">留言板</div>
+												<div class="card-body">
+
+													留言區:
+													<textarea rows="3" cols="50" id="newMsg" name="newMsg"></textarea>
+													<button type="submit" class="btn btn-primary">送出</button>
+													</form>
+												</div>
+											</div>
+											<div></div>
+					</header>
+					<footer> </footer>
+>>>>>>> 1f186395f41f3665bd8479f4fc6bf1b484b2bec1
 
 					<script>
 						$(document).ready(
@@ -187,12 +234,13 @@
 												}
 											})
 									})
-
-								
 							})
 					</script>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1f186395f41f3665bd8479f4fc6bf1b484b2bec1
 				</body>
 
 				</html>

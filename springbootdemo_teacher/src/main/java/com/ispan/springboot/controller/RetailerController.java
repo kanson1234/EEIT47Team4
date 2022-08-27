@@ -137,6 +137,13 @@ public class RetailerController {
 		model.addAttribute("listRetailer", list);
 		return "RetailerCRUD";
 	}
+	// 黑名單頁面
+		@GetMapping("/Retailer/RetailerBlock")
+		public String showAllBlockedRetailer(Model model) {
+			List<Retailer> list = rService.getAllRetailerBloked();
+			model.addAttribute("listRetailer", list);
+			return "RetailerBlockList";
+		}
 
 	// 商家一覽頁面跳轉
 	@GetMapping("/showAllRetailerFront")
