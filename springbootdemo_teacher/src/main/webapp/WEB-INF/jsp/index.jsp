@@ -50,6 +50,7 @@
 	
 	<div class="container" align="center">
 		<div class="row">
+		
 			<c:forEach items="${pages.content}" var="i">
 				<div class="card" style="width: 14rem; height: 380px;">
 					<a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
@@ -64,6 +65,7 @@
 						</div>
 				</div>
 			</c:forEach>
+		
 			</div>
 
 	</div>
