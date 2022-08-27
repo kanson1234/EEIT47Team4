@@ -105,8 +105,17 @@
 														</td>
 														<td style="vertical-align: middle; text-align: center;"
 															id="b<%=z%>">${findall.shophousebean.price}</td>
-														<td style="vertical-align: middle; text-align: center;"
-															id="c<%=z%>">${findall.scCount}</td>
+															
+															<td style="vertical-align: middle; text-align: center;"> <input  style="width: 50px " type="number" id="c<%=z%>" value="${findall.scCount}"> </td>
+															
+															
+<!-- 														<td style="vertical-align: middle; text-align: center;" -->
+<%-- 															id="c<%=z%>">${findall.scCount}</td> --%>
+															
+															
+															
+															
+															
 														<td style="vertical-align: middle; text-align: center;"><a
 																href="${pageContext.request.contextPath}/retailerGetAllItem?id=${findall.shophousebean.retailerBean.rid }">
 																${findall.shophousebean.retailerBean.rName} </a></td>
@@ -156,6 +165,7 @@
 												method: 'post',
 												data: JSONsc,
 												success:function (result){
+													alert(result);
 													window.location.href="http://localhost:8080/Member/MemberCenter"
 												}
 
