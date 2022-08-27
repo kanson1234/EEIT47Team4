@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script type="text/javascript">
+
+
+
+
+</script>
+
 <style type="text/css">
 #div1, #div2, #div3 {
 	display: inline-block;
@@ -17,20 +24,13 @@
 
 </head>
 <body>
-	<div align="center">
-		<div id="div2">
-			<form name="classifySearch"
-				action="${pageContext.request.contextPath}/ShopHouse/lowerPrice"
-				method="get">
-				<button type="submit" class="badge badge-light">最低價</button>
-			</form>
-		</div>
-		<div id="div3">
-			<form name="classifySearch"
-				action="${pageContext.request.contextPath}/ShopHouse/highPrice"
-				method="get">
-				<button type="submit" class="badge badge-light">最高價</button>
-			</form>
+	<div class="container" align="center">
+		<div class="row">
+			<a
+				href="${pageContext.request.contextPath}/ShopHouse/findByKeywordOrderByPrice?word=${word}"><button
+					type="submit" class="badge badge-light" id="desc">最高價</button></a> <a
+				href="${pageContext.request.contextPath}/ShopHouse/findByKeywordOrderByPriceASC?word=${word}"><button
+					type="submit" class="badge badge-light" id="asc">最低價</button></a>
 		</div>
 	</div>
 
@@ -110,7 +110,7 @@
 			
 		</div>
 	</div>
-<!-- 	</div> -->
+
 </body>
 </html>
 

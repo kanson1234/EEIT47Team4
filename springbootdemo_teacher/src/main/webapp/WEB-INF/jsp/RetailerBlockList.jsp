@@ -8,13 +8,13 @@
 <head>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <meta charset="UTF-8">
 <title>BlockList</title>
 </head>
 <body>
-<%-- <jsp:include page="layout/Sidebar.jsp" /> --%>
 <main>
-<div class="container">
+<div class="container" id="retailerTable">
 	<div align='center'>
 		<h2>Account Manager</h2>
 		<div>
@@ -28,7 +28,7 @@
 					<th scope="col">id</th>
 					<th scope="col">名字</th>
 					<th scope="col">帳號</th>
-					<th scope="col">刪除</th>
+					<th scope="col">復原</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,9 +48,31 @@
 
 			</tbody>
 		</table>
+<!-- 		<script type="text/javascript"> -->
+<!--           $(document).ready( function () { -->
+<!--              $('#retailerTable').DataTable( -->
+<!--              	{   -->
+<!--                    "lengthMenu":[10, 5, 2, 1], -->
+<!--                    "language": { -->
+<!--                  	  "lengthMenu": "顯示 _MENU_ 項結果", -->
+<!--                  	  "search": "搜尋:", -->
+<!--                  	  "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項", -->
+<!--                  	  "infoEmpty": "顯示第 0 至 0 項結果，共 0 項", -->
+<!--                  	  "paginate": { -->
+<!--                            "first": "第一頁", -->
+<!--                            "previous": "上一頁", -->
+<!--                            "next": "下一頁", -->
+<!--                            "last": "最後一頁" -->
+<!--                        } -->
+                     
+<!--                    } -->
+<!--                  });  -->
+<!--           } ); -->
+<!--         </script> -->
 	</div>
 	</div>
 </div>
 </main>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 </body>
 </html>

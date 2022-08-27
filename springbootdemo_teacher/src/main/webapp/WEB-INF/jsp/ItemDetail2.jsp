@@ -43,6 +43,7 @@
 							<!-- 	<div><img width="250" -->
 							<%-- src="${pageContext.request.contextPath}/downloadImg/${shopHouseItem.id}">
 								</div> --%>
+
 								<%-- <div>${shopHouseItem.price}</div> --%>
 									<%-- <div>${shopHouseItem.classify}</div> --%>
 										<%-- <div> ${shopHouseItem.c2Id}</div> --%>
@@ -126,6 +127,7 @@
 
 
 
+				
 
 
 					<script>

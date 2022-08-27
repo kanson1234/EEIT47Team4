@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:include page="layout/navbar.jsp" />
+<jsp:include page="layout/Sidebar.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -30,55 +32,58 @@
 
 </head>
 <body>
-	<jsp:include page="layout/navbar.jsp" />
-	<div align='center'>
-		<form action="${contextRoot}/findCustomerByKeywords" method="get" enctype="multipart/form-data">
-			<input type="text" name="keywords" placeholder="輸入會員姓、名或帳號" maxlength="30" size="30"><br>
-			<button class="btn btn-outline-success">搜尋會員資訊</button>
-		</form>
-	</div>
-	<div>
-		<table class="table table-hover table align-middle">
-			<thead>
-				<tr>
-					<td>ID</td>
-					<td>個人圖片</td>
-					<td>姓</td>
-					<td>名</td>
-					<td>帳號</td>
-					<td>密碼</td>
-					<td>生日</td>
-					<td>電子信箱</td>
-					<td>註冊/更新日期</td>
-					<td>帳號狀態</td>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${customer}" var="c">
+	<div class="container" style="margin-right: 15px;">
+		<div align='center'>
+			<form action="${contextRoot}/findCustomerByKeywords" method="get"
+				enctype="multipart/form-data">
+				<input type="text" name="keywords" placeholder="輸入會員姓、名或帳號"
+					maxlength="30" size="30"><br>
+				<button class="btn btn-outline-success">搜尋會員資訊</button>
+			</form>
+		</div>
+		<div>
+			<table class="table table-hover table align-middle">
+				<thead>
 					<tr>
-						<td>${c.cId}</td>
-						<td><img width="150"
-							src="${contextRoot}/downloadImage/${c.cId}"></td>
-						<td>${c.cFirstName}</td>
-						<td>${c.cLastName}</td>
-						<td>${c.cAccount}</td>
-						<td>${c.cPwd}</td>
-						<td><fmt:formatDate pattern="yyyy/MM/dd"
-								value="${c.cBirthdate}" /></td>
-						<td>${c.cEmail}</td>
-						<td>${c.cDate}</td>
-						<td>${c.cStatus}</td>
-						<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}">
-								<button class="btn btn-secondary">修改帳號狀態</button>
-						</a></td>
-						<td><a onclick="return confirm('真的要刪除此筆資料嗎?')"
-							href="${contextRoot}/deleteCustomer/${c.cId}">
-								<button class="btn btn-warning">X</button>
-						</a></td>
+						<td>ID</td>
+						<td>個人圖片</td>
+						<td>姓</td>
+						<td>名</td>
+						<td>帳號</td>
+						<td>密碼</td>
+						<td>生日</td>
+						<td>電子信箱</td>
+						<td>註冊/更新日期</td>
+						<td>帳號狀態</td>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<c:forEach items="${customer}" var="c">
+						<tr>
+							<td>${c.cId}</td>
+							<td><img width="150"
+								src="${contextRoot}/downloadImage/${c.cId}"></td>
+							<td>${c.cFirstName}</td>
+							<td>${c.cLastName}</td>
+							<td>${c.cAccount}</td>
+							<td>${c.cPwd}</td>
+							<td><fmt:formatDate pattern="yyyy/MM/dd"
+									value="${c.cBirthdate}" /></td>
+							<td>${c.cEmail}</td>
+							<td>${c.cDate}</td>
+							<td>${c.cStatus}</td>
+							<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}">
+									<button class="btn btn-secondary">切換狀態</button>
+							</a></td>
+							<td><a onclick="return confirm('真的要刪除此筆資料嗎?')"
+								href="${contextRoot}/deleteCustomer/${c.cId}">
+									<button class="btn btn-warning">X</button>
+							</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
