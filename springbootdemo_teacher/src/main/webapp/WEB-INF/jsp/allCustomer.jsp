@@ -8,82 +8,112 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <meta charset="UTF-8">
 <title>所有會員清單</title>
-<!-- bootstrap 5.1.3 CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+<style>
+body {
+	background-color: #E6E6EA;
+}
 
-<!-- bootstrap 5.1.3 JS -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-
-<!-- jQuery 3.6.0 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
-
-<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+div.container {
+	background-color: #E6E6EA;
+}
+</style>
 
 </head>
 <body>
-	<div class="container" style="margin-right: 15px;">
-		<div align='center'>
-			<form action="${contextRoot}/findCustomerByKeywords" method="get"
-				enctype="multipart/form-data">
-				<input type="text" name="keywords" placeholder="輸入會員姓、名或帳號"
-					maxlength="30" size="30"><br>
-				<button class="btn btn-outline-success">搜尋會員資訊</button>
-			</form>
+	<main>
+		<div class="container">
+			<div align='center'>
+				<h2>顧客帳號管理</h2>
+				<%-- 				<form action="${contextRoot}/findCustomerByKeywords" method="get" --%>
+				<!-- 					enctype="multipart/form-data"> -->
+				<!-- 					<input type="text" name="keywords" placeholder="輸入會員姓、名或帳號" -->
+				<!-- 						maxlength="30" size="30"><br> -->
+				<!-- 					<button class="btn btn-outline-success">搜尋會員資訊</button> -->
+				<!-- 				</form> -->
+
+				<div class="container">
+					<table class="table" style="background-color:#FCDC4D" id="customerTable">
+						<thead>
+							<tr>
+								<td scope="col">ID</td>
+								<td scope="col">個人圖片</td>
+								<td scope="col">姓</td>
+								<td scope="col">名</td>
+								<td scope="col">帳號</td>
+								<td scope="col">密碼</td>
+								<td scope="col">生日</td>
+								<td scope="col">電子信箱</td>
+								<td scope="col" style="white-space: nowrap;">註冊/更新日期</td>
+								<td scope="col" style="white-space: nowrap;">帳號狀態</td>
+								<td scope="col" style="white-space: nowrap;">狀態切換</td>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${customer}" var="c">
+								<tr>
+									<td>${c.cId}</td>
+									<td><img width="150"
+										src="${contextRoot}/downloadImage/${c.cId}"></td>
+									<td>${c.cFirstName}</td>
+									<td>${c.cLastName}</td>
+									<td>${c.cAccount}</td>
+									<td>${c.cPwd}</td>
+									<td><fmt:formatDate pattern="yyyy/MM/dd"
+											value="${c.cBirthdate}" /></td>
+									<td>${c.cEmail}</td>
+
+									<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm"
+											value="${c.cDate}" /></td>
+									<td>${c.cStatus}</td>
+									<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}">
+											<button class="btn btn-secondary">切換</button>
+									</a></td>
+									<!-- 									<td><a onclick="return confirm('真的要刪除此筆資料嗎?')" -->
+									<%-- 										href="${contextRoot}/deleteCustomer/${c.cId}"> --%>
+									<!-- 											<button class="btn btn-warning">X</button> -->
+									<!-- 									</a></td> -->
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+					<script type="text/javascript">
+						$(document)
+								.ready(
+										function() {
+											$('#customerTable')
+													.DataTable(
+															{
+																"lengthMenu" : [
+																		10, 5,
+																		2, 1 ],
+																"language" : {
+																	"lengthMenu" : "顯示 _MENU_ 項結果",
+																	"search" : "搜尋:",
+																	"info" : "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+																	"infoEmpty" : "顯示第 0 至 0 項結果，共 0 項",
+																	"paginate" : {
+																		"first" : "第一頁",
+																		"previous" : "上一頁",
+																		"next" : "下一頁",
+																		"last" : "最後一頁"
+																	}
+
+																}
+															});
+										});
+					</script>
+				</div>
+			</div>
 		</div>
-		<div>
-			<table class="table table-hover table align-middle">
-				<thead>
-					<tr>
-						<td>ID</td>
-						<td>個人圖片</td>
-						<td>姓</td>
-						<td>名</td>
-						<td>帳號</td>
-						<td>密碼</td>
-						<td>生日</td>
-						<td>電子信箱</td>
-						<td>註冊/更新日期</td>
-						<td>帳號狀態</td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${customer}" var="c">
-						<tr>
-							<td>${c.cId}</td>
-							<td><img width="150"
-								src="${contextRoot}/downloadImage/${c.cId}"></td>
-							<td>${c.cFirstName}</td>
-							<td>${c.cLastName}</td>
-							<td>${c.cAccount}</td>
-							<td>${c.cPwd}</td>
-							<td><fmt:formatDate pattern="yyyy/MM/dd"
-									value="${c.cBirthdate}" /></td>
-							<td>${c.cEmail}</td>
-							<td>${c.cDate}</td>
-							<td>${c.cStatus}</td>
-							<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}">
-									<button class="btn btn-secondary">切換狀態</button>
-							</a></td>
-							<td><a onclick="return confirm('真的要刪除此筆資料嗎?')"
-								href="${contextRoot}/deleteCustomer/${c.cId}">
-									<button class="btn btn-warning">X</button>
-							</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	</main>
+	<script
+		src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 </body>
 </html>
