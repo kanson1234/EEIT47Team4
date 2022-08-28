@@ -33,8 +33,7 @@ body {font-family: "Roboto", sans-serif}
    class="w3-button w3-hide-large w3-display-topleft"
    style="width: 100%; font-size: 22px">Close Menu</a>
   <div class="w3-container">
-  <hr/>
-   <h3 class="w3-padding-64">
+   <h3 class="w3-padding-64" style="margin-top:100px;">
     <b>商家後台</b>
    </h3>
   </div>

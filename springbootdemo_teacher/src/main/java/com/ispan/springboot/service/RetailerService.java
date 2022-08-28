@@ -49,6 +49,7 @@ public class RetailerService {
   
   return rDao.showAllByStatus(true);
  }
+ 
  public List<Retailer> getAllRetailerBloked() {
   return rDao.showAllByStatus(false);
  }
