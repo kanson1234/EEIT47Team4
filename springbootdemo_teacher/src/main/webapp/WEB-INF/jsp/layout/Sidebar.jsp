@@ -47,9 +47,6 @@ body {font-family: "Roboto", sans-serif}
 	  	系統管理首頁
 	  	</a>
 	  </li>
-	  <li>
-	  	<a href="${contextRoot}/" class="w3-bar-item w3-button w3-hover-white">報表</a>
-	  </li>
 <!-- 	  <li> -->
 <%-- 	  	<a href="${contextRoot}/" class="w3-bar-item w3-button w3-hover-white"> --%>
 <!-- 	  	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16"> -->
