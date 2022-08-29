@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -118,7 +119,7 @@ public class CustomerController {
 
 	}
 
-	// 找所有會員
+	// 找所有會員，已被取代
 	@GetMapping("/customer/findAll")
 	public String findAllCustomer(Model model) {
 
@@ -280,24 +281,29 @@ public class CustomerController {
 
 	}
 
-	// 修改會員狀態
+	// 切換會員狀態
 	@GetMapping("/changeCustomerStatus/{id}")
 	public String changeCustomerStatus(@PathVariable Integer id, Model model) {
 		Customer customer = customerService.findCustomerById(id);
 		boolean iscStatus = customer.iscStatus();
 		if (iscStatus == true) {
 			customer.setcStatus(false);
+			customerService.insertCustomer(customer);
+			return "redirect:/customer/findTrue";
+
 		} else {
 			customer.setcStatus(true);
-		}
-		customerService.insertCustomer(customer);
 
-		return "redirect:/customer/findAll";
+			customerService.insertCustomer(customer);
+			return "redirect:/customer/findFalse";
+		}
+
 	}
 
 	// 忘記密碼寄信
-	@GetMapping("sendForgotMail")
-	public String sendMail(@RequestParam("sendEmailAccount") String customerAccount, Model model) {
+	@PostMapping("/sendForgotMail")
+	public String sendMail(@RequestParam("sendEmailAccount") String customerAccount,
+			@RequestParam("sendCustomerEmail") String customerEmail, Model model) {
 
 		Map<String, String> errors = new HashMap<String, String>();
 		model.addAttribute("errors", errors);
@@ -306,17 +312,26 @@ public class CustomerController {
 			errors.put("customerAccount", "請輸入帳號!");
 		}
 
+		if (customerEmail == null || customerEmail.length() == 0) {
+			errors.put("customerEmail", "請輸入電子信箱!");
+		}
+
 		if (errors != null && !errors.isEmpty()) {
 			return "forgotPassword";
 		}
 
-		if (customerService.findCustomerAccount(customerAccount) == null) {
-			errors.put("errorAccount", "帳號輸入錯誤，請重新輸入!");
+		if (customerService.forgotPassword(customerAccount, customerEmail) == null) {
+			errors.put("errorAccount", "帳號或電子信箱輸入錯誤，請重新輸入!");
 			return "forgotPassword";
 		} else {
-			Customer forgotCustomer = customerService.findCustomerAccount(customerAccount);
-			emailService.sendEmail(forgotCustomer.getcEmail(), forgotCustomer.getcFirstName() + "會員，您好!",
-					"您的密碼為: " + forgotCustomer.getcPwd());
+			Customer forgotCustomer = customerService.forgotPassword(customerAccount, customerEmail);
+			try {
+				emailService.sendEmail(forgotCustomer.getcEmail(), forgotCustomer.getcFirstName() + "會員，您好!",
+						"露營王會員"+forgotCustomer.getcFirstName()+forgotCustomer.getcLastName()+"您好!<br>請點選連結以更改密碼，謝謝!<br>http://localhost:8080/forgotPwdEmailUpdate");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			errors.put("success", "驗證成功!請至註冊信箱收取信件!");
 
 			return "forgotPassword";
@@ -324,7 +339,50 @@ public class CustomerController {
 
 	}
 
-	// 模糊搜尋會員資料
+	// 寄信後修改會員密碼
+	@PostMapping("/customerUpdatePassword")
+	public String updateEmailPassword(@RequestParam("cAccount") String cAccount, @RequestParam("cPwd1") String cPwd1,
+			@RequestParam("cPwd2") String cPwd2, Model model) {
+		Map<String, String> errors = new HashMap<String, String>();
+		model.addAttribute("errors", errors);
+
+		if (cAccount == null || cAccount.length() == 0) {
+			errors.put("cAccount", "請輸入帳號");
+		}
+
+		if (customerService.findCustomerAccount(cAccount) == null) {
+			errors.put("errorAccount", "帳號有誤，請重新輸入!");
+		}
+
+		if (cPwd1 == null || cPwd1.length() == 0) {
+			errors.put("cPwd1", "請輸入新密碼");
+		}
+
+		if (cPwd2 == null || cPwd2.length() == 0) {
+			errors.put("cPwd2", "請再次輸入新密碼");
+		}
+
+		if (!cPwd1.equals(cPwd2)) {
+			errors.put("pwdError", "兩次輸入密碼不同，請重新輸入!");
+		}
+
+		if (errors != null && !errors.isEmpty()) {
+			return "forgotPwdEmailUpdate";
+		}
+
+		Customer emailAccount = customerService.findCustomerAccount(cAccount);
+
+		emailAccount.setcPwd(cPwd1.trim());
+		customerService.insertCustomer(emailAccount);
+		Map<String, String> msg = new HashMap<String, String>();
+		model.addAttribute("msg", msg);
+		msg.put("updateSuccess", "修改成功，請重新登入!");
+
+		return "forgotPwdEmailUpdate";
+
+	}
+
+	// 模糊搜尋會員資料，已由前端取代
 	@GetMapping("/findCustomerByKeywords")
 	public String findSpecialCustomer(@RequestParam("keywords") String keywords, Model model) {
 		List<Customer> findSpecialCustomer = customerService.findSpecialCustomer(keywords);
@@ -342,7 +400,52 @@ public class CustomerController {
 //		return true;
 //	}
 
+	// 找未停權會員
+	@GetMapping("/customer/findTrue")
+	public String findTrueCustomer(Model model) {
 
-	
+		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
+		Admin adminSession = (Admin) model.getAttribute("adminLoginOk");
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
+
+		if (adminSession == null) {
+			if (customerSession != null && retailerSession != null) {
+				return "loginSuccess";
+			}
+			return "redirect:/loginA";
+
+		} else {
+
+			List<Customer> customerTrue = customerService.findCustomerByTrue();
+
+			model.addAttribute("customer", customerTrue);
+
+			return "allCustomer";
+		}
+	}
+
+	// 找已停權會員
+	@GetMapping("/customer/findFalse")
+	public String findFalseCustomer(Model model) {
+
+		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
+		Admin adminSession = (Admin) model.getAttribute("adminLoginOk");
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
+
+		if (adminSession == null) {
+			if (customerSession != null && retailerSession != null) {
+				return "loginSuccess";
+			}
+			return "redirect:/loginA";
+
+		} else {
+
+			List<Customer> customerFalse = customerService.findCustomerByFalse();
+
+			model.addAttribute("customer", customerFalse);
+
+			return "CustomerBlockList";
+		}
+	}
 
 }
