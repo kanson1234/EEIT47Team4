@@ -1,121 +1,116 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-		<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!doctype html>
+<html lang="en">
 
-			<!DOCTYPE html>
-			<html>
+<jsp:include page="layout/navbar.jsp" />
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
-			<head>
+<head>
+<script src="/js/jquery-3.6.0.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.88.1">
+<title>會員中心</title>
 
-				<meta charset="UTF-8">
-				<title>srselectpageALL</title>
-				<script src="/js/jquery-3.6.0.min.js"></script>
-				<script src="/js/bootstrap.bundle.min.js"></script>
-
-
-
-				<style type="text/css">
-					thead>tr>th {
-						text-align: center;
-						border: 1px red solid;
-					}
-
-					tbody>tr>td {
-						text-align: center;
-						border: 1px red solid;
-
-					}
-				</style>
-				<Script>
-					window.onload = function () {
-						var selectByC1Id = document.getElementById("selectByC1Id")
-						var selectByC2Id = document.getElementById("selectByC2Id")						
-						var selectByValue = document.getElementById("selectBy").value.onchange = (selectByXX());
-
-						function selectByXX() {
-							selectByValue = document.getElementById("selectBy").value
-							if (selectByValue == "ByC1Id") {
-								console.log('selectBy:ByC1Id')
-								selectByC1Id.style = ('display:block')
-								selectByC2Id.style = ('display:none')
-							}
-						}
-						$("#selectBy").change(function () {
-							selectByValue = document.getElementById("selectBy").value
-							if (selectByValue == "ByC1Id") {
-								$("#selectByC1Id").show();
-								$("#selectByC2Id").hide();
-							}
-							if (selectByValue == "ByC2Id") {
-								$("#selectByC1Id").hide();
-								$("#selectByC2Id").show();
-							}
-						})
-					}
-
-				</Script>
-			</head>
-
-			<body>
-				<div style="display: flex; margin:2px;">
+<!-- <link rel="canonical" href="https://bootstrap5.hexschool.com/docs/5.1/examples/dashboard/"> -->
 
 
-					<select id="selectBy" style="margin: 1px;">
-						<!-- <option value="ByC0Id">請選擇查詢方式 </option> -->
-						<option value="ByC1Id" selected>Select by C1 ID</option>
-						<option value="ByC2Id">Select by C2 ID</option>
-					</select>
-					<div id="selectByC1Id" style="margin: 1px;">
-						<input type="text" id="cid" style="margin: 1px;">
-						<button id="findallbyC1idBtn" style="margin: 1px;">依客戶ID查詢</button>
-					</div>
-					<div id="selectByC2Id" style="margin: 1px;">
-						<input type="text" id="c2id" style="margin: 1px;">
-						<button id="findallbyC2idBtn">依店家ID查詢</button>
-					</div>
-					<div id="findByName" style="margin: 1px;">
-						<input type="text" id="name" style="margin: 1px;">
-						<button id="findByNamebtn" style="margin: 1px;">商品名稱查詢</button>
-					</div>
-					<div id="selectALL" style="margin: 1px;">
-						<button id="findallbytimeBtn" type="button" style="margin: 1px;">findAllByTimeBtn</button>
-					</div>
 
-					
-				
-					<div>
-						<span>開始時間</span><input type="date" id="dateStar" style="margin: 1px;">
-						<span>結束時間</span><input type="date" id="dateEnd" style="margin: 1px;">
-						<button type="button" id="findByTime">查詢</button style="margin: 1px;">
-					</div>
-				<div>
-					<table class="mytable" id="list_data_json">
-						<thead>
-							<tr>
-								<!-- C1 -->
-								<th>消費者ID</th>
-								<!-- SR -->
-								<th>srShoppingRecord_Id</th>
-								<th>消費時間</th>
-								<th>購買數量</th>
-								<!-- SH -->
-								<th>商品ID</th>
-								<th>商品名稱</th>
-								<th>商品圖片</th>
-								<th>價格</th>
-								<th>商品分類</th>
-								<th>商品狀況</th>
-								<!-- C2 -->
-								<th>廠商ID</th>
-								<th>廠商名稱</th>
-								<th>成交狀況</th>
-							</tr>
-						</thead>
+<Script>
+	window.onload = function() {
+		var selectByC1Id = document.getElementById("selectByC1Id")
+		var selectByC2Id = document.getElementById("selectByC2Id")
+		var selectByValue = document.getElementById("selectBy").value.onchange = (selectByXX());
+
+		function selectByXX() {
+			selectByValue = document.getElementById("selectBy").value
+			if (selectByValue == "ByC1Id") {
+				console.log('selectBy:ByC1Id')
+				selectByC1Id.style = ('display:block')
+				selectByC2Id.style = ('display:none')
+			}
+		}
+		$("#selectBy").change(function() {
+			selectByValue = document.getElementById("selectBy").value
+			if (selectByValue == "ByC1Id") {
+				$("#selectByC1Id").show();
+				$("#selectByC2Id").hide();
+			}
+			if (selectByValue == "ByC2Id") {
+				$("#selectByC1Id").hide();
+				$("#selectByC2Id").show();
+			}
+		})
+	}
+</Script>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<!-- C1SideBar -->
+			<jsp:include page="C1Bar\C1SideBar.jsp" />
+			<!-- C1SideBar -->
+
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+				<c:if test="${!empty findAllToA1}">
+					<h2>銷售紀錄</h2>
+				</c:if>
+				<div class="table-responsive">
+					<table>
+						<tr>
+							<td><input type="text" id="cid"></td>
+							<td><button id="findallbyC1idBtn">依客戶ID查詢</button></td>
+							<td><input type="text" id="c2id"></td>
+							<td><button id="findallbyC2idBtn">依店家ID查詢</button></td>
+							<td><input type="text" id="name"></td>
+							<td><button id="findByNamebtn">商品名稱查詢</button></td>
+							<td><button id="findallbytimeBtn" type="button">findAllByTimeBtn</button></td>
+						</tr>
+						<tr>
+							<td><span>開始時間</span></td>
+							<td><input type="date" id="dateStar" style="margin: 1px;"></td>
+							<td><span>結束時間</span></td>
+							<td><input type="date" id="dateEnd" style="margin: 1px;"></td>
+							<td><button type="button" id="findByTime">查詢</button></td>
+						</tr>
 					</table>
+					<hr />
 				</div>
-				</div>
+				<table class="mytable" id="list_data_json">
+					<thead>
 
-				<script>
+						<tr>
+							<!-- C1 -->
+							<th>消費者ID</th>
+							<!-- SR -->
+							<th>srShoppingRecord_Id</th>
+							<th>消費時間</th>
+							<th>購買數量</th>
+							<!-- SH -->
+							<th>商品ID</th>
+							<th>商品名稱</th>
+							<th>商品圖片</th>
+							<th>價格</th>
+							<th>商品分類</th>
+							<th>商品狀況</th>
+							<!-- C2 -->
+							<th>廠商ID</th>
+							<th>廠商名稱</th>
+							<th>成交狀況</th>
+						</tr>
+
+					</thead>
+					<script>
 					$(document).ready(function () {
 						// find All  Time1  TO  Time2
 						$('#findByTime').click(function () {
@@ -203,7 +198,7 @@
 						$('#findallbytimeBtn').click(function () {
 							console.log('findallbytimeBtn')
 							$.ajax({
-								url: 'http://localhost:8080/admin/record/findallbytime',
+								url: 'http://localhost:8080/record/c2id',
 								contentType: 'application/json', // 送過去的資料型別
 								dataType: 'json', // 回傳回來的資料型別
 								method: 'get',
@@ -443,6 +438,15 @@
 						})
 					})
 				</script>
-			</body>
+				</table>
+			</main>
+		</div>
 
-			</html>
+	</div>
+
+
+
+
+</body>
+
+</html>

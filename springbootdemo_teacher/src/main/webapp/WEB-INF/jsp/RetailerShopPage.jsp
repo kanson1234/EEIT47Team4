@@ -47,8 +47,8 @@
 					      <option value="priceDESC">價錢高到低</option>
     				 </select>
     				 <div class="col" >
-							<input type="text" name="keyword" id="searchItemKeyWord" value=""/>
-							<input type="submit" name="Search" id="search" value="搜尋"/>
+							<input type="text" name="keyword" id="searchItemKeyWord" value="" placeholder="請輸入查詢關鍵字"/>
+<!-- 							<input type="submit" name="Search" id="search" value="搜尋"/> -->
     				 </div>
 <!-- 					<div class="form-check form-check-inline"> -->
 <!-- 						 <label class="form-check-label"  -->
@@ -89,8 +89,8 @@
 					$(document).ready(
 									function() {
 										
-// 										$('#searchItemKeyWord').change(function(){ 
-										$('#search').click(function(){
+										$('#searchItemKeyWord').change(function(){ 
+// 										$('#search').click(function(){
 										var text = $('#searchItemKeyWord').val();//獲取文字框輸入
 										console.log(text);
 										

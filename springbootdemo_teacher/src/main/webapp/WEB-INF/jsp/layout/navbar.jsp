@@ -100,6 +100,10 @@ button {
      href="${contextRoot}/Admin/SalesRecord3">後臺管理 <span
       class="sr-only">(current)</span>
     </a></li>
+    <li class="nav-item active"><a class="nav-link"
+     href="${contextRoot}/RetailerCenter">商家中心 <span
+      class="sr-only">(current)</span>
+    </a></li>
 
 
 
@@ -122,7 +126,7 @@ button {
       <a class="nav-link dropdown-toggle" href="#" role="button"
        data-toggle="dropdown" aria-expanded="false"> <img
        src="${contextRoot}/showlogo/${retailerLoginOk.rid}" width="45"
-       height="45" class="rounded-circle"> <span class="text-dark">${retailerLoginOk.rName }</span>
+       height="45" class="rounded-circle"> <span class="text-dark">${retailerLoginOk.rName}</span>
       </a>
       <ul class="navbar-nav mr-auto">
        <li class="nav-item dropdown">
@@ -192,7 +196,7 @@ button {
     <form method="get" class="form-inline my-2 my-lg-0"
      action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
      <input style="padding: 4px" class="form-control mr-sm-1"
-      type="text" placeholder="Coleman" name="word" /> <input
+      type="text" placeholder="搜尋" name="word" /> <input
       type="submit" name="Search" value="搜尋"
       class="btn btn-outline-inverse my-2 my-sm-0" />
     </form>

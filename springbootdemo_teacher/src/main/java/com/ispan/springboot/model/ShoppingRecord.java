@@ -36,12 +36,12 @@ public class ShoppingRecord {
 	@Column(name = "sr_time")
 	private Date srtime;
 
-	@PrePersist
-	public void onCreate() {
-		if (srtime == null) {
-			srtime = new Date();
-		}
-	}
+//	@PrePersist
+//	public void onCreate() {
+//		if (srtime == null) {
+//			srtime = new Date();
+//		}
+//	}
 
 	@Column(name = "sr_state")
 	private Boolean srState;
