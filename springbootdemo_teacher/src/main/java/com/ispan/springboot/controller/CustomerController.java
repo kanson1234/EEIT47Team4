@@ -243,7 +243,7 @@ public class CustomerController {
 
 		if (errors != null && !errors.isEmpty()) {
 
-			return "redirect:/customer/findOne";
+			return "redirect:/customer/editOne";
 		}
 
 		try {
@@ -270,6 +270,7 @@ public class CustomerController {
 
 			customerService.insertCustomer(updateCustomer);
 			Map<String, String> msg = new HashMap<String, String>();
+			model.addAttribute("msg",msg);
 			msg.put("success", "修改成功");
 
 			return "redirect:/customer/findOne";
