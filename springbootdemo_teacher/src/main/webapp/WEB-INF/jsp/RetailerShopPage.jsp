@@ -92,7 +92,6 @@
 										$('#searchItemKeyWord').change(function(){ 
 // 										$('#search').click(function(){
 										var text = $('#searchItemKeyWord').val();//獲取文字框輸入
-										console.log(text);
 										
 											$('#ItemsCard>div>div').hide().filter(":contains('"+text+"')").show(); 
 										 

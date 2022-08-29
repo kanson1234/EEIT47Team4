@@ -60,7 +60,7 @@ button {
 
 
 
- <nav class="navbar navbar-expand-lg navbar-light " style="z-index:1;">
+ <nav class="navbar navbar-expand-lg navbar-light " style="z-index:3;">
 
   <a class="navbar-brand"
    href="${pageContext.request.contextPath}/ShopHouse/indexShopHouseItems"><img

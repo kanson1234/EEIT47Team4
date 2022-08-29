@@ -64,7 +64,9 @@ table tbody tr td {
 .i {
 	vertical-align: middle;
 }
-
+/* .SearchBsar{ */
+/* 	z-index:2; */
+/* } */
 /* .bd-placeholder-img {
                     font-size: 1.125rem;
                     text-anchor: middle;
