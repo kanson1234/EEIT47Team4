@@ -145,7 +145,7 @@ public class ScController {
 			newSR.setSrState(true);
 			ShoppingRecord success = SrService.addSR(newSR);
 //			======================================================
-			scDao.deleteByC1id(cid);
+//			scDao.deleteByC1id(cid);
 //			======================================================
 
 		}
@@ -160,7 +160,7 @@ public class ScController {
 		obj.setTradeDesc("EcpayDetail");
 		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
 		obj.setNeedExtraPaidInfo("N");
-		obj.setCreditInstallment("1");
+		obj.setCreditInstallment("12");
 		String form = aio.aioCheckOut(obj, null);
 		System.out.println(form);
 

@@ -136,9 +136,9 @@
 																var sclist = {};
 																sclist.scid = $("#a" + i).text()
 																sclist.price = $("#b" + i).text()
-																sclist.sccount = $("#c" + i).text()
+																sclist.sccount = $("#c" + i).val()
 																sclist.itname= $("#d" + i).text()
-																sclist.scTotalPrice = ($("#b" + i).text() * $("#c" + i).text())
+																sclist.scTotalPrice = ($("#b" + i).text() * $("#c" + i).val())
 																sclistArray.push(sclist)
 															}
 															console.log(sclistArray)
