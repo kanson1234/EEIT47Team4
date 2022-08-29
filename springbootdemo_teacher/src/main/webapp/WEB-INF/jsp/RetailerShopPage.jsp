@@ -40,12 +40,16 @@
 						</div>
 					</article>
 				</div>
-				<div id="sortItems" style="height: 100px;">
-					<select id="sortSelect">
+				<div id="sortItems" class="row" style="height: 100px;">
+					<select id="sortSelect" class="col form-select" style="height: 30px;margin-left:100px;">
 					      <option value="">選擇排序方式</option>
 					      <option value="priceASC" >價錢低到高</option>
 					      <option value="priceDESC">價錢高到低</option>
     				 </select>
+    				 <div class="col" >
+							<input type="text" name="keyword" id="searchItemKeyWord" value=""/>
+							<input type="submit" name="Search" id="search" value="搜尋"/>
+    				 </div>
 <!-- 					<div class="form-check form-check-inline"> -->
 <!-- 						 <label class="form-check-label"  -->
 <!-- 							for="inlineRadio1">全部商品:</label> -->
@@ -84,6 +88,16 @@
 				<script type="text/javascript">
 					$(document).ready(
 									function() {
+										
+// 										$('#searchItemKeyWord').change(function(){ 
+										$('#search').click(function(){
+										var text = $('#searchItemKeyWord').val();//獲取文字框輸入
+										console.log(text);
+										
+											$('#ItemsCard>div>div').hide().filter(":contains('"+text+"')").show(); 
+										 
+										});
+										
 
 										var priceASC = function(a, b) {
 											let x = $(a).find('.itemprice').text();
