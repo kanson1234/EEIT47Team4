@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.ispan.springboot.dao.MessageDao;
@@ -52,7 +53,7 @@ public class ShopHouseService {
 
 	// 查詢全部
 	public List<ShopHouseBean> findAllItem() {
-		return sDao.findAll();
+		return sDao.showAllItems();
 	}
 
 	// 後台分頁
@@ -64,7 +65,7 @@ public class ShopHouseService {
 
 	// 前台分頁
 	public Page<ShopHouseBean> frontPageFindByPage(Integer pagesNumber) {
-		PageRequest pgb = PageRequest.of(pagesNumber - 1, 9, Sort.Direction.ASC, "id");
+		PageRequest pgb = PageRequest.of(pagesNumber - 1, 12, Sort.Direction.ASC, "id");
 		Page<ShopHouseBean> page = sDao.findAll(pgb);
 		return page;
 	}
@@ -98,8 +99,14 @@ public class ShopHouseService {
 	public List<ShopHouseBean> findByC2Id(Integer id) {
 		return sDao.findByC2Id(id);
 	}
-
+	
+	// 找c2Id的所有下架商品
+    public List<ShopHouseBean> findByC2IdBlocked(Integer id){
+    	return sDao.findByC2IdBlocked(id);
+    }
+	
 	// 前台最新商品
+    @Query(value="SELECT * FROM StoreHouse WHERE SH_State=1" ,nativeQuery = true)
 	public Page<ShopHouseBean> frontPageItems(Integer pagesNumber) {
 		PageRequest pgb = PageRequest.of(pagesNumber - 1, 12, Sort.Direction.DESC, "id");
 		Page<ShopHouseBean> page = sDao.findAll(pgb);
@@ -125,7 +132,21 @@ public class ShopHouseService {
 		return sDao.sortByClassifyDesc(name);
 	}
 	
+	//改變status
+	public boolean ChangeStatusById (boolean status,Integer id) {
+		  sDao.changeStatusById(status, id);
+		  return true;
+    }
 	
+	//秀出所有狀態為true的商品
+	public List<ShopHouseBean> showAllItems(){
+		return sDao.showAllByStatus(true);
+	}
+	
+	//秀出所有商品為false的商品
+	public List<ShopHouseBean> showAllItemsBlocked(){
+		return sDao.showAllByStatus(false);
+	}
 	
 }
 

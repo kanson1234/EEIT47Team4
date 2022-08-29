@@ -39,7 +39,7 @@
 						class="form-control" value="${shopHouseItem.price}"></label> <label
 						class="form-label">種類<input name="classify"
 						class="form-control" value="${shopHouseItem.classify}"></label> <label
-						class="form-label">狀態<input id="state"
+						class="form-label"><input id="state" type="hidden"
 						class="form-control" name="state" value="${shopHouseItem.status}"></label>
 					<label class="form-label"><input type="hidden" name="c2Id"
 						class="form-control" value="${shopHouseItem.c2Id}"></label>

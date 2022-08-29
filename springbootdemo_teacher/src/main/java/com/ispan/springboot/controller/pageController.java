@@ -119,7 +119,11 @@ public class pageController {
 		return "ShoppingCar";
 	}
 	
-// THT End----------------------------------------------------------------
+	@GetMapping("/RetailerCenter")
+	public String gotoC2page() {
+		return "C2Center";
+	}
+	
 
 
 }
