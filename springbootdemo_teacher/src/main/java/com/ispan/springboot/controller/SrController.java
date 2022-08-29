@@ -40,28 +40,21 @@ public class SrController {
 
 		return "AdminSR2";
 	}
-	
+
 	@GetMapping("/Member/MemberCenter")
 	public String MemberCenter(Model model) {
-		
+
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
 		Integer cid = customerSession.getcId();
-		
+
 		System.out.println(cid);
-		
-		
-		
+
 		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
 		model.addAttribute("data", findAllToA1ByC1);
 		return "MemberCenter";
-		
-		
+
 	}
-	
-	
-	
-	
-	
+
 	@GetMapping("/findbyKeyWord")
 	private String findbyKeyWord(Model model, @RequestParam(name = "keyword") String keyword) {
 		System.out.println(keyword);
@@ -95,8 +88,7 @@ public class SrController {
 
 			if (!findByitemNameLike.isEmpty()) {
 				System.err.println(" not id " + keyword);
-				
-				
+
 				return "AdminSR-findby-it-Name";
 			}
 			return "AdminSR-findby-it-Name";
@@ -172,7 +164,7 @@ public class SrController {
 
 	}
 
-	
+	@ResponseBody
 	// find all sr to C2
 	@GetMapping("/record/c2id") // findbyc2id
 	private List<ShoppingRecord> findALLByc2id(Model model) {
@@ -181,28 +173,32 @@ public class SrController {
 		return srDao.findALLByc2id(c2id);
 	}
 
+	@ResponseBody
 	@GetMapping("record/SRTRUE") // 成交
 	private List<ShoppingRecord> findBysrStateTrue() {
 		return SrService.findBysrStateTrue();
 	}
 
+	@ResponseBody
 	@GetMapping("record/SRFalse") // 退貨
 	private List<ShoppingRecord> findBysrStateSRFalse() {
 		return SrService.findBysrStateFalse();
 	}
 
+	@ResponseBody
 	@GetMapping("/admin/record/byName") // findbyName
 	private List<ShoppingRecord> findBysrStateSRFalse(@RequestParam(name = "name") String name) {
 		return SrService.findByitemNameLike(name);
 	}
 
+	@ResponseBody
 	@GetMapping("record/changeStste") // findbyName
 	private Boolean changeStste(@RequestParam(name = "setbool") Boolean setbool,
 			@RequestParam(name = "srid") Integer srid) {
 		return SrService.changeStste(setbool, srid);
 	}
-	
 
+	@ResponseBody
 	@PostMapping("admin/record/date") // findbyName
 	private List<ShoppingRecord> Between(@RequestBody DateDto dateDto) {
 
