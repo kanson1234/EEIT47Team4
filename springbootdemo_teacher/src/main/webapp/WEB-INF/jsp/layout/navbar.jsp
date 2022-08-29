@@ -126,7 +126,7 @@ button {
       <a class="nav-link dropdown-toggle" href="#" role="button"
        data-toggle="dropdown" aria-expanded="false"> <img
        src="${contextRoot}/showlogo/${retailerLoginOk.rid}" width="45"
-       height="45" class="rounded-circle"> <span class="text-dark">${retailerLoginOk.rName }</span>
+       height="45" class="rounded-circle"> <span class="text-dark">${retailerLoginOk.rName}</span>
       </a>
       <ul class="navbar-nav mr-auto">
        <li class="nav-item dropdown">
