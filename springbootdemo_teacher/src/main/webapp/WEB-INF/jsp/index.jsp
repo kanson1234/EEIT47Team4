@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <jsp:include page="layout/navbar.jsp" />
-
 
 <!DOCTYPE html>
 <html>
@@ -50,7 +48,8 @@
 	
 	<div class="container" align="center">
 		<div class="row">
-			<c:forEach items="${pages.content}" var="i">
+
+			<c:forEach items="${allNewItems}" var="i" begin="1" end="12">
 				<div class="card" style="width: 14rem; height: 380px;">
 					<a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
 							height="180" src="${pageContext.request.contextPath}/downloadImg/${i.id}" class="card-img-top"
@@ -64,6 +63,7 @@
 						</div>
 				</div>
 			</c:forEach>
+		
 			</div>
 
 	</div>

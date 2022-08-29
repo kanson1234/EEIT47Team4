@@ -23,8 +23,8 @@
 						<th scope="col">價錢</th>
 						<th scope="col">種類</th>
 						<th scope="col">店家</th>
-						<th scope="col">編輯</th>
-						<th scope="col">下架</th>
+						<th scope="col">上架</th>
+						<th scope="col">刪除</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,11 +40,11 @@
 							<%-- 					<td>${i.c2Id}</td> --%>
 							<td>${i.getRetailerBean().rName}</td>
 							<td><a
-								href="${pageContext.request.contextPath}/ShopHouse/editItemId/${i.id}"><button
-										type="submit" class="btn btn-primary mb-2">編輯</button></a></td>
-							<td><a onclick="return confirm('確認下架?')"
-								href="${pageContext.request.contextPath}/ShopHouse/changeStatusF/${i.id}">
-									<button type="submit" class="btn btn-danger">下架</button>
+								href="${pageContext.request.contextPath}/ShopHouse/changeStatusT/${i.id}"><button
+										type="submit" class="btn btn-primary mb-2">重新上架</button></a></td>
+							<td><a onclick="return confirm('確認刪除?')"
+								href="${pageContext.request.contextPath}/ShopHouse/deleteById/${i.id}">
+									<button type="submit" class="btn btn-danger">刪除</button>
 							</a></td>
 						</tr>
 					</c:forEach>

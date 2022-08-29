@@ -1,5 +1,7 @@
 package com.ispan.springboot.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -64,13 +66,10 @@ public class ScController {
 
 		} catch (Exception e) {
 			Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
-
 			Integer cid = customerSession.getcId();
 			List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
 			model.addAttribute("data", findAllByScId);
-
 			return "ShoppingCar";
-
 		}
 	}
 
@@ -87,18 +86,14 @@ public class ScController {
 			Integer cid = customerSession.getcId();
 			List<ShoopingCar> findAllByScId = scService.findAllByScId(cid);
 			model.addAttribute("data", findAllByScId);
-
 			return "ShoppingCar";
 		}
-
 	}
 
 	@ResponseBody
 	@GetMapping("Member/ShoppingCar/test")
 	public List<ShoopingCar> findAllByScId() {
-
 		List<ShoopingCar> findAllByScId = scService.findAllByScId(2000004);
-
 		return findAllByScId;
 	}
 //	============================================================================
@@ -107,7 +102,7 @@ public class ScController {
 
 //	C	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// add 1 or more sc to sc or
-	
+
 	@ResponseBody
 	@PostMapping("ShoppingCar/checkout")
 	public String addToCar(@RequestBody List<DtoSc> scDto, Model model, HttpSession session) {
@@ -117,36 +112,68 @@ public class ScController {
 		customer.setcId(cid);
 		System.err.println("++++++++++++++++++++++++++++++++++" + scDto.get(0).getPrice());
 		System.err.println("++++++++++++++++++++++++++++++++++" + scDto.size());
+		Integer ecpayPrice = 0;
+		String EcpayDetail = "";
+		Date date = new Date();
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String ecDate = sdFormat.format(date);
 		for (Iterator iterator = scDto.iterator(); iterator.hasNext();) {
 			DtoSc dtoSc = (DtoSc) iterator.next();
-			System.out.println(cid + "\t" + dtoSc.getScid() + "\t" + dtoSc.getSccount() + "\t" + dtoSc.getPrice() + "\t"+ dtoSc.getScTotalPrice());
+			System.out.println(cid + "\t" + dtoSc.getScid() + "\t" + dtoSc.getSccount() + "\t" + dtoSc.getPrice() + "\t"
+					+ dtoSc.getScTotalPrice());
 			Integer itId = dtoSc.getScid();
 			Integer num = dtoSc.getSccount();
 			Integer ScPrice = dtoSc.getPrice();
 			Integer ScTotalPrice = dtoSc.getScTotalPrice();
+			String name = dtoSc.getItname();
 //			======================================================
 			ShopHouseBean shophousebean = new ShopHouseBean();
 			shophousebean.setId(itId);
 			int price = ScPrice;
 			int count = num;
 			int totoprice = ScTotalPrice;
+
+			EcpayDetail += "#" + name + " NTD : " + totoprice + " * " + num + "\n";
+			ecpayPrice += Math.round(totoprice);
 			ShoppingRecord newSR = new ShoppingRecord();
 			newSR.setCustomer(customer);
-			newSR.setShophousebean(shophousebean);	
+			newSR.setShophousebean(shophousebean);
 			newSR.setSrTotalPrice(totoprice);
 			newSR.setSrDiscount(1);
+			newSR.setSrtime(date);
 			newSR.setSrCount(count);
 			newSR.setSrState(true);
 			ShoppingRecord success = SrService.addSR(newSR);
 //			======================================================
-		
-			scDao.deleteByC1id(cid);
-		}
-		
+//			scDao.deleteByC1id(cid);
+//			======================================================
 
-		return "AAA" ;
-		
+		}
+		Integer no=(int) (Math.random()*100000);
+		AllInOne aio = new AllInOne("");
+		AioCheckOutDevide obj = new AioCheckOutDevide();
+		obj.setMerchantTradeNo("No"+no.toString());
+		obj.setMerchantTradeDate(ecDate);
+		obj.setTotalAmount(ecpayPrice.toString());
+	
+		obj.setItemName("商城商品一批");
+		obj.setTradeDesc("EcpayDetail");
+		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
+		obj.setNeedExtraPaidInfo("N");
+		obj.setCreditInstallment("12");
+		String form = aio.aioCheckOut(obj, null);
+		System.out.println(form);
+
+		System.out.println(EcpayDetail);
+		System.out.println(ecpayPrice.toString());
+		System.out.println(ecDate);
+		;
+//		
+//		return null;
+		return form;
+
 	}
+
 //	______________________________________________________________________________________________________
 	
 	@ResponseBody
@@ -206,30 +233,33 @@ public class ScController {
 	}
 
 //	ECPAY	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-	@GetMapping("/gotoecpay")
-	public void gotoecpay() {
+	@ResponseBody
+	@PostMapping("/gotoecpay")
+	public String gotoecpay() {
 		System.out.println(123);
 		AllInOne aio = new AllInOne("");
 		AioCheckOutDevide obj = new AioCheckOutDevide();
-		obj.setMerchantTradeNo("testorder20250315");
+		obj.setMerchantTradeNo("hadfi1919afaisjnv");
 		obj.setMerchantTradeDate("2023/01/01 08:05:23");
 		obj.setTotalAmount("20000");
 		obj.setTradeDesc("test Description");
 		obj.setItemName("TestItem");
-		obj.setReturnURL("https://13ef-203-77-34-142.jp.ngrok.io/returnURL");
+		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
 		obj.setNeedExtraPaidInfo("N");
 		obj.setCreditInstallment("12");
 		String form = aio.aioCheckOut(obj, null);
 		System.out.println(form);
+		return form;
 	}
 
 	@PostMapping("/returnURL")
-	public void returnURL(@RequestParam("RtnCode") int RtnCode) {
+	public String returnURL(@RequestParam("RtnCode") int RtnCode) {
 		if (RtnCode == 1) {
 			System.out.println("susses");
+			return "ShoppingCar";
 		} else {
 			System.out.println("error");
+			return null;
 		}
 	}
 

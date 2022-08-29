@@ -51,24 +51,10 @@ public class ShopHouseBean {
 	@Column(name = "SH_State")
 	private boolean status;
 	
-	@Transient
+//	@Transient
 	@Column(name = "C2_Id")
 	private Integer c2Id;
 
-	
-//	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss",timezone="Asia/Taipei")
-//	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@Column(name="SH_Date")
-//	private Date date;
-
-	
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "C2_Id")
-//
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "StoreHouse", cascade = CascadeType.ALL)
-//	private Set<EvolutionSystem> books = new LinkedHashSet<EvolutionSystem>();
-//
 //	@ManyToOne(fetch = FetchType.LAZY, mappedBy = "StoreHouse", cascade = CascadeType.ALL)
 //	private ShopingCar shoppingCar = new ShopingCar();
 //

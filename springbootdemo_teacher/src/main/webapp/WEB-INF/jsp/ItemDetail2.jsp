@@ -28,11 +28,12 @@
 	height: 200px;
 }
 
-.size{
-    width: 20%;
+.size {
+	width: 20%;
 }
-.mainSize{
-     width:150%;
+
+.mainSize {
+	width: 150%;
 }
 </style>
 </head>
@@ -67,7 +68,7 @@
 
 					<p class="card-text">商品名稱:${shopHouseItem.itemName}</p>
 
-<<<<<<< HEAD
+
 					<p class="card-text">價錢:${shopHouseItem.price}</p>
 					<a
 						href="${pageContext.request.contextPath}/ShopHouse/findByClassifyLabel?classify=${shopHouseItem.classify}">
@@ -81,37 +82,39 @@
 							type="hidden" value="${shopHouseItem.id}" id="itid">
 					</div>
 					<div>你可能也會喜歡...</div>
-                    <c:forEach items="${category}" begin="1" end="3" var="x">
-					<a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${x.id}"><img
-						class="size" src="${pageContext.request.contextPath}/downloadImg/${x.id}" class="card-img-top"
-						alt="..."></a>
-					</c:forEach>	
+					<c:forEach items="${category}" begin="2" end="4" var="x">
+						<a
+							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${x.id}"><img
+							class="size"
+							src="${pageContext.request.contextPath}/downloadImg/${x.id}"
+							class="card-img-top" alt="..."></a>
+					</c:forEach>
 				</div>
 			</div>
 			<hr>
-			
-					<div class="card">
-			<div class="card-header">留言板</div>
-			<div class="card-body">
-		</div>
-		<c:forEach items="${shopHouseItem.message}" var="m">
-			<div class="row justify-content-center">
-				<div class="col-8">
-					<div class="card">
-						<div class="card-header">
-							留言時間 <span>${m.mdate}</span>
-						</div>
-						<div class="card-body">${m.mcontext}</div>
-						<div></div>
-					</div>
-				</div>
-			</div>
-			<br />
-		</c:forEach>
 
-				<form action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
-														method="post"> 
-					
+			<div class="card">
+				<div class="card-header">留言板</div>
+				<div class="card-body"></div>
+				<c:forEach items="${shopHouseItem.message}" var="m">
+					<div class="row justify-content-center">
+						<div class="col-8">
+							<div class="card">
+								<div class="card-header">
+									留言時間 <span>${m.mdate}</span>
+								</div>
+								<div class="card-body">${m.mcontext}</div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+					<br />
+				</c:forEach>
+
+				<form
+					action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
+					method="post">
+
 					留言區:
 					<textarea rows="3" cols="50" id="newMsg" name="newMsg"></textarea>
 					<button type="submit" class="btn btn-primary">送出</button>
@@ -124,124 +127,53 @@
 	</header>
 	<footer> </footer>
 
-<!-- 	<script> -->
-<!-- // 		$(document).ready(function() { -->
-<!-- // 			// findAllByTime -->
-<!-- // 			$('#addToCar').click(function() { -->
-<!-- // 				alert('addToCar') -->
+	<script>
+		$(document)
+				.ready(
+						function() {
+							// findAllByTime
+							$('#addToCar')
+									.click(
+											function() {
+												var num = document
+														.getElementById('num').value;
 
-<!-- // 				var num = document.getElementById('num').value; -->
-<!-- //  				alert(num) -->
-<!-- // 				var itid = document.getElementById('itid').value; -->
-<!-- // 				alert(itid) -->
+												var itid = document
+														.getElementById('itid').value;
 
-<!-- // 				$.ajax({ -->
-<!-- // 					url : 'http://localhost:8080/record/add', -->
-<!-- // 					contentType : 'application/json', // 送過去的資料型別 -->
-<!-- // 					dataType : 'json', // 回傳回來的資料型別 -->
-<!-- // 					method : 'get', -->
-<!-- // 					success : function(result) { -->
-<!-- // 						console.log(result) -->
-<!-- // 					}, -->
-<!-- // 					error : function(err) { -->
-<!-- // 						console.log(err) -->
-<!-- // 					} -->
-<!-- // 				}) -->
-<!-- // 			}) -->
+												var dtoObj = {
+													"num" : num,
+													"itid" : itid
+												};
 
-
-<!-- // 			// findAllByCidBtn -->
-<!-- // 		}) -->
-<!-- 	</script> -->
-=======
-														<p class="card-text">價錢:${shopHouseItem.price}</p>
-														<a
-															href="${pageContext.request.contextPath}/ShopHouse/findByClassifyLabel?classify=${shopHouseItem.classify}">
-															<button type="button"
-																class="badge badge-secondary">${shopHouseItem.classify}</button>
-														</a>
-														<div>
-															<a href=""><button type="submit"
-																	id="addToCar">加入購物車</button></a>
-														</div>
-														<div>
-															<input type="number" value="1" id="num"> <input type="text"
-																value="${shopHouseItem.id}" id="itid">
-														</div>
-													</div>
-												</div>
-											</div>
-											<c:forEach items="${shopHouseItem.message}" var="m">
-												<div class="row justify-content-center">
-													<div class="col-8">
-														<div class="card">
-															<div class="card-header">
-																留言時間 <span>${m.mdate}</span>
-															</div>
-															<div class="card-body">${m.mcontext}</div>
-															<div></div>
-														</div>
-													</div>
-												</div>
-												<br />
-											</c:forEach>
-											<div class="card">
-												<div class="card-header">留言板</div>
-												<div class="card-body">
-
-													留言區:
-													<textarea rows="3" cols="50" id="newMsg" name="newMsg"></textarea>
-													<button type="submit" class="btn btn-primary">送出</button>
-													</form>
-												</div>
-											</div>
-											<div></div>
-					</header>
-					<footer> </footer>
->>>>>>> 1f186395f41f3665bd8479f4fc6bf1b484b2bec1
-
-					<script>
-						$(document).ready(
-							function () {
-								// findAllByTime
-								$('#addToCar').click(
-									function () {
-										var num = document.getElementById('num').value;
-										
-										var itid = document.getElementById('itid').value;
-										
-										var dtoObj = {
-											"num": num,
-											"itid": itid
-										};
-										
-										
-										console.log(dtoObj)
-										var dtoJson = JSON.stringify(dtoObj);
-										console.log(dtoJson)
-										$
-											.ajax({
-												url: 'http://localhost:8080/ShoppingCar/add?num=' + num + "&itid=" + itid,
-												contentType: 'application/json', // 送過去的資料型別
-												dataType: "text", // 回傳回來的資料型別
-												method: 'get',
-												success: function (result) {
-													alert(result)
-												},
-												error: function (err) {
-													alert("請登入")
-													window.location.href="http://localhost:8080/loginC"							
-												}
+												console.log(dtoObj)
+												var dtoJson = JSON
+														.stringify(dtoObj);
+												console.log(dtoJson)
+												$
+														.ajax({
+															url : 'http://localhost:8080/ShoppingCar/add?num='
+																	+ num
+																	+ "&itid="
+																	+ itid,
+															contentType : 'application/json', // 送過去的資料型別
+															dataType : "text", // 回傳回來的資料型別
+															method : 'get',
+															success : function(
+																	result) {
+																alert(result)
+															},
+															error : function(
+																	err) {
+																alert("請登入")
+																window.location.href = "http://localhost:8080/loginC"
+															}
+														})
 											})
-									})
-							})
-					</script>
+						})
+	</script>
 
-<<<<<<< HEAD
+</body>
 
-=======
->>>>>>> 1f186395f41f3665bd8479f4fc6bf1b484b2bec1
-				</body>
-
-				</html>
+</html>
 
