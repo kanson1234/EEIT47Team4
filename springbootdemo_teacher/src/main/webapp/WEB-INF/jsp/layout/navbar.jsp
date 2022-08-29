@@ -192,7 +192,7 @@ button {
     <form method="get" class="form-inline my-2 my-lg-0"
      action="${pageContext.request.contextPath}/ShopHouse/findByKeyword">
      <input style="padding: 4px" class="form-control mr-sm-1"
-      type="text" placeholder="Coleman" name="word" /> <input
+      type="text" placeholder="搜尋" name="word" /> <input
       type="submit" name="Search" value="搜尋"
       class="btn btn-outline-inverse my-2 my-sm-0" />
     </form>
