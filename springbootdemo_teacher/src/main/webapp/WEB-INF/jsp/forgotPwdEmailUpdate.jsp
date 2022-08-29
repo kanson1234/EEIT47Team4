@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="layout/navbar.jsp" />
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,27 +44,40 @@ body {
 
 	<div class="container">
 		<div class="box" align='center'>
-			<h3>忘記密碼</h3>
+			<h3>修改密碼</h3>
 
-			<form action="sendForgotMail" method="POST"
+			<form action="customerUpdatePassword" method="POST"
 				style="margin: auto; width: 220px">
-				<label class="form-label">您的帳戶</label> <input type="text"
-					placeholder="請輸入您的帳號資料" class="form-control"
-					name="sendEmailAccount" id="InsertAccount" />
-				<p style="color: red;">${errors.customerAccount}</p>
-				<label class="form-label">電子信箱</label> <input type="text"
-					placeholder="您註冊時填寫之電子信箱" class="form-control"
-					name="sendCustomerEmail" id="InsertEmail"/>
-				<p style="color: red;">${errors.customerEmail}</p>
-				<button type="submit" class="btn btn-lg btn-primary">送出</button>
-				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
+				<label class="form-label">您的登入帳戶</label> <input type="text"
+					placeholder="請輸入您的帳號資料" class="form-control" name="cAccount" id="" />
+				<p style="color: red;">${errors.cAccount}</p>
 				<p style="color: red;">${errors.errorAccount}</p>
-				<p style="color: green;">${errors.success}</p>
+				
+				
+				
+				<label class="form-label">您的新密碼</label> <input type="password"
+					placeholder="輸入新密碼" class="form-control" name="cPwd1" id="" />
+				<p style="color: red;">${errors.cPwd1}</p>
+				
+				
+				
+				<label class="form-label">再次輸入新密碼</label> <input type="password"
+					placeholder="兩次輸入之密碼需相同" class="form-control" name="cPwd2" id="" />
+				<p style="color: red;">${errors.cPwd2}</p>
+				<p style="color: red;">${errors.pwdError}</p>
+				
+				
+				
+				<button type="submit" class="btn btn-lg btn-primary">送出</button>
+				<p style="color: red;">${errors.duplicatePwd}</p>
+				<p style="color: green;">${msg.updateSuccess}</p>
 
-				<div class="text-center m-5">
-					<button type="button" class="btn btn-outline-dark fastInsert">快速帶入</button>
-				</div>
-
+				<br> <label class="form-label"> <a
+					href="${contextRoot}/loginC">回登入頁面</a>
+				</label>
+				<!-- 				<div class="text-center m-5"> -->
+				<!-- 					<button type="button" class="btn btn-outline-dark fastInsert">快速帶入</button> -->
+				<!-- 				</div> -->
 			</form>
 		</div>
 	</div>
@@ -75,13 +89,6 @@ body {
 		$("#InsertAccount").val("ms0592521");
 		$("#InsertEmail").val("ansonliu0301@gmail.com");
 	});
-	
-	//取消按鈕返回上頁
-	$("#cancel").click(function(event) {
-		event.preventDefault(); //取消預設行為
-		window.location.replace("http://localhost:8080/"); //返回特定頁面
-	})
-	
 </script>
 
 
