@@ -158,7 +158,11 @@ public class ScController {
 	
 		obj.setItemName("商城商品一批");
 		obj.setTradeDesc("EcpayDetail");
-		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
+		obj.setReturnURL("http://211.23.128.214:5000");
+
+//		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
+		obj.setOrderResultURL("http://localhost:8080/");
+
 		obj.setNeedExtraPaidInfo("N");
 		obj.setCreditInstallment("12");
 		String form = aio.aioCheckOut(obj, null);
@@ -244,7 +248,8 @@ public class ScController {
 		obj.setTotalAmount("20000");
 		obj.setTradeDesc("test Description");
 		obj.setItemName("TestItem");
-		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
+//		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
+		obj.setOrderResultURL("https://localhost:8080/");
 		obj.setNeedExtraPaidInfo("N");
 		obj.setCreditInstallment("12");
 		String form = aio.aioCheckOut(obj, null);
