@@ -16,24 +16,28 @@ public class CustomerService {
 	@Autowired
 	private CustomerDao cDao;
 
-	public Customer checkCustomerLogin(String caccount,String cpwd) {
-		Customer ca = cDao.findByCustomerAccount(caccount,cpwd);
+	// 登入驗證
+	public Customer checkCustomerLogin(String caccount, String cpwd) {
+		Customer ca = cDao.findByCustomerAccount(caccount, cpwd);
 		return ca;
 	}
-	
+
 	public Customer findCustomerAccount(String caccount) {
 		Customer ca = cDao.findCustomerAccount(caccount);
 		return ca;
 	}
 
+	// 註冊
 	public void insertCustomer(Customer ct) {
 		cDao.save(ct);
 	}
 
+	// 找全部
 	public List<Customer> findAllCustomer() {
 		return cDao.findAll();
 	}
 
+	// 找照片
 	public Customer getPhotoById(Integer id) {
 		Optional<Customer> optional = cDao.findById(id);
 		if (optional.isPresent()) {
@@ -42,16 +46,33 @@ public class CustomerService {
 		return null;
 	}
 
+	// 刪除，用不到
 	public void deleteCustomer(Integer id) {
 		cDao.deleteById(id);
 	}
 
-	public  Customer findCustomerById(Integer id) {
+	// 找ID
+	public Customer findCustomerById(Integer id) {
 		return cDao.getById(id);
 	}
-	
-	public List<Customer> findSpecialCustomer(String keywords){
+
+	// 模糊搜尋，已被前端取代
+	public List<Customer> findSpecialCustomer(String keywords) {
 		return cDao.findSpecial(keywords);
 	}
 
+	// 忘記密碼寄信
+	public Customer forgotPassword(String cAccount, String cEmail) {
+		return cDao.findAccountAndEmail(cAccount, cEmail);
+	}
+
+	//找有權
+	public List<Customer> findCustomerByTrue() {
+		return cDao.findByStatus(true);
+	}
+	
+	//找停權
+	public List<Customer> findCustomerByFalse() {
+		return cDao.findByStatus(false);
+	}
 }

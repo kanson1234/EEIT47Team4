@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -118,7 +119,7 @@ public class CustomerController {
 
 	}
 
-	// 找所有會員
+	// 找所有會員，已被取代
 	@GetMapping("/customer/findAll")
 	public String findAllCustomer(Model model) {
 
@@ -280,24 +281,29 @@ public class CustomerController {
 
 	}
 
-	// 修改會員狀態
+	// 切換會員狀態
 	@GetMapping("/changeCustomerStatus/{id}")
 	public String changeCustomerStatus(@PathVariable Integer id, Model model) {
 		Customer customer = customerService.findCustomerById(id);
 		boolean iscStatus = customer.iscStatus();
 		if (iscStatus == true) {
 			customer.setcStatus(false);
+			customerService.insertCustomer(customer);
+			return "redirect:/customer/findTrue";
+
 		} else {
 			customer.setcStatus(true);
-		}
-		customerService.insertCustomer(customer);
 
-		return "redirect:/customer/findAll";
+			customerService.insertCustomer(customer);
+			return "redirect:/customer/findFalse";
+		}
+
 	}
 
 	// 忘記密碼寄信
-	@GetMapping("sendForgotMail")
-	public String sendMail(@RequestParam("sendEmailAccount") String customerAccount, Model model) {
+	@GetMapping("/sendForgotMail")
+	public String sendMail(@RequestParam("sendEmailAccount") String customerAccount,
+			@RequestParam("sendCustomerEmail") String customerEmail, Model model) {
 
 		Map<String, String> errors = new HashMap<String, String>();
 		model.addAttribute("errors", errors);
@@ -306,15 +312,19 @@ public class CustomerController {
 			errors.put("customerAccount", "請輸入帳號!");
 		}
 
+		if (customerEmail == null || customerEmail.length() == 0) {
+			errors.put("customerEmail", "請輸入電子信箱!");
+		}
+
 		if (errors != null && !errors.isEmpty()) {
 			return "forgotPassword";
 		}
 
-		if (customerService.findCustomerAccount(customerAccount) == null) {
-			errors.put("errorAccount", "帳號輸入錯誤，請重新輸入!");
+		if (customerService.forgotPassword(customerAccount, customerEmail) == null) {
+			errors.put("errorAccount", "帳號或電子信箱輸入錯誤，請重新輸入!");
 			return "forgotPassword";
 		} else {
-			Customer forgotCustomer = customerService.findCustomerAccount(customerAccount);
+			Customer forgotCustomer = customerService.forgotPassword(customerAccount, customerEmail);
 			emailService.sendEmail(forgotCustomer.getcEmail(), forgotCustomer.getcFirstName() + "會員，您好!",
 					"您的密碼為: " + forgotCustomer.getcPwd());
 			errors.put("success", "驗證成功!請至註冊信箱收取信件!");
@@ -324,7 +334,7 @@ public class CustomerController {
 
 	}
 
-	// 模糊搜尋會員資料
+	// 模糊搜尋會員資料，已由前端取代
 	@GetMapping("/findCustomerByKeywords")
 	public String findSpecialCustomer(@RequestParam("keywords") String keywords, Model model) {
 		List<Customer> findSpecialCustomer = customerService.findSpecialCustomer(keywords);
@@ -342,7 +352,52 @@ public class CustomerController {
 //		return true;
 //	}
 
+	// 找未停權會員
+	@GetMapping("/customer/findTrue")
+	public String findTrueCustomer(Model model) {
 
-	
+		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
+		Admin adminSession = (Admin) model.getAttribute("adminLoginOk");
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
+
+		if (adminSession == null) {
+			if (customerSession != null && retailerSession != null) {
+				return "loginSuccess";
+			}
+			return "redirect:/loginA";
+
+		} else {
+
+			List<Customer> customerTrue = customerService.findCustomerByTrue();
+
+			model.addAttribute("customer", customerTrue);
+
+			return "allCustomer";
+		}
+	}
+
+	// 找已停權會員
+	@GetMapping("/customer/findFalse")
+	public String findFalseCustomer(Model model) {
+
+		Customer customerSession = (Customer) model.getAttribute("customerLoginOk");
+		Admin adminSession = (Admin) model.getAttribute("adminLoginOk");
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
+
+		if (adminSession == null) {
+			if (customerSession != null && retailerSession != null) {
+				return "loginSuccess";
+			}
+			return "redirect:/loginA";
+
+		} else {
+
+			List<Customer> customerFalse = customerService.findCustomerByFalse();
+
+			model.addAttribute("customer", customerFalse);
+
+			return "CustomerBlockList";
+		}
+	}
 
 }

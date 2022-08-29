@@ -13,7 +13,7 @@
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <meta charset="UTF-8">
-<title>所有會員清單</title>
+<title>停權會員清單</title>
 <style>
 body {
 	background-color: #E6E6EA;
@@ -29,7 +29,7 @@ div.container {
 	<main>
 		<div class="container">
 			<div align='center'>
-				<h2>顧客帳號管理</h2>
+				<h2>已停權之帳號</h2>
 				<%-- 				<form action="${contextRoot}/findCustomerByKeywords" method="get" --%>
 				<!-- 					enctype="multipart/form-data"> -->
 				<!-- 					<input type="text" name="keywords" placeholder="輸入會員姓、名或帳號" -->
@@ -38,7 +38,7 @@ div.container {
 				<!-- 				</form> -->
 
 				<div class="container">
-					<table class="table" style="background-color:#FCDC4D" id="customerTable">
+					<table class="table" style="background-color:#70AE3E" id="customerTable">
 						<thead>
 							<tr>
 								<td scope="col">ID</td>
@@ -71,8 +71,8 @@ div.container {
 									<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm"
 											value="${c.cDate}" /></td>
 									<td>${c.cStatus}</td>
-									<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}" style="white-space: nowrap;">
-											<button class="btn btn-danger">帳號停權</button>
+									<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}">
+											<button class="btn btn-success">帳號回復</button>
 									</a></td>
 									<!-- 									<td><a onclick="return confirm('真的要刪除此筆資料嗎?')" -->
 									<%-- 										href="${contextRoot}/deleteCustomer/${c.cId}"> --%>
