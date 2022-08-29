@@ -119,7 +119,6 @@ public class RetailerController {
 //		return rId;
 //	}
 	// 取得id後addAttribute給前端
-
 	@GetMapping(value = "/retailerGetAllItem", produces = { "application/json;charset=UTF-8" })
 	public String getAllItems(@RequestParam("id") Integer id, Model model, Model m2) {
 		List<ShopHouseBean> t = sDao.findByC2Id(id);
@@ -152,7 +151,7 @@ public class RetailerController {
 		model.addAttribute("listRetailer", list);
 		return "ViewRetailer";
 	}
-
+	//模糊搜尋功能
 	@GetMapping("/Retailer/getByAccount")
 	public String searchByAccount(@RequestParam("keyword") String keyword, Model model) {
 		List<Retailer> list = rService.listAll(keyword);
