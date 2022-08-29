@@ -301,7 +301,7 @@ public class CustomerController {
 	}
 
 	// 忘記密碼寄信
-	@GetMapping("/sendForgotMail")
+	@PostMapping("/sendForgotMail")
 	public String sendMail(@RequestParam("sendEmailAccount") String customerAccount,
 			@RequestParam("sendCustomerEmail") String customerEmail, Model model) {
 
@@ -325,12 +325,60 @@ public class CustomerController {
 			return "forgotPassword";
 		} else {
 			Customer forgotCustomer = customerService.forgotPassword(customerAccount, customerEmail);
-			emailService.sendEmail(forgotCustomer.getcEmail(), forgotCustomer.getcFirstName() + "會員，您好!",
-					"您的密碼為: " + forgotCustomer.getcPwd());
+			try {
+				emailService.sendEmail(forgotCustomer.getcEmail(), forgotCustomer.getcFirstName() + "會員，您好!",
+						"露營王會員"+forgotCustomer.getcFirstName()+forgotCustomer.getcLastName()+"您好!<br>請點選連結以更改密碼，謝謝!<br>http://localhost:8080/forgotPwdEmailUpdate");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			errors.put("success", "驗證成功!請至註冊信箱收取信件!");
 
 			return "forgotPassword";
 		}
+
+	}
+
+	// 寄信後修改會員密碼
+	@PostMapping("/customerUpdatePassword")
+	public String updateEmailPassword(@RequestParam("cAccount") String cAccount, @RequestParam("cPwd1") String cPwd1,
+			@RequestParam("cPwd2") String cPwd2, Model model) {
+		Map<String, String> errors = new HashMap<String, String>();
+		model.addAttribute("errors", errors);
+
+		if (cAccount == null || cAccount.length() == 0) {
+			errors.put("cAccount", "請輸入帳號");
+		}
+
+		if (customerService.findCustomerAccount(cAccount) == null) {
+			errors.put("errorAccount", "帳號有誤，請重新輸入!");
+		}
+
+		if (cPwd1 == null || cPwd1.length() == 0) {
+			errors.put("cPwd1", "請輸入新密碼");
+		}
+
+		if (cPwd2 == null || cPwd2.length() == 0) {
+			errors.put("cPwd2", "請再次輸入新密碼");
+		}
+
+		if (!cPwd1.equals(cPwd2)) {
+			errors.put("pwdError", "兩次輸入密碼不同，請重新輸入!");
+		}
+
+		if (errors != null && !errors.isEmpty()) {
+			return "forgotPwdEmailUpdate";
+		}
+
+		Customer emailAccount = customerService.findCustomerAccount(cAccount);
+
+		emailAccount.setcPwd(cPwd1.trim());
+		customerService.insertCustomer(emailAccount);
+		Map<String, String> msg = new HashMap<String, String>();
+		model.addAttribute("msg", msg);
+		msg.put("updateSuccess", "修改成功，請重新登入!");
+
+		return "forgotPwdEmailUpdate";
 
 	}
 

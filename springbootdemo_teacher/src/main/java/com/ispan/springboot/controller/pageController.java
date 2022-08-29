@@ -119,6 +119,11 @@ public class pageController {
 		return "ShoppingCar";
 	}
 	
+	@GetMapping("/forgotPwdEmailUpdate")
+	public String resetPassword() {
+		return "forgotPwdEmailUpdate";
+	}
+	
 // THT End----------------------------------------------------------------
 
 
