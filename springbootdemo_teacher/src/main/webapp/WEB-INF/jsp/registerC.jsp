@@ -36,9 +36,32 @@ body {
 	box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px
 		rgba(0, 0, 0, .2);
 }
+
+h2 {
+	margin-left: 60px;
+	display: inline-block;
+	color: #333;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 2rem;
+	position: relative;
+	z-index: 2;
+	vertical-align: middle;
+}
+
+h2::before {
+	content: '';
+	position: absolute;
+	width: 110%;
+	/*  max-width: 13.8rem;*/
+	height: 1rem;
+	/*更改標題顏色*/
+	background: #F7FE72;
+	left: -5px;
+	top: 50%;
+	z-index: -1;
+}
 </style>
-
-
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <body>
@@ -47,20 +70,23 @@ body {
 			<form action="${contextRoot}/customer/insert" method="post"
 				enctype="multipart/form-data">
 				<h5 style="color: #70AE3E">${msg.success}</h5>
-				<h2 class="h3 mb-3 fw-normal">會員註冊</h2>
+				<h2>會員註冊</h2>
 
 				<div class="mb-3">
 					<label class="form-label">姓:</label><span style="font-size: 15px"
 						id="checktext2"></span> <input type="text" placeholder="請輸入姓氏"
-						class="form-control" name="cFirstName" id="cFirstName" onchange="checkcFirstName()">
+						class="form-control" name="cFirstName" id="cFirstName"
+						onchange="checkcFirstName()">
 					<p style="color: red;">${errors.cFirstName}</p>
 					<label class="form-label">名:</label> <span style="font-size: 15px"
 						id="checktext3"></span><input type="text" placeholder="請輸入名稱"
-						class="form-control" name="cLastName" id="cLastName" onchange="checkcLastName()">
+						class="form-control" name="cLastName" id="cLastName"
+						onchange="checkcLastName()">
 					<p style="color: red;">${errors.cLastName}</p>
 					<label class="form-label">帳號:</label> <span style="font-size: 15px"
 						id="checktext0"></span><input type="text" placeholder="請輸入帳號"
-						class="form-control" name="cAccount" id="cAccount" onchange="checkcAccount()">
+						class="form-control" name="cAccount" id="cAccount"
+						onchange="checkcAccount()">
 					<p style="color: red;">${errors.cAccount}</p>
 					<p style="color: red;">${errors.used}</p>
 					<label class="form-label">密碼:<span style="font-size: 15px"
@@ -69,7 +95,8 @@ body {
 					<p style="color: red;">${errors.cPwd}</p>
 					<label class="form-label">生日:</label><span style="font-size: 15px"
 						id="checktext4"></span> <input type="date" class="form-control"
-						name="cbDate" value="" max="2001-12-31" id="cbDate" onchange="checkcbDate()">
+						name="cbDate" value="" max="2001-12-31" id="cbDate"
+						onchange="checkcbDate()">
 					<p style="color: red;">${errors.cbDate}</p>
 					<label class="form-label">電子信箱:</label><span
 						style="font-size: 15px" id="checktext5"></span> <input type="text"
@@ -79,19 +106,21 @@ body {
 
 					<label class="form-label">個人圖片</label> <span
 						style="font-size: 15px" id="checktext6"></span><input type="file"
-						accept="image/*" name="cImg" id="imgInp" onchange="checkcImg()"><img width="350"
-						id="img" src="" />
+						accept="image/*" name="cImg" id="imgInp" onchange="checkcImg()"><img
+						width="350" id="img" src="" />
 					<p style="color: red;">${errors.cImg}</p>
 
 				</div>
-
-				<button type="submit" class="btn btn-lg btn-primary" id="create">註冊</button>
-				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
-
-				<div class="text-center m-5">
-					一鍵註冊會員:
+				<div align="center">
+					<button type="submit" class="btn btn-lg btn-primary" id="create">註冊</button>
+					<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
+					<br><br>
 					<button type="button" class="btn btn-outline-info fastRegister">小敏</button>
 				</div>
+
+
+
+
 
 
 			</form>
@@ -145,7 +174,7 @@ body {
 		// 		})
 
 		//-------以下為前端提前驗證
-		
+
 		//帳號
 		function checkcAccount() {
 			var check = false;

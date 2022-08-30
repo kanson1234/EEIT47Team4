@@ -36,6 +36,31 @@ body {
 	box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px
 		rgba(0, 0, 0, .2);
 }
+
+h2 {
+	margin-left: 50px;
+	display: inline-block;
+	color: #333;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 2rem;
+	position: relative;
+	z-index: 2;
+	vertical-align: middle;
+}
+
+h2::before {
+	content: '';
+	position: absolute;
+	width: 110%;
+	/*  max-width: 13.8rem;*/
+	height: 1rem;
+	/*更改標題顏色*/
+	background: #8FF7A7;
+	left: -5px;
+	top: 50%;
+	z-index: -1;
+}
 </style>
 
 
@@ -48,49 +73,50 @@ body {
 			<form action="${contextRoot}/Retailer/insert" method="post"
 				enctype="multipart/form-data">
 				<h5 style="color: green">${msg.success}</h5>
-				<h2 class="h3 mb-3 fw-normal">零售商註冊</h2>
+				<h2>零售商註冊</h2>
 
 				<div class="mb-3">
-					<label class="form-label">商店名稱:</label><span style="font-size: 15px"
-						id="checktext1"></span> <input type="text"
-						class="form-control" placeholder="請輸入商店名稱" name="rName" id="rName" onchange="checkrName()" />
+					<label class="form-label">商店名稱:</label><span
+						style="font-size: 15px" id="checktext1"></span> <input type="text"
+						class="form-control" placeholder="請輸入商店名稱" name="rName" id="rName"
+						onchange="checkrName()" />
 					<p style="color: red;">${errors.rName}</p>
 					<label class="form-label">帳號:</label><span style="font-size: 15px"
-						id="checktext2"></span><input type="text"
-						class="form-control" placeholder="請輸入帳號" name="rAccount"
-						id="rAccount" onchange="checkrAccount()" />
+						id="checktext2"></span><input type="text" class="form-control"
+						placeholder="請輸入帳號" name="rAccount" id="rAccount"
+						onchange="checkrAccount()" />
 					<p style="color: red;">${errors.rAccount}</p>
 					<p style="color: red;">${errors.used}</p>
 					<label class="form-label">密碼:</label><span style="font-size: 15px"
-						id="checktext3"></span><input type="password"
-						class="form-control" placeholder="請輸入密碼" name="rPwd" id="rPwd" onchange="checkrPwd()"/>
+						id="checktext3"></span><input type="password" class="form-control"
+						placeholder="請輸入密碼" name="rPwd" id="rPwd" onchange="checkrPwd()" />
 					<p style="color: red;">${errors.rPwd}</p>
 					<label class="form-label">電話:</label><span style="font-size: 15px"
-						id="checktext4"></span><input type="text"
-						class="form-control" placeholder="請輸入聯絡電話" name="rPhone"
-						id="rPhone" onchange="checkrPhone()"/>
+						id="checktext4"></span><input type="text" class="form-control"
+						placeholder="請輸入聯絡電話" name="rPhone" id="rPhone"
+						onchange="checkrPhone()" />
 					<p style="color: red;">${errors.rPhone}</p>
-					<label class="form-label">商家描述:</label><span style="font-size: 15px"
-						id="checktext5"></span> <input type="text"
-						class="form-control" placeholder="輸入商家描述" name="rInfo" id="rInfo" onchange="checkrInfo()"/>
+					<label class="form-label">商家描述:</label><span
+						style="font-size: 15px" id="checktext5"></span> <input type="text"
+						class="form-control" placeholder="輸入商家描述" name="rInfo" id="rInfo"
+						onchange="checkrInfo()" />
 					<p style="color: red;">${errors.rInfo}</p>
-					<label class="form-label">商家Logo:</label><span style="font-size: 15px"
-						id="checktext6"></span><input type="file"
-						accept="image/*" name="rLogo" id="imglogo" onchange="checkrLogo()"/> <img id="logo"
-						width="350" src="" />
+					<label class="form-label">商家Logo:</label><span
+						style="font-size: 15px" id="checktext6"></span><input type="file"
+						accept="image/*" name="rLogo" id="imglogo" onchange="checkrLogo()" />
+					<img id="logo" width="350" src="" />
 					<p style="color: red;">${errors.rLogo}</p>
-					<label class="form-label">商家照片:</label><span style="font-size: 15px"
-						id="checktext7"></span><input type="file"
-						accept="image/*" name="rPhoto" id="imgphoto" onchange="checkrPhoto()"/> <img id="photo"
-						width="350" src="" />
+					<label class="form-label">商家照片:</label><span
+						style="font-size: 15px" id="checktext7"></span><input type="file"
+						accept="image/*" name="rPhoto" id="imgphoto"
+						onchange="checkrPhoto()" /> <img id="photo" width="350" src="" />
 					<p style="color: red;">${errors.rPhoto}</p>
 				</div>
-
-				<button type="submit" class="btn btn-lg btn-primary">註冊</button>
-				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
-
-				<div class="text-center m-5">
-					一鍵註冊:
+				<div align="center">
+					<button type="submit" class="btn btn-lg btn-primary">註冊</button>
+					<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
+					<br>
+					<br>
 					<button type="button" class="btn btn-outline-info fastRegister">傳品</button>
 				</div>
 
@@ -132,10 +158,10 @@ body {
 			event.preventDefault(); //取消預設行為
 			window.location.replace("http://localhost:8080/"); //返回特定頁面
 		})
-		
+
 		//前端驗證
-		
-			//商店名稱
+
+		//商店名稱
 		function checkrName() {
 			var check = false;
 			var rName = document.getElementById("rName").value;
@@ -234,7 +260,6 @@ body {
 			}
 			return check;
 		}
-		
 	</script>
 
 </body>

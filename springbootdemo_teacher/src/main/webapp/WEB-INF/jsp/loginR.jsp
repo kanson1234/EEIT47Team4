@@ -50,8 +50,7 @@ h2::before {
 	content: '';
 	position: absolute;
 	width: 110%;
-	/*  max-width: 13.8rem;
-*/
+	/*  max-width: 13.8rem;*/
 	height: 1rem;
 	/*更改標題顏色*/
 	background:#8FF7A7;
@@ -72,15 +71,6 @@ h2::before {
 	float: left;
 }
 </style>
-
-
-
-<!-- bootstrap 5.1.3 JS -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-
 
 </head>
 <body>
@@ -132,7 +122,7 @@ h2::before {
 
 				<div align="center">
 					快速登入:<br>
-					<button class="btn btn-outline-dark fastLogin">ColeMan</button>
+					<button class="btn btn-outline-dark fastLogin">coleman</button>
 				</div>
 
 			</form>

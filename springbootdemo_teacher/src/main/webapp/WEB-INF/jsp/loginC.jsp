@@ -34,8 +34,7 @@ body {
 	content: '';
 	position: absolute;
 	width: 110%;
-	/*  max-width: 13.8rem;
-*/
+	/*  max-width: 13.8rem;*/
 	height: 1rem;
 	/*更改標題顏色*/
 	background: #F7FE72;
@@ -77,13 +76,10 @@ body {
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
-
 </head>
 <body>
 
-
 	<div class="container">
-
 
 		<div class="box">
 			<div class="wrap">
@@ -142,8 +138,6 @@ body {
 					<button class="btn btn-outline-dark fastLogin">東翰</button>
 					<button class="btn btn-outline-dark fastLogin2">伸</button>
 				</div>
-
-
 
 			</form>
 		</div>
