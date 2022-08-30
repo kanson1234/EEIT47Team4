@@ -68,7 +68,6 @@
 
 					<p class="card-text">商品名稱:${shopHouseItem.itemName}</p>
 
-
 					<p class="card-text">價錢:${shopHouseItem.price}</p>
 					<a
 						href="${pageContext.request.contextPath}/ShopHouse/findByClassifyLabel?classify=${shopHouseItem.classify}">
@@ -82,7 +81,7 @@
 							type="hidden" value="${shopHouseItem.id}" id="itid">
 					</div>
 					<div>你可能也會喜歡...</div>
-					<c:forEach items="${category}" begin="2" end="4" var="x">
+					<c:forEach items="${category}" begin="1" end="3" var="x">
 						<a
 							href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${x.id}"><img
 							class="size"
@@ -101,6 +100,7 @@
 						<div class="col-8">
 							<div class="card">
 								<div class="card-header">
+									留言人 <span>${m.customerMsg.cFirstName}顧客</span> 
 									留言時間 <span>${m.mdate}</span>
 								</div>
 								<div class="card-body">${m.mcontext}</div>
@@ -114,8 +114,15 @@
 				<form
 					action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
 					method="post">
+					<input type="hidden" value="${customerLoginOk.cId}" id="CS_Id"
+						name="CS_Id" />
+						
+					<input type="hidden" value="${shopHouseItem.c2Id}" id="newMrid"
+						name="newMrid" /> 
+					
+					
 
-					留言區:
+						留言區:
 					<textarea rows="3" cols="50" id="newMsg" name="newMsg"></textarea>
 					<button type="submit" class="btn btn-primary">送出</button>
 				</form>
@@ -127,6 +134,36 @@
 	</header>
 	<footer> </footer>
 
+	<!-- 	<script> -->
+	<!-- // 		$(document).ready(function() { -->
+	<!-- // 			// findAllByTime -->
+	<!-- // 			$('#addToCar').click(function() { -->
+	<!-- // 				alert('addToCar') -->
+
+	<!-- // 				var num = document.getElementById('num').value; -->
+	<!-- //  				alert(num) -->
+	<!-- // 				var itid = document.getElementById('itid').value; -->
+	<!-- // 				alert(itid) -->
+
+	<!-- // 				$.ajax({ -->
+	<!-- // 					url : 'http://localhost:8080/record/add', -->
+	<!-- // 					contentType : 'application/json', // 送過去的資料型別 -->
+	<!-- // 					dataType : 'json', // 回傳回來的資料型別 -->
+	<!-- // 					method : 'get', -->
+	<!-- // 					success : function(result) { -->
+	<!-- // 						console.log(result) -->
+	<!-- // 					}, -->
+	<!-- // 					error : function(err) { -->
+	<!-- // 						console.log(err) -->
+	<!-- // 					} -->
+	<!-- // 				}) -->
+	<!-- // 			}) -->
+
+
+	<!-- // 			// findAllByCidBtn -->
+	<!-- // 		}) -->
+	<!-- 	</script> -->
+
 	<script>
 		$(document)
 				.ready(
@@ -135,21 +172,20 @@
 							$('#addToCar')
 									.click(
 											function() {
+												alert('成功加入購物車')
 												var num = document
 														.getElementById('num').value;
-
+												// 										alert(num)
 												var itid = document
 														.getElementById('itid').value;
-
-												var dtoObj = {
-													"num" : num,
-													"itid" : itid
-												};
-
-												console.log(dtoObj)
-												var dtoJson = JSON
-														.stringify(dtoObj);
-												console.log(dtoJson)
+												// 										alert(itid)
+												// var dtoObj = {
+												// 	"num": num,
+												// 	"itid":itid
+												// };
+												// console.log(dtoObj)
+												// var dtoJson = JSON.stringify(dtoObj);
+												// console.log(dtoJson)
 												$
 														.ajax({
 															url : 'http://localhost:8080/ShoppingCar/add?num='
@@ -157,21 +193,25 @@
 																	+ "&itid="
 																	+ itid,
 															contentType : 'application/json', // 送過去的資料型別
-															dataType : "text", // 回傳回來的資料型別
+															dataType : 'json', // 回傳回來的資料型別
 															method : 'get',
 															success : function(
 																	result) {
-																alert(result)
+																console
+																		.log(result)
 															},
 															error : function(
 																	err) {
-																alert("請登入")
-																window.location.href = "http://localhost:8080/loginC"
+																console
+																		.log(err)
 															}
 														})
 											})
+
+							// findAllByCidBtn
 						})
 	</script>
+
 
 </body>
 
