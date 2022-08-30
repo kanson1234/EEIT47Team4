@@ -17,6 +17,9 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
+<!-- C1SideBar -->
+			<jsp:include page="layout/Sidebar.jsp" />
+			<!-- C1SideBar -->
 <title>會員中心</title>
 
 <!-- <link rel="canonical" href="https://bootstrap5.hexschool.com/docs/5.1/examples/dashboard/"> -->
@@ -35,24 +38,22 @@
 
 <body>
 
-	<div class="container-fluid">
+	<div class="container"  align="center">
 		<div class="row">
 
-			<!-- C1SideBar -->
-			<jsp:include page="C2Bar\C2SideBar.jsp" />
-			<!-- C1SideBar -->
+			
 
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 				<c:if test="${!empty findAllToA1}">
 					<h2>銷售紀錄</h2>
 				</c:if>
 				<div class="table-responsive">
-					<table >
+					<table class="table table-striped table-sm">
 						<tr>
 							<td><input type="text" id="cid"></td>
-							<td><button id="findallbyC1idBtntoC2">依客戶ID查詢</button></td>
+							<td><button id="findallbyC1idBtn">依客戶ID查詢</button></td>
 							<td><input type="text" id="name"></td>
-							<td><button id="findallbyItNameToC2">商品名稱查詢</button></td>
+							<td><button id="findByNamebtn">商品名稱查詢</button></td>
 							<td><button id="findallbytimeBtn" type="button">findAllByTimeBtn</button></td>
 						</tr>
 						<tr>
@@ -65,33 +66,24 @@
 					</table>
 					<hr />
 				</div>
-				<table class="table table-striped table-sm" id="list_data_json">
+				<table class="mytable" id="list_data_json">
 					<thead>
 
 						<tr>
 							<!-- C1 -->
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">消費者ID</th>
+							<th style="vertical-align: middle; text-align: center;" >消費者ID</th>
 							<!-- SR -->
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">消費時間</th>
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">購買數量</th>
+							<th  style="vertical-align: middle; text-align: center;">消費時間</th>
+							<th  style="vertical-align: middle; text-align: center;">購買數量</th>
 							<!-- SH -->
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">商品ID</th>
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">商品名稱</th>
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">商品圖片</th>
+							<th  style="vertical-align: middle; text-align: center;">商品ID</th>
+							<th  style="vertical-align: middle; text-align: center;">商品名稱</th>
+							<th  style="vertical-align: middle; text-align: center;">商品圖片</th>
 							<th style="vertical-align: middle; text-align: center;">價格</th>
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">商品分類</th>
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">商品狀況</th>
+							<th  style="vertical-align: middle; text-align: center;">商品分類</th>
+							<th  style="vertical-align: middle; text-align: center;">商品狀況</th>
 							<!-- C2 -->
-							<th scope="col"
-									style="vertical-align: middle; vertical-align: top">成交狀況</th>
+							<th  style="vertical-align: middle; text-align: center;">成交狀況</th>
 						</tr>
 
 					</thead>
@@ -159,7 +151,9 @@
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										
+										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/'
+											+ value.shophousebean.id +
+											'"></td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
@@ -208,16 +202,15 @@
 
 										msg_data += '<tr>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-											
+								
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										
+										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -232,7 +225,7 @@
 						})
 
 						// findAllByCidBtn
-						$('#findallbyC1idBtntoC2').click(function () {
+						$('#findallbyC1idBtn').click(function () {
 							var textcid = document.getElementById('cid').value;
 							console.log(textcid)
 							var dtoObj = {
@@ -243,7 +236,7 @@
 							console.log(dtoJson)
 
 							$.ajax({
-								url: "http://localhost:8080/findallbyCidtoC2?cid=" + textcid,
+								url: "http://localhost:8080/Admin/record/findallbyCid?cid=" + textcid,
 								contentType: 'application/json', // 送過去的資料型別
 								dataType: 'json', // 回傳回來的資料型別
 								method: 'get',
@@ -272,16 +265,15 @@
 
 										msg_data += '<tr>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-											
+								
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										
+										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -330,16 +322,15 @@
 
 										msg_data += '<tr>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-											
+								
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										
+										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -352,7 +343,7 @@
 							})
 						})
 
-						$('#findallbyItNameToC2').click(function () {
+						$('#findByNamebtn').click(function () {
 							var name = document.getElementById('name').value;
 							if (name == "") {
 								alert("請輸入商品名稱")
@@ -365,7 +356,7 @@
 								"name": name
 							};
 							$.ajax({
-								url: "http://localhost:8080/findallbyItNameToC2?name=" + name,
+								url: "http://localhost:8080/admin/record/byName?name=" + name,
 								contentType: 'application/json', // 送過去的資料型別
 								dataType: 'json', // 回傳回來的資料型別
 								method: 'get',
@@ -391,16 +382,15 @@
 										}
 										msg_data += '<tr>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-											
+								
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										
+										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -420,7 +410,15 @@
 
 	</div>
 
-
+<script
+		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+		integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+		integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+		crossorigin="anonymous"></script>
+	<!-- <script src="dashboard.js"></script> -->
 
 
 </body>

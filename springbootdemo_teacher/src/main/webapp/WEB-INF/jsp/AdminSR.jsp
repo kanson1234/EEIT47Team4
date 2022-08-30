@@ -45,7 +45,7 @@
 
 
 			<!-- AdminSideBar -->
-			<jsp:include page="AdminBar/AdminSideBar.jsp" />
+			<jsp:include page="layout/Sidebar.jsp" />
 			<!-- AdminSideBar -->
 
 
