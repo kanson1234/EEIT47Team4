@@ -87,7 +87,7 @@ body {
 
 				<div class="text-center m-5">
 					一鍵註冊會員:
-					<button type="button" class="btn btn-outline-info fastRegister">小美</button>
+					<button type="button" class="btn btn-outline-info fastRegister">小敏</button>
 				</div>
 
 
@@ -98,7 +98,7 @@ body {
 		//快速註冊
 		$(".fastRegister").click(function() {
 			$("#cFirstName").val("王");
-			$("#cLastName").val("美麗");
+			$("#cLastName").val("敏詩");
 			$("#cAccount").val("beauty123");
 			$("#cPwd").val("b123");
 			$("#cbDate").val("1995-12-31");
