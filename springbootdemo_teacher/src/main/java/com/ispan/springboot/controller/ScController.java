@@ -249,7 +249,7 @@ public class ScController {
 		obj.setTradeDesc("test Description");
 		obj.setItemName("TestItem");
 //		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
-		obj.setOrderResultURL("https://localhost:8080/");
+		obj.setOrderResultURL("http://localhost:8080/");
 		obj.setNeedExtraPaidInfo("N");
 		obj.setCreditInstallment("12");
 		String form = aio.aioCheckOut(obj, null);

@@ -18,42 +18,80 @@
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
 <!-- C1SideBar -->
-			<jsp:include page="layout/Sidebar.jsp" />
+			<jsp:include page="layout/SidebarRetailer.jsp" />
 			<!-- C1SideBar -->
 <title>會員中心</title>
 
 <!-- <link rel="canonical" href="https://bootstrap5.hexschool.com/docs/5.1/examples/dashboard/"> -->
 
 
-
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+	crossorigin="anonymous"></script>
 <Script>
 	window.onload = function() {
 		var selectByC2Id = document.getElementById("selectByC2Id")
-		
-
-		
 	}
+	
 </Script>
+
 </head>
 
 <body>
 
-	<div class="container"  align="center">
+<div class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
+					<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">條件搜尋
+					</a> <input class="form-control form-control-dark w-100" type="text" placeholder="輸入商品名稱或店家名稱"
+						id="SearchBsar" aria-label="Search" >
+					<div class="navbar-nav">
+						<!-- <div class="nav-item text-nowrap">
+                            <a class="nav-link px-3" href="#">Sign out</a>
+                        </div> -->
+					</div>
+					<script>
+						$(document).ready(function () {
+							$(SearchBsar).keyup(function (event) {
+								if (event.which === 13) {
+									var SearchBsartext = document.getElementById("SearchBsar").value
+									var keyword = SearchBsartext.trim()
+
+									console.log(SearchBsartext)
+									console.log(keyword)
+									if (keyword != "") {
+										$(location).prop("href", "http://localhost:8080/findbyKeyWord?keyword=" + keyword)
+									} else {
+										return
+									}
+								}
+							});
+						})
+					</script>
+				</div>
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<div class="container-fluid">
+	
 		<div class="row">
 
-			
-
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 				<c:if test="${!empty findAllToA1}">
 					<h2>銷售紀錄</h2>
 				</c:if>
 				<div class="table-responsive">
-					<table class="table table-striped table-sm">
+					<table class="table table-striped table-sm" ">
 						<tr>
 							<td><input type="text" id="cid"></td>
-							<td><button id="findallbyC1idBtn">依客戶ID查詢</button></td>
+							<td><button id="findallbyC1idBtntoC2">依客戶ID查詢</button></td>
 							<td><input type="text" id="name"></td>
-							<td><button id="findByNamebtn">商品名稱查詢</button></td>
+							<td><button id="findallbyItNameToC2">商品名稱查詢</button></td>
 							<td><button id="findallbytimeBtn" type="button">findAllByTimeBtn</button></td>
 						</tr>
 						<tr>
@@ -66,24 +104,31 @@
 					</table>
 					<hr />
 				</div>
-				<table class="mytable" id="list_data_json">
+				<table class="table table-striped table-sm" id="list_data_json">
 					<thead>
 
 						<tr>
 							<!-- C1 -->
-							<th style="vertical-align: middle; text-align: center;" >消費者ID</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">消費者ID</th>
 							<!-- SR -->
-							<th  style="vertical-align: middle; text-align: center;">消費時間</th>
-							<th  style="vertical-align: middle; text-align: center;">購買數量</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">消費時間</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">購買數量</th>
 							<!-- SH -->
-							<th  style="vertical-align: middle; text-align: center;">商品ID</th>
-							<th  style="vertical-align: middle; text-align: center;">商品名稱</th>
-							<th  style="vertical-align: middle; text-align: center;">商品圖片</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品名稱</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品圖片</th>
 							<th style="vertical-align: middle; text-align: center;">價格</th>
-							<th  style="vertical-align: middle; text-align: center;">商品分類</th>
-							<th  style="vertical-align: middle; text-align: center;">商品狀況</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品分類</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品狀況</th>
 							<!-- C2 -->
-							<th  style="vertical-align: middle; text-align: center;">成交狀況</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">成交狀況</th>
 						</tr>
 
 					</thead>
@@ -149,11 +194,9 @@
 											
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/'
-											+ value.shophousebean.id +
-											'"></td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
@@ -202,15 +245,16 @@
 
 										msg_data += '<tr>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-								
+											
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -225,7 +269,7 @@
 						})
 
 						// findAllByCidBtn
-						$('#findallbyC1idBtn').click(function () {
+						$('#findallbyC1idBtntoC2').click(function () {
 							var textcid = document.getElementById('cid').value;
 							console.log(textcid)
 							var dtoObj = {
@@ -236,7 +280,7 @@
 							console.log(dtoJson)
 
 							$.ajax({
-								url: "http://localhost:8080/Admin/record/findallbyCid?cid=" + textcid,
+								url: "http://localhost:8080/findallbyCidtoC2?cid=" + textcid,
 								contentType: 'application/json', // 送過去的資料型別
 								dataType: 'json', // 回傳回來的資料型別
 								method: 'get',
@@ -265,15 +309,16 @@
 
 										msg_data += '<tr>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-								
+											
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -322,15 +367,16 @@
 
 										msg_data += '<tr>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-								
+											
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -343,7 +389,7 @@
 							})
 						})
 
-						$('#findByNamebtn').click(function () {
+						$('#findallbyItNameToC2').click(function () {
 							var name = document.getElementById('name').value;
 							if (name == "") {
 								alert("請輸入商品名稱")
@@ -356,7 +402,7 @@
 								"name": name
 							};
 							$.ajax({
-								url: "http://localhost:8080/admin/record/byName?name=" + name,
+								url: "http://localhost:8080/findallbyItNameToC2?name=" + name,
 								contentType: 'application/json', // 送過去的資料型別
 								dataType: 'json', // 回傳回來的資料型別
 								method: 'get',
@@ -382,15 +428,16 @@
 										}
 										msg_data += '<tr>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-								
+											
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
+										
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
 										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
@@ -405,22 +452,14 @@
 					})
 				</script>
 				</table>
-			</main>
 		</div>
 
-	</div>
-
-<script
-		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-		integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
-		integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-		crossorigin="anonymous"></script>
-	<!-- <script src="dashboard.js"></script> -->
+	
+</div>
 
 
+
+			</main>
 </body>
 
 </html>

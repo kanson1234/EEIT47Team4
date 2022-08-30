@@ -156,8 +156,8 @@ body {
 
 	//快速登入
 	$(".fastLogin").click(function() {
-		$("#floatingInputC").val("roy");
-		$("#floatingPasswordC").val("1111");
+		$("#floatingInputC").val("CCC");
+		$("#floatingPasswordC").val("DDD");
 	});
 
 	//取消按鈕返回上頁
