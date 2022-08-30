@@ -71,11 +71,11 @@ public class RetailerController {
 				errors.put("rInfo", "請輸入商家描述!");
 			}
 
-			if (rLogo.getBytes() == null) {
+			if (rLogo.isEmpty()) {
 				errors.put("rLogo", "請選擇一張商家Logo!");
 			}
 
-			if (rPhoto.getBytes() == null) {
+			if (rPhoto.isEmpty()) {
 				errors.put("rPhoto", "請選擇商家照片!");
 			}
 
@@ -136,13 +136,14 @@ public class RetailerController {
 		model.addAttribute("listRetailer", list);
 		return "RetailerCRUD";
 	}
+
 	// 黑名單頁面
-		@GetMapping("/Retailer/RetailerBlock")
-		public String showAllBlockedRetailer(Model model) {
-			List<Retailer> list = rService.getAllRetailerBloked();
-			model.addAttribute("listRetailer", list);
-			return "RetailerBlockList";
-		}
+	@GetMapping("/Retailer/RetailerBlock")
+	public String showAllBlockedRetailer(Model model) {
+		List<Retailer> list = rService.getAllRetailerBloked();
+		model.addAttribute("listRetailer", list);
+		return "RetailerBlockList";
+	}
 
 	// 商家一覽頁面跳轉
 	@GetMapping("/showAllRetailerFront")
@@ -151,7 +152,8 @@ public class RetailerController {
 		model.addAttribute("listRetailer", list);
 		return "ViewRetailer";
 	}
-	//模糊搜尋功能
+
+	// 模糊搜尋功能
 	@GetMapping("/Retailer/getByAccount")
 	public String searchByAccount(@RequestParam("keyword") String keyword, Model model) {
 		List<Retailer> list = rService.listAll(keyword);
@@ -205,40 +207,43 @@ public class RetailerController {
 
 	@GetMapping("/Retailer/editRetailer/{id}")
 	public String editMessagePage(@PathVariable Integer id, Model model) {
-		Retailer retailersession = (Retailer)model.getAttribute("retailerLoginOk");
+		Retailer retailersession = (Retailer) model.getAttribute("retailerLoginOk");
 		Retailer oneRetailer = rService.findById(retailersession.getRid());
 		model.addAttribute("Retailerinfo", oneRetailer);
 		return "editRetailer";
 	}
-	//取得id回傳商家資訊業面
+
+	// 取得id回傳商家資訊業面
 	@GetMapping("/Retailer/retailerInfoPage/{id}")
 	public String retailerInfoPage(@PathVariable Integer id, Model model) {
-		Retailer retailersession = (Retailer)model.getAttribute("retailerLoginOk");
+		Retailer retailersession = (Retailer) model.getAttribute("retailerLoginOk");
 		Retailer oneRetailer = rService.findById(retailersession.getRid());
 		model.addAttribute("Retailerinfo", oneRetailer);
 		return "retailerInfoPage";
 	}
-	//更改帳號狀態,可改成按鈕帶0,狀態false,1 true
+
+	// 更改帳號狀態,可改成按鈕帶0,狀態false,1 true
 	@GetMapping("/Retailer/changeStatusF/{id}")
 	public String changeStatustoFalse(@PathVariable Integer id) {
 		rService.ChangeStatusById(false, id);
 		return "redirect:/Retailer/RetailerCRUD";
 	}
-	//更改狀態回傳給黑名單頁面
+
+	// 更改狀態回傳給黑名單頁面
 	@GetMapping("/Retailer/changeStatusT/{id}")
 	public String changeStatustoTrue(@PathVariable Integer id) {
 		rService.ChangeStatusById(true, id);
 		return "redirect:/Retailer/RetailerBlock";
 	}
-	
-	//用id編輯
+
+	// 用id編輯
 
 	@PostMapping("/Retailer/editRetailer")
 	public String editMessagePage(@RequestParam Integer id, @RequestParam("rName") String rN,
 			@RequestParam("rAccount") String ra, @RequestParam("rPwd") String rpw, @RequestParam("rPhone") String rph,
 			@RequestParam("rLogo") MultipartFile rLogo, @RequestParam("rPhoto") MultipartFile rPhoto,
-			@RequestParam("rInfo") String rInfo,Model model) {
-		Retailer retailersession = (Retailer)model.getAttribute("retailerLoginOk");
+			@RequestParam("rInfo") String rInfo, Model model) {
+		Retailer retailersession = (Retailer) model.getAttribute("retailerLoginOk");
 		try {
 			Map<String, String> errors = new HashMap<String, String>();
 			model.addAttribute("errors", errors);
@@ -250,7 +255,6 @@ public class RetailerController {
 			if (ra == null || ra.length() == 0) {
 				errors.put("rAccount", "請輸入您的帳號!");
 			}
-
 
 			if (rpw == null || rpw.length() == 0) {
 				errors.put("rPwd", "請輸入您的密碼!");
@@ -274,20 +278,20 @@ public class RetailerController {
 
 			if (errors != null && !errors.isEmpty()) {
 				return "registerR";
-			}	
-		Retailer r = new Retailer();
-		r.setRid(id);
-		r.setrName(rN);
-		r.setRaccount(ra);
-		r.setRpwd(rpw);
-		r.setRphone(rph);
-		r.setRstate(true);
-		r.setRphoto(rPhoto.getBytes());
-		r.setRlogo(rLogo.getBytes());
-		r.setRinfo(rInfo);
-		rService.insertRetailer(r);
-		return "redirect:/Retailer/retailerInfoPage/"+retailersession.getRid();
-		}catch (IOException e){
+			}
+			Retailer r = new Retailer();
+			r.setRid(id);
+			r.setrName(rN);
+			r.setRaccount(ra);
+			r.setRpwd(rpw);
+			r.setRphone(rph);
+			r.setRstate(true);
+			r.setRphoto(rPhoto.getBytes());
+			r.setRlogo(rLogo.getBytes());
+			r.setRinfo(rInfo);
+			rService.insertRetailer(r);
+			return "redirect:/Retailer/retailerInfoPage/" + retailersession.getRid();
+		} catch (IOException e) {
 			e.printStackTrace();
 			return "registerR";
 		}

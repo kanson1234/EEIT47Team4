@@ -18,33 +18,33 @@ body {
 		linear-gradient(100deg, rgba(0, 70, 67, .8) 30%, #D1AC00 120%);
 }
 
-.text-center h2 {
-	margin: 0;
+ h2 {
+	margin-left:50px;
 	display: inline-block;
 	color: #333;
 	font-weight: normal;
 	text-transform: uppercase;
-	font-size: 1.3rem;
+	font-size: 2rem;
 	position: relative;
 	z-index: 2;
 	vertical-align: middle;
 }
 
-.text-center h2::before {
+ h2::before {
 	content: '';
 	position: absolute;
 	width: 110%;
-	/*  max-width: 13.8rem;
-*/
+	/*  max-width: 13.8rem;*/
 	height: 1rem;
 	/*更改標題顏色*/
-	background: #F6BE9A;
+	background: #F7FE72;
 	left: -5px;
 	top: 50%;
 	z-index: -1;
 }
 
 .box {
+	align: center;
 	background-color: #E6E4D6;
 	margin: 20px;
 	padding: 20px;
@@ -58,54 +58,56 @@ body {
 	border-color: rgb(163, 163, 163);
 	box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px
 		rgba(0, 0, 0, .2);
+	background-color: #E6E4D6;
+}
+
+.wrap {
+	text-align: center;
+}
+
+.wrap ul {
+	display: inline-block;
+}
+
+.wrap ul li {
+	float: left;
 }
 </style>
 
-
-<!-- bootstrap 5.1.3 JS -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous">
-	
-</script>
-
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
 
 </head>
 <body>
 
-
 	<div class="container">
 
-
 		<div class="box">
-
-			<!-- 頁籤 -->
-			<ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
-				<li class="nav-item" role="presentation"><a
-					href="${contextRoot}/loginC"><button class="btn btn-light"
-							id="pills-home-tab" data-bs-toggle="pill"
-							data-bs-target="#pills-home" type="button" role="tab"
-							aria-controls="pills-home" aria-selected="false">會員登入</button></a></li>
-				<li class="nav-item" role="presentation"><a
-					href="${contextRoot}/loginR"><button class="btn btn-light"
-							id="pills-profile-tab" data-bs-toggle="pill"
-							data-bs-target="#pills-profile" type="button" role="tab"
-							aria-controls="pills-profile" aria-selected="false">商家登入</button></a>
-				</li>
-				<li class="nav-item" role="presentation"><a
-					href="${contextRoot}/loginA"><button class="btn btn-light"
-							id="pills-contact-tab" data-bs-toggle="pill"
-							data-bs-target="#pills-contact" type="button" role="tab"
-							aria-controls="pills-contact" aria-selected="false">管理者登入</button></a>
-				</li>
-			</ul>
+			<div class="wrap">
+				<!-- 頁籤 -->
+				<ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
+					<li class="nav-item" role="presentation"><a
+						href="${contextRoot}/loginC"><button class="btn btn-light"
+								id="pills-home-tab" data-bs-toggle="pill"
+								data-bs-target="#pills-home" type="button" role="tab"
+								aria-controls="pills-home" aria-selected="false">會員登入</button></a></li>
+					<li class="nav-item" role="presentation"><a
+						href="${contextRoot}/loginR"><button class="btn btn-light"
+								id="pills-profile-tab" data-bs-toggle="pill"
+								data-bs-target="#pills-profile" type="button" role="tab"
+								aria-controls="pills-profile" aria-selected="false">商家登入</button></a>
+					</li>
+					<li class="nav-item" role="presentation"><a
+						href="${contextRoot}/loginA"><button class="btn btn-light"
+								id="pills-contact-tab" data-bs-toggle="pill"
+								data-bs-target="#pills-contact" type="button" role="tab"
+								aria-controls="pills-contact" aria-selected="false">管理者登入</button></a>
+					</li>
+				</ul>
+			</div>
 
 			<form action="checkcustomerlogin" method="post"
 				style="margin: auto; width: 220px">
-				<h2 class="h3 mb-3 fw-normal">會員登入</h2>
+				<h2>會員登入</h2><br>
 
 				<label class="form-label">您的帳號</label> <input type="text"
 					placeholder="輸入帳號" class="form-control" name="cAccount"
@@ -116,26 +118,26 @@ body {
 					placeholder="輸入密碼" class="form-control" name="cPwd"
 					id="floatingPasswordC" />
 				<p style="color: red;">${errors.cpwd}</p>
+				<div align="center">
+					<button type="submit" class="btn btn-lg btn-primary">登入</button>
+					<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
+					<p style="color: red;">${errors.cmsg}</p>
+					<p style="color: red;">${errors.status}</p>
 
-				<button type="submit" class="btn btn-lg btn-primary">登入</button>
-				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
-				<p style="color: red;">${errors.cmsg}</p>
-				<p style="color: red;">${errors.status}</p>
 
-
-				<br> <label class="form-label"> <a
-					href="${contextRoot}/forgotPassword">忘記密碼?</a></label> <br> <a
-					href="${contextRoot}/registerC">
+					<br> <label class="form-label"> <a
+						href="${contextRoot}/forgotPassword">忘記密碼?</a></label>
+				</div>
+				<br> <a href="${contextRoot}/registerC">
 					<button type="button"
 						class="btn btn-outline-success btn-lg btn-block">我要露營</button>
 				</a>
 
-				<div class="text-center m-5">
-					快速登入:
-					<button class="btn btn-outline-dark fastLogin">測試用路人</button>
+				<div align="center">
+					<br> 快速登入: <br><br>
+					<button class="btn btn-outline-dark fastLogin">東翰</button>
+					<button class="btn btn-outline-dark fastLogin2">伸</button>
 				</div>
-
-
 
 			</form>
 		</div>
@@ -158,6 +160,11 @@ body {
 	$(".fastLogin").click(function() {
 		$("#floatingInputC").val("CCC");
 		$("#floatingPasswordC").val("DDD");
+	});
+
+	$(".fastLogin2").click(function() {
+		$("#floatingInputC").val("aaa1234");
+		$("#floatingPasswordC").val("bbb5678");
 	});
 
 	//取消按鈕返回上頁

@@ -71,7 +71,7 @@ div.container {
 									<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm"
 											value="${c.cDate}" /></td>
 									<td>${c.cStatus}</td>
-									<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}">
+									<td><a href="${contextRoot}/changeCustomerStatus/${c.cId}" style="white-space: nowrap;">
 											<button class="btn btn-success">帳號回復</button>
 									</a></td>
 									<!-- 									<td><a onclick="return confirm('真的要刪除此筆資料嗎?')" -->

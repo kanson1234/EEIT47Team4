@@ -7,7 +7,8 @@
 <head>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Camping King</title>
+<link rel="icon" href="${contextRoot}/webapp/img/facicon.ico" type="image/x-icon">
 </head>
 <body>
 
