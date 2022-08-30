@@ -237,9 +237,9 @@ public class CustomerController {
 			errors.put("cEmail", "請輸入個人電子郵件!");
 		}
 
-		if (cImg.isEmpty()) {
-			errors.put("cImg", "請選擇一張個人圖片!");
-		}
+//		if (cImg.isEmpty()) {
+//			errors.put("cImg", "請選擇一張個人圖片!");
+//		}
 
 		if (errors != null && !errors.isEmpty()) {
 
@@ -264,13 +264,17 @@ public class CustomerController {
 			updateCustomer.setcPwd(cPwd.trim());
 			updateCustomer.setcEmail(cEmail.trim());
 
-			updateCustomer.setcImg(cImg.getBytes());
+			if (cImg.isEmpty()) {
+				updateCustomer.setcImg(updateCustomer.getcImg());
+			} else {
+				updateCustomer.setcImg(cImg.getBytes());
+			}
 
 			updateCustomer.setcDate(d);
 
 			customerService.insertCustomer(updateCustomer);
 			Map<String, String> msg = new HashMap<String, String>();
-			model.addAttribute("msg",msg);
+			model.addAttribute("msg", msg);
 			msg.put("success", "修改成功");
 
 			return "redirect:/customer/findOne";
@@ -327,8 +331,9 @@ public class CustomerController {
 		} else {
 			Customer forgotCustomer = customerService.forgotPassword(customerAccount, customerEmail);
 			try {
-				emailService.sendEmail(forgotCustomer.getcEmail(), forgotCustomer.getcFirstName() + "會員，您好!",
-						"露營王會員"+forgotCustomer.getcFirstName()+forgotCustomer.getcLastName()+"您好!<br>請點選連結以更改密碼，謝謝!<br>http://localhost:8080/forgotPwdEmailUpdate");
+				emailService.sendEmail(forgotCustomer.getcEmail(), forgotCustomer.getcFirstName() + " 會員，您好!",
+						"露營王會員 " + forgotCustomer.getcFirstName() + forgotCustomer.getcLastName()
+								+ " 您好!<br>請點選連結以更改密碼，謝謝!<br>http://localhost:8080/forgotPwdEmailUpdate");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -448,7 +453,5 @@ public class CustomerController {
 			return "CustomerBlockList";
 		}
 	}
-	
-	
 
 }
