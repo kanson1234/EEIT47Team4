@@ -175,7 +175,7 @@ body {
 
 	<!-- 		</div> -->
 	<!-- 	</div> -->
-
+	<p style="color: green;">${msg.success}</p>
 	<div class="side_wrapper">
 		<section class="about-dev">
 			<header class="profile-card_header">

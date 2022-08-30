@@ -98,41 +98,51 @@ body {
 					</div>
 					<div style="font-size: large;">${oneCustomer.getcAccount()}</div>
 
-					<label class="form-label"><font size="5">密碼:</font></label> <input
-						type="text" class="form-control" name="cPwd"
-						value="${oneCustomer.getcPwd()}">
-					<p style="color: red;">${errors.cPwd}</p>
-					<label class="form-label"><font size="5">姓氏:</font></label> <input
-						type="text" class="form-control" name="cFirstName"
+					<label class="form-label"><font size="5">密碼:</font><span
+						style="font-size: 15px" id="checktext1"></span> </label> <input
+						type="text" class="form-control" name="cPwd" id="cPwd"
+						onchange="checkPwd()" value="${oneCustomer.getcPwd()}"> <label
+						class="form-label"><font size="5">姓氏:</font><span
+						style="font-size: 15px" id="checktext2"></span></label> <input type="text"
+						class="form-control" name="cFirstName" id="cFirstName"
+						onchange="checkcFirstName()"
 						value="${oneCustomer.getcFirstName()}">
 					<p style="color: red;">${errors.cFirstName}</p>
-					<label class="form-label"><font size="5">名稱:</font></label> <input
-						type="text" class="form-control" name="cLastName"
-						value="${oneCustomer.getcLastName()}">
+					<label class="form-label"><font size="5">名稱:</font><span
+						style="font-size: 15px" id="checktext3"></span></label> <input type="text"
+						class="form-control" name="cLastName" id="cLastName"
+						onchange="checkcLastName()" value="${oneCustomer.getcLastName()}">
 					<p style="color: red;">${errors.cLastName}</p>
-					<label class="form-label"><font size="5">出生年月日:</font></label> <input
-						type="date" class="form-control" name="cbDate" value="">
+					<label class="form-label"><font size="5">出生年月日:</font><span
+						style="font-size: 15px" id="checktext4"></span></label> <input type="date"
+						class="form-control" name="cbDate" id="cbDate"
+						onchange="checkcbDate()" value="">
 					<p style="color: red;">${errors.cbDate}</p>
-					<label class="form-label"><font size="5">電子信箱:</font></label> <input
-						type="text" class="form-control" name="cEmail"
-						value="${oneCustomer.getcEmail()}">
+					<label class="form-label"><font size="5">電子信箱:</font><span
+						style="font-size: 15px" id="checktext5"></span></label> <input type="text"
+						class="form-control" name="cEmail" id="cEmail"
+						onchange="checkcEmail()" value="${oneCustomer.getcEmail()}">
 					<p style="color: red;">${errors.cEmail}</p>
-					<label class="form-label"><font size="5">個人圖片:</font></label> <input
-						type="file" accept="image/*" name="cImg" id="imgInp"><img
-						width="350" id="img" style="margin-left: 130px;margin-top: 10px"
+					<label class="form-label"><font size="5">個人圖片:</font><span
+						style="font-size: 15px" id="checktext6"></span></label> <input type="file"
+						accept="image/*" name="cImg" id="imgInp" onchange="checkcImg()" ><img
+						width="350" id="img" style="margin-left: 130px; margin-top: 10px"
 						src="${contextRoot}/downloadImage/${oneCustomer.cId}" />
 					<p style="color: red;">${errors.cImg}</p>
 
 				</div>
-				<a onclick="confirm('確認修改會員資料?');">
-					<button type="submit" class="btn btn-lg btn btn-warning">修改</button>
-				</a>
-				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
+				<div align="center">
+					<a onclick="confirm('確認修改會員資料?');">
+						<button type="submit" class="btn btn-lg btn btn-warning">修改</button>
+					</a>
+					<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
+				</div>
 			</form>
 		</div>
 	</div>
 
 	<script>
+		//圖片預覽
 		$('#imgInp').change(function() {
 			var file = $('#imgInp')[0].files[0];
 			var reader = new FileReader;
@@ -148,8 +158,96 @@ body {
 			window.history.back();//回上頁
 		})
 
+		//抓出生年月日
 		var dateControl = document.querySelector('input[type="date"]');
 		dateControl.value = '${oneCustomer.getcBirthdate()}'
+
+		//-------以下為前端提前驗證
+
+		//密碼
+		function checkPwd() {
+			var check = false;
+			var cPwd = document.getElementById("cPwd").value;
+			console.log("cPwd" + cPwd);
+			if (cPwd == "") {
+				$('#checktext1').html('請輸入密碼').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext1').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//姓
+		function checkcFirstName() {
+			var check = false;
+			var cFirstName = document.getElementById("cFirstName").value;
+			console.log("cFirstName" + cFirstName);
+			if (cFirstName == "") {
+				$('#checktext2').html('請輸入姓氏').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext2').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//名
+		function checkcLastName() {
+			var check = false;
+			var cLastName = document.getElementById("cLastName").value;
+			console.log("cLastName" + cLastName);
+			if (cLastName == "") {
+				$('#checktext3').html('請輸入名稱').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext3').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//出生日期
+		function checkcbDate() {
+			var check = false;
+			var cbDate = document.getElementById("cbDate").value;
+			console.log("cbDate" + cbDate);
+			if (cbDate == "") {
+				$('#checktext4').html('請輸入出生日期').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext4').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//電子信箱
+		function checkcEmail() {
+			var check = false;
+			var cEmail = document.getElementById("cEmail").value;
+			console.log("cEmail" + cEmail);
+			if (cEmail == "") {
+				$('#checktext5').html('請輸入電子郵件').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext5').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//個人圖片
+		function checkcImg() {
+			var check = false;
+			var cImg = document.getElementById("imgInp").value;
+			console.log("cImg" + cImg);
+			if (cImg == "") {
+				$('#checktext6').html('請選擇個人圖片').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext6').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
 	</script>
 
 </body>

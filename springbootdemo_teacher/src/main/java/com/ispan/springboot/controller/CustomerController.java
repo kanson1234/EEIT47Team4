@@ -243,7 +243,7 @@ public class CustomerController {
 
 		if (errors != null && !errors.isEmpty()) {
 
-			return "redirect:/customer/findOne";
+			return "redirect:/customer/editOne";
 		}
 
 		try {
@@ -270,6 +270,7 @@ public class CustomerController {
 
 			customerService.insertCustomer(updateCustomer);
 			Map<String, String> msg = new HashMap<String, String>();
+			model.addAttribute("msg",msg);
 			msg.put("success", "修改成功");
 
 			return "redirect:/customer/findOne";
@@ -390,15 +391,15 @@ public class CustomerController {
 		return "allCustomer";
 	}
 
-//	// Ajax驗證帳號
-//	@GetMapping("/checkAccount/{account}")
-//	public boolean checkAccount(@PathVariable String cAccount) {
-//		Customer findCustomerAccount = customerService.findCustomerAccount(cAccount);
-//		if (findCustomerAccount != null) {
-//			return false;
-//		}
-//		return true;
-//	}
+	// Ajax驗證帳號
+	@GetMapping("/checkAccount/{account}")
+	public boolean checkAccount(@PathVariable String cAccount) {
+		Customer findCustomerAccount = customerService.findCustomerAccount(cAccount);
+		if (findCustomerAccount != null) {
+			return false;
+		}
+		return true;
+	}
 
 	// 找未停權會員
 	@GetMapping("/customer/findTrue")
@@ -447,5 +448,7 @@ public class CustomerController {
 			return "CustomerBlockList";
 		}
 	}
+	
+	
 
 }
