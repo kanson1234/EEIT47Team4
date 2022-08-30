@@ -125,9 +125,11 @@ public class MessageController {
 	@GetMapping("/message/delete/{mid}")
 	public String deletemessageById(@PathVariable Integer mid, Model model) {
 		mService.deletemessage(mid);
+	    
+		System.out.println("--------------------------------------------"+mid);
 
-		List<Message> all = mService.findAllmessage();
-		model.addAttribute("AllMessage", all);
+//		List<Message> all = mService.findAllmessage();
+//		model.addAttribute("AllMessage", all);
 		return "redirect:/message/view";
 	}
 	//模糊查詢帳號及名稱

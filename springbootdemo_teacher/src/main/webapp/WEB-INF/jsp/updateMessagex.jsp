@@ -25,7 +25,7 @@
 			<thead class="thead-dark">
 				<tr>
 <%-- <c:forEach items="${AllItem}" var="m">  --%>
-					<th scope="col"><textarea rows="3" cols="50" id="newmcontext" name="newmcontext"></textarea></th>
+					<th scope="col"><textarea rows="3" cols="50" id="newmcontext" name="newmcontext" placeholder="${Message.mcontext}"></textarea></th>
 					<th scope="col"><input name="rid" value="${Message.mrid}" type="hidden"></th>
 					<th scope="col"><input name="CS_Id" value="${Message.customerMsg.cId}" type="hidden"></th>
 					<th scope="col"><input name="SH_Item_Id" value="${Message.shopHouseBean.id}" type="hidden"></th>
@@ -34,12 +34,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+<!-- 				<tr> -->
 					
-					<td>${Message.mcontext}</td>
+<%-- 					<td>${Message.mcontext}</td> --%>
 					
 					
-				</tr>
+<!-- 				</tr> -->
 			</tbody>
 			
 		</table>

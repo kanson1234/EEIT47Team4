@@ -47,11 +47,11 @@
 					
 					<td><a
 						href="${pageContext.request.contextPath}/message/editMessage/${m.mid}">
-							<button type="submit">編輯</button>
+							<button>編輯</button>
 					</a></td>
 					<td><a
 						href="${pageContext.request.contextPath}/message/delete/${m.mid}">
-							<button type="submit">刪除</button>
+					刪除
 					</a></td>
 				</tr>
 			</c:forEach>
