@@ -148,5 +148,10 @@ public class ShopHouseService {
 		return sDao.showAllByStatus(false);
 	}
 	
+	//秀全部商品
+	public List<ShopHouseBean> showBackAllItems(){
+		return sDao.findAll();
+	}
+	
 }
 

@@ -173,12 +173,11 @@ public class ShopHouseController {
 
 //  後台分頁顯示商品
 	@GetMapping("/ShopHouse/viewItems")
-	public String viewItemsPage(@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, Model model) {
+	public String viewItemsPage(Model model) {
 
 //        rService.findById(pageNumber)
-
-		Page<ShopHouseBean> page = sService.findByPage(pageNumber);
-		model.addAttribute("page", page);
+        List<ShopHouseBean> show = sService.showBackAllItems();
+		model.addAttribute("page", show);
 		return "shopHouseItems";
 	}
 

@@ -62,7 +62,7 @@
 			</thead>
 			<tbody>
 
-				<c:forEach items="${page.content}" var="i">
+				<c:forEach items="${page}" var="i">
 					<tr>
 						<td>${i.itemName}</td>
 
@@ -109,21 +109,21 @@
          } );
         </script>
 
-		<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+<%-- 		<c:forEach var="pageNumber" begin="1" end="${page.totalPages}"> --%>
 
-			<c:choose>
-				<c:when test="${page.number != pageNumber -1}">
-					<a
-						href="${pageContext.request.contextPath}/ShopHouse/viewItems?p=${pageNumber}">
-						${pageNumber} </a>
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${page.number != pageNumber -1}"> --%>
+<!-- 					<a -->
+<%-- 						href="${pageContext.request.contextPath}/ShopHouse/viewItems?p=${pageNumber}"> --%>
+<%-- 						${pageNumber} </a> --%>
 
-				</c:when>
-					<c:otherwise>
-				       ${pageNumber}
-				    </c:otherwise>
-			</c:choose>
+<%-- 				</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<%-- 				       ${pageNumber} --%>
+<%-- 				    </c:otherwise> --%>
+<%-- 			</c:choose> --%>
 
-		</c:forEach>
+<%-- 		</c:forEach> --%>
 <%-- 	</c:if> --%>
 
 </div>
