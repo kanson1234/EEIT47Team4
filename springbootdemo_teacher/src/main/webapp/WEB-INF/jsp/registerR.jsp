@@ -51,30 +51,37 @@ body {
 				<h2 class="h3 mb-3 fw-normal">零售商註冊</h2>
 
 				<div class="mb-3">
-					<label class="form-label">商店名稱</label> <input type="text"
-						class="form-control" placeholder="請輸入商店名稱" name="rName" id="rName" />
+					<label class="form-label">商店名稱:</label><span style="font-size: 15px"
+						id="checktext1"></span> <input type="text"
+						class="form-control" placeholder="請輸入商店名稱" name="rName" id="rName" onchange="checkrName()" />
 					<p style="color: red;">${errors.rName}</p>
-					<label class="form-label">帳號</label><input type="text"
+					<label class="form-label">帳號:</label><span style="font-size: 15px"
+						id="checktext2"></span><input type="text"
 						class="form-control" placeholder="請輸入帳號" name="rAccount"
-						id="rAccount" />
+						id="rAccount" onchange="checkrAccount()" />
 					<p style="color: red;">${errors.rAccount}</p>
 					<p style="color: red;">${errors.used}</p>
-					<label class="form-label">密碼</label><input type="password"
-						class="form-control" placeholder="請輸入密碼" name="rPwd" id="rPwd" />
+					<label class="form-label">密碼:</label><span style="font-size: 15px"
+						id="checktext3"></span><input type="password"
+						class="form-control" placeholder="請輸入密碼" name="rPwd" id="rPwd" onchange="checkrPwd()"/>
 					<p style="color: red;">${errors.rPwd}</p>
-					<label class="form-label">電話</label><input type="text"
+					<label class="form-label">電話:</label><span style="font-size: 15px"
+						id="checktext4"></span><input type="text"
 						class="form-control" placeholder="請輸入聯絡電話" name="rPhone"
-						id="rPhone" />
+						id="rPhone" onchange="checkrPhone()"/>
 					<p style="color: red;">${errors.rPhone}</p>
-					<label class="form-label">商家描述</label> <input type="text"
-						class="form-control" placeholder="輸入商家描述" name="rInfo" id="rInfo" />
+					<label class="form-label">商家描述:</label><span style="font-size: 15px"
+						id="checktext5"></span> <input type="text"
+						class="form-control" placeholder="輸入商家描述" name="rInfo" id="rInfo" onchange="checkrInfo()"/>
 					<p style="color: red;">${errors.rInfo}</p>
-					<label class="form-label">Logo圖樣</label><input type="file"
-						accept="image/*" name="rLogo" id="imglogo" /> <img id="logo"
+					<label class="form-label">商家Logo:</label><span style="font-size: 15px"
+						id="checktext6"></span><input type="file"
+						accept="image/*" name="rLogo" id="imglogo" onchange="checkrLogo()"/> <img id="logo"
 						width="350" src="" />
 					<p style="color: red;">${errors.rLogo}</p>
-					<label class="form-label">商家照片</label><input type="file"
-						accept="image/*" name="rPhoto" id="imgphoto" /> <img id="photo"
+					<label class="form-label">商家照片:</label><span style="font-size: 15px"
+						id="checktext7"></span><input type="file"
+						accept="image/*" name="rPhoto" id="imgphoto" onchange="checkrPhoto()"/> <img id="photo"
 						width="350" src="" />
 					<p style="color: red;">${errors.rPhoto}</p>
 				</div>
@@ -125,6 +132,109 @@ body {
 			event.preventDefault(); //取消預設行為
 			window.location.replace("http://localhost:8080/"); //返回特定頁面
 		})
+		
+		//前端驗證
+		
+			//商店名稱
+		function checkrName() {
+			var check = false;
+			var rName = document.getElementById("rName").value;
+			console.log("rName" + rName);
+			if (rName == "") {
+				$('#checktext1').html('請輸入商店名稱').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext1').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+
+		//帳號
+		function checkrAccount() {
+			var check = false;
+			var rAccount = document.getElementById("rAccount").value;
+			console.log("rAccount" + rAccount);
+			if (rAccount == "") {
+				$('#checktext2').html('請輸入帳號').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext2').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//密碼
+		function checkrPwd() {
+			var check = false;
+			var rPwd = document.getElementById("rPwd").value;
+			console.log("rPwd" + rPwd);
+			if (rPwd == "") {
+				$('#checktext3').html('請輸入密碼').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext3').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//電話
+		function checkrPhone() {
+			var check = false;
+			var rPhone = document.getElementById("rPhone").value;
+			console.log("rPhone" + rPhone);
+			if (rPhone == "") {
+				$('#checktext4').html('請輸入電話').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext4').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//商家描述
+		function checkrInfo() {
+			var check = false;
+			var rInfo = document.getElementById("rInfo").value;
+			console.log("rInfo" + rInfo);
+			if (rInfo == "") {
+				$('#checktext5').html('請輸入商家描述').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext5').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//商家logo
+		function checkrLogo() {
+			var check = false;
+			var imglogo = document.getElementById("imglogo").value;
+			console.log("imglogo" + imglogo);
+			if (imglogo == "") {
+				$('#checktext6').html('請輸入商家logo').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext6').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		//商家照片
+		function checkrPhoto() {
+			var check = false;
+			var imgphoto = document.getElementById("imgphoto").value;
+			console.log("imgphoto" + imgphoto);
+			if (imgphoto == "") {
+				$('#checktext7').html('請選擇商家照片').css('color', 'red');
+				check = false;
+			} else {
+				$('#checktext7').html('√').css('color', 'green');
+				check = true;
+			}
+			return check;
+		}
+		
 	</script>
 
 </body>

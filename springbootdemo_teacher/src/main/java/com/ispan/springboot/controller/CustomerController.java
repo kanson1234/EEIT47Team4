@@ -237,9 +237,9 @@ public class CustomerController {
 			errors.put("cEmail", "請輸入個人電子郵件!");
 		}
 
-//		if (cImg.isEmpty()) {
-//			errors.put("cImg", "請選擇一張個人圖片!");
-//		}
+		if (cImg.isEmpty()) {
+			errors.put("cImg", "請選擇一張個人圖片!");
+		}
 
 		if (errors != null && !errors.isEmpty()) {
 

@@ -46,7 +46,7 @@ body {
 		<div class="box">
 			<form action="${contextRoot}/customer/insert" method="post"
 				enctype="multipart/form-data">
-				<h5 style="color: green">${msg.success}</h5>
+				<h5 style="color: #70AE3E">${msg.success}</h5>
 				<h2 class="h3 mb-3 fw-normal">會員註冊</h2>
 
 				<div class="mb-3">
