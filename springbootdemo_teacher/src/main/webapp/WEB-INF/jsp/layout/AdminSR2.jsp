@@ -5,9 +5,9 @@
 <!doctype html>
 <html lang="en">
 
-<jsp:include page="layout/navbar.jsp" />
-<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<jsp:include page="${pageContext.request.contextPath}/layout/navbar.jsp"/>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
 
 <body>
 	<!-- SearchBar -->
-	<jsp:include page="AdminBar/SearchBar.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/AdminBar/SearchBar.jsp" />
 	<!-- SearchBar -->
 
 	<div class="container-fluid">
@@ -45,12 +45,12 @@
 
 			<!-- AdminSideBar -->
 			<%-- 			<jsp:include page="layout/Sidebar.jsp" /> --%>
-			<jsp:include page="layout/Sidebar.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/layout/Sidebar.jsp" />
 			<!-- AdminSideBar -->
 
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 				<!-- outputbar -->
-				<jsp:include page="AdminBar/outputbar.jsp" />
+				<jsp:include page="${pageContext.request.contextPath}/AdminBar/outputbar.jsp" />
 				<!-- outputbar -->
 
 				<div

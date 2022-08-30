@@ -9,6 +9,7 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <head>
+	<script src="/js/jquery-3.6.0.min.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -94,7 +95,7 @@ table tbody tr td {
 	<div class="container-fluid">
 		<div class="row">
 			<!-- AdminSideBar -->
-			<jsp:include page="AdminBar/AdminSideBar.jsp" />
+			<jsp:include page="layout/Sidebar.jsp" />
 			<!-- AdminSideBar -->
 
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -108,12 +109,18 @@ table tbody tr td {
 
 					<div class="btn-toolbar mb-2 mb-md-0">
 
-						<!-- timeBar -->
-						<jsp:include page="AdminBar/timeBar.jsp" />
-						<!-- timeBar -->
-						
+						<div class="btn-toolbar mb-2 mb-md-0">
+							<div>
+								<span>開始時間</span><input type="date" id="dateStar"> <span>結束時間</span><input
+									type="date" id="dateEnd">
+								<button type="button" id="findByTime">查詢</button>
+							</div>
+						</div>
 					</div>
 				</div>
+
+
+
 
 				<h2>依「商品名稱」查詢結果</h2>
 				<div class="table-responsive">

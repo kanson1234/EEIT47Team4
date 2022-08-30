@@ -99,7 +99,7 @@ table tbody tr td {
 	<div class="container-fluid">
 		<div class="row">
 			<!-- AdminSideBar -->
-			<jsp:include page="AdminBar/AdminSideBar.jsp" />
+			<jsp:include page="layout/Sidebar.jsp" />
 			<!-- AdminSideBar -->
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 				<!-- outputbar -->
@@ -111,10 +111,13 @@ table tbody tr td {
 
 					<div class="btn-toolbar mb-2 mb-md-0">
 
-						<!-- timeBar -->
-						<jsp:include page="AdminBar/timeBar.jsp" />
-						<!-- timeBar -->
-					</div>
+<div class="btn-toolbar mb-2 mb-md-0">
+						<div>
+							<span>開始時間</span><input type="date" id="dateStar"> <span>結束時間</span><input
+								type="date" id="dateEnd">
+							<button type="button" id="findByTime">查詢</button>
+						</div>
+					</div>					</div>
 				</div>
 
 				<h2>依「店家 ID」查詢結果</h2>
@@ -182,7 +185,7 @@ table tbody tr td {
 										<td style="vertical-align: middle;">成交</td>
 									</c:if>
 									<c:if test="${findall.srState==false}">
-										<td style="vertical-align: middle;">退貨</td>
+										<td style="vertical-align: middle;">待退款</td>
 									</c:if>
 									<!-- <td style="vertical-align:middle;">${findall.srState}</td> -->
 

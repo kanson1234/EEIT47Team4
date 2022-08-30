@@ -1,73 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!doctype html>
-<html lang="en">
-
-<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="contextRoot" value="${pageContext.request.contextPath }" />
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author"
-	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-<meta name="generator" content="Hugo 0.88.1">
-
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-	crossorigin="anonymous"></script>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-	crossorigin="anonymous"></script>
-
-
+<link href="${contextRoot}/css/w3.css" rel="stylesheet" />
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link rel="stylesheet" href="${contextRoot}/css/w3-theme-teal.css">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css"> -->
+<link rel="stylesheet" href="${contextRoot}/css/familyRobot.css">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"> -->
+<link rel="stylesheet" href="${contextRoot}/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<style>
+body {font-family: "Roboto", sans-serif}
+.w3-bar-block .w3-bar-item {
+  padding: 16px;
+  font-weight: bold;
+}
+</style>
 </head>
 <body>
-	<nav id="sidebarMenu"
-		class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="z-index:2;">
-		<div class="position-sticky pt-3">
-			<ul class="nav flex-column">
-				<li class="nav-item"><a class="nav-link active"
-					aria-current="page"
-					href="${pageContext.request.contextPath}/Member/MemberCenter">
-						<span data-feather="home"></span> 購買紀錄
-				</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="${pageContext.request.contextPath}/Member/ShoppingCar">
-						<span data-feather="file"></span> 我的購物車
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer/findOne"> <span
-						data-feather="shopping-cart"></span> 我的資料
-				</a></li>
 
-			</ul>
+<nav class="w3-sidebar w3-Deep-junglegreen w3-collapse w3-top w3-large w3-padding"
+  style="z-index: 0; width: 200px; font-weight: bold;margin-top:0px" id="mySidebar">
+  <br> <a href="javascript:void(0)"
+   class="w3-button w3-hide-large w3-display-topleft"
+   style="width: 100%; font-size: 22px">Close Menu</a>
+  <div class="w3-container">
+   <h3 class="w3-padding-64" style="margin-top:100px;">
+    <b>商家後台</b>
+   </h3>
+  </div>
+  <div class="w3-bar-block">
+  <ul class="nav nav-pills flex-column mb-auto">
+	  <li>
+	  	<a href="${contextRoot}/Member/MemberCenter" class="w3-bar-item w3-button w3-hover-white">
+	  	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+	  		<path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+		</svg>
+	  	我的購物紀錄
+	  	</a>
+	  </li>
+	  <li>
+	  	<a href="${pageContext.request.contextPath}/Member/ShoppingCar" class="w3-bar-item w3-button w3-hover-white">
+	  	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
+		  	<path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z"/>
+		 	<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+		</svg>
+	  	我的購物車
+	  	</a>
+	  </li>
+	  <li>
+	  	<a href="${contextRoot}/ShopHouse/viewC2IdItems?id=${retailerLoginOk.rid}" class="w3-bar-item w3-button w3-hover-white">
+	  		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid" viewBox="0 0 16 16">
+	  			<path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+			</svg>
+		商品管理
+		</a>
+	  </li>
+	  
+    
+ </ul>
+  </div>
+ </nav>
 
-
-		</div>
-	</nav>
-
-
-
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-		integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
-		integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-		crossorigin="anonymous"></script>
 </body>
-
 </html>
+
+<!-- ============================================================================================================================================== -->

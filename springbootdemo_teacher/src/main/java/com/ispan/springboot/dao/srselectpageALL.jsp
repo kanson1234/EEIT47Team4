@@ -126,7 +126,7 @@
 											state2 = "已成交";
 										}
 										if (value.srState == false) {
-											state2 = "已退貨";
+											state2 = "已待退款";
 										}
 										
 										
@@ -196,7 +196,7 @@
 													state2 = "已成交";
 												}
 												if (value.srState == false) {
-													state2 = "已退貨";
+													state2 = "已待退款";
 												}
 												
 												

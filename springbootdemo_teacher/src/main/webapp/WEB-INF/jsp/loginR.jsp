@@ -143,8 +143,8 @@ h2::before {
 	})
 	//快速登入
 	$(".fastLogin").click(function() {
-		$("#floatingInputR").val("coleman123");
-		$("#floatingPasswordR").val("coleman456");
+		$("#floatingInputR").val("R2A");
+		$("#floatingPasswordR").val("R2P");
 	});
 
 	//取消按鈕返回上頁
