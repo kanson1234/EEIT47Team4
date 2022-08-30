@@ -157,7 +157,7 @@
 										<td style="vertical-align: middle; text-align: center;">成交</td>
 									</c:if>
 									<c:if test="${findall.srState==false}">
-										<td style="vertical-align: middle; text-align: center;">退貨</td>
+										<td style="vertical-align: middle; text-align: center;">待退款</td>
 									</c:if>
 									<!-- <td style="vertical-align:middle;">${findall.srState}</td> -->
 

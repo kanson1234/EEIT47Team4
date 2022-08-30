@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -98,6 +99,14 @@ public class SrController {
 
 	}
 
+	@ResponseBody
+	@GetMapping("/DeleteSrByScId")
+	public List<ShoppingRecord> DeleteSrByScId(@RequestParam(name = "srid") Integer srid) {
+		srDao.DeleteSrByScId(srid);
+		List<ShoppingRecord> findAllToA1 = SrService.findAllByTime();
+		return findAllToA1;
+	}
+
 //========================================================================================================================================================
 //========================================================================================================================================================
 //========================================================================================================================================================
@@ -180,7 +189,7 @@ public class SrController {
 	}
 
 	@ResponseBody
-	@GetMapping("record/SRFalse") // 退貨
+	@GetMapping("record/SRFalse") // 待退款
 	private List<ShoppingRecord> findBysrStateSRFalse() {
 		return SrService.findBysrStateFalse();
 	}
@@ -222,4 +231,64 @@ public class SrController {
 		return srDao.findBySrtimeBetween(date1, date2);
 	}
 
+	@ResponseBody
+	@PostMapping("admin/record/dateforc2id") // findbyName
+	private List<ShoppingRecord> findByc2idBetweenDay(@RequestBody DateDto dateDto, Model model) {
+
+//		
+		Retailer customerSession = ((Retailer) model.getAttribute("retailerLoginOk"));
+		Integer c2id = customerSession.getRid();
+		System.out.println(c2id);
+		String dateS = dateDto.getDateStar();
+		String dateE = dateDto.getDateEnd();
+		System.out.println(dateS);
+		System.out.println(dateE);
+		List<ShoppingRecord> findByc2idBetweenDay = srDao.findByc2idBetweenDay(c2id, dateS, dateE);
+		if (findByc2idBetweenDay.isEmpty()) {
+			return null;
+		} else {
+			return findByc2idBetweenDay;
+		}
+	}
+
+	@ResponseBody
+	@GetMapping("findallbyCidtoC2")
+	private List<ShoppingRecord> findallbyCidtoC2( Model model,@RequestParam(name = "cid")Integer c1id) {
+		Retailer customerSession = ((Retailer) model.getAttribute("retailerLoginOk"));
+		Integer c2id = customerSession.getRid();
+		System.out.println(c2id);
+		System.out.println(c1id);
+		List<ShoppingRecord> findallbyCidtoC2 = srDao.findallbyCidtoC2(c2id, c1id);
+		
+		if (findallbyCidtoC2.isEmpty()) {
+			return null;
+		} else {
+			return findallbyCidtoC2;
+		}
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("findallbyItNameToC2")
+	private List<ShoppingRecord> findallbyItNameToC2( Model model,@RequestParam(name = "name")String name) {
+		Retailer customerSession = ((Retailer) model.getAttribute("retailerLoginOk"));
+		Integer c2id = customerSession.getRid();
+		System.out.println(c2id);
+		System.out.println(name);
+		List<ShoppingRecord> findallbyItNameToC2 = srDao.findallbyItNameToC2(c2id, name);
+		if (findallbyItNameToC2.isEmpty()) {
+			return null;
+		} else {
+			return findallbyItNameToC2;
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

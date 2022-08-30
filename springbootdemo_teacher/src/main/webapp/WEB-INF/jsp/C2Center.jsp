@@ -25,29 +25,10 @@
 
 <Script>
 	window.onload = function() {
-		var selectByC1Id = document.getElementById("selectByC1Id")
 		var selectByC2Id = document.getElementById("selectByC2Id")
-		var selectByValue = document.getElementById("selectBy").value.onchange = (selectByXX());
+		
 
-		function selectByXX() {
-			selectByValue = document.getElementById("selectBy").value
-			if (selectByValue == "ByC1Id") {
-				console.log('selectBy:ByC1Id')
-				selectByC1Id.style = ('display:block')
-				selectByC2Id.style = ('display:none')
-			}
-		}
-		$("#selectBy").change(function() {
-			selectByValue = document.getElementById("selectBy").value
-			if (selectByValue == "ByC1Id") {
-				$("#selectByC1Id").show();
-				$("#selectByC2Id").hide();
-			}
-			if (selectByValue == "ByC2Id") {
-				$("#selectByC1Id").hide();
-				$("#selectByC2Id").show();
-			}
-		})
+		
 	}
 </Script>
 </head>
@@ -58,7 +39,7 @@
 		<div class="row">
 
 			<!-- C1SideBar -->
-			<jsp:include page="C1Bar\C1SideBar.jsp" />
+			<jsp:include page="C2Bar\C2SideBar.jsp" />
 			<!-- C1SideBar -->
 
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -66,14 +47,12 @@
 					<h2>銷售紀錄</h2>
 				</c:if>
 				<div class="table-responsive">
-					<table>
+					<table >
 						<tr>
 							<td><input type="text" id="cid"></td>
-							<td><button id="findallbyC1idBtn">依客戶ID查詢</button></td>
-							<td><input type="text" id="c2id"></td>
-							<td><button id="findallbyC2idBtn">依店家ID查詢</button></td>
+							<td><button id="findallbyC1idBtntoC2">依客戶ID查詢</button></td>
 							<td><input type="text" id="name"></td>
-							<td><button id="findByNamebtn">商品名稱查詢</button></td>
+							<td><button id="findallbyItNameToC2">商品名稱查詢</button></td>
 							<td><button id="findallbytimeBtn" type="button">findAllByTimeBtn</button></td>
 						</tr>
 						<tr>
@@ -81,39 +60,45 @@
 							<td><input type="date" id="dateStar" style="margin: 1px;"></td>
 							<td><span>結束時間</span></td>
 							<td><input type="date" id="dateEnd" style="margin: 1px;"></td>
-							<td><button type="button" id="findByTime">查詢</button></td>
+							<td><button type="button" id="findByTimetoC2">查詢</button></td>
 						</tr>
 					</table>
 					<hr />
 				</div>
-				<table class="mytable" id="list_data_json">
+				<table class="table table-striped table-sm" id="list_data_json">
 					<thead>
 
 						<tr>
 							<!-- C1 -->
-							<th>消費者ID</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">消費者ID</th>
 							<!-- SR -->
-							<th>srShoppingRecord_Id</th>
-							<th>消費時間</th>
-							<th>購買數量</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">消費時間</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">購買數量</th>
 							<!-- SH -->
-							<th>商品ID</th>
-							<th>商品名稱</th>
-							<th>商品圖片</th>
-							<th>價格</th>
-							<th>商品分類</th>
-							<th>商品狀況</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品ID</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品名稱</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品圖片</th>
+							<th style="vertical-align: middle; text-align: center;">價格</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品分類</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">商品狀況</th>
 							<!-- C2 -->
-							<th>廠商ID</th>
-							<th>廠商名稱</th>
-							<th>成交狀況</th>
+							<th scope="col"
+									style="vertical-align: middle; vertical-align: top">成交狀況</th>
 						</tr>
 
 					</thead>
 					<script>
 					$(document).ready(function () {
 						// find All  Time1  TO  Time2
-						$('#findByTime').click(function () {
+						$('#findByTimetoC2').click(function () {
 							var dateStar = document.getElementById('dateStar').value
 							if (dateStar == "") {
 								alert("請選擇開始日期")
@@ -135,7 +120,7 @@
 							console.log(dateEnd)
 							console.log(date1)
 							console.log(date2)
-							console.log("findByTime")
+							console.log("findByTimetoC2")
 							var dateJsonObj = {
 								"dateStar": dateStar,
 								"dateEnd": dateEnd
@@ -143,7 +128,7 @@
 							var stringDateJsonObj = JSON.stringify(dateJsonObj);
 							console.log("stringDateJsonObj" + stringDateJsonObj)
 							$.ajax({
-								url: 'http://localhost:8080/admin/record/date',
+								url: 'http://localhost:8080/admin/record/dateforc2id',
 								contentType: 'application/json', // 送過去的資料型別
 								dataType: 'json', // 回傳回來的資料型別
 								method: 'post',
@@ -165,24 +150,21 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 										msg_data += '<tr>'
-										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
-										msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
-										msg_data += '<td>' + value.srtime + '</td>'
-										msg_data += '<td>' + value.srCount + '</td>'
-										msg_data += '<td>' + value.shophousebean.id + '</td>'
-										msg_data += '<td>' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td><img width="100" src="${pageContext.request.contextPath}/downloadImg/'
-											+ value.shophousebean.id +
-											'"></td>'
-										msg_data += '<td>' + value.shophousebean.price + '</td>'
-										msg_data += '<td>' + value.shophousebean.classify + '</td>'
-										msg_data += '<td>' + state + '</td>'
-										msg_data += '<td>' + value.shophousebean.retailerBean.rid + '</td>'
-										msg_data += '<td><a href="${pageContext.request.contextPath}/retailerGetAllItem?id=' + value.shophousebean.retailerBean.rid + '">' + value.shophousebean.retailerBean.rName + '</a></td>'
-										msg_data += '<td>' + state2 + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
+											
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
+										
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
 									msg_data += '</tbody>'
@@ -221,23 +203,22 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 
 										msg_data += '<tr>'
-										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
-										msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
-										msg_data += '<td>' + value.srtime + '</td>'
-										msg_data += '<td>' + value.srCount + '</td>'
-										msg_data += '<td>' + value.shophousebean.id + '</td>'
-										msg_data += '<td>' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
-										msg_data += '<td>' + value.shophousebean.price + '</td>'
-										msg_data += '<td>' + value.shophousebean.classify + '</td>'
-										msg_data += '<td>' + state + '</td>'
-										msg_data += '<td>' + value.shophousebean.retailerBean.rid + '</td>'
-										msg_data += '<td><a href="${pageContext.request.contextPath}/retailerGetAllItem?id=' + value.shophousebean.retailerBean.rid + '">' + value.shophousebean.retailerBean.rName + '</a></td>'
-										msg_data += '<td>' + state2 + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
+											
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
+										
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
 									msg_data += '</tbody>'
@@ -251,7 +232,7 @@
 						})
 
 						// findAllByCidBtn
-						$('#findallbyC1idBtn').click(function () {
+						$('#findallbyC1idBtntoC2').click(function () {
 							var textcid = document.getElementById('cid').value;
 							console.log(textcid)
 							var dtoObj = {
@@ -262,7 +243,7 @@
 							console.log(dtoJson)
 
 							$.ajax({
-								url: "http://localhost:8080/Admin/record/findallbyCid?cid=" + textcid,
+								url: "http://localhost:8080/findallbyCidtoC2?cid=" + textcid,
 								contentType: 'application/json', // 送過去的資料型別
 								dataType: 'json', // 回傳回來的資料型別
 								method: 'get',
@@ -286,25 +267,22 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 
 										msg_data += '<tr>'
-										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
-										msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
-										msg_data += '<td>' + value.srtime + '</td>'
-										msg_data += '<td>' + value.srCount + '</td>'
-										msg_data += '<td>' + value.shophousebean.id + '</td>'
-										msg_data += '<td>' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td><img width="100" src="${pageContext.request.contextPath}/downloadImg/'
-											+ value.shophousebean.id +
-											'"></td>'
-										msg_data += '<td>' + value.shophousebean.price + '</td>'
-										msg_data += '<td>' + value.shophousebean.classify + '</td>'
-										msg_data += '<td>' + state + '</td>'
-										msg_data += '<td>' + value.shophousebean.retailerBean.rid + '</td>'
-										msg_data += '<td><a href="${pageContext.request.contextPath}/retailerGetAllItem?id=' + value.shophousebean.retailerBean.rid + '">' + value.shophousebean.retailerBean.rName + '</a></td>'
-										msg_data += '<td>' + state2 + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
+											
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
+										
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
 									msg_data += '</tbody>'
@@ -347,23 +325,22 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 
 										msg_data += '<tr>'
-										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
-										msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
-										msg_data += '<td>' + value.srtime + '</td>'
-										msg_data += '<td>' + value.srCount + '</td>'
-										msg_data += '<td>' + value.shophousebean.id + '</td>'
-										msg_data += '<td>' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
-										msg_data += '<td>' + value.shophousebean.price + '</td>'
-										msg_data += '<td>' + value.shophousebean.classify + '</td>'
-										msg_data += '<td>' + state + '</td>'
-										msg_data += '<td>' + value.shophousebean.retailerBean.rid + '</td>'
-										msg_data += '<td><a href="${pageContext.request.contextPath}/retailerGetAllItem?id=' + value.shophousebean.retailerBean.rid + '">' + value.shophousebean.retailerBean.rName + '</a></td>'
-										msg_data += '<td>' + state2 + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
+											
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
+										
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
 									msg_data += '</tbody>'
@@ -375,7 +352,7 @@
 							})
 						})
 
-						$('#findByNamebtn').click(function () {
+						$('#findallbyItNameToC2').click(function () {
 							var name = document.getElementById('name').value;
 							if (name == "") {
 								alert("請輸入商品名稱")
@@ -388,7 +365,7 @@
 								"name": name
 							};
 							$.ajax({
-								url: "http://localhost:8080/admin/record/byName?name=" + name,
+								url: "http://localhost:8080/findallbyItNameToC2?name=" + name,
 								contentType: 'application/json', // 送過去的資料型別
 								dataType: 'json', // 回傳回來的資料型別
 								method: 'get',
@@ -410,22 +387,21 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 										msg_data += '<tr>'
-										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
-										msg_data += '<td>' + value.srShoppingRecord_Id + '</td>'
-										msg_data += '<td>' + value.srtime + '</td>'
-										msg_data += '<td>' + value.srCount + '</td>'
-										msg_data += '<td>' + value.shophousebean.id + '</td>'
-										msg_data += '<td>' + value.shophousebean.itemName + '</td>'
-										msg_data += '<td><img width="100" src="${pageContext.request.contextPath}/downloadImg/' + value.shophousebean.id + '"></td>'
-										msg_data += '<td>' + value.shophousebean.price + '</td>'
-										msg_data += '<td>' + value.shophousebean.classify + '</td>'
-										msg_data += '<td>' + state + '</td>'
-										msg_data += '<td>' + value.shophousebean.retailerBean.rid + '</td>'
-										msg_data += '<td><a href="${pageContext.request.contextPath}/retailerGetAllItem?id=' + value.shophousebean.retailerBean.rid + '">' + value.shophousebean.retailerBean.rName + '</a></td>'
-										msg_data += '<td>' + state2 + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
+											
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.id + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
+										
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.price + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.classify + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.retailerBean.rid + '</td>'
+										msg_data += '<td style="vertical-align: middle; text-align: center;">' + state2 + '</td>'
 										msg_data += '</tr>'
 									})
 									msg_data += '</tbody>'

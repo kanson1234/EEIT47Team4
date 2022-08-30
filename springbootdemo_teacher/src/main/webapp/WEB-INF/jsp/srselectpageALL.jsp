@@ -170,7 +170,7 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 										msg_data += '<tr>'
 										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
@@ -226,7 +226,7 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 
 										msg_data += '<tr>'
@@ -291,7 +291,7 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 
 										msg_data += '<tr>'
@@ -352,7 +352,7 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 
 										msg_data += '<tr>'
@@ -415,7 +415,7 @@
 											state2 = "成交";
 										}
 										if (value.srState == false) {
-											state2 = "退貨";
+											state2 = "待退款";
 										}
 										msg_data += '<tr>'
 										msg_data += '<td><a href="' + value.customer.cId + '">' + value.customer.cId + '</a></td>'
