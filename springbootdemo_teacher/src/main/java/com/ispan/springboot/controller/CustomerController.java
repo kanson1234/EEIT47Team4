@@ -237,9 +237,9 @@ public class CustomerController {
 			errors.put("cEmail", "請輸入個人電子郵件!");
 		}
 
-		if (cImg.isEmpty()) {
-			errors.put("cImg", "請選擇一張個人圖片!");
-		}
+//		if (cImg.isEmpty()) {
+//			errors.put("cImg", "請選擇一張個人圖片!");
+//		}
 
 		if (errors != null && !errors.isEmpty()) {
 
@@ -391,15 +391,15 @@ public class CustomerController {
 		return "allCustomer";
 	}
 
-//	// Ajax驗證帳號
-//	@GetMapping("/checkAccount/{account}")
-//	public boolean checkAccount(@PathVariable String cAccount) {
-//		Customer findCustomerAccount = customerService.findCustomerAccount(cAccount);
-//		if (findCustomerAccount != null) {
-//			return false;
-//		}
-//		return true;
-//	}
+	// Ajax驗證帳號
+	@GetMapping("/checkAccount/{account}")
+	public boolean checkAccount(@PathVariable String cAccount) {
+		Customer findCustomerAccount = customerService.findCustomerAccount(cAccount);
+		if (findCustomerAccount != null) {
+			return false;
+		}
+		return true;
+	}
 
 	// 找未停權會員
 	@GetMapping("/customer/findTrue")
@@ -448,5 +448,7 @@ public class CustomerController {
 			return "CustomerBlockList";
 		}
 	}
+	
+	
 
 }

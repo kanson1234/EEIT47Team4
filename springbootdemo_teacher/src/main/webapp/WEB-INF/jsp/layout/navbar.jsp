@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- <title>Camping King</title> -->
+<link rel="icon" href="/img/facicon.ico" >
 <meta charset="UTF-8">
 
 <style type="text/css">
