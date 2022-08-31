@@ -72,27 +72,33 @@ public class SrController {
 			System.out.println("C2_ID " + keyword);
 			List<ShoppingRecord> findAllToA1ByC2 = srDao.findALLByc2id(intKeyWord);
 			model.addAttribute("data", findAllToA1ByC2);
+			model.addAttribute("title","依「商家ID」查詢");
 
-			return "AdminSR-findby-c2";
+			return "AdminSR2";
 			// 卻認為客戶
 		} else if (2000000 <= intKeyWord) {
 			System.out.println("C1_ID " + keyword);
 			List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(intKeyWord);
 			model.addAttribute("data", findAllToA1ByC1);
-			return "AdminSR-findby-c1";
+			model.addAttribute("title","依「客戶ID」查詢");
+			return "AdminSR2";
 			// 卻認為其他
 		} else if (intKeyWord < 1000000) {
 			System.out.println(" str " + keyword);
 //			商品查找
 			List<ShoppingRecord> findByitemNameLike = SrService.findByitemNameLike(keyword);
 			model.addAttribute("data", findByitemNameLike);
-
+			model.addAttribute("title","依「商品名稱」查詢");
 			if (!findByitemNameLike.isEmpty()) {
 				System.err.println(" not id " + keyword);
-
-				return "AdminSR-findby-it-Name";
+				return "AdminSR2";
+			}else {
+				List<ShoppingRecord> findByC2NameLike = SrService.findByC2NameLike(keyword);
+				model.addAttribute("data", findByC2NameLike);
+				model.addAttribute("title","依「商店名稱」查詢");
+				return "AdminSR2";
 			}
-			return "AdminSR-findby-it-Name";
+			
 		}
 		model.addAttribute("data", null);
 		return "AdminSR2";
@@ -179,6 +185,7 @@ public class SrController {
 	private List<ShoppingRecord> findALLByc2id(Model model) {
 		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
 		Integer c2id = retailerSession.getRid();
+		System.out.println(c2id);
 		return srDao.findALLByc2id(c2id);
 	}
 
@@ -232,10 +239,9 @@ public class SrController {
 	}
 
 	@ResponseBody
-	@PostMapping("admin/record/dateforc2id") // findbyName
+	@PostMapping("admin/record/dateforc2id") 
 	private List<ShoppingRecord> findByc2idBetweenDay(@RequestBody DateDto dateDto, Model model) {
 
-//		
 		Retailer customerSession = ((Retailer) model.getAttribute("retailerLoginOk"));
 		Integer c2id = customerSession.getRid();
 		System.out.println(c2id);

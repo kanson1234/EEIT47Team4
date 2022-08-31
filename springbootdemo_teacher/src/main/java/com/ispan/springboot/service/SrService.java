@@ -40,6 +40,10 @@ public class SrService {
 	public List<ShoppingRecord> findByitemNameLike(String name) {
 		return SrDao.findByshophousebean_itemNameLike(name);
 	}
+	
+	public List<ShoppingRecord> findByC2NameLike(String name) {
+		return SrDao.findByC2NameLike(name);
+	}
 
 	public Boolean changeStste(Boolean setbool, Integer srid) {
 		if (setbool != null) {
