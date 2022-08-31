@@ -98,19 +98,37 @@
 				<c:forEach items="${shopHouseItem.message}" var="m">
 					<div class="row justify-content-center">
 						<div class="col-8">
-							<div class="card">
+
+		<div class="card">
 								<div class="card-header">
+									
 									留言人 <span>${m.customerMsg.cFirstName}顧客</span> 
 									留言時間 <span>${m.mdate}</span>
+									<script>
+										if(${m.mstate==true}){
+											111
+										}
+										
+									</script>
 								</div>
 								<div class="card-body">${m.mcontext}</div>
 								<div></div>
 							</div>
+							
+
+
+	
+	
+
+							
+							
+
 						</div>
 					</div>
 					<br />
 				</c:forEach>
 
+	
 				<form
 					action="${pageContext.request.contextPath}/ShopHouse/postMessages?SH_Item_Id=${shopHouseItem.id}"
 					method="post">
