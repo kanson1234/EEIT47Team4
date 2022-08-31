@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import com.ispan.springboot.dao.MessageDao;
@@ -34,8 +36,10 @@ public class MessageService {
 		return mDao.findAll();
 	}
 	//刪除
+	
+
 	public void deletemessage(Integer mid) {
-		mDao.deleteById(mid);
+		mDao.deleteMByMid(mid);
 	}
 	//根據留言內容搜尋
 	public List<Message> listAll(String keyword){
@@ -46,6 +50,11 @@ public class MessageService {
 		return mDao.findAllbyMsgcontext(keyword);
 		
 	}
+	//顯示true
+	public List<Message> getMessageTrue() {
+		  
+		  return mDao.showAllByStatus(true);
+		 }
 	
 
 	

@@ -16,7 +16,10 @@
 <main>
 <div class="container">
 	<div align='center'>
-	
+	<a
+						href="${pageContext.request.contextPath}/message/viewtrue">
+					可顯示的留言
+					</a>
 	
 	<form method="get" action="${pageContext.request.contextPath}/Message/getByMsgcontext">
 			<input type="text" name="keyword"/>
@@ -36,11 +39,11 @@
 			
 			<th>修改</th>
 			<th>刪除</th>
-			
+			<th>刪除</th>
 		</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${AllMessage}" var="m">
+			<c:forEach items="${Message}" var="m">
 				<tr>
 					
 					<td>${m.mdate}</td>
@@ -54,9 +57,12 @@
 					</a></td>
 					<td><a
 						href="${pageContext.request.contextPath}/message/delete/${m.mid}">
-					<button type="submit">刪除</button>
+					刪除
 					</a></td>
-					
+					<td><a
+						href="${pageContext.request.contextPath}/message/false/${m.mid}">
+					刪除
+					</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
