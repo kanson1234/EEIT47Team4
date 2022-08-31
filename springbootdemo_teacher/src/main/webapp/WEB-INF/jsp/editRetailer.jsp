@@ -65,7 +65,7 @@
 					<button type="submit" class="btn btn-lg btn-primary">送出</button>
 
 					<div>
-						<a href="${contextRoot}/Retailer/RetailerCRUD"> 回到查詢頁 </a>
+						<a href="${contextRoot}/Retailer/retailerInfoPage/${retailerLoginOk.rid}"> 回到資訊頁 </a>
 					</div>
 				</form>
 			</div>
