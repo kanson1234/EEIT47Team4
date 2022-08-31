@@ -8,7 +8,7 @@
 <head>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>後臺商品頁面</title>
 </head>
 <body>
 <div class="container" style="margin-left: 200px">

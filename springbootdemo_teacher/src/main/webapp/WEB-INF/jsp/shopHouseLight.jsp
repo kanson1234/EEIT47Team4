@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>照明設備</title>
 
 <style type="text/css">
 #div1, #div2, #div3 {
