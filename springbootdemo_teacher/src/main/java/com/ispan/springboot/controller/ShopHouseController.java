@@ -64,14 +64,12 @@ public class ShopHouseController {
 
 	// 新增商品
 	@PostMapping("/shopHouse/addItem")
-	public String addItem(@RequestParam("itemName") String itemName,
-			@RequestParam("file") MultipartFile itemImg, @RequestParam("itemPrice") double Price,
-			@RequestParam("classify") String classify, @RequestParam(name="State") boolean status,
-			@RequestParam("c2Id") Integer c2Id,HttpSession session) {
-		  
-		
+	public String addItem(@RequestParam("itemName") String itemName, @RequestParam("file") MultipartFile itemImg,
+			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
+			@RequestParam(name = "State") boolean status, @RequestParam("c2Id") Integer c2Id, HttpSession session) {
+
 //			Integer c2Id = ((Retailer)session.getAttribute("retailerLoginOk")).getRid();
-            try {
+		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
 			newShopHouse.setItemName(itemName);
 			newShopHouse.setItemImg(itemImg.getBytes());
@@ -148,16 +146,26 @@ public class ShopHouseController {
 			@RequestParam("itemPrice") double Price, @RequestParam("classify") String classify,
 			@RequestParam("state") boolean status, @RequestParam("c2Id") Integer c2Id, @RequestParam("id") Integer id,
 			Model model) {
+
+		    ShopHouseBean item = sService.findItemById(id);
+
 		try {
 			ShopHouseBean newShopHouse = new ShopHouseBean();
 
 			newShopHouse.setId(id);
 			newShopHouse.setItemName(itemName);
-			newShopHouse.setItemImg(itemImg.getBytes());
+//			newShopHouse.setItemImg(itemImg.getBytes());
+
+			if (itemImg.isEmpty()) {
+				newShopHouse.setItemImg(item.getItemImg());
+			} else {
+				newShopHouse.setItemImg(itemImg.getBytes());
+			}
+
 			newShopHouse.setPrice(Price);
 			newShopHouse.setClassify(classify);
 			newShopHouse.setStatus(status);
-			
+
 			newShopHouse.setC2Id(c2Id);
 //            System.out.println("111");
 			sService.addItem(newShopHouse);
@@ -176,32 +184,30 @@ public class ShopHouseController {
 	public String viewItemsPage(Model model) {
 
 //        rService.findById(pageNumber)
-        List<ShopHouseBean> show = sService.showBackAllItems();
+		List<ShopHouseBean> show = sService.showBackAllItems();
 		model.addAttribute("page", show);
 		return "shopHouseItems";
 	}
 
-    //後臺抓c2Id所有商品
+	// 後臺抓c2Id所有商品
 	@GetMapping("/ShopHouse/viewC2IdItems")
 	public String viewItemsByC2Id(HttpSession session, Model model) {
 		Integer c2Id = ((Retailer) session.getAttribute("retailerLoginOk")).getRid();
 		List<ShopHouseBean> c2IdItems = sService.findByC2Id(c2Id);
-        
+
 		model.addAttribute("c2IdItems", c2IdItems);
 		return "shopHouseC2IdItems";
 	}
-	
-	//c2Id後台下架商品列表
+
+	// c2Id後台下架商品列表
 	@GetMapping("/ShopHouse/viewC2IdBlockedItems")
 	public String viewItemsByC2IdBlocked(HttpSession session, Model model) {
 		Integer c2Id = ((Retailer) session.getAttribute("retailerLoginOk")).getRid();
 		List<ShopHouseBean> c2IdItems = sService.findByC2IdBlocked(c2Id);
-        
+
 		model.addAttribute("c2IdItems", c2IdItems);
 		return "shopHouseC2IdBlockedItems";
 	}
-	
-
 
 	// 前台分頁顯示商品
 	@GetMapping("/ShopHouse/FrontPageShopHouseItems")
@@ -216,7 +222,7 @@ public class ShopHouseController {
 //		model.addAttribute("allItems", allItems);
 //		
 //		return "FrontPageShopHouseItems";
-	
+
 	}
 
 	// 首頁顯示商品
@@ -226,18 +232,18 @@ public class ShopHouseController {
 		model.addAttribute("allNewItems", allNewItems);
 		return "index";
 	}
-	
 
 	// 模糊查詢
 	@GetMapping("/ShopHouse/findByKeyword")
-	public String findByKeyword(@RequestParam(name = "word", defaultValue = "") String word, Model model, HttpSession session) {
-		List<ShopHouseBean> keyword = sService.findByKeyword(word);		
+	public String findByKeyword(@RequestParam(name = "word", defaultValue = "") String word, Model model,
+			HttpSession session) {
+		List<ShopHouseBean> keyword = sService.findByKeyword(word);
 		model.addAttribute("keyword", keyword);
 		session.setAttribute("word", word);
 		return "FuzzySearchByWord";
 	}
-	
-	//模糊搜尋價格排序由大至小
+
+	// 模糊搜尋價格排序由大至小
 	@GetMapping("/ShopHouse/findByKeywordOrderByPrice")
 	public String findByKeywordOrderByPrice(@RequestParam(name = "word", defaultValue = "") String word, Model model) {
 //		String word = session.getAttribute(word).toString();
@@ -245,16 +251,16 @@ public class ShopHouseController {
 		model.addAttribute("higherPrice", lowerkeyword);
 		return "FuzzySearchByWord";
 	}
-	
-	//模糊搜尋價格排序由大至小
+
+	// 模糊搜尋價格排序由大至小
 	@GetMapping("/ShopHouse/findByKeywordOrderByPriceASC")
-	public String findByKeywordOrderByPriceASC(@RequestParam(name = "word", defaultValue = "") String word, Model model) {
+	public String findByKeywordOrderByPriceASC(@RequestParam(name = "word", defaultValue = "") String word,
+			Model model) {
 //		String word = session.getAttribute(word).toString();
 		List<ShopHouseBean> lowerkeyword = sService.findByKeywordOrderByPriceASC(word);
 		model.addAttribute("lowerPrice", lowerkeyword);
 		return "FuzzySearchByWord";
 	}
-	
 
 	// 種類搜尋
 	@GetMapping("/ShopHouse/findByClassify")
@@ -332,12 +338,9 @@ public class ShopHouseController {
 	public String sortByClassifyPriceDesc(@RequestParam("classify") String classify, Model model) {
 		List<ShopHouseBean> classifyHigherPrice = sService.sortByClassifyPriceDesc(classify);
 
-
 		model.addAttribute("classifyHigherPrice", classifyHigherPrice);
 		return "shopHouseClothes";
 	}
-
-
 
 	// 帳篷價格排序由小至大
 	@GetMapping("/ShopHouse/classifyLowerPriceTent")
@@ -374,7 +377,7 @@ public class ShopHouseController {
 		model.addAttribute("classifyHigherPrice", classifyHigherPrice);
 		return "shopHouseBackpack";
 	}
-	
+
 	// 燈價格排序由小至大
 	@GetMapping("/ShopHouse/classifyLowerPriceLight")
 	public String lightSortByClassifyPriceAsc(@RequestParam("classify") String classify, Model model) {
@@ -410,15 +413,15 @@ public class ShopHouseController {
 		model.addAttribute("lowerPrice", lowerPrice);
 		return "FrontPageShopHouseItems";
 	}
-	
-	//改變狀態為o
+
+	// 改變狀態為o
 	@GetMapping("/ShopHouse/changeStatusF/{id}")
 	public String ChangeStatusById(@PathVariable Integer id) {
 		sService.ChangeStatusById(false, id);
 		return "redirect:/ShopHouse/viewC2IdItems";
 	}
-	
-	//改變狀態為1
+
+	// 改變狀態為1
 	@GetMapping("/ShopHouse/changeStatusT/{id}")
 	public String ChangeStatusToTrueById(@PathVariable Integer id) {
 		sService.ChangeStatusById(true, id);
