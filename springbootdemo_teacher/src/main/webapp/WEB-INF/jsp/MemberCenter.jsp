@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!doctype html>
 <html lang="en">
 
@@ -95,11 +96,53 @@
 									
 									<a href="${pageContext.request.contextPath}/retailerGetAllItem?id=${findall.shophousebean.retailerBean.rid}">${findall.shophousebean.retailerBean.rName} </a>
 										</td>
+
+
+
+
 									<c:if test="${findall.srState==true}">
-										<td style="vertical-align: middle; text-align: center;">成交</td>
+										<td style="vertical-align: middle; text-align: center;">
+											<div>成交</div>
+											<div id="SRID${findall.srShoppingRecord_Id}"></div>
+											<Script>
+												var day1 = new Date("${findall.srtime}");
+												var tt=day1.getTime();
+												day1.setTime(tt+(86400000*7))
+												var day2 = new Date();
+												if (day1>day2) {
+													$("#SRID${findall.srShoppingRecord_Id}")[0].innerHTML = '<button onclick="' + "alert('將為您通知廠商申請退貨')" + '">申請退貨</button>';
+												}
+												
+											</Script>		
+										
+										
+										
+										</td>
 									</c:if>
 									<c:if test="${findall.srState==false}">
-										<td style="vertical-align: middle; text-align: center;">待退款</td>
+									<td style="vertical-align: middle; text-align: center;">
+										<div>以申請退貨</div>
+										<!-- <div id="SRID${findall.srShoppingRecord_Id}"></div> -->
+										 	<!-- <jsp:useBean id="now" class="java.util.Date"  /> 
+										 	<fmt:formatDate var="year" value="${now}" pattern="yyyy:MM:dd" /> 
+											<p>現在日期: ${year}</p>
+											<script>
+
+												console.log(typeof "${now}" )
+											</script>  -->
+										<!-- <Script>
+											var day1 = new Date("${findall.srtime}");
+											var tt=day1.getTime();
+											day1.setTime(tt+(86400000*7))
+											var day2 = new Date();
+											if (day1>day2) {
+												$("#SRID${findall.srShoppingRecord_Id}")[0].innerHTML = '<button onclick="' + "alert('將為您通知廠商申請退貨')" + '">申請退貨</button>';
+											}
+											
+										</Script>				 -->
+										
+									</td>
+									
 									</c:if>
 								</tr>
 							</c:forEach>
