@@ -62,6 +62,8 @@ public class Customer {
 
 	@Column(name = "c1_status")
 	private boolean cStatus;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customerMsg", cascade = CascadeType.ALL)
+	private Set<Message> Message = new LinkedHashSet<Message>();
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = CascadeType.ALL)
 	private Set<ShoppingRecord> SR = new LinkedHashSet<>();

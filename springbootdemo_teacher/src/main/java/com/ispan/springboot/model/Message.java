@@ -41,13 +41,15 @@ public class Message {
 	}
 
 	@Column(name = "Msg_State", nullable = true, columnDefinition = "boolean default true")
-	private boolean mstate;
+	private Boolean mstate;
 
 	@Column(name = "Msg_C1C2_Status")
 	private boolean mstatec;
 
-	@Column(name = "CS_Id")
-	private Integer msid;
+//	@Column(name = "CS_Id")
+//	private Integer msid;
+	
+	
 
 	@Column(name = "CR_Id")
 	private Integer mrid;
@@ -59,18 +61,22 @@ public class Message {
 	@ManyToOne(fetch = FetchType.EAGER/* ,targetEntity = ShopHouseBean.class */)
 	@JoinColumn(name = "SH_Item_Id"/* ,referencedColumnName = "SH_Item_Id" */)
 	private ShopHouseBean shopHouseBean;
+	
+	@ManyToOne(fetch = FetchType.EAGER/* ,targetEntity = Customer.class */)
+	@JoinColumn(name = "CS_Id"/* ,referencedColumnName = "c1_id" */)
+	private Customer customerMsg;
 //	==============================================================================================================
 
-	public Message(Integer mid, String mcontext, Date mdate, boolean mstate, boolean mstatec, Integer msid,
-			Integer mrid, ShopHouseBean shopHouseBean) {
+	public Message(Integer mid, String mcontext, Date mdate ,boolean mstate, boolean mstatec, 
+			Integer mrid,Customer customerMsg, ShopHouseBean shopHouseBean) {
 		super();
 		this.mid = mid;
 		this.mcontext = mcontext;
-		this.mdate = mdate;
+		this.mdate=mdate;
 		this.mstate = mstate;
 		this.mstatec = mstatec;
-		this.msid = msid;
 		this.mrid = mrid;
+		this.customerMsg = customerMsg;
 		this.shopHouseBean = shopHouseBean;
 	}
 
@@ -120,13 +126,14 @@ public class Message {
 		this.mstatec = mstatec;
 	}
 
-	public Integer getMsid() {
-		return msid;
-	}
-
-	public void setMsid(Integer msid) {
-		this.msid = msid;
-	}
+//	public Integer getMsid() {
+//		return msid;
+//	}
+//
+//	public void setMsid(Integer msid) {
+//		this.msid = msid;
+//	}
+	
 
 	public Integer getMrid() {
 		return mrid;
@@ -143,10 +150,19 @@ public class Message {
 //	public void setMshid(Integer mshid) {
 //		this.mshid = mshid;
 //	}
+	
+	public Customer getCustomerMsg() {
+		return customerMsg;
+	}
 
+	public void setCustomerMsg(Customer customerMsg) {
+		this.customerMsg = customerMsg;
+	}
 	public ShopHouseBean getShopHouseBean() {
 		return shopHouseBean;
 	}
+
+	
 
 	public void setShopHouseBean(ShopHouseBean shopHouseBean) {
 		this.shopHouseBean = shopHouseBean;

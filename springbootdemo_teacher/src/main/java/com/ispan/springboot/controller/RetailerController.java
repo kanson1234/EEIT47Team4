@@ -244,9 +244,8 @@ public class RetailerController {
 			@RequestParam("rLogo") MultipartFile rLogo, @RequestParam("rPhoto") MultipartFile rPhoto,
 			@RequestParam("rInfo") String rInfo, Model model) {
 		Retailer retailersession = (Retailer) model.getAttribute("retailerLoginOk");
-		try {
-			Map<String, String> errors = new HashMap<String, String>();
-			model.addAttribute("errors", errors);
+		Map<String, String> errors = new HashMap<String, String>();
+		model.addAttribute("errors", errors);
 
 			if (rN == null || rN.length() == 0) {
 				errors.put("rName", "姓名不得為空!");
@@ -268,26 +267,38 @@ public class RetailerController {
 				errors.put("rInfo", "請輸入商家描述!");
 			}
 
-			if (rLogo.getBytes() == null) {
-				errors.put("rLogo", "請選擇一張商家Logo!");
-			}
-
-			if (rPhoto.getBytes() == null) {
-				errors.put("rPhoto", "請選擇商家照片!");
-			}
+//			if (rLogo.getBytes() == null) {
+//				errors.put("rLogo", "請選擇一張商家Logo!");
+//			}
+//
+//			if (rPhoto.getBytes() == null) {
+//				errors.put("rPhoto", "請選擇商家照片!");
+//			}
 
 			if (errors != null && !errors.isEmpty()) {
 				return "registerR";
 			}
-			Retailer r = new Retailer();
+			try {
+//			Retailer r = new Retailer();
+			Retailer r = rService.findById(id);
 			r.setRid(id);
 			r.setrName(rN);
 			r.setRaccount(ra);
 			r.setRpwd(rpw);
 			r.setRphone(rph);
 			r.setRstate(true);
-			r.setRphoto(rPhoto.getBytes());
-			r.setRlogo(rLogo.getBytes());
+			if (rPhoto.isEmpty()) {
+				r.setRphoto(r.getRphoto());
+			} else {
+				r.setRphoto(rPhoto.getBytes());
+			}
+			if (rLogo.isEmpty()) {
+				r.setRlogo(r.getRlogo());
+			} else {
+				r.setRlogo(rLogo.getBytes());
+			}
+//			r.setRphoto(rPhoto.getBytes());
+//			r.setRlogo(rLogo.getBytes());
 			r.setRinfo(rInfo);
 			rService.insertRetailer(r);
 			return "redirect:/Retailer/retailerInfoPage/" + retailersession.getRid();

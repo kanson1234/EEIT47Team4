@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>功能背包</title>
 
 <style type="text/css">
 #div1, #div2, #div3 {

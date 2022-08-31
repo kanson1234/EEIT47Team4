@@ -145,7 +145,7 @@ public class ScController {
 			newSR.setSrState(true);
 			ShoppingRecord success = SrService.addSR(newSR);
 //			======================================================
-//			scDao.deleteByC1id(cid);
+			scDao.deleteByC1id(cid);
 //			======================================================
 
 		}

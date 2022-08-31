@@ -34,7 +34,7 @@ body {font-family: "Roboto", sans-serif}
    style="width: 100%; font-size: 22px">Close Menu</a>
   <div class="w3-container">
    <h3 class="w3-padding-64" style="margin-top:100px;">
-    <b>商家後台</b>
+    <b>顧客中心</b>
    </h3>
   </div>
   <div class="w3-bar-block">

@@ -7,7 +7,7 @@
 <head>
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>種類搜尋</title>
 </head>
 <body>
 <div class="container">
