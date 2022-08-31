@@ -79,7 +79,7 @@
 									type="submit" class="btn btn-primary mb-2">編輯</button></a></td>
 							<td><a onclick="return confirm('確認下架?')"
 							href="${pageContext.request.contextPath}/ShopHouse/changeStatusF/${i.id}">
-								<button type="submit" class="btn btn-danger">刪除</button></a></td>
+								<button type="submit" class="btn btn-danger">下架</button></a></td>
 						
 					</tr>
 				</c:forEach>

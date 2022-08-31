@@ -141,8 +141,8 @@ h2::before {
 
 	//快速登入
 	$(".fastLogin").click(function() {
-		$("#floatingInput").val("A1_1_A");
-		$("#floatingPassword").val("A1_1_P");
+		$("#floatingInput").val("123@gmail.com");
+		$("#floatingPassword").val("12345");
 	});
 
 	//取消按鈕返回上頁
