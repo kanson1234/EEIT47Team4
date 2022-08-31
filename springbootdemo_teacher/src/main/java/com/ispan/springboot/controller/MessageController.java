@@ -123,7 +123,7 @@ public class MessageController {
 
 //		 刪除()
 	@GetMapping("/message/delete/{mid}")
-	public String deletemessageById(@PathVariable Integer mid, Model model) {
+	public String deletemessageById(@PathVariable Integer mid) {
 		mService.deletemessage(mid);
 	    
 		System.out.println("--------------------------------------------"+mid);
@@ -139,5 +139,51 @@ public class MessageController {
 			model.addAttribute("AllMessage", list);
 			return "allmessage";
 		}
+		// 進改狀態
+		@GetMapping("/message/false/{mid}")
+		public String falseMessagePage(@PathVariable Integer mid, Model model) {
+			Message newMsg = mService.findMessageById(mid);
+
+			model.addAttribute("Message", newMsg);
+			return "falseMessage";
+		}
+		// 改狀態
+		@PostMapping("/message/false")
+		public String falseMessagePost(@RequestParam("id") Integer mid, @RequestParam("newmcontext") String mcontext,
+				@RequestParam("rid") Integer mrid, @RequestParam("SH_Item_Id") Integer SH_Item_Id, 
+				@RequestParam("CS_Id") Integer CS_Id,Model model) {
+			ShopHouseBean shopHouseBean = new ShopHouseBean();
+			shopHouseBean.setId(SH_Item_Id);
+			Customer customerMsg = new Customer();
+			customerMsg.setcId(CS_Id);
+
+			Message newMsg = new Message();
+			Date d = new Date();
+			newMsg.setMid(mid);
+			newMsg.setMcontext(mcontext);
+			newMsg.setMstate(false);
+			newMsg.setMstatec(true);
+			newMsg.setCustomerMsg(customerMsg);
+
+			newMsg.setMrid(mrid);
+			newMsg.setMdate(d);
+
+			newMsg.setShopHouseBean(shopHouseBean);
+
+			mService.insertMessage(newMsg);
+			List<Message> all = mService.findAllmessage();
+			model.addAttribute("AllItem", all);
+
+			return "redirect:/message/view";
+		}
+		// 看沒被隱藏的留言
+		@GetMapping("/message/viewtrue")
+		public String showMessageTrue(Model model) {
+			
+			List<Message> list = mService.getMessageTrue();
+			model.addAttribute("Message", list);
+			return "ViewMessage";
+		}
+		
 	
 }
