@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.Retailer;
 @Repository
 public interface RetailerDao extends JpaRepository<Retailer, Integer> {
@@ -32,5 +33,9 @@ public interface RetailerDao extends JpaRepository<Retailer, Integer> {
  @Modifying
  @Query(value="update Retailer set C2_State = :rstate where C2_Id =:rid", nativeQuery = true)
  public void changeStatusById(@Param("rstate") boolean state,@Param("rid") Integer id);
+ 
+//找重複
+	@Query("from Retailer where raccount=:raccount")
+	public List<Retailer> findAllByAccount(@Param("raccount") String rAccount);
  
 }

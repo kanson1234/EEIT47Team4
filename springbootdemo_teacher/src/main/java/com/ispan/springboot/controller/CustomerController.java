@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -396,16 +397,6 @@ public class CustomerController {
 		return "allCustomer";
 	}
 
-	// Ajax驗證帳號
-	@GetMapping("/checkAccount/{account}")
-	public boolean checkAccount(@PathVariable String cAccount) {
-		Customer findCustomerAccount = customerService.findCustomerAccount(cAccount);
-		if (findCustomerAccount != null) {
-			return false;
-		}
-		return true;
-	}
-
 	// 找未停權會員
 	@GetMapping("/customer/findTrue")
 	public String findTrueCustomer(Model model) {
@@ -452,6 +443,16 @@ public class CustomerController {
 
 			return "CustomerBlockList";
 		}
+	}
+
+	// Ajax帳號驗證
+	@GetMapping("/checkaccount/{cAccount}")
+	@ResponseBody
+	public boolean getCustomerByAccount(@PathVariable String cAccount) {
+		List<Customer> registerCustomer = customerService.findAllByAccount(cAccount);
+
+		boolean empty = registerCustomer.isEmpty();
+		return !empty;
 	}
 
 }
