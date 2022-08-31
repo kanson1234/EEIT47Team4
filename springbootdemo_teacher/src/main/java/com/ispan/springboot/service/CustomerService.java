@@ -66,13 +66,18 @@ public class CustomerService {
 		return cDao.findAccountAndEmail(cAccount, cEmail);
 	}
 
-	//找有權
+	// 找有權
 	public List<Customer> findCustomerByTrue() {
 		return cDao.findByStatus(true);
 	}
-	
-	//找停權
+
+	// 找停權
 	public List<Customer> findCustomerByFalse() {
 		return cDao.findByStatus(false);
+	}
+
+	// 找重複註冊
+	public List<Customer> findAllByAccount(String cAccount) {
+		return cDao.findAllByAccount(cAccount);
 	}
 }
