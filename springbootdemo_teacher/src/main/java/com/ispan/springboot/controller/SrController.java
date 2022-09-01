@@ -190,11 +190,11 @@ public class SrController {
 
 //	@ResponseBody
 //	// find all sr to C2
-//	@GetMapping("/Admin/Chart") // findbyc2id
-//	private List<?> Chart() {
-//		
-//		return SrService.chartjsA1();
-//	}
+	@GetMapping("/Admin/Chart") // findbyc2id
+	private String Chart() {
+		
+		return "chartjsA1";
+	}
 
 	@ResponseBody
 	// find all sr to C2
