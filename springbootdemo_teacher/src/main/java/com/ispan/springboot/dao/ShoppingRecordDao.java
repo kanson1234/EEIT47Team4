@@ -114,12 +114,35 @@ public interface ShoppingRecordDao extends JpaRepository<ShoppingRecord, Integer
 	
 	@Transactional
 	@Modifying
-	@Query(value = "DELETE FROM [dbo].[ShoppingRecord]\r\n"
+	@Query(value = "DELETE FROM [dbo].[ShoppingRecord]"
 			+ "WHERE SR_ShoppingRecord_Id= :srid ", nativeQuery = true)
 	public void deleteBySR(@Param("srid") Integer srid);
 	
 	
+	@Transactional
+	@Modifying
+	@Query(value = "SELECT * FROM"
+			+ "[ShoppingRecord] AS SR "
+			+ "INNER JOIN [StoreHouse]  As SH "
+			+ "ON SR.SH_Item_Id   = SH.SH_Item_Id "
+			+ "INNER JOIN [Retailer] AS R "
+			+ "ON R.C2_Id=SH.C2_Id "
+			+ "AND R.C2_Id= :c2id "
+			+ "AND SR.SR_State=0"
+			+ "AND SR_Time BETWEEN :day1 AND :day2 ", nativeQuery = true)
+	public  List<ShoppingRecord> c2RTG(@Param("c2id") Integer c2id,@Param("day1") String day1,
+			@Param("day2") String day2);
 	
+	
+//	@Query(value = "SELECT R.rName, SUM(srTotalPrice)"
+//			+ "FROM"
+//			+ "ShoppingRecord AS SR"
+//			+ "JOIN ShopHouseBean  As SH JOIN Retailer AS R"
+//			+ "WHERE SR.shophousebean = SH.id"
+//			+ "and R.rid=SH.c2Id"
+//			+ "GROUP BY R.rid")
+//	public List<?> chartjsA1();
+//	
 	
 	
 	

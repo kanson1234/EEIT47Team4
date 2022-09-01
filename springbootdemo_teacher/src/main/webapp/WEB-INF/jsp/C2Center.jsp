@@ -374,6 +374,31 @@
 								console.log("${pageContext.request.contextPath}= "+"/Member/RTG?srid=")
 								
 								$( document ).ready(function() {
+									
+									$.ajax({
+										url:'${pageContext.request.contextPath}/c2RTG',
+										dataType: 'text',
+										method:'get',
+										success: function (result ) {
+											var a='F'
+											if (result==a) {
+												$.alert({
+															title:'您有尚未處裡的退貨要求',
+															content:""
+														});
+												
+											}
+											
+										}
+									})
+
+
+
+
+
+
+
+
 									$(".123").click(function () { 
 										var srd1= $(this).parent().find("#SRD").text();
 										var srl1= $(this).parent().parent().parent();

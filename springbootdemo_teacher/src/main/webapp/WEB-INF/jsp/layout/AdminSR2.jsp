@@ -48,9 +48,8 @@
 			<jsp:include page="${pageContext.request.contextPath}/layout/Sidebar.jsp" />
 			<!-- AdminSideBar -->
 
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 " style="margin-right: 30px;">
 				<!-- outputbar -->
-				<jsp:include page="${pageContext.request.contextPath}/AdminBar/outputbar.jsp" />
 				<!-- outputbar -->
 
 				<div

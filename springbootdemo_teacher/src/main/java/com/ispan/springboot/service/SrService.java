@@ -33,6 +33,10 @@ public class SrService {
 		return SrDao.findBysrStateTrue();
 	}
 
+//	public List<?> chartjsA1() {
+//		return SrDao.chartjsA1();
+//	}
+
 	public List<ShoppingRecord> findBysrStateFalse() {
 		return SrDao.findBysrStateFalse();
 	}
@@ -41,6 +45,10 @@ public class SrService {
 		return SrDao.findByshophousebean_itemNameLike(name);
 	}
 	
+	public List<ShoppingRecord> c2RTG(Integer c2id ,String day1,String day2) {
+		return SrDao.c2RTG(c2id, day1, day2);
+	}
+
 	public List<ShoppingRecord> findByC2NameLike(String name) {
 		return SrDao.findByC2NameLike(name);
 	}
@@ -53,7 +61,7 @@ public class SrService {
 		}
 		return true;
 	}
-	
+
 	public Boolean rejectRTG(Integer srid) {
 		try {
 			SrDao.rejectRTG(srid);
@@ -62,7 +70,7 @@ public class SrService {
 		}
 		return true;
 	}
-	
+
 	public Boolean deleteBySR(Integer srid) {
 		try {
 			SrDao.deleteBySR(srid);
@@ -71,9 +79,7 @@ public class SrService {
 		}
 		return true;
 	}
-	
-	
-	
+
 	public Boolean changeStste(Boolean setbool, Integer srid) {
 		if (setbool != null) {
 			SrDao.changeStste(setbool, srid);

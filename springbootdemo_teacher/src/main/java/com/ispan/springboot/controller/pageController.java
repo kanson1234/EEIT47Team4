@@ -129,4 +129,5 @@ public class pageController {
 	public String resetPassword() {
 		return "forgotPwdEmailUpdate";
 	}
+	
 }
