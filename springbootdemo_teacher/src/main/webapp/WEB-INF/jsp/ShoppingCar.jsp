@@ -153,7 +153,6 @@
 																method: 'post',
 																data: JSONsc,
 																success: function (result) {
-																	alert(result)
 																	$('#ECPAY').append(result)
 																	
 																}
