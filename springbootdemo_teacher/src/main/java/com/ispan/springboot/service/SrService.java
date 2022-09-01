@@ -45,6 +45,35 @@ public class SrService {
 		return SrDao.findByC2NameLike(name);
 	}
 
+	public Boolean returnTheGoods(Integer srid) {
+		try {
+			SrDao.returnTheGoods(srid);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public Boolean rejectRTG(Integer srid) {
+		try {
+			SrDao.rejectRTG(srid);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public Boolean deleteBySR(Integer srid) {
+		try {
+			SrDao.deleteBySR(srid);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
+	
+	
 	public Boolean changeStste(Boolean setbool, Integer srid) {
 		if (setbool != null) {
 			SrDao.changeStste(setbool, srid);

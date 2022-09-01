@@ -95,6 +95,29 @@ public interface ShoppingRecordDao extends JpaRepository<ShoppingRecord, Integer
 	public List<ShoppingRecord> findallbyItNameToC2(@Param("c2id") Integer c2id, @Param("name") String name);
 	
 	
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE [dbo].[ShoppingRecord]"
+			+ "SET "
+			+ "[SR_State] =  0"
+			+ "WHERE  SR_ShoppingRecord_Id= :srid ", nativeQuery = true)
+	public void returnTheGoods(@Param("srid") Integer srid);
+
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE [dbo].[ShoppingRecord]"
+			+ "SET "
+			+ "[SR_State] =  1"
+			+ "WHERE  SR_ShoppingRecord_Id= :srid ", nativeQuery = true)
+	public void rejectRTG(@Param("srid") Integer srid);
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value = "DELETE FROM [dbo].[ShoppingRecord]\r\n"
+			+ "WHERE SR_ShoppingRecord_Id= :srid ", nativeQuery = true)
+	public void deleteBySR(@Param("srid") Integer srid);
+	
 	
 	
 	

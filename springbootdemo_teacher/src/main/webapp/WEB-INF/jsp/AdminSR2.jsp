@@ -202,7 +202,7 @@
 							<c:forEach items="${data}" var="findall">
 									<td style="vertical-align: middle; text-align: center; display:none;" >${findall.srShoppingRecord_Id} </td>
 									<td style="vertical-align: middle; text-align: center;">${findall.customer.cId}</td>
-									<td style="vertical-align: middle; text-align: center;"><fmt:formatDate	pattern="yyyy/MM/dd HH:mm:ss" value="${findall.srtime}" /></td>
+									<td style="vertical-align: middle; text-align: center;"><fmt:formatDate	pattern="yyyy/MM/dd" value="${findall.srtime}" /></td>
 									<td style="vertical-align: middle; text-align: center;">${findall.srCount}</td>
 									<td style="vertical-align: middle; text-align: center;">${findall.shophousebean.id}	</td>
 									<td style="vertical-align: middle; text-align: center;">${findall.shophousebean.itemName}</td>

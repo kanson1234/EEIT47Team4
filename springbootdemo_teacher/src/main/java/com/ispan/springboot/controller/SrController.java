@@ -44,7 +44,6 @@ public class SrController {
 
 	@GetMapping("/Member/MemberCenter")
 	public String MemberCenter(Model model) {
-
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
 		Integer cid = customerSession.getcId();
 
@@ -113,6 +112,18 @@ public class SrController {
 		return findAllToA1;
 	}
 
+
+	@GetMapping("/RetailerCenter")
+	public String gotoC2page(Model model) {
+		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
+		Integer c2id = retailerSession.getRid();
+		System.out.println(c2id);
+		List<ShoppingRecord> findALLByc2id = srDao.findALLByc2id(c2id);
+		model.addAttribute("data", findALLByc2id);
+		return "C2Center";
+	}
+
+	
 //========================================================================================================================================================
 //========================================================================================================================================================
 //========================================================================================================================================================
@@ -178,6 +189,13 @@ public class SrController {
 		}
 
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	@ResponseBody
 	// find all sr to C2
@@ -195,11 +213,31 @@ public class SrController {
 		return SrService.findBysrStateTrue();
 	}
 
-	@ResponseBody
-	@GetMapping("record/SRFalse") // 待退款
-	private List<ShoppingRecord> findBysrStateSRFalse() {
-		return SrService.findBysrStateFalse();
+	
+	@GetMapping("/Member/RTG") // 待退款
+	private String returnTheGoods(@RequestParam(name = "srid") Integer srid,Model model ) {
+		
+		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
+		Integer cid = customerSession.getcId();
+		System.out.println(cid);
+		SrService.returnTheGoods(srid);
+		
+		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
+		model.addAttribute("data", findAllToA1ByC1);
+		return "MemberCenter";
 	}
+	@ResponseBody
+	@GetMapping("/C2/rejectRTG") //拒絕退款
+	private Boolean returnTheGoods(@RequestParam(name = "srid") Integer srid) {
+		return SrService.rejectRTG(srid);
+	}
+	
+	@ResponseBody
+	@GetMapping("/C2/deleteBySR") //退款刪除紀錄
+	private Boolean SRdelete(@RequestParam(name = "srid") Integer srid) {
+		return SrService.deleteBySR(srid);
+	}
+	
 
 	@ResponseBody
 	@GetMapping("/admin/record/byName") // findbyName
