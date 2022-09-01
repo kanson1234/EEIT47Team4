@@ -106,7 +106,7 @@
 
 									<td style="vertical-align: middle;">${findall.customer.cId}</td>
 									<td style="vertical-align: middle;"><fmt:formatDate
-											pattern="yyyy/MM/dd HH:mm:ss" value="${findall.srtime}" /></td>
+											pattern="yyyy/MM/dd" value="${findall.srtime}" /></td>
 
 
 									<td style="vertical-align: middle;">${findall.srCount}</td>

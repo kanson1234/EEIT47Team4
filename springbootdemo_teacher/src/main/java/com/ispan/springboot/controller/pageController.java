@@ -129,12 +129,4 @@ public class pageController {
 	public String resetPassword() {
 		return "forgotPwdEmailUpdate";
 	}
-	
-
-
-	@GetMapping("/RetailerCenter")
-	public String gotoC2page() {
-		return "C2Center";
-	}
-
 }
