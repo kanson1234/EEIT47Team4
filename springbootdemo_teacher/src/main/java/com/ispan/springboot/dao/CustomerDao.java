@@ -41,5 +41,9 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
 	// 找特定狀態
 	@Query("from Customer where cStatus=:cStatus")
 	public List<Customer> findByStatus(@Param("cStatus") boolean cStatus);
+	
+	//找重複
+	@Query("from Customer where cAccount=:cAccount")
+	public List<Customer> findAllByAccount(@Param("cAccount") String cAccount);
 
 }

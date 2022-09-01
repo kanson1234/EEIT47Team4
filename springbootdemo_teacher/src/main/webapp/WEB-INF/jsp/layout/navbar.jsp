@@ -102,10 +102,10 @@ button {
 <%--      href="${contextRoot}/Admin/SalesRecord3">後臺管理 <span --%>
 <!--       class="sr-only">(current)</span> -->
 <!--     </a></li> -->
-    <li class="nav-item active"><a class="nav-link"
-     href="${contextRoot}/RetailerCenter">商家中心 <span
-      class="sr-only">(current)</span>
-    </a></li>
+<!--     <li class="nav-item active"><a class="nav-link" -->
+<%--      href="${contextRoot}/RetailerCenter">商家中心 <span --%>
+<!--       class="sr-only">(current)</span> -->
+<!--     </a></li> -->
 
 
 

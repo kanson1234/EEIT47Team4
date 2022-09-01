@@ -5,6 +5,7 @@
 <jsp:include page="layout/navbar.jsp" />
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>會員註冊</title>
@@ -84,7 +85,7 @@ h2::before {
 						onchange="checkcLastName()">
 					<p style="color: red;">${errors.cLastName}</p>
 					<label class="form-label">帳號:</label> <span style="font-size: 15px"
-						id="checktext0"></span><input type="text" placeholder="請輸入帳號"
+						id="show"></span><input type="text" placeholder="請輸入帳號"
 						class="form-control" name="cAccount" id="cAccount"
 						onchange="checkcAccount()">
 					<p style="color: red;">${errors.cAccount}</p>
@@ -114,7 +115,7 @@ h2::before {
 				<div align="center">
 					<button type="submit" class="btn btn-lg btn-primary" id="create">註冊</button>
 					<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
-					<br><br>
+					<br> <br>
 					<button type="button" class="btn btn-outline-info fastRegister">小敏</button>
 				</div>
 
@@ -140,18 +141,28 @@ h2::before {
 		});
 
 		//檢測帳戶重複
-		function checkAccount() {
+		function checkcAccount() {
 			const account = document.getElementById("cAccount").value;
 			console.log(account);
+			
+			if(account==''){
+				$("#show").html("帳號不得為空！").css('color', 'red');
+			}
+			
 			$.ajax({
-				url : "${contextRoot}/checkAccount/" + account.value,
+				url : "${contextRoot}/checkaccount/" + account,
+				type : 'get',
+				ContentType : 'application/json;charset=utf-8',
+				dataType : 'json',
 				success : function(result) {
 					if (result) {
-						alert("帳號重複");
+						$("#show").html("該帳號已存在！").css('color', 'red');
+					} else {
+						$("#show").html("帳號可使用√").css('color', 'green');
 					}
 				}
-
 			});
+
 		}
 
 		$('#imgInp').change(function() {
@@ -176,19 +187,19 @@ h2::before {
 		//-------以下為前端提前驗證
 
 		//帳號
-		function checkcAccount() {
-			var check = false;
-			var cAccount = document.getElementById("cAccount").value;
-			console.log("cAccount" + cAccount);
-			if (cAccount == "") {
-				$('#checktext0').html('請輸入帳號').css('color', 'red');
-				check = false;
-			} else {
-				$('#checktext0').html('√').css('color', 'green');
-				check = true;
-			}
-			return check;
-		}
+// 				function checkcAccount() {
+// 					var check = false;
+// 					var cAccount = document.getElementById("cAccount").value;
+// 					console.log("cAccount" + cAccount);
+// 					if (cAccount == "") {
+// 						$('#checktext0').html('請輸入帳號').css('color', 'red');
+// 						check = false;
+// 					} else {
+// 						$('#checktext0').html('√').css('color', 'green');
+// 						check = true;
+// 					}
+// 					return check;
+// 				}
 
 		//密碼
 		function checkPwd() {

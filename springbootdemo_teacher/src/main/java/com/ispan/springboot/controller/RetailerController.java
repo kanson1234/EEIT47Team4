@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ispan.springboot.dao.ShopHouseDao;
+import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.Retailer;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.service.RetailerService;
@@ -247,25 +249,25 @@ public class RetailerController {
 		Map<String, String> errors = new HashMap<String, String>();
 		model.addAttribute("errors", errors);
 
-			if (rN == null || rN.length() == 0) {
-				errors.put("rName", "姓名不得為空!");
-			}
+		if (rN == null || rN.length() == 0) {
+			errors.put("rName", "姓名不得為空!");
+		}
 
-			if (ra == null || ra.length() == 0) {
-				errors.put("rAccount", "請輸入您的帳號!");
-			}
+		if (ra == null || ra.length() == 0) {
+			errors.put("rAccount", "請輸入您的帳號!");
+		}
 
-			if (rpw == null || rpw.length() == 0) {
-				errors.put("rPwd", "請輸入您的密碼!");
-			}
+		if (rpw == null || rpw.length() == 0) {
+			errors.put("rPwd", "請輸入您的密碼!");
+		}
 
-			if (rph == null || rph.length() == 0) {
-				errors.put("rPhone", "請輸入電話!");
-			}
+		if (rph == null || rph.length() == 0) {
+			errors.put("rPhone", "請輸入電話!");
+		}
 
-			if (rInfo == null || rInfo.length() == 0) {
-				errors.put("rInfo", "請輸入商家描述!");
-			}
+		if (rInfo == null || rInfo.length() == 0) {
+			errors.put("rInfo", "請輸入商家描述!");
+		}
 
 //			if (rLogo.getBytes() == null) {
 //				errors.put("rLogo", "請選擇一張商家Logo!");
@@ -275,10 +277,10 @@ public class RetailerController {
 //				errors.put("rPhoto", "請選擇商家照片!");
 //			}
 
-			if (errors != null && !errors.isEmpty()) {
-				return "registerR";
-			}
-			try {
+		if (errors != null && !errors.isEmpty()) {
+			return "registerR";
+		}
+		try {
 //			Retailer r = new Retailer();
 			Retailer r = rService.findById(id);
 			r.setRid(id);
@@ -313,5 +315,15 @@ public class RetailerController {
 		Retailer rInfo = rService.findById(id);
 		return rInfo;
 
+	}
+
+	// Ajax帳號驗證
+	@GetMapping("/checkrAccount/{rAccount}")
+	@ResponseBody
+	public boolean getRetailerByAccount(@PathVariable String rAccount) {
+		List<Retailer> registerRetailer = rService.findAllByAccount(rAccount);
+
+		boolean empty = registerRetailer.isEmpty();
+		return !empty;
 	}
 }

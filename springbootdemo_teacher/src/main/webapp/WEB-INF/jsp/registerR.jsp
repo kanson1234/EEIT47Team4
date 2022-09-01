@@ -82,7 +82,7 @@ h2::before {
 						onchange="checkrName()" />
 					<p style="color: red;">${errors.rName}</p>
 					<label class="form-label">帳號:</label><span style="font-size: 15px"
-						id="checktext2"></span><input type="text" class="form-control"
+						id="show"></span><input type="text" class="form-control"
 						placeholder="請輸入帳號" name="rAccount" id="rAccount"
 						onchange="checkrAccount()" />
 					<p style="color: red;">${errors.rAccount}</p>
@@ -115,8 +115,7 @@ h2::before {
 				<div align="center">
 					<button type="submit" class="btn btn-lg btn-primary">註冊</button>
 					<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
-					<br>
-					<br>
+					<br> <br>
 					<button type="button" class="btn btn-outline-info fastRegister">傳品</button>
 				</div>
 
@@ -159,6 +158,31 @@ h2::before {
 			window.location.replace("http://localhost:8080/"); //返回特定頁面
 		})
 
+		//檢測帳戶重複
+		function checkrAccount() {
+			const account = document.getElementById("rAccount").value;
+			console.log(account);
+
+			if (account == '') {
+				$("#show").html("帳號不得為空！").css('color', 'red');
+			}
+
+			$.ajax({
+				url : "${contextRoot}/checkrAccount/" + account,
+				type : 'get',
+				ContentType : 'application/json;charset=utf-8',
+				dataType : 'json',
+				success : function(result) {
+					if (result) {
+						$("#show").html("該帳號已存在！").css('color', 'red');
+					} else {
+						$("#show").html("帳號可使用√").css('color', 'green');
+					}
+				}
+			});
+
+		}
+
 		//前端驗證
 
 		//商店名稱
@@ -177,19 +201,19 @@ h2::before {
 		}
 
 		//帳號
-		function checkrAccount() {
-			var check = false;
-			var rAccount = document.getElementById("rAccount").value;
-			console.log("rAccount" + rAccount);
-			if (rAccount == "") {
-				$('#checktext2').html('請輸入帳號').css('color', 'red');
-				check = false;
-			} else {
-				$('#checktext2').html('√').css('color', 'green');
-				check = true;
-			}
-			return check;
-		}
+		// 		function checkrAccount() {
+		// 			var check = false;
+		// 			var rAccount = document.getElementById("rAccount").value;
+		// 			console.log("rAccount" + rAccount);
+		// 			if (rAccount == "") {
+		// 				$('#checktext2').html('請輸入帳號').css('color', 'red');
+		// 				check = false;
+		// 			} else {
+		// 				$('#checktext2').html('√').css('color', 'green');
+		// 				check = true;
+		// 			}
+		// 			return check;
+		// 		}
 		//密碼
 		function checkrPwd() {
 			var check = false;
