@@ -55,9 +55,19 @@ public class ShoppingRecord {
 	@Column(name = "sr_totalprice")
 	private Integer srTotalPrice;
 
+	public ShoppingRecord(Integer srTotalPrice, ShopHouseBean shophousebean) {
+		super();
+		this.srTotalPrice = srTotalPrice;
+		this.shophousebean = shophousebean;
+	}
+
 	@Column(name = "C1_Id")
 	@Transient
 	private Integer cid;
+	
+	@Column(name = "sh_item_id")
+	@Transient
+	private Integer shid;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "c1_id")

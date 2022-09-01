@@ -71,7 +71,7 @@ public class SrController {
 			System.out.println("C2_ID " + keyword);
 			List<ShoppingRecord> findAllToA1ByC2 = srDao.findALLByc2id(intKeyWord);
 			model.addAttribute("data", findAllToA1ByC2);
-			model.addAttribute("title","依「商家ID」查詢");
+			model.addAttribute("title", "依「商家ID」查詢");
 
 			return "AdminSR2";
 			// 卻認為客戶
@@ -79,7 +79,7 @@ public class SrController {
 			System.out.println("C1_ID " + keyword);
 			List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(intKeyWord);
 			model.addAttribute("data", findAllToA1ByC1);
-			model.addAttribute("title","依「客戶ID」查詢");
+			model.addAttribute("title", "依「客戶ID」查詢");
 			return "AdminSR2";
 			// 卻認為其他
 		} else if (intKeyWord < 1000000) {
@@ -87,17 +87,17 @@ public class SrController {
 //			商品查找
 			List<ShoppingRecord> findByitemNameLike = SrService.findByitemNameLike(keyword);
 			model.addAttribute("data", findByitemNameLike);
-			model.addAttribute("title","依「商品名稱」查詢");
+			model.addAttribute("title", "依「商品名稱」查詢");
 			if (!findByitemNameLike.isEmpty()) {
 				System.err.println(" not id " + keyword);
 				return "AdminSR2";
-			}else {
+			} else {
 				List<ShoppingRecord> findByC2NameLike = SrService.findByC2NameLike(keyword);
 				model.addAttribute("data", findByC2NameLike);
-				model.addAttribute("title","依「商店名稱」查詢");
+				model.addAttribute("title", "依「商店名稱」查詢");
 				return "AdminSR2";
 			}
-			
+
 		}
 		model.addAttribute("data", null);
 		return "AdminSR2";
@@ -112,7 +112,6 @@ public class SrController {
 		return findAllToA1;
 	}
 
-
 	@GetMapping("/RetailerCenter")
 	public String gotoC2page(Model model) {
 		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
@@ -123,7 +122,6 @@ public class SrController {
 		return "C2Center";
 	}
 
-	
 //========================================================================================================================================================
 //========================================================================================================================================================
 //========================================================================================================================================================
@@ -189,13 +187,14 @@ public class SrController {
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
+
+//	@ResponseBody
+//	// find all sr to C2
+//	@GetMapping("/Admin/Chart") // findbyc2id
+//	private List<?> Chart() {
+//		
+//		return SrService.chartjsA1();
+//	}
 
 	@ResponseBody
 	// find all sr to C2
@@ -208,36 +207,59 @@ public class SrController {
 	}
 
 	@ResponseBody
+	@GetMapping("/c2RTG") // 成交
+	private String c2RTG(Model model) {
+		Retailer customerSession = ((Retailer) model.getAttribute("retailerLoginOk"));
+		Integer c2id = customerSession.getRid();
+		Date day1 = new Date();
+		Date day2 = new Date();
+		day1.setDate(-7);
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		String format1 = ft.format(day1);
+		String format2 = ft.format(day2);
+		System.out.println(format1);
+		System.out.println(format2);
+
+		if (SrService.c2RTG(c2id, format1, format2).isEmpty()) {
+
+			return "T";
+		} else {
+
+			return "F";
+		}
+
+	}
+
+	@ResponseBody
 	@GetMapping("record/SRTRUE") // 成交
 	private List<ShoppingRecord> findBysrStateTrue() {
 		return SrService.findBysrStateTrue();
 	}
 
-	
 	@GetMapping("/Member/RTG") // 待退款
-	private String returnTheGoods(@RequestParam(name = "srid") Integer srid,Model model ) {
-		
+	private String returnTheGoods(@RequestParam(name = "srid") Integer srid, Model model) {
+
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
 		Integer cid = customerSession.getcId();
 		System.out.println(cid);
 		SrService.returnTheGoods(srid);
-		
+
 		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
 		model.addAttribute("data", findAllToA1ByC1);
 		return "MemberCenter";
 	}
+
 	@ResponseBody
-	@GetMapping("/C2/rejectRTG") //拒絕退款
+	@GetMapping("/C2/rejectRTG") // 拒絕退款
 	private Boolean returnTheGoods(@RequestParam(name = "srid") Integer srid) {
 		return SrService.rejectRTG(srid);
 	}
-	
+
 	@ResponseBody
-	@GetMapping("/C2/deleteBySR") //退款刪除紀錄
+	@GetMapping("/C2/deleteBySR") // 退款刪除紀錄
 	private Boolean SRdelete(@RequestParam(name = "srid") Integer srid) {
 		return SrService.deleteBySR(srid);
 	}
-	
 
 	@ResponseBody
 	@GetMapping("/admin/record/byName") // findbyName
@@ -277,7 +299,7 @@ public class SrController {
 	}
 
 	@ResponseBody
-	@PostMapping("admin/record/dateforc2id") 
+	@PostMapping("admin/record/dateforc2id")
 	private List<ShoppingRecord> findByc2idBetweenDay(@RequestBody DateDto dateDto, Model model) {
 
 		Retailer customerSession = ((Retailer) model.getAttribute("retailerLoginOk"));
@@ -297,24 +319,23 @@ public class SrController {
 
 	@ResponseBody
 	@GetMapping("findallbyCidtoC2")
-	private List<ShoppingRecord> findallbyCidtoC2( Model model,@RequestParam(name = "cid")Integer c1id) {
+	private List<ShoppingRecord> findallbyCidtoC2(Model model, @RequestParam(name = "cid") Integer c1id) {
 		Retailer customerSession = ((Retailer) model.getAttribute("retailerLoginOk"));
 		Integer c2id = customerSession.getRid();
 		System.out.println(c2id);
 		System.out.println(c1id);
 		List<ShoppingRecord> findallbyCidtoC2 = srDao.findallbyCidtoC2(c2id, c1id);
-		
+
 		if (findallbyCidtoC2.isEmpty()) {
 			return null;
 		} else {
 			return findallbyCidtoC2;
 		}
 	}
-	
-	
+
 	@ResponseBody
 	@GetMapping("findallbyItNameToC2")
-	private List<ShoppingRecord> findallbyItNameToC2( Model model,@RequestParam(name = "name")String name) {
+	private List<ShoppingRecord> findallbyItNameToC2(Model model, @RequestParam(name = "name") String name) {
 		Retailer customerSession = ((Retailer) model.getAttribute("retailerLoginOk"));
 		Integer c2id = customerSession.getRid();
 		System.out.println(c2id);
@@ -325,14 +346,7 @@ public class SrController {
 		} else {
 			return findallbyItNameToC2;
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
