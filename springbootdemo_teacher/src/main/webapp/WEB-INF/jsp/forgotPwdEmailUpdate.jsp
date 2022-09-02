@@ -114,9 +114,9 @@ h3::before {
 <script type="text/javascript">
 	//快速填入
 	$(".fastInsert").click(function() {
-		$("#InsertAccount").val("beauty123");
-		$("#InsertPwd1").val("b123");
-		$("#InsertPwd2").val("b1234");
+		$("#InsertAccount").val("beauty1234");
+		$("#InsertPwd1").val("b1234");
+		$("#InsertPwd2").val("b12345");
 	});
 </script>
 

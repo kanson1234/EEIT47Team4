@@ -132,8 +132,8 @@ h2::before {
 		$(".fastRegister").click(function() {
 			$("#cFirstName").val("王");
 			$("#cLastName").val("敏");
-			$("#cAccount").val("beauty123");
-			$("#cPwd").val("b123");
+			$("#cAccount").val("beauty1234");
+			$("#cPwd").val("b1234");
 			$("#cbDate").val("1995-12-31");
 			$("#cEmail").val("ansonliu0301@gmail.com");
 			// 		$("#imglogo").attr("src","C:\Users\Student\Pictures\A.jpg");
