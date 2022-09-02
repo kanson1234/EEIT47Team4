@@ -131,7 +131,7 @@ h2::before {
 		//快速註冊
 		$(".fastRegister").click(function() {
 			$("#cFirstName").val("王");
-			$("#cLastName").val("敏詩");
+			$("#cLastName").val("敏");
 			$("#cAccount").val("beauty123");
 			$("#cPwd").val("b123");
 			$("#cbDate").val("1995-12-31");
