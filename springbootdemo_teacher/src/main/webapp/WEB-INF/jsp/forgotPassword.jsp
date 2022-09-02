@@ -34,6 +34,31 @@ body {
 	box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px
 		rgba(0, 0, 0, .2);
 }
+
+h3 {
+	margin-left: 0px;
+	display: inline-block;
+	color: #333;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 2rem;
+	position: relative;
+	z-index: 2;
+	vertical-align: middle;
+}
+
+h3::before {
+	content: '';
+	position: absolute;
+	width: 110%;
+	/*  max-width: 13.8rem;*/
+	height: 1rem;
+	/*更改標題顏色*/
+	background: #F7FE72;
+	left: -5px;
+	top: 50%;
+	z-index: -1;
+}
 </style>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
@@ -53,7 +78,7 @@ body {
 				<p style="color: red;">${errors.customerAccount}</p>
 				<label class="form-label">電子信箱</label> <input type="text"
 					placeholder="您註冊時填寫之電子信箱" class="form-control"
-					name="sendCustomerEmail" id="InsertEmail"/>
+					name="sendCustomerEmail" id="InsertEmail" />
 				<p style="color: red;">${errors.customerEmail}</p>
 				<button type="submit" class="btn btn-lg btn-primary">送出</button>
 				<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
@@ -72,16 +97,15 @@ body {
 <script type="text/javascript">
 	//快速填入
 	$(".fastInsert").click(function() {
-		$("#InsertAccount").val("ms0592521");
+		$("#InsertAccount").val("Ceauty123");
 		$("#InsertEmail").val("ansonliu0301@gmail.com");
 	});
-	
+
 	//取消按鈕返回上頁
 	$("#cancel").click(function(event) {
 		event.preventDefault(); //取消預設行為
 		window.location.replace("http://localhost:8080/"); //返回特定頁面
 	})
-	
 </script>
 
 

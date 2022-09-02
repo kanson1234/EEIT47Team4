@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>忘記密碼</title>
+<title>修改密碼</title>
 <style>
 body {
 	padding: 0;
@@ -35,6 +35,31 @@ body {
 	box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px
 		rgba(0, 0, 0, .2);
 }
+
+h3 {
+	margin-left: 0px;
+	display: inline-block;
+	color: #333;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 2rem;
+	position: relative;
+	z-index: 2;
+	vertical-align: middle;
+}
+
+h3::before {
+	content: '';
+	position: absolute;
+	width: 110%;
+	/*  max-width: 13.8rem;*/
+	height: 1rem;
+	/*更改標題顏色*/
+	background: #F7FE72;
+	left: -5px;
+	top: 50%;
+	z-index: -1;
+}
 </style>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
@@ -49,25 +74,28 @@ body {
 			<form action="customerUpdatePassword" method="POST"
 				style="margin: auto; width: 220px">
 				<label class="form-label">您的登入帳戶</label> <input type="text"
-					placeholder="請輸入您的帳號資料" class="form-control" name="cAccount" id="" />
+					placeholder="請輸入您的帳號資料" class="form-control" name="cAccount"
+					id="InsertAccount" />
 				<p style="color: red;">${errors.cAccount}</p>
 				<p style="color: red;">${errors.errorAccount}</p>
-				
-				
-				
+
+
+
 				<label class="form-label">您的新密碼</label> <input type="password"
-					placeholder="輸入新密碼" class="form-control" name="cPwd1" id="" />
+					placeholder="輸入新密碼" class="form-control" name="cPwd1"
+					id="InsertPwd1" />
 				<p style="color: red;">${errors.cPwd1}</p>
-				
-				
-				
+
+
+
 				<label class="form-label">再次輸入新密碼</label> <input type="password"
-					placeholder="兩次輸入之密碼需相同" class="form-control" name="cPwd2" id="" />
+					placeholder="兩次輸入之密碼需相同" class="form-control" name="cPwd2"
+					id="InsertPwd2" />
 				<p style="color: red;">${errors.cPwd2}</p>
 				<p style="color: red;">${errors.pwdError}</p>
-				
-				
-				
+
+
+
 				<button type="submit" class="btn btn-lg btn-primary">送出</button>
 				<p style="color: red;">${errors.duplicatePwd}</p>
 				<p style="color: green;">${msg.updateSuccess}</p>
@@ -75,9 +103,9 @@ body {
 				<br> <label class="form-label"> <a
 					href="${contextRoot}/loginC">回登入頁面</a>
 				</label>
-				<!-- 				<div class="text-center m-5"> -->
-				<!-- 					<button type="button" class="btn btn-outline-dark fastInsert">快速帶入</button> -->
-				<!-- 				</div> -->
+				<div class="text-center m-5">
+					<button type="button" class="btn btn-outline-dark fastInsert">快速帶入</button>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -86,8 +114,9 @@ body {
 <script type="text/javascript">
 	//快速填入
 	$(".fastInsert").click(function() {
-		$("#InsertAccount").val("ms0592521");
-		$("#InsertEmail").val("ansonliu0301@gmail.com");
+		$("#InsertAccount").val("beauty123");
+		$("#InsertPwd1").val("b123");
+		$("#InsertPwd2").val("b1234");
 	});
 </script>
 
