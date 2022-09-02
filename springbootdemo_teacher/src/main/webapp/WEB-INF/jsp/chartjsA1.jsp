@@ -65,7 +65,6 @@
 										dataType: 'text',
 										method:'get',
 										success: function (result) {
-											alert(result)
 											c2Name=result
 											console.log(  typeof result )
 											var a =result.replaceAll('"',"").replace('[',"").replace(']',"")
@@ -80,7 +79,6 @@
 										dataType: 'text',
 										method:'get',
 										success: function (result) {
-											alert(result)
 											c2Name=result
 											console.log(  typeof result )
 											var a =result.replaceAll('"',"").replace('[',"").replace(']',"")
@@ -112,7 +110,7 @@
   				}]
   			}
   		});
-	}, 3000);
+	}, 500);
 								});
 
 

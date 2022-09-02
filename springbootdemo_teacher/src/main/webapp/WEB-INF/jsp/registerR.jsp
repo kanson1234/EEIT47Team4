@@ -117,6 +117,7 @@ h2::before {
 					<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
 					<br> <br>
 					<button type="button" class="btn btn-outline-info fastRegister">傳品</button>
+					<button type="button" class="btn btn-outline-info fastRegisterCampingScape">CampingScape</button>
 				</div>
 
 			</form>
@@ -130,6 +131,15 @@ h2::before {
 			$("#rPwd").val("sss456");
 			$("#rPhone").val("0930228768");
 			$("#rInfo").val("做您舒適的登山體驗最堅實的後盾");
+			// 		$("#imglogo").attr("src","C:\Users\Student\Pictures\A.jpg");
+			// 		$("#imgphoto").attr("src","C:\Users\Student\Pictures\A.jpg");
+		});
+		$(".fastRegisterCampingScape").click(function() {
+			$("#rName").val("CampingScape");
+			$("#rAccount").val("CS123");
+			$("#rPwd").val("CS456");
+			$("#rPhone").val("0933444567");
+			$("#rInfo").val("1970年成立的老字號，40多年的生產技術跟經驗是 Camping Scape 韓國最大的驕傲。");
 			// 		$("#imglogo").attr("src","C:\Users\Student\Pictures\A.jpg");
 			// 		$("#imgphoto").attr("src","C:\Users\Student\Pictures\A.jpg");
 		});

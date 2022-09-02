@@ -36,6 +36,9 @@ public class RetailerService {
 		rDao.changeStatusById(status, rid);
 		return true;
 	}
+	public void deleteRetailerAccountById(Integer rid) {
+		rDao.deleteById(rid);
+	}
 
 	public List<Retailer> listAll(String keyword) {
 		if (keyword != null) {
