@@ -163,8 +163,8 @@ body {
 	});
 
 	$(".fastLogin2").click(function() {
-		$("#floatingInputC").val("CCC");
-		$("#floatingPasswordC").val("DDD");
+		$("#floatingInputC").val("beauty123");
+		$("#floatingPasswordC").val("b123");
 	});
 
 	//取消按鈕返回上頁
