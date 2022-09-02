@@ -44,13 +44,13 @@
 							data-toggle="dropdown" aria-expanded="false">種類</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item"
-									href="${contextRoot}/ShopHouse/findByClassify?classify=帳篷">帳篷</a>
+									href="${contextRoot}/ShopHouse/findByClassify?classify=帳篷">露營帳篷</a>
 								<a class="dropdown-item"
-									href="${contextRoot}/ShopHouse/findByClassify?classify=鞋子">鞋子</a>
+									href="${contextRoot}/ShopHouse/findByClassify?classify=燈具">照明設備</a>
 								<a class="dropdown-item"
 									href="${contextRoot}/ShopHouse/findByClassify?classify=烤肉架">烤肉架</a>
 								<a class="dropdown-item"
-									href="${contextRoot}/ShopHouse/findByClassify?classify=椅子">椅子</a>
+									href="${contextRoot}/ShopHouse/findByClassify?classify=椅子">露營椅</a>
 							</div></li>
 					</ul>
 				</div>
