@@ -97,7 +97,7 @@ h3::before {
 <script type="text/javascript">
 	//快速填入
 	$(".fastInsert").click(function() {
-		$("#InsertAccount").val("Ceauty123");
+		$("#InsertAccount").val("Ceauty1234");
 		$("#InsertEmail").val("ansonliu0301@gmail.com");
 	});
 
