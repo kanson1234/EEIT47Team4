@@ -134,15 +134,32 @@ public interface ShoppingRecordDao extends JpaRepository<ShoppingRecord, Integer
 			@Param("day2") String day2);
 	
 	
-//	@Query(value = "SELECT R.rName, SUM(srTotalPrice)"
-//			+ "FROM"
-//			+ "ShoppingRecord AS SR"
-//			+ "JOIN ShopHouseBean  As SH JOIN Retailer AS R"
-//			+ "WHERE SR.shophousebean = SH.id"
-//			+ "and R.rid=SH.c2Id"
-//			+ "GROUP BY R.rid")
-//	public List<?> chartjsA1();
-//	
+	@Query(value = "SELECT SUM(SR_TotalPrice)  \r\n"
+			+ "FROM	[ShoppingRecord] AS SR\r\n"
+			+ "INNER JOIN\r\n"
+			+ "[StoreHouse]  As SH    \r\n"
+			+ "ON SR.SH_Item_Id   = SH.SH_Item_Id   \r\n"
+			+ "INNER JOIN\r\n"
+			+ "[Retailer] AS R     \r\n"
+			+ "ON R.C2_Id=SH.C2_Id \r\n"
+			+ "GROUP BY R.C2_Name",nativeQuery = true)
+	public List<Integer> findYtoc2();
+////	
+	@Query(value = "SELECT   R.C2_Name\r\n"
+			+ "FROM\r\n"
+			+ "[ShoppingRecord] AS SR\r\n"
+			+ "INNER JOIN\r\n"
+			+ "[StoreHouse]  As SH    \r\n"
+			+ "ON SR.SH_Item_Id   = SH.SH_Item_Id   \r\n"
+			+ "INNER JOIN\r\n"
+			+ "[Retailer] AS R     \r\n"
+			+ "ON R.C2_Id=SH.C2_Id \r\n"
+			+ "GROUP BY R.C2_Name",nativeQuery = true)	
+	public List<String> findXtoc2();
+	
+	
+	
+	
 	
 	
 	
