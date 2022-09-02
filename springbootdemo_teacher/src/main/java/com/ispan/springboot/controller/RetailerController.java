@@ -230,6 +230,12 @@ public class RetailerController {
 		rService.ChangeStatusById(false, id);
 		return "redirect:/Retailer/RetailerCRUD";
 	}
+	//永久刪除帳號
+	@GetMapping("/Retailer/deleteRetailerById/{id}")
+	public String deleteRetailerById(@PathVariable Integer id) {
+		rService.deleteRetailerAccountById(id);
+		return "redirect:/Retailer/RetailerBlock";
+	}
 
 	// 更改狀態回傳給黑名單頁面
 	@GetMapping("/Retailer/changeStatusT/{id}")
