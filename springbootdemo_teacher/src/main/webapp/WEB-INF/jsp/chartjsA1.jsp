@@ -56,15 +56,51 @@
 
  <canvas id="example" width="150" height="50"></canvas>
   <script>
+  
+	var x
+	var y
+  $( document ).ready(function() {
+									$.ajax({
+										url:'${pageContext.request.contextPath}/Admin/X',
+										dataType: 'text',
+										method:'get',
+										success: function (result) {
+											c2Name=result
+											console.log(  typeof result )
+											var a =result.replaceAll('"',"").replace('[',"").replace(']',"")
+											console.log( a )
+											console.log( typeof a )
+											 x =a.split(',')
+											console.log( x )
+										}
+									})
+									$.ajax({
+										url:'${pageContext.request.contextPath}/Admin/Y',
+										dataType: 'text',
+										method:'get',
+										success: function (result) {
+											c2Name=result
+											console.log(  typeof result )
+											var a =result.replaceAll('"',"").replace('[',"").replace(']',"")
+											console.log( a )
+											console.log( typeof a )
+											 y =a.split(',')
+											console.log( x )
+											
+										}
+									})
+	})
+  $( document ).ready(function() {
+	setTimeout(() => { 
   	var ctx = document.getElementById( "example" ),
   		example = new Chart(ctx, {
   			// 參數設定[註1]
   			type: "bar", // 圖表類型
   			data: {
-  				labels: [ "Red", "Green", "Blue" ], // 標題
+  				labels: x , // 標題
   				datasets: [{
   					label: "# of Votes", // 標籤
-  					data: [ 12, 19, 3 ], // 資料
+  					data: y , // 資料
   					backgroundColor: [ // 背景色
   					"#FF0000",
   					"#00FF00",
@@ -74,6 +110,11 @@
   				}]
   			}
   		});
+	}, 500);
+								});
+
+
+
   </script>
 
 				
