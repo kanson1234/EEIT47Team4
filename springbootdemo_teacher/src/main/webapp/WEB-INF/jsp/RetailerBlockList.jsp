@@ -41,7 +41,7 @@
 						<td>${retailer.raccount}</td>
 						<td>
 						<a onclick="return confirm('確認復原?')" href="${contextRoot}/Retailer/changeStatusT/${retailer.rid}">
-						<button type="submit" class="btn btn-danger">復原帳號</button>
+						<button type="submit" class="btn btn-primary">復原帳號</button>
 						</a>
 						<td><a onclick="return confirm('確認永久刪除?')" href="${contextRoot}/Retailer/deleteRetailerById/${retailer.rid}">
 						<button type="submit" class="btn btn-danger">刪除</button></a>
