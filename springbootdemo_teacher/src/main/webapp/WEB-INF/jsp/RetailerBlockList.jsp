@@ -18,10 +18,10 @@
 	<div align='center'>
 		<h2>Account Manager</h2>
 		<div>
-		<form method="get" action="${contextRoot}/Retailer/getByAccount">
-			<input type="text" name="keyword"/>
-			<input type="submit" name="Search"/>
-		</form>
+<%-- 		<form method="get" action="${contextRoot}/Retailer/getByAccount"> --%>
+<!-- 			<input type="text" name="keyword"/> -->
+<!-- 			<input type="submit" name="Search"/> -->
+<!-- 		</form> -->
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
