@@ -138,7 +138,12 @@
 											$('#list_data_json').append(msg_data)
 										},
 										error: function (err) {
-											alert('輸入「顧客ID」 不存在，或查無銷售紀錄，請在試一次')
+											
+											$.alert({
+												title:'',
+												content:"輸入「顧客ID」 不存在，或查無銷售紀錄，請在試一次"
+											});
+											
 										}
 									})
 								return
@@ -223,7 +228,11 @@
 										$('#list_data_json').append(msg_data)
 									},
 									error: function (err) {
-										alert('輸入「商品」不存在，或查無銷售紀錄，請在試一次')
+										$.alert({
+											title:'',
+											content:"輸入「商品」不存在，或查無銷售紀錄，請在試一次"
+										});
+										
 									}
 								})
 							}
@@ -235,12 +244,22 @@
 							var dateEnd = myArray[1]
 								var date1 = new Date(dateStar);
 								var date2 = new Date(dateEnd);
-
+								
 								console.log(date1)
 								console.log(date2)
 								if ( date1 > date2) {
-									alert("請選擇正確的日期關係")
+									$.alert({
+										title:'日期格式錯誤',
+										content:"請選擇正確的日期關係"
+									});
 									return
+								}
+								
+								if((date2 - date1)/86400000 > 92){
+									$.alert({
+										title:'日期格式錯誤',
+										content:"查巡區間不可大於3個月"
+									});
 								}
 								console.log(dateStar)
 								console.log(dateEnd)
@@ -252,6 +271,8 @@
 								};
 								var stringDateJsonObj = JSON.stringify(dateJsonObj);
 								console.log("stringDateJsonObj" + stringDateJsonObj)
+								
+
 								$.ajax({
 									url: 'http://localhost:8080/admin/record/dateforc2id',
 									contentType: 'application/json', // 送過去的資料型別
@@ -324,6 +345,7 @@
 										$('#tbtital h2').remove();
 										$('#tbtital').append('<h2>依「日期」查詢銷售紀錄</h2>')
 										$('#list_data_json').append(msg_data)
+
 									},
 									error: function (err) {
 										console.log(err)
@@ -520,6 +542,7 @@
 										var srb2= $(this).parent();
 										var srlw= $(this).parent().parent().find("#word");
 										var asrlw= $(this).parent().parent();
+										SearchBsartext.remove
 
 										$.confirm({
 											title: '確認要允許退貨嗎?',
@@ -577,7 +600,7 @@
 											}
 										});
 									});
-								}, 1000);
+								}, 500);
 								});
 
 							</script>
