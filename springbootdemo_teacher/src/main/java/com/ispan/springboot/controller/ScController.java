@@ -130,21 +130,7 @@ public class ScController {
 		}
 		
 		Integer no=(int) (Math.random()*100000);
-		AllInOne aio = new AllInOne("");
-		AioCheckOutDevide obj = new AioCheckOutDevide();
-		obj.setMerchantTradeNo("No"+no.toString());
-		obj.setMerchantTradeDate(ecDate);
-		obj.setTotalAmount(ecpayPrice.toString());
-	
-		obj.setItemName("商城商品一批");
-		obj.setTradeDesc("EcpayDetail");
-		obj.setReturnURL("http://211.23.128.214:5000");
-
-		obj.setOrderResultURL("http://localhost:8080/");
-
-		obj.setNeedExtraPaidInfo("N");
-		obj.setCreditInstallment("12");
-		String form = aio.aioCheckOut(obj, null);
+		
 		
 		
 		
@@ -180,6 +166,7 @@ public class ScController {
 			newSR.setSrtime(date);
 			newSR.setSrCount(count);
 			newSR.setSrState(true);
+			newSR.setSrno1(srno);
 			ShoppingRecord success = SrService.addSR(newSR);
 //			======================================================
 			scDao.deleteByC1id(cid);
@@ -187,6 +174,22 @@ public class ScController {
 
 		}
 		
+		AllInOne aio = new AllInOne("");
+		AioCheckOutDevide obj = new AioCheckOutDevide();
+		obj.setMerchantTradeNo("No"+no.toString());
+		obj.setMerchantTradeDate(ecDate);
+		obj.setTotalAmount(ecpayPrice.toString());
+	
+		obj.setItemName("商城商品一批");
+		obj.setTradeDesc("EcpayDetail");
+		obj.setReturnURL("http://211.23.128.214:5000");
+
+		obj.setOrderResultURL("http://localhost:8080/");
+
+		obj.setNeedExtraPaidInfo("N");
+		obj.setCreditInstallment("12");
+		String form = aio.aioCheckOut(obj, null);
+		System.out.println(form);
 		return form;
 
 	}

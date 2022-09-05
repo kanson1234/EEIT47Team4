@@ -72,6 +72,10 @@ public class ShoppingRecord {
 	private Customer customer;
 	
 	
+	public void setSrno1(Srno srno1) {
+		this.srno1 = srno1;
+	}
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "no")
 	private Srno srno1;
