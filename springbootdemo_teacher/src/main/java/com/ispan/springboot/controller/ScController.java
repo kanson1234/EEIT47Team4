@@ -4,28 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ispan.springboot.dao.ScDao;
+import com.ispan.springboot.dao.SrOrderDao;
 import com.ispan.springboot.dto.DtoSc;
 import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.ShoopingCar;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.model.ShoppingRecord;
+import com.ispan.springboot.model.Srno;
 import com.ispan.springboot.service.ScService;
 import com.ispan.springboot.service.ShopHouseService;
 import com.ispan.springboot.service.SrService;
@@ -47,6 +47,9 @@ public class ScController {
 
 	@Autowired
 	private ScDao scDao;
+	
+	@Autowired
+	private SrOrderDao srOrderDao;
 
 //	U	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -267,5 +270,22 @@ public class ScController {
 			return null;
 		}
 	}
+	
+	
+	@ResponseBody
+	@GetMapping("test2")
+	private Set<Srno> test2() {
+		
+		Set<Srno> findOrderByCid = srOrderDao.findOrderByCid();
+		return findOrderByCid;
+		
+	}
+		
+	
+	
+	
+	
+	
+	
 
 }

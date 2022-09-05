@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -192,17 +193,17 @@ public class SrController {
 //	// find all sr to C2
 	@GetMapping("/Admin/Chart") // findbyc2id
 	private String Chart() {
-		
+
 		return "chartjsA1";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/Admin/X") // findbyc2id
 	private List<String> ChartX() {
 		List<String> findXtoc2 = srDao.findXtoc2();
 		System.err.println(findXtoc2);
 		System.err.println(findXtoc2.getClass().getSimpleName());
-		
+
 		return findXtoc2;
 	}
 
@@ -211,14 +212,14 @@ public class SrController {
 	private List<Integer> ChartY1() {
 		return srDao.findYtoc2();
 	}
-	
+
 	@ResponseBody
 	// find all sr to C2
 	@GetMapping("/record/c2id") // findbyc2id
 	private List<ShoppingRecord> findALLByc2id(Model model) {
 		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
 		Integer c2id = retailerSession.getRid();
-		System.out.println(c2id);	
+		System.out.println(c2id);
 		return srDao.findALLByc2id(c2id);
 	}
 

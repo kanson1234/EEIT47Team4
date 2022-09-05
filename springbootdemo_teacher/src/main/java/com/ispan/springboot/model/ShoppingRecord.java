@@ -72,6 +72,14 @@ public class ShoppingRecord {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "c1_id")
 	private Customer customer;
+	
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "no")
+	private Srno srno1;
+	
+	
+	
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sh_item_id")
