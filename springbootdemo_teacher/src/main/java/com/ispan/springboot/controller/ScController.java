@@ -206,7 +206,7 @@ public class ScController {
 		} else {
 			scDao.change(cid, itid, num + check);
 
-			return "成功加入購物車";
+			return "成功修改數量";
 
 		}
 
