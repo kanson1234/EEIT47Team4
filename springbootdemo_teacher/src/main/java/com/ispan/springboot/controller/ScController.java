@@ -114,7 +114,6 @@ public class ScController {
 		Customer customer = new Customer();
 		customer.setcId(cid);
 		
-		
 		Integer ecpayPrice = 0;
 		String EcpayDetail = "";
 		
@@ -146,6 +145,14 @@ public class ScController {
 		obj.setNeedExtraPaidInfo("N");
 		obj.setCreditInstallment("12");
 		String form = aio.aioCheckOut(obj, null);
+		
+		
+		
+		Srno srno = new Srno();
+		srno.setC1id(cid);
+		srno.setPrice(ecpayPrice);
+		srno.setSrnox("No"+no.toString());
+		srOrderDao.save(srno);
 		
 		
 		for (Iterator iterator = scDto.iterator(); iterator.hasNext();) {
