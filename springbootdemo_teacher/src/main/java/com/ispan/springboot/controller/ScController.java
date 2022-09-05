@@ -217,7 +217,7 @@ public class ScController {
 		} else {
 			scDao.change(cid, itid, num + check);
 
-			return "成功修改數量";
+			return "購物車中已經有相同的商品，將為您修改訂單數量";
 
 		}
 
