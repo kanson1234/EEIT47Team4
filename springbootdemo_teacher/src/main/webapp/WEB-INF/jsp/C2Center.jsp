@@ -45,6 +45,7 @@
 </head>
 
 <body>
+
 	<div class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
 		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">條件搜尋</a> 
 		<input class="form-control form-control-dark w-100" type="text" placeholder="輸入商品名稱或店家名稱" id="SearchBsar" aria-label="Search" >
@@ -77,6 +78,7 @@
 											msg_data = '<tbody>'
 											$.each(result, function (index, value) {
 												var state = '';
+												var time = '';
 												console.log(value.shophousebean.status)
 												if (value.shophousebean.status == true) {
 													state = "商品上架中";
@@ -105,9 +107,22 @@
 														state2+='</td>'
 													}
 												}
+												function formatDate(date) {
+										            var d = new Date(date),
+										                month = '' + (d.getMonth() + 1),
+										                day = '' + d.getDate(),
+										                year = d.getFullYear();
+										            if (month.length < 2)
+										                month = '0' + month;
+										            if (day.length < 2)
+										                day = '0' + day;
+										            return [year, month, day].join('-');
+										        }  
+												 var d = new Date(value.srtime)
+												 time=formatDate(d)
 												msg_data += '<tr>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
+												msg_data += '<td style="vertical-align: middle; text-align: center;">' + time + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/'	+ value.shophousebean.id +'"></td>'
@@ -147,6 +162,7 @@
 											msg_data = '<tbody>'
 											$.each(result, function (index, value) {
 												var state = '';
+												var time = '';
 												console.log(value.shophousebean.status)
 												if (value.shophousebean.status == true) {
 													state = "商品上架中";
@@ -175,9 +191,23 @@
 														state2+='</td>'
 													}
 												}
+												function formatDate(date) {
+										            var d = new Date(date),
+										                month = '' + (d.getMonth() + 1),
+										                day = '' + d.getDate(),
+										                year = d.getFullYear();
+										            if (month.length < 2)
+										                month = '0' + month;
+										            if (day.length < 2)
+										                day = '0' + day;
+										            return [year, month, day].join('-');
+										        }  
+												 var d = new Date(value.srtime)
+												 time=formatDate(d)
+												
 												msg_data += '<tr>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
+												msg_data += '<td style="vertical-align: middle; text-align: center;">' + time + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/'	+ value.shophousebean.id +'"></td>'
@@ -234,6 +264,7 @@
 											msg_data = '<tbody>'
 											$.each(result, function (index, value) {
 												var state = '';
+												var time = '';
 												console.log(value.shophousebean.status)
 												if (value.shophousebean.status == true) {
 													state = "商品上架中";
@@ -262,9 +293,24 @@
 														state2+='</td>'
 													}
 												}
+												
+												function formatDate(date) {
+										            var d = new Date(date),
+										                month = '' + (d.getMonth() + 1),
+										                day = '' + d.getDate(),
+										                year = d.getFullYear();
+										            if (month.length < 2)
+										                month = '0' + month;
+										            if (day.length < 2)
+										                day = '0' + day;
+										            return [year, month, day].join('-');
+										        }  
+												 var d = new Date(value.srtime)
+												 time=formatDate(d)
+												
 												msg_data += '<tr>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.customer.cId + '</td>'
-												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srtime + '</td>'
+												msg_data += '<td style="vertical-align: middle; text-align: center;">' + time + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.srCount + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;">' + value.shophousebean.itemName + '</td>'
 												msg_data += '<td style="vertical-align: middle; text-align: center;"><img width="100" src="${pageContext.request.contextPath}/downloadImg/'	+ value.shophousebean.id +'"></td>'
@@ -293,7 +339,8 @@
 		</script>
 	</div>
 	<div>
-		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+	
+		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-right:30px; ">
 			<div class="container-fluid">
 				<div class="row" >
 					<div class="table-responsive" >
