@@ -113,13 +113,41 @@ public class ScController {
 		Integer cid = customerSession.getcId();
 		Customer customer = new Customer();
 		customer.setcId(cid);
-		System.err.println("++++++++++++++++++++++++++++++++++" + scDto.get(0).getPrice());
-		System.err.println("++++++++++++++++++++++++++++++++++" + scDto.size());
+		
+		
 		Integer ecpayPrice = 0;
 		String EcpayDetail = "";
+		
 		Date date = new Date();
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String ecDate = sdFormat.format(date);
+		
+		
+		for (Iterator iterator = scDto.iterator(); iterator.hasNext();) {
+			DtoSc dtoSc = (DtoSc) iterator.next();
+			Integer ScTotalPrice = dtoSc.getScTotalPrice();
+			ecpayPrice += ScTotalPrice;
+
+		}
+		
+		Integer no=(int) (Math.random()*100000);
+		AllInOne aio = new AllInOne("");
+		AioCheckOutDevide obj = new AioCheckOutDevide();
+		obj.setMerchantTradeNo("No"+no.toString());
+		obj.setMerchantTradeDate(ecDate);
+		obj.setTotalAmount(ecpayPrice.toString());
+	
+		obj.setItemName("商城商品一批");
+		obj.setTradeDesc("EcpayDetail");
+		obj.setReturnURL("http://211.23.128.214:5000");
+
+		obj.setOrderResultURL("http://localhost:8080/");
+
+		obj.setNeedExtraPaidInfo("N");
+		obj.setCreditInstallment("12");
+		String form = aio.aioCheckOut(obj, null);
+		
+		
 		for (Iterator iterator = scDto.iterator(); iterator.hasNext();) {
 			DtoSc dtoSc = (DtoSc) iterator.next();
 			System.out.println(cid + "\t" + dtoSc.getScid() + "\t" + dtoSc.getSccount() + "\t" + dtoSc.getPrice() + "\t"
@@ -136,7 +164,6 @@ public class ScController {
 			int count = num;
 			int totoprice = ScTotalPrice;
 
-			EcpayDetail += "#" + name + " NTD : " + totoprice + " * " + num + "\n";
 			ecpayPrice += Math.round(totoprice);
 			ShoppingRecord newSR = new ShoppingRecord();
 			newSR.setCustomer(customer);
@@ -152,31 +179,7 @@ public class ScController {
 //			======================================================
 
 		}
-		Integer no=(int) (Math.random()*100000);
-		AllInOne aio = new AllInOne("");
-		AioCheckOutDevide obj = new AioCheckOutDevide();
-		obj.setMerchantTradeNo("No"+no.toString());
-		obj.setMerchantTradeDate(ecDate);
-		obj.setTotalAmount(ecpayPrice.toString());
-	
-		obj.setItemName("商城商品一批");
-		obj.setTradeDesc("EcpayDetail");
-		obj.setReturnURL("http://211.23.128.214:5000");
-
-//		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
-		obj.setOrderResultURL("http://localhost:8080/");
-
-		obj.setNeedExtraPaidInfo("N");
-		obj.setCreditInstallment("12");
-		String form = aio.aioCheckOut(obj, null);
-		System.out.println(form);
-
-		System.out.println(EcpayDetail);
-		System.out.println(ecpayPrice.toString());
-		System.out.println(ecDate);
-		;
-//		
-//		return null;
+		
 		return form;
 
 	}
