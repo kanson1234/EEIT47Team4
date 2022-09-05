@@ -42,7 +42,7 @@
 					aria-current="page" href="#"> <span data-feather="home"></span>
 						銷售量圖表
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="${contextRoot}/Admin/SalesRecord3"> <span
+				<li class="nav-item"><a class="nav-link" href="${contextRoot}/Admin/SalesRecord"> <span
 						data-feather="users"></span> 所有交易紀錄
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="#"> <span
