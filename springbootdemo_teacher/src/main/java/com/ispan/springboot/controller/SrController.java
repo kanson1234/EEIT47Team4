@@ -252,13 +252,14 @@ public class SrController {
 		Integer c2id = customerSession.getRid();
 		Date day1 = new Date();
 		Date day2 = new Date();
-		day1.setDate(-7);
+		day1.setTime(day1.getTime()-(86400000*7));
+		
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		String format1 = ft.format(day1);
 		String format2 = ft.format(day2);
-		System.out.println(format1);
-		System.out.println(format2);
-
+		System.err.println(format1);
+		System.err.println(format2);
+	
 		if (SrService.c2RTG(c2id, format1, format2).isEmpty()) {
 
 			return "T";
