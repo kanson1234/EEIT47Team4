@@ -47,7 +47,7 @@ public class ScController {
 
 	@Autowired
 	private ScDao scDao;
-	
+
 	@Autowired
 	private SrOrderDao srOrderDao;
 
@@ -113,34 +113,29 @@ public class ScController {
 		Integer cid = customerSession.getcId();
 		Customer customer = new Customer();
 		customer.setcId(cid);
-		
+
 		Integer ecpayPrice = 0;
 		String EcpayDetail = "";
-		
+
 		Date date = new Date();
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String ecDate = sdFormat.format(date);
-		
-		
+
 		for (Iterator iterator = scDto.iterator(); iterator.hasNext();) {
 			DtoSc dtoSc = (DtoSc) iterator.next();
 			Integer ScTotalPrice = dtoSc.getScTotalPrice();
 			ecpayPrice += ScTotalPrice;
 
 		}
-		
-		Integer no=(int) (Math.random()*100000);
-		
-		
-		
-		
+
+		Integer no = (int) (Math.random() * 100000);
+
 		Srno srno = new Srno();
 		srno.setC1id(cid);
 		srno.setPrice(ecpayPrice);
-		srno.setSrnox("No"+no.toString());
+		srno.setSrnox("No" + no.toString());
 		srOrderDao.save(srno);
-		
-		
+
 		for (Iterator iterator = scDto.iterator(); iterator.hasNext();) {
 			DtoSc dtoSc = (DtoSc) iterator.next();
 			System.out.println(cid + "\t" + dtoSc.getScid() + "\t" + dtoSc.getSccount() + "\t" + dtoSc.getPrice() + "\t"
@@ -173,13 +168,13 @@ public class ScController {
 //			======================================================
 
 		}
-		
+
 		AllInOne aio = new AllInOne("");
 		AioCheckOutDevide obj = new AioCheckOutDevide();
-		obj.setMerchantTradeNo("No"+no.toString());
+		obj.setMerchantTradeNo("No" + no.toString());
 		obj.setMerchantTradeDate(ecDate);
 		obj.setTotalAmount(ecpayPrice.toString());
-	
+
 		obj.setItemName("商城商品一批");
 		obj.setTradeDesc("EcpayDetail");
 		obj.setReturnURL("http://211.23.128.214:5000");
@@ -195,7 +190,7 @@ public class ScController {
 	}
 
 //	______________________________________________________________________________________________________
-	
+
 	@ResponseBody
 	@GetMapping("ShoppingCar/add")
 	public String addToCar(@RequestParam(name = "num") Integer num, Model model, HttpSession session,
@@ -283,22 +278,7 @@ public class ScController {
 			return null;
 		}
 	}
-	
-	
-	@ResponseBody
-	@GetMapping("test2")
-	private Set<Srno> test2() {
-		
-		Set<Srno> findOrderByCid = srOrderDao.findOrderByCid();
-		return findOrderByCid;
-		
-	}
-		
-	
-	
-	
-	
-	
+
 	
 
 }

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ispan.springboot.dao.ShoppingRecordDao;
+import com.ispan.springboot.dao.SrOrderDao;
 import com.ispan.springboot.dto.DateDto;
 import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.Retailer;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.model.ShoppingRecord;
+import com.ispan.springboot.model.Srno;
 import com.ispan.springboot.service.SrService;
 
 @SessionAttributes(names = { "customerLoginOk", "adminLoginOk", "retailerLoginOk" })
@@ -31,6 +34,9 @@ public class SrController {
 
 	@Autowired
 	private ShoppingRecordDao srDao;
+	
+	@Autowired
+	private SrOrderDao srOrderDao;
 //	---------------------------------------------------------------------------------
 
 	@GetMapping("/Admin/SalesRecord3")
@@ -41,19 +47,37 @@ public class SrController {
 		return "AdminSR2";
 	}
 
+//	@GetMapping("/Member/MemberCenter2")
+//	public String MemberCenter(Model model) {
+//		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
+//		Integer cid = customerSession.getcId();
+//
+//		System.out.println(cid);
+//
+//		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
+//		model.addAttribute("data", findAllToA1ByC1);
+//		return "MemberCenter";
+//
+//	}
+
+
 	@GetMapping("/Member/MemberCenter")
-	public String MemberCenter(Model model) {
+	private String test2(Model model) {
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
-		Integer cid = customerSession.getcId();
+		Integer c1id = customerSession.getcId();
+		System.out.println(c1id);
 
-		System.out.println(cid);
-
-		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
-		model.addAttribute("data", findAllToA1ByC1);
-		return "MemberCenter";
+		Set<Srno> findOrderByCid = srOrderDao.findOrderByCid(c1id);
+		model.addAttribute("data", findOrderByCid);
+		return "MemberCenter2";
 
 	}
-
+	
+	
+	
+	
+	
+	
 	@GetMapping("/findbyKeyWord")
 	private String findbyKeyWord(Model model, @RequestParam(name = "keyword") String keyword) {
 		System.out.println(keyword);
@@ -255,13 +279,13 @@ public class SrController {
 	private String returnTheGoods(@RequestParam(name = "srid") Integer srid, Model model) {
 
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
-		Integer cid = customerSession.getcId();
-		System.out.println(cid);
+		Integer c1id = customerSession.getcId();
+		System.out.println(c1id);
 		SrService.returnTheGoods(srid);
 
-		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
-		model.addAttribute("data", findAllToA1ByC1);
-		return "MemberCenter";
+		Set<Srno> findOrderByCid = srOrderDao.findOrderByCid(c1id);
+		model.addAttribute("data", findOrderByCid);
+		return "MemberCenter2";
 	}
 
 	@ResponseBody
