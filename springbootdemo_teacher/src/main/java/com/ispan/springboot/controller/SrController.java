@@ -39,7 +39,7 @@ public class SrController {
 	private SrOrderDao srOrderDao;
 //	---------------------------------------------------------------------------------
 
-	@GetMapping("/Admin/SalesRecord3")
+	@GetMapping("/Admin/SalesRecord")
 	private String findAllByTime(Model model) {
 		List<ShoppingRecord> findAllToA1 = SrService.findAllByTime();
 		model.addAttribute("data", findAllToA1);
