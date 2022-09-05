@@ -64,7 +64,7 @@
 							console.log(int)
 
 							if (int<=1) {
-								if (keyword>2000000) {
+								if (keyword>1999999) {
 								$.ajax({
 									url: "http://localhost:8080/findallbyCidtoC2?cid=" + keyword,
 										contentType: 'application/json', // 送過去的資料型別
@@ -129,7 +129,7 @@
 								return
 							}
 // ===================================================================================================================================================================
-							if (2000000>keyword & keyword>1000000  ) {
+							if (1999999>keyword & keyword>1000000  ) {
 								alert("不可查詢其他商家銷售紀錄")
 								return
 							}

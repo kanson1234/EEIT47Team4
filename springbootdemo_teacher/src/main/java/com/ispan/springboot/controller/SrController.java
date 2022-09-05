@@ -67,7 +67,7 @@ public class SrController {
 
 		}
 		// 卻認為商家
-		if (1000000 <= intKeyWord & intKeyWord < 2000000) {
+		if (999999 <= intKeyWord & intKeyWord < 2000000) {
 			System.out.println("C2_ID " + keyword);
 			List<ShoppingRecord> findAllToA1ByC2 = srDao.findALLByc2id(intKeyWord);
 			model.addAttribute("data", findAllToA1ByC2);
@@ -75,14 +75,14 @@ public class SrController {
 
 			return "AdminSR2";
 			// 卻認為客戶
-		} else if (2000000 <= intKeyWord) {
+		} else if (1999999 <= intKeyWord) {
 			System.out.println("C1_ID " + keyword);
 			List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(intKeyWord);
 			model.addAttribute("data", findAllToA1ByC1);
 			model.addAttribute("title", "依「客戶ID」查詢");
 			return "AdminSR2";
 			// 卻認為其他
-		} else if (intKeyWord < 1000000) {
+		} else if (intKeyWord < 999999) {
 			System.out.println(" str " + keyword);
 //			商品查找
 			List<ShoppingRecord> findByitemNameLike = SrService.findByitemNameLike(keyword);
