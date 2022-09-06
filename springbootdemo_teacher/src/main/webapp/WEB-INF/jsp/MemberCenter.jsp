@@ -109,7 +109,7 @@
 								</c:if>
 								<c:if test="${findall.srState==false}">
 									<td style="vertical-align: middle; text-align: center;">
-										<div>以申請退貨</div>
+										<div>已申請退貨</div>
 									</td>
 								</c:if>
 							</tr>
