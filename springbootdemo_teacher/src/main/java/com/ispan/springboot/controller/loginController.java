@@ -63,34 +63,44 @@ public class loginController {
 
 	// 商家登入
 	@PostMapping("/checkretailerlogin")
-	public String retailerLogin(@RequestParam("rAccount") String raccount, @RequestParam("rPwd") String rpwd,
-			Model model) {
-		Map<String, String> errors = new HashMap<String, String>();
-		model.addAttribute("errors", errors);
+	 public String retailerLogin(@RequestParam("rAccount") String raccount, @RequestParam("rPwd") String rpwd,
+	   Model model) {
+	  Map<String, String> errors = new HashMap<String, String>();
+	  model.addAttribute("errors", errors);
 
-		if (raccount == null || raccount.length() == 0) {
-			errors.put("caccount", "請輸入商家帳號!");
-		}
+	  if (raccount == null || raccount.length() == 0) {
+	   errors.put("caccount", "請輸入商家帳號!");
+	  }
 
-		if (rpwd == null || rpwd.length() == 0) {
-			errors.put("cpwd", "請輸入商家密碼!");
-		}
+	  if (rpwd == null || rpwd.length() == 0) {
+	   errors.put("cpwd", "請輸入商家密碼!");
+	  }
 
-		if (errors != null && !errors.isEmpty()) {
-			return "loginR";
-		}
+	  if (errors != null && !errors.isEmpty()) {
+	   return "loginR";
+	  }
 
-		Retailer retailerLoginResult = retailerService.checkRetailerLogin(raccount, rpwd);
+	  Retailer retailerLoginResult = retailerService.checkRetailerLogin(raccount, rpwd);
+	  if (retailerLoginResult == null) {
+	   errors.put("rmsg", "商家帳號或密碼有誤，請重新輸入!");
+	   return "loginR";
+	  }
+	  
+	  Retailer checkRetailerStatus = retailerService.findById(retailerLoginResult.getRid());
+	  boolean Rstatus = checkRetailerStatus.isRstate();
+	  
+	  if (Rstatus == true) {
 
-		if (retailerLoginResult != null) {
-			model.addAttribute("retailerLoginOk", retailerLoginResult);
+	   model.addAttribute("retailerLoginOk", retailerLoginResult);
 
-			return "redirect:/ShopHouse/indexShopHouseItems";
-		}
+	   return "redirect:/ShopHouse/indexShopHouseItems";
 
-		errors.put("rmsg", "商家帳號或密碼有誤，請重新輸入!");
-		return "loginR";
-	}
+	  } else {
+	   errors.put("status", "您的帳號已遭停權");
+	   return "loginR";
+	  }
+
+	 }
 
 	// 會員登入
 	@PostMapping("/checkcustomerlogin")
