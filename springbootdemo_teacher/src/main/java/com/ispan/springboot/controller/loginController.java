@@ -22,140 +22,140 @@ import com.ispan.springboot.service.RetailerService;
 @Controller
 @SessionAttributes(names = { "customerLoginOk", "adminLoginOk", "retailerLoginOk" })
 public class loginController {
-	@Autowired
-	private AdminService adminService;
+ @Autowired
+ private AdminService adminService;
 
-	@Autowired
-	private RetailerService retailerService;
+ @Autowired
+ private RetailerService retailerService;
 
-	@Autowired
-	private CustomerService customerService;
+ @Autowired
+ private CustomerService customerService;
 
-	// 管理者登入
-	@PostMapping("/checkadminlogin")
-	public String adminLogin(@RequestParam("adAccount") String account, @RequestParam("adPwd") String pwd,
-			Model model) {
-		Map<String, String> errors = new HashMap<String, String>();
-		model.addAttribute("errors", errors);
+ // 管理者登入
+ @PostMapping("/checkadminlogin")
+ public String adminLogin(@RequestParam("adAccount") String account, @RequestParam("adPwd") String pwd,
+   Model model) {
+  Map<String, String> errors = new HashMap<String, String>();
+  model.addAttribute("errors", errors);
 
-		if (account == null || account.length() == 0) {
-			errors.put("account", "請輸入帳號!");
-		}
+  if (account == null || account.length() == 0) {
+   errors.put("account", "請輸入帳號!");
+  }
 
-		if (pwd == null || pwd.length() == 0) {
-			errors.put("pwd", "請輸入密碼!");
-		}
+  if (pwd == null || pwd.length() == 0) {
+   errors.put("pwd", "請輸入密碼!");
+  }
 
-		if (errors != null && !errors.isEmpty()) {
-			return "loginA";
-		}
+  if (errors != null && !errors.isEmpty()) {
+   return "loginA";
+  }
 
-		Admin adminLoginResult = adminService.checkAdminLogin(account, pwd);
+  Admin adminLoginResult = adminService.checkAdminLogin(account, pwd);
 
-		if (adminLoginResult != null) {
-			model.addAttribute("adminLoginOk", adminLoginResult);
-			return "redirect:/ShopHouse/indexShopHouseItems";
-		}
+  if (adminLoginResult != null) {
+   model.addAttribute("adminLoginOk", adminLoginResult);
+   return "redirect:/ShopHouse/indexShopHouseItems";
+  }
 
-		errors.put("msg", "帳號或密碼有誤，請重新輸入!");
-		return "loginA";	
-	}
+  errors.put("msg", "帳號或密碼有誤，請重新輸入!");
+  return "loginA"; 
+ }
 
-	// 商家登入
-	@PostMapping("/checkretailerlogin")
-	 public String retailerLogin(@RequestParam("rAccount") String raccount, @RequestParam("rPwd") String rpwd,
-	   Model model) {
-	  Map<String, String> errors = new HashMap<String, String>();
-	  model.addAttribute("errors", errors);
+ // 商家登入
+ @PostMapping("/checkretailerlogin")
+  public String retailerLogin(@RequestParam("rAccount") String raccount, @RequestParam("rPwd") String rpwd,
+    Model model) {
+   Map<String, String> errors = new HashMap<String, String>();
+   model.addAttribute("errors", errors);
 
-	  if (raccount == null || raccount.length() == 0) {
-	   errors.put("caccount", "請輸入商家帳號!");
-	  }
+   if (raccount == null || raccount.length() == 0) {
+    errors.put("caccount", "請輸入商家帳號!");
+   }
 
-	  if (rpwd == null || rpwd.length() == 0) {
-	   errors.put("cpwd", "請輸入商家密碼!");
-	  }
+   if (rpwd == null || rpwd.length() == 0) {
+    errors.put("cpwd", "請輸入商家密碼!");
+   }
 
-	 
-		if (errors != null && !errors.isEmpty()) {
-			return "loginR";
-		}
-		
-		Retailer retailerLoginResult = retailerService.checkRetailerLogin(raccount, rpwd);
-		
-		if (retailerLoginResult == null) {
-			errors.put("rmsg", "商家帳號或密碼有誤，請重新輸入!");
-			return "loginR";
-		}
-		
-		Retailer checkRetailerStatus = retailerService.findById(retailerLoginResult.getRid());
-		boolean Rstatus = checkRetailerStatus.isRstate();
-		
-		
-		
-		if (Rstatus == true) {
+  
+  if (errors != null && !errors.isEmpty()) {
+   return "loginR";
+  }
+  
+  Retailer retailerLoginResult = retailerService.checkRetailerLogin(raccount, rpwd);
+  
+  if (retailerLoginResult == null) {
+   errors.put("rmsg", "商家帳號或密碼有誤，請重新輸入!");
+   return "loginR";
+  }
+  
+  Retailer checkRetailerStatus = retailerService.findById(retailerLoginResult.getRid());
+  boolean Rstatus = checkRetailerStatus.isRstate();
+  
+  
+  
+  if (Rstatus == true) {
 
-			model.addAttribute("retailerLoginOk", retailerLoginResult);
+   model.addAttribute("retailerLoginOk", retailerLoginResult);
 
-			return "redirect:/ShopHouse/indexShopHouseItems";
+   return "redirect:/ShopHouse/indexShopHouseItems";
 
-		} else {
-			errors.put("status", "您的帳號已遭停權");
-			return "loginR";
-		}
+  } else {
+   errors.put("status", "您的帳號已遭停權");
+   return "loginR";
+  }
 
-	}
+ }
 
 
-	// 會員登入
-	@PostMapping("/checkcustomerlogin")
-	public String customerLogin(@RequestParam("cAccount") String caccount, @RequestParam("cPwd") String cpwd,
-			Model model) {
-		Map<String, String> errors = new HashMap<String, String>();
-		model.addAttribute("errors", errors);
+ // 會員登入
+ @PostMapping("/checkcustomerlogin")
+ public String customerLogin(@RequestParam("cAccount") String caccount, @RequestParam("cPwd") String cpwd,
+   Model model) {
+  Map<String, String> errors = new HashMap<String, String>();
+  model.addAttribute("errors", errors);
 
-		if (caccount == null || caccount.length() == 0) {
-			errors.put("caccount", "請輸入您的帳號!");
-		}
+  if (caccount == null || caccount.length() == 0) {
+   errors.put("caccount", "請輸入您的帳號!");
+  }
 
-		if (cpwd == null || cpwd.length() == 0) {
-			errors.put("cpwd", "請輸入您的密碼!");
-		}
+  if (cpwd == null || cpwd.length() == 0) {
+   errors.put("cpwd", "請輸入您的密碼!");
+  }
 
-		if (errors != null && !errors.isEmpty()) {
-			return "loginC";
-		}
+  if (errors != null && !errors.isEmpty()) {
+   return "loginC";
+  }
 
-		Customer customerLoginResult = customerService.checkCustomerLogin(caccount, cpwd);
+  Customer customerLoginResult = customerService.checkCustomerLogin(caccount, cpwd);
 
-		if (customerLoginResult == null) {
-			errors.put("cmsg", "您的帳號或密碼有誤，請重新輸入!");
-			return "loginC";
-		}
-		// 因在此位置判斷customerLoginResult有錯，故須將if customerLoginResult == null敘述移到上方做判斷
-		Customer checkStatus = customerService.findCustomerById(customerLoginResult.getcId());
-		boolean cstatus = checkStatus.iscStatus();
+  if (customerLoginResult == null) {
+   errors.put("cmsg", "您的帳號或密碼有誤，請重新輸入!");
+   return "loginC";
+  }
+  // 因在此位置判斷customerLoginResult有錯，故須將if customerLoginResult == null敘述移到上方做判斷
+  Customer checkStatus = customerService.findCustomerById(customerLoginResult.getcId());
+  boolean cstatus = checkStatus.iscStatus();
 
-		if (cstatus == true) {
+  if (cstatus == true) {
 
-			model.addAttribute("customerLoginOk", customerLoginResult);
-			return "redirect:/ShopHouse/indexShopHouseItems";
+   model.addAttribute("customerLoginOk", customerLoginResult);
+   return "redirect:/ShopHouse/indexShopHouseItems";
 
-		} else {
-			errors.put("status", "您的帳號尚未開通或已遭停權，詳情請向管理員洽詢。");
-			return "loginC";
-		}
+  } else {
+   errors.put("status", "您的帳號尚未開通或已遭停權，詳情請向管理員洽詢。");
+   return "loginC";
+  }
 
-	}
+ }
 
 //所有登出
-	@GetMapping("/logout")
-	public String logout(SessionStatus status, Model model) {
-		if (model.getAttribute("customerLoginOk") != null || model.getAttribute("adminLoginOk") != null
-				|| model.getAttribute("retailerLoginOk") != null) {
-			status.setComplete();
-		}
-		return "redirect:/ShopHouse/indexShopHouseItems";
-	}
+ @GetMapping("/logout")
+ public String logout(SessionStatus status, Model model) {
+  if (model.getAttribute("customerLoginOk") != null || model.getAttribute("adminLoginOk") != null
+    || model.getAttribute("retailerLoginOk") != null) {
+   status.setComplete();
+  }
+  return "redirect:/ShopHouse/indexShopHouseItems";
+ }
 
 }
