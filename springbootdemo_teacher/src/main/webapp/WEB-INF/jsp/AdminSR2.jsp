@@ -213,7 +213,7 @@
 										<td style="vertical-align: middle; text-align: center;">商品上架中</td>
 									</c:if>
 									<c:if test="${findall.shophousebean.status==false}">
-										<td style="vertical-align: middle; text-align: center;">商品以下架</td>
+										<td style="vertical-align: middle; text-align: center;">商品已下架</td>
 									</c:if>														
 									
 									<td style="vertical-align: middle; text-align: center;"><a href="${pageContext.request.contextPath}/retailerGetAllItem?id=${findall.shophousebean.retailerBean.rid}">${findall.shophousebean.retailerBean.rName}</a></td>
