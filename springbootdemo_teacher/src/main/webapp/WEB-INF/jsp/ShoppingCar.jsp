@@ -49,7 +49,7 @@
 			<jsp:include page="C1Bar\C1SideBar.jsp" />
 			<!-- C1SideBar -->
 
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-right:30px; ">
 				<c:if test="${!empty findAllToA1}">
 					<h2>購物紀錄</h2>
 				</c:if>

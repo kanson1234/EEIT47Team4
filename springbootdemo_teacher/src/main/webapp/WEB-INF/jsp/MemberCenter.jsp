@@ -44,7 +44,7 @@
 			<jsp:include page="C1Bar\C1SideBar.jsp" />
 
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-				<c:if test="${!empty findAllToA1}">
+				<c:if test="${!empty data}">
 					<h2>購物紀錄</h2>
 				</c:if>
 				<table class="table" id="retailerTable" style="margin-right:30px ">
