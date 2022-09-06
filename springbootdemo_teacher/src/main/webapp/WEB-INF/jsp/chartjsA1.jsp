@@ -50,9 +50,7 @@
 			<!-- AdminSideBar -->
 
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-				<!-- outputbar -->
-				<jsp:include page="AdminBar/outputbar.jsp" />
-				<!-- outputbar -->
+			
 
  <canvas id="example" width="150" height="50"></canvas>
   <script>
@@ -99,11 +97,15 @@
   			data: {
   				labels: x , // 標題
   				datasets: [{
-  					label: "# of Votes", // 標籤
+  					label: "# 銷售總額", // 標籤
   					data: y , // 資料
   					backgroundColor: [ // 背景色
   					"#FF0000",
   					"#00FF00",
+  					"#0000C6",
+  					"#6F00D2",
+  					"#FF5809",
+  					"#A5A552"
   					
   					],
   					borderWidth: 1 // 外框寬度

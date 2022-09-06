@@ -190,7 +190,7 @@
 							$('#addToCar')
 									.click(
 											function() {
-												alert('成功加入購物車')
+												
 												var num = document
 														.getElementById('num').value;
 												// 										alert(num)
@@ -211,12 +211,11 @@
 																	+ "&itid="
 																	+ itid,
 															contentType : 'application/json', // 送過去的資料型別
-															dataType : 'json', // 回傳回來的資料型別
+															dataType : 'text', // 回傳回來的資料型別
 															method : 'get',
 															success : function(
 																	result) {
-																console
-																		.log(result)
+																alert(result)
 															},
 															error : function(
 																	err) {
