@@ -114,6 +114,7 @@ h2::before {
 					<button type="submit" class="btn btn-lg btn-primary">登入</button>
 					<button class="btn btn-lg btn-secondary" id="cancel">取消</button>
 					<p style="color: red;">${errors.rmsg}</p>
+					<p style="color: red;">${errors.status}</p>
 				</div>
 				<br> <a href="${contextRoot}/registerR">
 					<button type="button"

@@ -4,28 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ispan.springboot.dao.ScDao;
+import com.ispan.springboot.dao.SrOrderDao;
 import com.ispan.springboot.dto.DtoSc;
 import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.ShoopingCar;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.model.ShoppingRecord;
+import com.ispan.springboot.model.Srno;
 import com.ispan.springboot.service.ScService;
 import com.ispan.springboot.service.ShopHouseService;
 import com.ispan.springboot.service.SrService;
@@ -47,6 +47,9 @@ public class ScController {
 
 	@Autowired
 	private ScDao scDao;
+
+	@Autowired
+	private SrOrderDao srOrderDao;
 
 //	U	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -110,13 +113,29 @@ public class ScController {
 		Integer cid = customerSession.getcId();
 		Customer customer = new Customer();
 		customer.setcId(cid);
-		System.err.println("++++++++++++++++++++++++++++++++++" + scDto.get(0).getPrice());
-		System.err.println("++++++++++++++++++++++++++++++++++" + scDto.size());
+
 		Integer ecpayPrice = 0;
 		String EcpayDetail = "";
+
 		Date date = new Date();
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String ecDate = sdFormat.format(date);
+
+		for (Iterator iterator = scDto.iterator(); iterator.hasNext();) {
+			DtoSc dtoSc = (DtoSc) iterator.next();
+			Integer ScTotalPrice = dtoSc.getScTotalPrice();
+			ecpayPrice += ScTotalPrice;
+
+		}
+
+		Integer no = (int) (Math.random() * 100000);
+
+		Srno srno = new Srno();
+		srno.setC1id(cid);
+		srno.setPrice(ecpayPrice);
+		srno.setSrnox("No" + no.toString());
+		srOrderDao.save(srno);
+
 		for (Iterator iterator = scDto.iterator(); iterator.hasNext();) {
 			DtoSc dtoSc = (DtoSc) iterator.next();
 			System.out.println(cid + "\t" + dtoSc.getScid() + "\t" + dtoSc.getSccount() + "\t" + dtoSc.getPrice() + "\t"
@@ -133,7 +152,6 @@ public class ScController {
 			int count = num;
 			int totoprice = ScTotalPrice;
 
-			EcpayDetail += "#" + name + " NTD : " + totoprice + " * " + num + "\n";
 			ecpayPrice += Math.round(totoprice);
 			ShoppingRecord newSR = new ShoppingRecord();
 			newSR.setCustomer(customer);
@@ -143,43 +161,36 @@ public class ScController {
 			newSR.setSrtime(date);
 			newSR.setSrCount(count);
 			newSR.setSrState(true);
+			newSR.setSrno1(srno);
 			ShoppingRecord success = SrService.addSR(newSR);
 //			======================================================
 			scDao.deleteByC1id(cid);
 //			======================================================
 
 		}
-		Integer no=(int) (Math.random()*100000);
+
 		AllInOne aio = new AllInOne("");
 		AioCheckOutDevide obj = new AioCheckOutDevide();
-		obj.setMerchantTradeNo("No"+no.toString());
+		obj.setMerchantTradeNo("No" + no.toString());
 		obj.setMerchantTradeDate(ecDate);
 		obj.setTotalAmount(ecpayPrice.toString());
-	
+
 		obj.setItemName("商城商品一批");
 		obj.setTradeDesc("EcpayDetail");
 		obj.setReturnURL("http://211.23.128.214:5000");
 
-//		obj.setReturnURL("https://1e71-125-227-255-79.jp.ngrok.io/returnURL");
 		obj.setOrderResultURL("http://localhost:8080/");
 
 		obj.setNeedExtraPaidInfo("N");
 		obj.setCreditInstallment("12");
 		String form = aio.aioCheckOut(obj, null);
 		System.out.println(form);
-
-		System.out.println(EcpayDetail);
-		System.out.println(ecpayPrice.toString());
-		System.out.println(ecDate);
-		;
-//		
-//		return null;
 		return form;
 
 	}
 
 //	______________________________________________________________________________________________________
-	
+
 	@ResponseBody
 	@GetMapping("ShoppingCar/add")
 	public String addToCar(@RequestParam(name = "num") Integer num, Model model, HttpSession session,
@@ -206,7 +217,7 @@ public class ScController {
 		} else {
 			scDao.change(cid, itid, num + check);
 
-			return "成功修改數量";
+			return "購物車中已經有相同的商品，將為您修改訂單數量";
 
 		}
 
@@ -267,5 +278,7 @@ public class ScController {
 			return null;
 		}
 	}
+
+	
 
 }

@@ -180,7 +180,7 @@ button {
        <li class="nav-item dropdown">
         <div class="dropdown-menu">
 
-         <a class="dropdown-item" href="${contextRoot}/Admin/SalesRecord3">後臺管理</a>
+         <a class="dropdown-item" href="${contextRoot}/Admin/SalesRecord">後臺管理</a>
          <a class="dropdown-item" href="${contextRoot}/logout">登出</a>
          
     

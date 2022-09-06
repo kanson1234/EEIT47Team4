@@ -103,10 +103,7 @@ public class pageController {
 		return "srselectpageALL";
 	}
 
-	@GetMapping("/Admin/SalesRecord")
-	public String AdminSR() {
-		return "AdminSR";
-	}
+
 	
 
 	@GetMapping("/customerFile")
