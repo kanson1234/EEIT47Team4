@@ -50,7 +50,7 @@
 	<div class="container" align="center">
 		<div class="row">
 
-			<c:forEach items="${allNewItems}" var="i" begin="1" end="12">
+			<c:forEach items="${allNewItems}" var="i" begin="0" end="12">
 				<div class="card" style="width: 14rem; height: 380px;">
 					<a href="${pageContext.request.contextPath}/ShopHouse/itemDetail/${i.id}"><img
 							height="180" src="${pageContext.request.contextPath}/downloadImg/${i.id}" class="card-img-top"

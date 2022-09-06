@@ -1,6 +1,5 @@
 package com.ispan.springboot.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -72,6 +70,18 @@ public class ShoppingRecord {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "c1_id")
 	private Customer customer;
+	
+	
+	public void setSrno1(Srno srno1) {
+		this.srno1 = srno1;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "no")
+	private Srno srno1;
+	
+	
+	
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sh_item_id")

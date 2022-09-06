@@ -4,9 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ispan.springboot.dao.ShoppingRecordDao;
+import com.ispan.springboot.dao.SrOrderDao;
 import com.ispan.springboot.dto.DateDto;
 import com.ispan.springboot.model.Customer;
 import com.ispan.springboot.model.Retailer;
 import com.ispan.springboot.model.ShopHouseBean;
 import com.ispan.springboot.model.ShoppingRecord;
+import com.ispan.springboot.model.Srno;
 import com.ispan.springboot.service.SrService;
 
 @SessionAttributes(names = { "customerLoginOk", "adminLoginOk", "retailerLoginOk" })
@@ -32,9 +34,12 @@ public class SrController {
 
 	@Autowired
 	private ShoppingRecordDao srDao;
+	
+	@Autowired
+	private SrOrderDao srOrderDao;
 //	---------------------------------------------------------------------------------
 
-	@GetMapping("/Admin/SalesRecord3")
+	@GetMapping("/Admin/SalesRecord")
 	private String findAllByTime(Model model) {
 		List<ShoppingRecord> findAllToA1 = SrService.findAllByTime();
 		model.addAttribute("data", findAllToA1);
@@ -42,19 +47,37 @@ public class SrController {
 		return "AdminSR2";
 	}
 
+//	@GetMapping("/Member/MemberCenter2")
+//	public String MemberCenter(Model model) {
+//		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
+//		Integer cid = customerSession.getcId();
+//
+//		System.out.println(cid);
+//
+//		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
+//		model.addAttribute("data", findAllToA1ByC1);
+//		return "MemberCenter";
+//
+//	}
+
+
 	@GetMapping("/Member/MemberCenter")
-	public String MemberCenter(Model model) {
+	private String test2(Model model) {
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
-		Integer cid = customerSession.getcId();
+		Integer c1id = customerSession.getcId();
+		System.out.println(c1id);
 
-		System.out.println(cid);
-
-		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
-		model.addAttribute("data", findAllToA1ByC1);
-		return "MemberCenter";
+		Set<Srno> findOrderByCid = srOrderDao.findOrderByCid(c1id);
+		model.addAttribute("data", findOrderByCid);
+		return "MemberCenter2";
 
 	}
-
+	
+	
+	
+	
+	
+	
 	@GetMapping("/findbyKeyWord")
 	private String findbyKeyWord(Model model, @RequestParam(name = "keyword") String keyword) {
 		System.out.println(keyword);
@@ -192,17 +215,17 @@ public class SrController {
 //	// find all sr to C2
 	@GetMapping("/Admin/Chart") // findbyc2id
 	private String Chart() {
-		
+
 		return "chartjsA1";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/Admin/X") // findbyc2id
 	private List<String> ChartX() {
 		List<String> findXtoc2 = srDao.findXtoc2();
 		System.err.println(findXtoc2);
 		System.err.println(findXtoc2.getClass().getSimpleName());
-		
+
 		return findXtoc2;
 	}
 
@@ -211,14 +234,14 @@ public class SrController {
 	private List<Integer> ChartY1() {
 		return srDao.findYtoc2();
 	}
-	
+
 	@ResponseBody
 	// find all sr to C2
 	@GetMapping("/record/c2id") // findbyc2id
 	private List<ShoppingRecord> findALLByc2id(Model model) {
 		Retailer retailerSession = (Retailer) model.getAttribute("retailerLoginOk");
 		Integer c2id = retailerSession.getRid();
-		System.out.println(c2id);	
+		System.out.println(c2id);
 		return srDao.findALLByc2id(c2id);
 	}
 
@@ -229,13 +252,14 @@ public class SrController {
 		Integer c2id = customerSession.getRid();
 		Date day1 = new Date();
 		Date day2 = new Date();
-		day1.setDate(-7);
+		day1.setTime(day1.getTime()-(86400000*7));
+		
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		String format1 = ft.format(day1);
 		String format2 = ft.format(day2);
-		System.out.println(format1);
-		System.out.println(format2);
-
+		System.err.println(format1);
+		System.err.println(format2);
+	
 		if (SrService.c2RTG(c2id, format1, format2).isEmpty()) {
 
 			return "T";
@@ -256,13 +280,13 @@ public class SrController {
 	private String returnTheGoods(@RequestParam(name = "srid") Integer srid, Model model) {
 
 		Customer customerSession = ((Customer) model.getAttribute("customerLoginOk"));
-		Integer cid = customerSession.getcId();
-		System.out.println(cid);
+		Integer c1id = customerSession.getcId();
+		System.out.println(c1id);
 		SrService.returnTheGoods(srid);
 
-		List<ShoppingRecord> findAllToA1ByC1 = SrService.findAllByC1_id(cid);
-		model.addAttribute("data", findAllToA1ByC1);
-		return "MemberCenter";
+		Set<Srno> findOrderByCid = srOrderDao.findOrderByCid(c1id);
+		model.addAttribute("data", findOrderByCid);
+		return "MemberCenter2";
 	}
 
 	@ResponseBody

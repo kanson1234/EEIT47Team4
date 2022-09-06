@@ -75,7 +75,7 @@ public interface ShopHouseDao extends JpaRepository<ShopHouseBean, Integer> {
 	public List<ShopHouseBean> showAllByStatus(@Param("status") boolean status);
 	
 	//秀出所有商品
-	@Query(value="SELECT * FROM StoreHouse WHERE SH_State=1 ORDER BY SH_Item_Id desc" ,nativeQuery = true )
+	@Query(value="SELECT * FROM StoreHouse WHERE SH_State=1 ORDER BY SH_Date DESC" ,nativeQuery = true )
 	public List<ShopHouseBean> showAllItems();
 	
 
